@@ -1,4 +1,5 @@
-# Edgeless Lab Design System
+# Nous Inspired Design System
+# by Edgeless Lab
 
 Dark-first component library, design tokens, and texture pipeline for the Edgeless Lab visual identity. Structural dithering, not smooth gradients.
 
