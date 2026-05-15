@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nous Inspired Design System</title>
+<meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. Open source.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   TOKENS AS CSS CUSTOM PROPERTIES
+   ================================================================ */
+:root {
+  --void: #0a0a0a;
+  --bg-s: #111111;
+  --bg-t: #1a1a1a;
+  --bg-e: #222222;
+  --fg: #ffffff;
+  --fg-s: rgba(255,255,255,0.7);
+  --fg-t: rgba(255,255,255,0.5);
+  --fg-q: rgba(255,255,255,0.25);
+  --indigo: #6366f1;
+  --violet: #8b5cf6;
+  --cyan: #06b6d4;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --cream: #f5f0e8;
+  --border-s: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.12);
+  --border-st: rgba(255,255,255,0.2);
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+body {
+  background: var(--void);
+  color: var(--fg);
+  font-family: var(--mono);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ================================================================
+   SCANLINE OVERLAY (global ambient effect)
+   ================================================================ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-s);
+  transition: background 0.3s var(--ease);
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.95);
+  border-bottom-color: var(--border);
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  gap: 0.25rem;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  margin-right: auto;
+  white-space: nowrap;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links { display: flex; gap: 0.125rem; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--fg-t);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.375rem 0.625rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover {
+  color: var(--cyan);
+  background: rgba(6,182,212,0.08);
+  text-decoration: none;
+}
+
+/* ================================================================
+   SECTIONS
+   ================================================================ */
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+.section + .section { border-top: 1px solid var(--border-s); }
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+.section-label::before { content: '// '; color: var(--fg-q); }
+.section-title {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.section-desc {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--fg-s);
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s var(--ease-out) 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.6s var(--ease-out) 0.4s forwards;
+}
+.hero-title .accent-grad {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scanline text effect */
+.hero-title::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(10,10,10,0.15) 3px,
+    rgba(10,10,10,0.15) 6px
+  );
+  pointer-events: none;
+  animation: scanDrift 8s linear infinite;
+}
+
+@keyframes scanDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(6px); }
+}
+
+.hero-sub {
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  color: var(--fg-s);
+  max-width: 640px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s var(--ease-out) 0.6s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s var(--ease-out) 0.8s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ambient grid bg */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 60% at 30% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 30% 50%, black, transparent);
+  pointer-events: none;
+}
+
+/* ================================================================
+   BUTTONS (real component recreation)
+   ================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn:hover { text-decoration: none; }
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--indigo);
+  color: #fff;
+  border-color: var(--indigo);
+}
+.btn-primary:hover { background: #5558e6; }
+
+.btn-secondary {
+  background: var(--bg-e);
+  color: var(--fg);
+  border-color: var(--border);
+}
+.btn-secondary:hover { background: var(--bg-t); border-color: var(--border-st); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--fg-s);
+  border-color: transparent;
+}
+.btn-ghost:hover { color: var(--fg); background: var(--bg-t); }
+
+.btn-danger {
+  background: rgba(239,68,68,0.1);
+  color: var(--red);
+  border-color: rgba(239,68,68,0.2);
+}
+.btn-danger:hover { background: rgba(239,68,68,0.2); }
+
+.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.7rem; border-radius: 6px; }
+.btn-lg { padding: 0.75rem 1.5rem; font-size: 0.875rem; border-radius: 10px; }
+
+/* ================================================================
+   CARDS
+   ================================================================ */
+.card {
+  background: var(--bg-e);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s var(--ease);
+}
+.card:hover {
+  border-color: var(--border-st);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.3);
+}
+.card-title {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.card-body {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--fg-s);
+  line-height: 1.6;
+}
+
+/* ================================================================
+   BADGE
+   ================================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.badge-indigo { background: rgba(99,102,241,0.15); color: var(--indigo); }
+.badge-violet { background: rgba(139,92,246,0.15); color: var(--violet); }
+.badge-cyan { background: rgba(6,182,212,0.15); color: var(--cyan); }
+.badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+.badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+.badge-default { background: var(--bg-t); color: var(--fg-s); }
+
+/* ================================================================
+   INPUT & SELECT
+   ================================================================ */
+.input, .select {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  background: var(--bg-s);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.input:focus, .select:focus {
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+.input::placeholder { color: var(--fg-q); }
+.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2rem; }
+
+/* ================================================================
+   PALETTE
+   ================================================================ */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+.swatch {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+.swatch:hover { border-color: var(--border-st); transform: translateY(-2px); }
+.swatch-color {
+  height: 80px;
+  position: relative;
+}
+.swatch-info {
+  padding: 0.625rem 0.75rem;
+  background: var(--bg-s);
+}
+.swatch-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+.swatch-hex {
+  font-size: 0.65rem;
+  color: var(--fg-t);
+}
+.swatch-use {
+  font-size: 0.6rem;
+  color: var(--fg-q);
+  margin-top: 0.25rem;
+}
+
+/* Gradient bar */
+.gradient-bar {
+  height: 48px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 50%, var(--cyan) 100%);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.gradient-bar::after {
+  content: 'linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4)';
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.6);
+  font-family: var(--mono);
+}
+
+/* ================================================================
+   TYPOGRAPHY SPECIMENS
+   ================================================================ */
+.type-specimen {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--bg-s);
+  margin-bottom: 1rem;
+}
+.type-sample { margin-bottom: 0.75rem; }
+.type-meta {
+  font-size: 0.65rem;
+  color: var(--fg-t);
+  border-top: 1px solid var(--border-s);
+  padding-top: 0.75rem;
+}
+.type-scale {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.type-scale-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-s);
+}
+.type-scale-label {
+  font-size: 0.6rem;
+  color: var(--fg-q);
+  min-width: 80px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+.type-scale-size {
+  font-size: 0.6rem;
+  color: var(--fg-t);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   MODE GRID
+   ================================================================ */
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.mode-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-s);
+  transition: border-color 0.2s;
+}
+.mode-card:hover { border-color: var(--border-st); }
+.mode-preview {
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+.mode-header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-s);
+}
+.mode-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--cyan);
+}
+.mode-desc {
+  padding: 0.75rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--fg-t);
+  line-height: 1.5;
+}
+.mode-cmd {
+  padding: 0.5rem 1rem;
+  font-size: 0.65rem;
+  color: var(--green);
+  background: var(--void);
+  border-top: 1px solid var(--border-s);
+  cursor: pointer;
+}
+.mode-cmd:hover { color: #4ade80; }
+
+/* Mode preview effects */
+.fx-dither-bw {
+  background: repeating-conic-gradient(var(--fg) 0% 25%, var(--void) 0% 50%) 0 0 / 4px 4px;
+}
+.fx-dither-accent {
+  background:
+    repeating-conic-gradient(var(--cyan) 0% 25%, var(--void) 0% 50%) 0 0 / 6px 6px;
+  opacity: 0.7;
+}
+.fx-dither-full {
+  background:
+    linear-gradient(135deg, var(--indigo) 0%, var(--violet) 33%, var(--cyan) 66%, var(--fg) 100%),
+    repeating-conic-gradient(rgba(0,0,0,0.3) 0% 25%, transparent 0% 50%) 0 0 / 3px 3px;
+  background-blend-mode: multiply;
+}
+.fx-riso {
+  background: var(--cream);
+  background-image: radial-gradient(circle, var(--void) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+.fx-thermal {
+  background: #fff;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 4px, rgba(0,0,0,0.05) 4px, rgba(0,0,0,0.05) 8px),
+    linear-gradient(180deg, #fff 0%, #ddd 50%, #333 100%);
+}
+.fx-scanline {
+  background: var(--void);
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(6,182,212,0.1) 2px, rgba(6,182,212,0.1) 3px),
+    linear-gradient(180deg, rgba(99,102,241,0.2) 0%, rgba(6,182,212,0.2) 100%);
+}
+
+/* ================================================================
+   PROMPT LIBRARY
+   ================================================================ */
+.prompt-filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.prompt-search {
+  flex: 1;
+  min-width: 200px;
+}
+.prompt-set-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.prompt-set-btn {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-s);
+  color: var(--fg-t);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.prompt-set-btn.active {
+  background: var(--indigo);
+  color: #fff;
+}
+.prompt-set-btn:hover:not(.active) { color: var(--fg-s); }
+
+.prompt-category {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.prompt-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-s);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  user-select: none;
+  transition: background 0.15s;
+}
+.prompt-cat-header:hover { background: var(--bg-t); }
+.prompt-cat-header .arrow {
+  color: var(--fg-q);
+  transition: transform 0.2s;
+  font-size: 0.7rem;
+}
+.prompt-cat-header.open .arrow { transform: rotate(90deg); }
+.prompt-cat-count {
+  margin-left: auto;
+  font-size: 0.65rem;
+  color: var(--fg-q);
+}
+.prompt-cat-body {
+  display: none;
+  padding: 0;
+}
+.prompt-cat-body.open { display: block; }
+.prompt-item {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-s);
+  font-size: 0.7rem;
+  color: var(--fg-s);
+  line-height: 1.6;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.prompt-item:hover { background: rgba(255,255,255,0.02); }
+.prompt-id {
+  color: var(--cyan);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  margin-top: 0.1rem;
+}
+.prompt-text {
+  flex: 1;
+  font-family: var(--sans);
+}
+.prompt-copy {
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  color: var(--fg-q);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-s);
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--mono);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.prompt-copy:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ================================================================
+   TOKEN REFERENCE
+   ================================================================ */
+.token-section {
+  margin-bottom: 1.5rem;
+}
+.token-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-s);
+  user-select: none;
+}
+.token-header:hover .token-label { color: var(--cyan); }
+.token-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+.token-header .arrow {
+  color: var(--fg-q);
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+.token-header.open .arrow { transform: rotate(90deg); }
+.token-body { display: none; padding: 1rem 0; }
+.token-body.open { display: block; }
+
+/* Spacing demos */
+.spacing-demo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.spacing-bar {
+  height: 24px;
+  background: linear-gradient(90deg, var(--indigo), var(--cyan));
+  border-radius: 3px;
+  min-width: 1px;
+}
+.spacing-label {
+  font-size: 0.65rem;
+  color: var(--fg-t);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+.spacing-value {
+  font-size: 0.6rem;
+  color: var(--fg-q);
+  cursor: pointer;
+}
+.spacing-value:hover { color: var(--cyan); }
+
+/* Radius demos */
+.radius-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.radius-demo {
+  text-align: center;
+}
+.radius-box {
+  width: 64px;
+  height: 64px;
+  background: var(--bg-t);
+  border: 1px solid var(--border-st);
+  margin-bottom: 0.5rem;
+}
+.radius-demo .label {
+  font-size: 0.6rem;
+  color: var(--fg-t);
+}
+.radius-demo .val {
+  font-size: 0.55rem;
+  color: var(--fg-q);
+}
+
+/* Shadow demos */
+.shadow-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.shadow-demo {
+  text-align: center;
+}
+.shadow-box {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-e);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.shadow-demo .label {
+  font-size: 0.6rem;
+  color: var(--fg-t);
+}
+
+/* ================================================================
+   COMPONENT SHOWCASE
+   ================================================================ */
+.comp-group {
+  margin-bottom: 2.5rem;
+}
+.comp-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--fg-t);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.comp-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* ================================================================
+   GET STARTED CARDS
+   ================================================================ */
+.start-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+.start-card {
+  background: var(--bg-s);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.start-card:hover {
+  border-color: var(--border-st);
+  transform: translateY(-2px);
+}
+.start-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.start-card h3 {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.start-card p {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--fg-s);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.code-block {
+  background: var(--void);
+  border: 1px solid var(--border-s);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+.code-block:hover::after {
+  content: 'click to copy';
+  position: absolute;
+  top: 0.375rem;
+  right: 0.5rem;
+  font-size: 0.55rem;
+  color: var(--fg-q);
+}
+.code-block .cm { color: var(--fg-q); }
+.code-block .kw { color: var(--cyan); }
+.code-block .st { color: var(--violet); }
+.code-block .fn { color: var(--green); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-s);
+}
+.footer-text {
+  font-size: 0.7rem;
+  color: var(--fg-q);
+  letter-spacing: 0.08em;
+}
+.footer-text a { color: var(--fg-t); }
+.footer-text a:hover { color: var(--cyan); }
+
+/* ================================================================
+   TOAST (copied notification)
+   ================================================================ */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-e);
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(34,197,94,0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s var(--ease-bounce);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { padding: 5rem 1.25rem 3rem; min-height: 80vh; }
+  .section { padding: 3rem 1.25rem 2.5rem; }
+  .mode-grid { grid-template-columns: 1fr; }
+  .start-grid { grid-template-columns: 1fr; }
+  .palette-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .comp-row { flex-direction: column; align-items: flex-start; }
+  .gradient-bar::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Copied!</div>
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">NOUS <span>DESIGN</span></div>
+    <div class="nav-links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#palette">Palette</a>
+      <a href="#typography">Type</a>
+      <a href="#components">Components</a>
+      <a href="#modes">Modes</a>
+      <a href="#prompts">Prompts</a>
+      <a href="#tokens">Tokens</a>
+      <a href="#start">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">Edgeless Lab / Open Source</div>
+  <h1 class="hero-title">
+    <span class="accent-grad">Nous Inspired</span><br>
+    Design System
+  </h1>
+  <p class="hero-sub">
+    A texture pipeline and visual language for structurally dithered,
+    print-quality aesthetics. Open source. Take everything.
+  </p>
+  <div class="hero-actions">
+    <a href="#tokens" class="btn btn-primary">Browse Tokens</a>
+    <a href="#prompts" class="btn btn-secondary">Get Prompts</a>
+    <a href="https://github.com/edgelesslab/design-system" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+  </div>
+</section>
+
+<!-- ================================================================
+     PHILOSOPHY
+     ================================================================ -->
+<section class="section" id="philosophy">
+  <div class="section-label">Philosophy</div>
+  <h2 class="section-title">Two-Stage Pipeline</h2>
+  <div class="section-desc" style="margin-bottom: 1.5rem;">
+    AI generates composition, color, and mood. Then deterministic dithering
+    post-processes every pixel into a structural pattern. AI cannot produce
+    real structural dithering natively -- smooth gradients and soft noise are
+    not the same as Floyd-Steinberg error diffusion or ordered Bayer matrices
+    where every pixel participates in the pattern. The pipeline exists to
+    bridge this gap.
+  </div>
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; font-size: 0.75rem; color: var(--fg-t);">
+    <div style="padding: 0.625rem 1rem; border: 1px solid var(--indigo); border-radius: 6px;">
+      <span style="color: var(--indigo); font-weight: 600;">SOURCE</span><br>
+      <span style="font-size: 0.65rem;">Midjourney / Flora / Venice</span>
+    </div>
+    <span style="color: var(--fg-q);">&rarr;</span>
+    <div style="padding: 0.625rem 1rem; border: 1px solid var(--cyan); border-radius: 6px;">
+      <span style="color: var(--cyan); font-weight: 600;">PIPELINE</span><br>
+      <span style="font-size: 0.65rem;">edgeless-texture-pipeline.py</span>
+    </div>
+    <span style="color: var(--fg-q);">&rarr;</span>
+    <div style="padding: 0.625rem 1rem; border: 1px solid var(--green); border-radius: 6px;">
+      <span style="color: var(--green); font-weight: 600;">OUTPUT</span><br>
+      <span style="font-size: 0.65rem;">Structurally dithered asset</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PALETTE
+     ================================================================ -->
+<section class="section" id="palette">
+  <div class="section-label">Color</div>
+  <h2 class="section-title">Palette</h2>
+  <div class="section-desc">
+    Seven canonical colors. All pipeline modes map to this palette.
+    Click any swatch to copy its hex value.
+  </div>
+
+  <div class="gradient-bar"></div>
+
+  <div class="palette-grid" id="palette-grid"></div>
+</section>
+
+<!-- ================================================================
+     TYPOGRAPHY
+     ================================================================ -->
+<section class="section" id="typography">
+  <div class="section-label">Typography</div>
+  <h2 class="section-title">Two Typefaces</h2>
+  <div class="section-desc">
+    JetBrains Mono is primary for display, headings, labels, code, and captions.
+    Inter for body text and long-form descriptions. Both loaded from Google Fonts.
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-sample" style="font-family: var(--mono); font-weight: 700; font-size: 2.25rem; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem;">
+      EDGELESS LAB
+    </div>
+    <div class="type-sample" style="font-family: var(--mono); font-weight: 400; font-size: 1rem; color: var(--fg-s);">
+      Signal / Swarm / Courier / Agent Infrastructure
+    </div>
+    <div class="type-meta">JetBrains Mono -- Primary. Display, headings, labels, code. Weights 300-700.</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-sample" style="font-family: var(--sans); font-weight: 400; font-size: 1.125rem; color: var(--fg-s); line-height: 1.7;">
+      The collective intelligence of autonomous agents, coordinated through a
+      dark infrastructure of signals, swarms, and relays. Structural dithering
+      gives every pixel a purpose.
+    </div>
+    <div class="type-meta">Inter -- Secondary. Body text, descriptions, long-form. Weights 300-700.</div>
+  </div>
+
+  <div class="type-scale" id="type-scale"></div>
+</section>
+
+<!-- ================================================================
+     COMPONENTS
+     ================================================================ -->
+<section class="section" id="components">
+  <div class="section-label">Components</div>
+  <h2 class="section-title">Interactive Elements</h2>
+  <div class="section-desc">
+    Live HTML/CSS recreations styled with the design system tokens. Every variant,
+    every state. These are the same components shipped as React/TSX in the npm package.
+  </div>
+
+  <!-- Buttons -->
+  <div class="comp-group">
+    <div class="comp-label">Button Variants</div>
+    <div class="comp-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-danger">Danger</button>
+    </div>
+  </div>
+
+  <div class="comp-group">
+    <div class="comp-label">Button Sizes</div>
+    <div class="comp-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="comp-group">
+    <div class="comp-label">Badges</div>
+    <div class="comp-row">
+      <span class="badge badge-indigo">Indigo</span>
+      <span class="badge badge-violet">Violet</span>
+      <span class="badge badge-cyan">Cyan</span>
+      <span class="badge badge-green">Success</span>
+      <span class="badge badge-amber">Warning</span>
+      <span class="badge badge-red">Error</span>
+      <span class="badge badge-default">Default</span>
+    </div>
+  </div>
+
+  <!-- Inputs -->
+  <div class="comp-group">
+    <div class="comp-label">Input &amp; Select</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+      <div>
+        <input class="input" type="text" placeholder="Enter a value...">
+      </div>
+      <div>
+        <select class="select">
+          <option>Select a pipeline mode...</option>
+          <option>dither-bw</option>
+          <option>dither-accent</option>
+          <option>dither-full</option>
+          <option>riso</option>
+          <option>thermal</option>
+          <option>scanline</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="comp-group">
+    <div class="comp-label">Cards</div>
+    <div class="comp-grid">
+      <div class="card">
+        <div class="card-title">Default Card</div>
+        <div class="card-body">Container for content grouping. Consistent padding, border, radius. Hover for lift effect.</div>
+      </div>
+      <div class="card" style="border-color: var(--border-s);">
+        <div class="card-title">Subtle Border</div>
+        <div class="card-body">Reduced border presence for nested or secondary content blocks.</div>
+      </div>
+      <div class="card" style="border-color: transparent;">
+        <div class="card-title">No Border</div>
+        <div class="card-body">Surface elevation only. Used inside already-bordered containers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PIPELINE MODES
+     ================================================================ -->
+<section class="section" id="modes">
+  <div class="section-label">Pipeline</div>
+  <h2 class="section-title">Dithering Modes</h2>
+  <div class="section-desc">
+    Six rendering modes that map any source image onto the Edgeless visual language.
+    Each uses real dithering algorithms, not AI approximations.
+  </div>
+
+  <div class="mode-grid" id="mode-grid"></div>
+</section>
+
+<!-- ================================================================
+     PROMPT LIBRARY
+     ================================================================ -->
+<section class="section" id="prompts">
+  <div class="section-label">Prompts</div>
+  <h2 class="section-title">Prompt Library</h2>
+  <div class="section-desc">
+    300 prompts across 30 categories. v2 targets Midjourney v6.1, v3 targets v8.1.
+    Filter by set, search by keyword, click to copy any prompt.
+  </div>
+
+  <div class="prompt-filter-bar">
+    <input class="input prompt-search" id="prompt-search" type="text" placeholder="Search prompts...">
+    <div class="prompt-set-toggle">
+      <button class="prompt-set-btn active" data-set="all">All</button>
+      <button class="prompt-set-btn" data-set="v2">v2 (MJ 6.1)</button>
+      <button class="prompt-set-btn" data-set="v3">v3 (MJ 8.1)</button>
+    </div>
+  </div>
+
+  <div id="prompt-list"></div>
+</section>
+
+<!-- ================================================================
+     TOKEN REFERENCE
+     ================================================================ -->
+<section class="section" id="tokens">
+  <div class="section-label">Reference</div>
+  <h2 class="section-title">Design Tokens</h2>
+  <div class="section-desc">
+    All token values from <code style="color:var(--cyan);">src/tokens/index.ts</code>
+    and <code style="color:var(--cyan);">src/styles/tokens.css</code>. Click values to copy
+    the CSS custom property.
+  </div>
+
+  <div id="token-sections"></div>
+</section>
+
+<!-- ================================================================
+     GET STARTED
+     ================================================================ -->
+<section class="section" id="start">
+  <div class="section-label">Quickstart</div>
+  <h2 class="section-title">Get Started</h2>
+  <div class="section-desc">
+    Three paths depending on what you need. All paths get you the full Nous aesthetic.
+  </div>
+
+  <div class="start-grid">
+    <!-- Developer -->
+    <div class="start-card">
+      <div class="start-icon" style="background: rgba(99,102,241,0.15); color: var(--indigo);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>Developer</h3>
+      <p>React components + Tailwind preset. Drop in and build.</p>
+      <div class="code-block" onclick="copyText(this.innerText)">
+        <span class="fn">pnpm</span> add @edgelesslab/design-system
+      </div>
+      <div class="code-block" onclick="copyText(this.innerText)">
+        <span class="kw">import</span> { Button, Card, Badge } <span class="kw">from</span> <span class="st">'@edgelesslab/design-system'</span>;
+      </div>
+    </div>
+
+    <!-- Designer -->
+    <div class="start-card">
+      <div class="start-icon" style="background: rgba(139,92,246,0.15); color: var(--violet);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      </div>
+      <h3>Designer</h3>
+      <p>CSS custom properties. Drop tokens.css into any project.</p>
+      <div class="code-block" onclick="copyText(this.innerText)">
+        <span class="cm">&lt;!-- Drop-in token file --&gt;</span>
+<span class="kw">&lt;link</span> rel=<span class="st">"stylesheet"</span> href=<span class="st">"tokens.css"</span><span class="kw">&gt;</span>
+      </div>
+      <div class="code-block" onclick="copyText(this.innerText)">
+        background: <span class="kw">var</span>(<span class="st">--color-accent-primary</span>);
+      </div>
+    </div>
+
+    <!-- Content Creator -->
+    <div class="start-card">
+      <div class="start-icon" style="background: rgba(6,182,212,0.15); color: var(--cyan);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+      </div>
+      <h3>Content Creator</h3>
+      <p>300 prompts + texture pipeline. Generate and process.</p>
+      <div class="code-block" onclick="copyText(this.innerText)">
+        <span class="cm"># Pick a prompt, generate, then post-process:</span>
+<span class="fn">python3.11</span> scripts/edgeless-texture-pipeline.py \
+  input.png <span class="kw">--mode</span> <span class="st">dither-bw</span> <span class="kw">-o</span> output.png
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer class="footer">
+  <div class="footer-text">
+    Nous Inspired. Open Source.
+    <a href="https://github.com/edgelesslab/design-system">MIT License</a>.<br>
+    Edgeless Lab &mdash; 2026
+  </div>
+</footer>
+
+<!-- ================================================================
+     SCRIPTS
+     ================================================================ -->
+<script>
+/* ------- TOAST ------- */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg || 'Copied!';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text.trim()).then(() => showToast());
+}
+
+/* ------- NAV SCROLL ------- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ------- PALETTE ------- */
+const paletteData = [
+  { name: 'Void Black',  hex: '#0a0a0a', use: 'Primary background, shadows', dark: true },
+  { name: 'White',       hex: '#ffffff', use: 'Primary foreground, text', textDark: true },
+  { name: 'Indigo',      hex: '#6366f1', use: 'Primary accent, interactive' },
+  { name: 'Violet',      hex: '#8b5cf6', use: 'Secondary accent, decorative' },
+  { name: 'Cyan',        hex: '#06b6d4', use: 'Tertiary accent, diagrams' },
+  { name: 'Green',       hex: '#22c55e', use: 'Success, online, sparse accent' },
+  { name: 'Cream',       hex: '#f5f0e8', use: 'Riso paper base, light mode', textDark: true },
+];
+
+const pg = document.getElementById('palette-grid');
+paletteData.forEach(c => {
+  const s = document.createElement('div');
+  s.className = 'swatch';
+  s.onclick = () => { copyText(c.hex); showToast('Copied ' + c.hex); };
+  const border = c.dark ? 'border-bottom:1px solid rgba(255,255,255,0.1)' : '';
+  s.innerHTML = `<div class="swatch-color" style="background:${c.hex};${border}"></div>
+    <div class="swatch-info"><div class="swatch-name">${c.name}</div>
+    <div class="swatch-hex">${c.hex}</div>
+    <div class="swatch-use">${c.use}</div></div>`;
+  pg.appendChild(s);
+});
+
+/* ------- TYPE SCALE ------- */
+const typeScaleData = [
+  { label: '7xl', size: '4.5rem / 72px', text: 'Display' },
+  { label: '6xl', size: '3.75rem / 60px', text: 'Display' },
+  { label: '5xl', size: '3rem / 48px', text: 'Large Title' },
+  { label: '4xl', size: '2.25rem / 36px', text: 'Section Header' },
+  { label: '3xl', size: '1.875rem / 30px', text: 'Heading' },
+  { label: '2xl', size: '1.5rem / 24px', text: 'Subheading' },
+  { label: 'xl',  size: '1.25rem / 20px', text: 'Card Title' },
+  { label: 'lg',  size: '1.125rem / 18px', text: 'Lead Body' },
+  { label: 'base', size: '1rem / 16px', text: 'Body Text' },
+  { label: 'sm',  size: '0.875rem / 14px', text: 'Description' },
+  { label: 'xs',  size: '0.75rem / 12px', text: 'Caption / Meta' },
+];
+
+const ts = document.getElementById('type-scale');
+typeScaleData.forEach(t => {
+  const sizeRem = parseFloat(t.size);
+  const d = document.createElement('div');
+  d.className = 'type-scale-row';
+  d.innerHTML = `<div class="type-scale-label">${t.label}</div>
+    <div class="type-scale-size">${t.size}</div>
+    <div style="font-size:${sizeRem}rem;font-family:var(--mono);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.text}</div>`;
+  ts.appendChild(d);
+});
+
+/* ------- MODES ------- */
+const modesData = [
+  { name: 'dither-bw', algo: 'Floyd-Steinberg', fx: 'fx-dither-bw',
+    desc: '1-bit black/white error diffusion. Every pixel is on or off. The closest to the original dot-matrix aesthetic.',
+    cmd: '--mode dither-bw' },
+  { name: 'dither-accent', algo: 'Bayer 8x8', fx: 'fx-dither-accent',
+    desc: 'Ordered Bayer matrix dither to void + one accent color. Classic cross-hatch pattern. Accent selectable: cyan, violet, indigo, green.',
+    cmd: '--mode dither-accent --accent cyan' },
+  { name: 'dither-full', algo: '5-Color FS', fx: 'fx-dither-full',
+    desc: 'Floyd-Steinberg to the full 5-color Edgeless palette (void, indigo, violet, cyan, white). Rich color with structural texture.',
+    cmd: '--mode dither-full' },
+  { name: 'riso', algo: 'Halftone Dot', fx: 'fx-riso',
+    desc: 'Risograph print simulation. Halftone dots on cream paper with two ink separations. Rotated screen angles prevent moire.',
+    cmd: '--mode riso --accent cyan' },
+  { name: 'thermal', algo: 'Receipt', fx: 'fx-thermal',
+    desc: 'Thermal receipt printer. Sigmoid contrast crush + 1-bit dither + horizontal banding + head smear blur. Black on white.',
+    cmd: '--mode thermal' },
+  { name: 'scanline', algo: 'CRT Sim', fx: 'fx-scanline',
+    desc: 'CRT/VHS monitor simulation. Scanline darkening, 5-bit color quantization, horizontal glitch offsets. Retro terminal aesthetic.',
+    cmd: '--mode scanline' },
+];
+
+const mg = document.getElementById('mode-grid');
+modesData.forEach(m => {
+  const d = document.createElement('div');
+  d.className = 'mode-card';
+  d.innerHTML = `<div class="mode-preview ${m.fx}"></div>
+    <div class="mode-header"><span class="mode-name">${m.name}</span><span class="badge badge-cyan">${m.algo}</span></div>
+    <div class="mode-desc">${m.desc}</div>
+    <div class="mode-cmd" onclick="copyText('${m.cmd}')">${m.cmd}</div>`;
+  mg.appendChild(d);
+});
+
+/* ------- PROMPT LIBRARY ------- */
+const promptCategories = [
+  { set:'v2', id:'ENV', name:'Environments', count:12, prompts:[
+    {id:'ENV-01',text:'Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating...'},
+    {id:'ENV-02',text:'Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls...'},
+  ]},
+  { set:'v2', id:'DIAG', name:'Diagrams', count:12, prompts:[
+    {id:'DIAG-01',text:'Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization...'},
+    {id:'DIAG-03',text:'Finite state machine diagram with rectangular states connected by labeled transition arrows, each state containing monospace text, dark background with white and cyan lines...'},
+  ]},
+  { set:'v2', id:'EDIT', name:'Editorial', count:12, prompts:[
+    {id:'EDIT-01',text:'Front cover of a hand-printed technology zine, large blocky title in uppercase, abstract halftone illustration below, issue number and date in monospace...'},
+    {id:'EDIT-06',text:'Continuous thermal receipt paper unfurling vertically, dense transaction log in monospace, separator lines between entries, faded and banded sections...'},
+  ]},
+  { set:'v2', id:'TEX', name:'Textures', count:10, prompts:[
+    {id:'TEX-01',text:'Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen...'},
+    {id:'TEX-05',text:'Abstract pattern of PCB circuit traces, right-angle routing, via holes as dots, copper trace on dark substrate, varying trace widths...'},
+  ]},
+  { set:'v2', id:'COS', name:'Cosmic', count:10, prompts:[
+    {id:'COS-01',text:'Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines...'},
+    {id:'COS-02',text:'Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist...'},
+  ]},
+  { set:'v2', id:'ART', name:'Artifacts', count:10, prompts:[
+    {id:'ART-01',text:'Ancient stone tablet with circuit-board-like etchings, glowing trace lines in indigo, weathered monolith surface, archaeological technology artifact...'},
+    {id:'ART-02',text:'Glass vacuum tube array on a dark chassis, amber filament glow, bakelite socket bases, hand-wired point-to-point connections...'},
+  ]},
+  { set:'v2', id:'ARC', name:'Archive', count:8, prompts:[
+    {id:'ARC-01',text:'Deteriorating magnetic tape reel, oxide shedding visible, tape edge damage, plastic reel warping, archival storage failure, data decay aesthetic...'},
+    {id:'ARC-02',text:'Filing cabinet drawer pulled open, dense hanging folders with typed labels, yellowed paper edges, institutional green metal, overhead fluorescent light...'},
+  ]},
+  { set:'v2', id:'UI', name:'UI Screens', count:10, prompts:[
+    {id:'UI-01',text:'Dark terminal interface with green text on black, command prompt cursor blinking, ASCII art header, scrolling log output, monospace typeface throughout...'},
+    {id:'UI-02',text:'Dashboard with hexagonal grid layout, real-time data feeds, agent status cards, throughput graphs, dark theme UI, cyan accent highlights...'},
+  ]},
+  { set:'v2', id:'SUR', name:'Surveillance', count:10, prompts:[
+    {id:'SUR-01',text:'Grid of security camera feeds on a monitoring wall, timestamp overlays in monospace, static interference on some feeds, dark control room...'},
+    {id:'SUR-02',text:'Satellite reconnaissance image, high-altitude aerial view, grid reference overlay, measurement annotations in monospace, grayscale with contrast enhancement...'},
+  ]},
+  { set:'v2', id:'INF', name:'Infrastructure', count:10, prompts:[
+    {id:'INF-01',text:'Underground cable tunnel, bundled fiber optic runs on cable trays, junction boxes with monospace labels, emergency lighting strips, concrete walls...'},
+    {id:'INF-02',text:'Electrical substation at dusk, transformer banks, high-voltage insulators, chain-link perimeter, warning signage, sodium vapor light glow...'},
+  ]},
+  { set:'v2', id:'CART', name:'Cartography', count:8, prompts:[
+    {id:'CART-01',text:'Topographic map with dense contour lines, elevation labels in monospace, UTM grid overlay, terrain feature symbols, ridge and valley shading...'},
+    {id:'CART-02',text:'Nautical chart detail, depth soundings in fathoms, navigation hazard symbols, channel markers, compass rose, tidal current arrows...'},
+  ]},
+  { set:'v2', id:'BIO', name:'Biology', count:8, prompts:[
+    {id:'BIO-01',text:'Microscope view of diatom frustule, intricate silica shell pattern, radial symmetry, pore structure visible, dark field illumination...'},
+    {id:'BIO-02',text:'Neural network branching pattern, dendrites and axons, synaptic connections as bright points, dark void background, neuroscience microscopy...'},
+  ]},
+  { set:'v2', id:'AUD', name:'Audio', count:8, prompts:[
+    {id:'AUD-01',text:'Vinyl record groove close-up, concentric spiral tracks, dust particles visible, stylus cantilever shadow, side-lit surface detail...'},
+    {id:'AUD-02',text:'Reel-to-reel tape machine transport, tape path through heads, tension arms, VU meters, brushed aluminum faceplate, studio recording aesthetic...'},
+  ]},
+  { set:'v2', id:'TYP', name:'Typography', count:8, prompts:[
+    {id:'TYP-01',text:'Metal movable type sorts arranged in a composing stick, individual letterforms in reverse, ink on type faces, lead alloy material...'},
+    {id:'TYP-02',text:'Dot matrix printer output close-up, individual pin strikes forming characters, ribbon ink transfer pattern, continuous form paper, tractor feed holes...'},
+  ]},
+  { set:'v2', id:'RIT', name:'Ritual', count:8, prompts:[
+    {id:'RIT-01',text:'Geometric mandala of circuit traces and sacred geometry, concentric rings of data patterns, void center, indigo and violet accents on black...'},
+    {id:'RIT-02',text:'Stone circle with antenna elements, standing stones as radio masts, ground plane radials as stone paths, frequency resonance, ancient technology hybrid...'},
+  ]},
+  { set:'v3', id:'OSC', name:'Oscilloscope', count:10, prompts:[
+    {id:'OSC-01',text:'Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift...'},
+    {id:'OSC-07',text:'Clean digital pulse train on oscilloscope, precise rectangular pulses with measured rise time annotations, pulse width markers, dark background with cyan phosphor trace...'},
+  ]},
+  { set:'v3', id:'MET', name:'Metallurgy', count:10, prompts:[
+    {id:'MET-01',text:'Metallographic cross-section of steel under polarized light microscope, crystal grain boundaries as dark lines forming polygonal mosaic, varying grain sizes...'},
+    {id:'MET-04',text:'Molten metal being poured from a graphite crucible, bright white-orange stream against absolute darkness, splatter droplets frozen in flight...'},
+  ]},
+  { set:'v3', id:'CAR', name:'Cartographic-Deep', count:10, prompts:[
+    {id:'CAR-01',text:'Deep ocean bathymetric chart, depth contours in fathoms, submarine canyon systems, abyssal plain labeled, mid-ocean ridge topography...'},
+    {id:'CAR-04',text:'Seismic reflection profile, horizontal distance vs two-way travel time, reflection horizons as wavy lines, fault offsets visible...'},
+  ]},
+  { set:'v3', id:'PRM', name:'Printmaking', count:10, prompts:[
+    {id:'PRM-01',text:'Copper intaglio plate with etched design visible in raking light, acid-bitten lines of varying depth, plate edges beveled, ground residue...'},
+    {id:'PRM-09',text:'Letterpress type locked in a chase, quoins and furniture spacing material visible, individual metal type sorts arranged in mirror reading...'},
+  ]},
+  { set:'v3', id:'MCH', name:'Mechanical', count:10, prompts:[
+    {id:'MCH-01',text:'Meshing spur gear train, involute tooth profiles engaging, multiple reduction stages, shaft bearings visible, gear ratios annotated in monospace...'},
+    {id:'MCH-02',text:'Clock escapement mechanism in detail, escape wheel teeth interacting with pallet fork, impulse and locking faces visible, pivot jewels...'},
+  ]},
+  { set:'v3', id:'OPT', name:'Optics', count:10, prompts:[
+    {id:'OPT-01',text:'Laser beam passing through a series of optical elements, beam splitters, mirrors, lenses on an optical bench, coherent light paths...'},
+    {id:'OPT-02',text:'Fresnel lens cross-section showing concentric prismatic rings, refraction angles, focal point convergence, lighthouse optics aesthetic...'},
+  ]},
+  { set:'v3', id:'TXL', name:'Textile', count:10, prompts:[
+    {id:'TXL-01',text:'Jacquard loom punch cards controlling a complex weave pattern, binary hole patterns, card chain mechanism, woven output showing programmed design...'},
+    {id:'TXL-02',text:'Extreme macro of plain weave fabric showing individual warp and weft thread interlacing, fiber twist direction visible, thread spacing...'},
+  ]},
+  { set:'v3', id:'CHM', name:'Chemistry', count:10, prompts:[
+    {id:'CHM-01',text:'Crystal growth in a supersaturated solution, geometric facets forming as molecules organize, Ostwald ripening visible, dark field microscopy...'},
+    {id:'CHM-02',text:'Distillation column with multiple plate trays, vapor-liquid equilibrium, reflux condenser, temperature gradient indicators...'},
+  ]},
+  { set:'v3', id:'NAV', name:'Navigation', count:10, prompts:[
+    {id:'NAV-01',text:'Sextant measurement of celestial angle, graduated arc, vernier scale in monospace, index mirror and horizon glass, star field background...'},
+    {id:'NAV-02',text:'Gyrocompass mechanism cutaway, spinning rotor, gimbal rings, precession forces indicated by arrows, heading repeater dial...'},
+  ]},
+  { set:'v3', id:'TRX', name:'Transmission', count:10, prompts:[
+    {id:'TRX-01',text:'Morse code transmission key, brass contacts, spring tension adjustment, connection terminals, telegraph sounder nearby, dark desktop...'},
+    {id:'TRX-02',text:'Fiber optic cable cross-section, bundled glass cores, cladding layers, strength members, outer jacket, total internal reflection diagram...'},
+  ]},
+  { set:'v3', id:'MSR', name:'Measurement', count:10, prompts:[
+    {id:'MSR-01',text:'Vernier caliper jaws measuring a precision component, main scale and vernier scale alignment, zero line, imperial and metric graduations...'},
+    {id:'MSR-02',text:'Mercury barometer tube and cistern, meniscus level, Torricellian vacuum above mercury column, temperature correction chart nearby...'},
+  ]},
+  { set:'v3', id:'DEC', name:'Decay', count:10, prompts:[
+    {id:'DEC-01',text:'Oxidized copper surface showing verdigris patina progression, green to blue-green spectrum, crystalline deposit formations, metal substrate beneath...'},
+    {id:'DEC-02',text:'Concrete spalling and rebar corrosion exposed, laminar rust layers, expansion cracking patterns, delamination zones, structural deterioration...'},
+  ]},
+  { set:'v3', id:'NOT', name:'Notation', count:10, prompts:[
+    {id:'NOT-01',text:'Musical score in engraved plate style, staff lines, note heads and stems, dynamic markings, tempo indication in italic, rehearsal marks...'},
+    {id:'NOT-02',text:'Chemical structural formula of a complex organic molecule, bond angles, stereochemistry wedge-dash notation, atom labels, ring structures...'},
+  ]},
+  { set:'v3', id:'CMP', name:'Computation', count:10, prompts:[
+    {id:'CMP-01',text:'Core memory plane close-up, ferrite toroid rings threaded by sense and drive wires, magnetization states, hand-woven wire matrix...'},
+    {id:'CMP-02',text:'Paper tape reader mechanism, sprocket wheel engaging feed holes, photodiode sensing row, binary data pattern punched in tape...'},
+  ]},
+  { set:'v3', id:'CNT', name:'Containment', count:10, prompts:[
+    {id:'CNT-01',text:'Faraday cage interior, copper mesh walls forming an electromagnetic shield, feedthrough filters, RF gasket on door frame, shielded room aesthetic...'},
+    {id:'CNT-02',text:'Cryogenic dewar vessel cutaway, vacuum jacket layers, superinsulation, liquid nitrogen level indicator, boil-off vent valve...'},
+  ]},
+];
+
+let activeSet = 'all';
+let searchQuery = '';
+
+function renderPrompts() {
+  const list = document.getElementById('prompt-list');
+  list.innerHTML = '';
+  const q = searchQuery.toLowerCase();
+
+  promptCategories.forEach(cat => {
+    if (activeSet !== 'all' && cat.set !== activeSet) return;
+    const matchPrompts = cat.prompts.filter(p =>
+      !q || p.text.toLowerCase().includes(q) || p.id.toLowerCase().includes(q) || cat.name.toLowerCase().includes(q)
+    );
+    if (q && matchPrompts.length === 0) return;
+
+    const div = document.createElement('div');
+    div.className = 'prompt-category';
+    div.setAttribute('data-set', cat.set);
+    const showBody = q && matchPrompts.length > 0;
+    div.innerHTML = `<div class="prompt-cat-header${showBody ? ' open' : ''}" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+      <span class="arrow">&#9654;</span>
+      <span>${cat.name}</span>
+      <span class="badge badge-${cat.set === 'v2' ? 'indigo' : 'violet'}">${cat.set}</span>
+      <span class="prompt-cat-count">${cat.count} prompts</span>
+    </div>
+    <div class="prompt-cat-body${showBody ? ' open' : ''}">
+      ${(q ? matchPrompts : cat.prompts).map(p => `<div class="prompt-item">
+        <span class="prompt-id">${p.id}</span>
+        <span class="prompt-text">${p.text}</span>
+        <button class="prompt-copy" onclick="event.stopPropagation();copyText(this.parentElement.querySelector('.prompt-text').textContent)">copy</button>
+      </div>`).join('')}
+    </div>`;
+    list.appendChild(div);
+  });
+}
+
+// Set toggle
+document.querySelectorAll('.prompt-set-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.prompt-set-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSet = btn.dataset.set;
+    renderPrompts();
+  });
+});
+
+// Search
+document.getElementById('prompt-search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderPrompts();
+});
+
+renderPrompts();
+
+/* ------- TOKEN REFERENCE ------- */
+const tokenData = [
+  { name: 'Spacing', items: [
+    { label: 'space-0.5', value: '0.125rem', px: '2px', w: 2 },
+    { label: 'space-1', value: '0.25rem', px: '4px', w: 4 },
+    { label: 'space-2', value: '0.5rem', px: '8px', w: 8 },
+    { label: 'space-3', value: '0.75rem', px: '12px', w: 12 },
+    { label: 'space-4', value: '1rem', px: '16px', w: 16 },
+    { label: 'space-5', value: '1.25rem', px: '20px', w: 20 },
+    { label: 'space-6', value: '1.5rem', px: '24px', w: 24 },
+    { label: 'space-8', value: '2rem', px: '32px', w: 32 },
+    { label: 'space-10', value: '2.5rem', px: '40px', w: 40 },
+    { label: 'space-12', value: '3rem', px: '48px', w: 48 },
+    { label: 'space-16', value: '4rem', px: '64px', w: 64 },
+    { label: 'space-20', value: '5rem', px: '80px', w: 80 },
+    { label: 'space-24', value: '6rem', px: '96px', w: 96 },
+  ], render: 'spacing' },
+  { name: 'Border Radius', items: [
+    { label: 'none', value: '0' },
+    { label: 'sm', value: '0.25rem (4px)' },
+    { label: 'md', value: '0.5rem (8px)' },
+    { label: 'lg', value: '0.75rem (12px)' },
+    { label: 'xl', value: '1rem (16px)' },
+    { label: '2xl', value: '1.5rem (24px)' },
+    { label: 'full', value: '9999px' },
+  ], render: 'radius' },
+  { name: 'Shadows', items: [
+    { label: 'sm', value: '0 1px 2px rgba(0,0,0,0.3)' },
+    { label: 'md', value: '0 4px 6px rgba(0,0,0,0.4)' },
+    { label: 'lg', value: '0 10px 15px rgba(0,0,0,0.5)' },
+    { label: 'xl', value: '0 20px 25px rgba(0,0,0,0.5)' },
+    { label: 'glow', value: '0 0 20px rgba(99,102,241,0.3)' },
+    { label: 'glow-lg', value: '0 0 40px rgba(99,102,241,0.4)' },
+  ], render: 'shadow' },
+  { name: 'Motion', items: [
+    { label: 'duration-fast', value: '100ms' },
+    { label: 'duration-normal', value: '200ms' },
+    { label: 'duration-slow', value: '300ms' },
+    { label: 'duration-slower', value: '500ms' },
+    { label: 'ease-default', value: 'cubic-bezier(0.4, 0, 0.2, 1)' },
+    { label: 'ease-in', value: 'cubic-bezier(0.4, 0, 1, 1)' },
+    { label: 'ease-out', value: 'cubic-bezier(0, 0, 0.2, 1)' },
+    { label: 'ease-bounce', value: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+  ], render: 'table' },
+  { name: 'Z-Index', items: [
+    { label: 'z-base', value: '0' },
+    { label: 'z-dropdown', value: '100' },
+    { label: 'z-sticky', value: '200' },
+    { label: 'z-modal', value: '300' },
+    { label: 'z-popover', value: '400' },
+    { label: 'z-toast', value: '500' },
+    { label: 'z-tooltip', value: '600' },
+  ], render: 'table' },
+  { name: 'Breakpoints', items: [
+    { label: 'sm', value: '640px' },
+    { label: 'md', value: '768px' },
+    { label: 'lg', value: '1024px' },
+    { label: 'xl', value: '1280px' },
+    { label: '2xl', value: '1536px' },
+  ], render: 'table' },
+];
+
+const tokSec = document.getElementById('token-sections');
+
+tokenData.forEach(section => {
+  const div = document.createElement('div');
+  div.className = 'token-section';
+
+  let bodyHTML = '';
+
+  if (section.render === 'spacing') {
+    bodyHTML = section.items.map(i =>
+      `<div class="spacing-demo">
+        <div class="spacing-label">--${i.label}</div>
+        <div class="spacing-bar" style="width:${i.w}px"></div>
+        <div class="spacing-value" onclick="copyText('var(--${i.label})')">${i.value} (${i.px})</div>
+      </div>`
+    ).join('');
+  } else if (section.render === 'radius') {
+    const radii = [
+      { r: '0', l: 'none' },
+      { r: '4px', l: 'sm' },
+      { r: '8px', l: 'md' },
+      { r: '12px', l: 'lg' },
+      { r: '16px', l: 'xl' },
+      { r: '24px', l: '2xl' },
+      { r: '9999px', l: 'full' },
+    ];
+    bodyHTML = '<div class="radius-grid">' + radii.map(r =>
+      `<div class="radius-demo">
+        <div class="radius-box" style="border-radius:${r.r}"></div>
+        <div class="label">${r.l}</div>
+        <div class="val">${r.r}</div>
+      </div>`
+    ).join('') + '</div>';
+  } else if (section.render === 'shadow') {
+    const shadows = [
+      { s: '0 1px 2px 0 rgba(0,0,0,0.3)', l: 'sm' },
+      { s: '0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3)', l: 'md' },
+      { s: '0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.3)', l: 'lg' },
+      { s: '0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.4)', l: 'xl' },
+      { s: '0 0 20px rgba(99,102,241,0.3)', l: 'glow' },
+      { s: '0 0 40px rgba(99,102,241,0.4)', l: 'glow-lg' },
+    ];
+    bodyHTML = '<div class="shadow-grid">' + shadows.map(sh =>
+      `<div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow:${sh.s}"></div>
+        <div class="label">${sh.l}</div>
+      </div>`
+    ).join('') + '</div>';
+  } else {
+    bodyHTML = '<div style="display:grid;gap:0.25rem;">' + section.items.map(i =>
+      `<div style="display:flex;gap:1rem;padding:0.375rem 0;border-bottom:1px solid var(--border-s);font-size:0.7rem;align-items:center;">
+        <span style="color:var(--fg-t);min-width:140px;">--${i.label}</span>
+        <span style="color:var(--fg-q);cursor:pointer;" onclick="copyText('${i.value}')">${i.value}</span>
+      </div>`
+    ).join('') + '</div>';
+  }
+
+  div.innerHTML = `<div class="token-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+    <span class="arrow">&#9654;</span>
+    <span class="token-label">${section.name}</span>
+  </div>
+  <div class="token-body">${bodyHTML}</div>`;
+
+  tokSec.appendChild(div);
+});
+</script>
+</body>
+</html>
