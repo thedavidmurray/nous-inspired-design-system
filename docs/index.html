@@ -7,57 +7,67 @@
 <meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. Open source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 /* ================================================================
-   TOKENS AS CSS CUSTOM PROPERTIES
+   TOKENS
    ================================================================ */
 :root {
   --void: #0a0a0a;
-  --bg-s: #111111;
-  --bg-t: #1a1a1a;
-  --bg-e: #222222;
-  --fg: #ffffff;
-  --fg-s: rgba(255,255,255,0.7);
-  --fg-t: rgba(255,255,255,0.5);
-  --fg-q: rgba(255,255,255,0.25);
+  --bg-s: #0f0f0f;
+  --bg-t: #161616;
+  --bg-e: #1e1e1e;
+  --fg: #e8e8e8;
+  --fg-s: rgba(232,232,232,0.65);
+  --fg-t: rgba(232,232,232,0.4);
+  --fg-q: rgba(232,232,232,0.2);
   --indigo: #6366f1;
   --violet: #8b5cf6;
   --cyan: #06b6d4;
   --green: #22c55e;
   --amber: #f59e0b;
   --red: #ef4444;
-  --blue: #3b82f6;
+  --steel: #4a7c9b;
   --cream: #f5f0e8;
-  --border-s: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.12);
-  --border-st: rgba(255,255,255,0.2);
-  --mono: 'JetBrains Mono', 'SF Mono', monospace;
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --border-s: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.1);
+  --border-st: rgba(255,255,255,0.18);
+  --mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
 }
 
 /* ================================================================
    RESET & BASE
    ================================================================ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+html { scroll-behavior: smooth; scroll-padding-top: 3.5rem; }
 body {
   background: var(--void);
   color: var(--fg);
   font-family: var(--mono);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 a { color: var(--cyan); text-decoration: none; }
 a:hover { text-decoration: underline; }
+::selection { background: rgba(6,182,212,0.25); color: var(--fg); }
 
 /* ================================================================
-   SCANLINE OVERLAY (global ambient effect)
+   NOISE TEXTURE OVERLAY
+   ================================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+}
+
+/* ================================================================
+   SCANLINE OVERLAY — visible, not subtle
    ================================================================ */
 body::after {
   content: '';
@@ -66,9 +76,9 @@ body::after {
   background: repeating-linear-gradient(
     0deg,
     transparent,
-    transparent 2px,
-    rgba(0,0,0,0.03) 2px,
-    rgba(0,0,0,0.03) 4px
+    transparent 3px,
+    rgba(0,0,0,0.12) 3px,
+    rgba(0,0,0,0.12) 4px
   );
   pointer-events: none;
   z-index: 9999;
@@ -79,19 +89,12 @@ body::after {
    ================================================================ */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10,10,10,0.92);
   border-bottom: 1px solid var(--border-s);
-  transition: background 0.3s var(--ease);
-}
-.nav.scrolled {
-  background: rgba(10,10,10,0.95);
-  border-bottom-color: var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .nav-inner {
   max-width: 1280px;
@@ -99,69 +102,101 @@ body::after {
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  height: 3.5rem;
+  height: 3rem;
   gap: 0.25rem;
 }
 .nav-logo {
-  font-family: var(--mono);
   font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   color: var(--fg);
   margin-right: auto;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 .nav-logo span { color: var(--cyan); }
-.nav-links { display: flex; gap: 0.125rem; flex-wrap: wrap; }
+.nav-links { display: flex; gap: 0; }
 .nav-links a {
   color: var(--fg-t);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.375rem 0.625rem;
-  border-radius: 4px;
+  padding: 0.35rem 0.6rem;
   text-decoration: none;
-  transition: color 0.2s, background 0.2s;
-  white-space: nowrap;
+  border: none;
+  transition: color 0.1s;
 }
-.nav-links a:hover {
-  color: var(--cyan);
-  background: rgba(6,182,212,0.08);
-  text-decoration: none;
-}
+.nav-links a:hover { color: var(--cyan); text-decoration: none; }
 
 /* ================================================================
-   SECTIONS
+   DASHED SECTION DIVIDERS
    ================================================================ */
 .section {
   max-width: 1280px;
   margin: 0 auto;
   padding: 5rem 2rem 4rem;
 }
-.section + .section { border-top: 1px solid var(--border-s); }
+.section + .section {
+  border-top: 1px dashed var(--steel);
+  opacity-on: 1;
+}
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: none;
+  border: none;
+  border-top: 1px dashed var(--steel);
+  margin: 0;
+  opacity: 0.5;
+}
+
+/* Terminal-style section labels */
 .section-label {
-  font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.section-label::before { content: '// '; color: var(--fg-q); }
+.section-label::before {
+  content: attr(data-sec);
+  color: var(--steel);
+  font-size: 0.55rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-s);
+  max-width: 200px;
+}
+
+/* Nous-style metadata annotation */
+.output-meta {
+  font-size: 0.6rem;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  opacity: 0.45;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
 .section-title {
-  font-family: var(--mono);
   font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.375rem;
+  color: var(--fg);
 }
 .section-desc {
-  font-family: var(--sans);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--fg-s);
-  max-width: 680px;
-  line-height: 1.7;
+  max-width: 620px;
+  line-height: 1.75;
   margin-bottom: 2.5rem;
 }
 
@@ -172,408 +207,330 @@ body::after {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 6rem 2rem 4rem;
+  justify-content: flex-end;
+  padding: 0 2rem 5rem;
   max-width: 1280px;
   margin: 0 auto;
   position: relative;
 }
-.hero-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease-out) 0.2s forwards;
-}
-.hero-title {
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-  position: relative;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease-out) 0.4s forwards;
-}
-.hero-title .accent-grad {
-  background: linear-gradient(135deg, var(--indigo) 0%, var(--cyan) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
-/* Scanline text effect */
-.hero-title::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 3px,
-    rgba(10,10,10,0.15) 3px,
-    rgba(10,10,10,0.15) 6px
-  );
-  pointer-events: none;
-  animation: scanDrift 8s linear infinite;
-}
-
-@keyframes scanDrift {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(6px); }
-}
-
-.hero-sub {
-  font-family: var(--sans);
-  font-size: 1.125rem;
-  color: var(--fg-s);
-  max-width: 640px;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease-out) 0.6s forwards;
-}
-.hero-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease-out) 0.8s forwards;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ambient grid bg */
-.hero::before {
-  content: '';
-  position: absolute;
+/* Grid pattern — sparse, architectural */
+.hero-bg {
+  position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 60% 60% at 30% 50%, black, transparent);
-  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 30% 50%, black, transparent);
+    linear-gradient(rgba(74,124,155,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,124,155,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
   pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 7rem;
+}
+
+.hero-credit {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  color: var(--fg);
+}
+
+.hero-title-sub {
+  font-weight: 300;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  color: var(--fg-s);
+}
+
+.hero-rule {
+  width: 100%;
+  border: none;
+  border-top: 1px dashed var(--steel);
+  margin-bottom: 1.5rem;
+  opacity: 0.4;
+}
+
+.hero-desc {
+  font-size: 0.8rem;
+  color: var(--fg-s);
+  max-width: 560px;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-meta {
+  position: absolute;
+  top: 7rem;
+  right: 0;
+  text-align: right;
+}
+.hero-meta-line {
+  font-size: 0.55rem;
+  color: var(--cream);
+  opacity: 0.3;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
 }
 
 /* ================================================================
-   BUTTONS (real component recreation)
+   BUTTONS — zero radius, raw
    ================================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  border-radius: 8px;
-  padding: 0.625rem 1.25rem;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.2s var(--ease);
   text-decoration: none;
   white-space: nowrap;
   line-height: 1;
+  letter-spacing: 0.04em;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
 .btn:hover { text-decoration: none; }
-.btn:active { transform: scale(0.97); }
 
 .btn-primary {
-  background: var(--indigo);
-  color: #fff;
-  border-color: var(--indigo);
+  background: var(--cyan);
+  color: var(--void);
+  border-color: var(--cyan);
 }
-.btn-primary:hover { background: #5558e6; }
+.btn-primary:hover { background: #0891b2; border-color: #0891b2; }
 
 .btn-secondary {
-  background: var(--bg-e);
+  background: transparent;
   color: var(--fg);
-  border-color: var(--border);
+  border-color: var(--border-st);
 }
-.btn-secondary:hover { background: var(--bg-t); border-color: var(--border-st); }
+.btn-secondary:hover { border-color: var(--fg-t); background: rgba(255,255,255,0.04); }
 
 .btn-ghost {
   background: transparent;
-  color: var(--fg-s);
+  color: var(--fg-t);
   border-color: transparent;
 }
-.btn-ghost:hover { color: var(--fg); background: var(--bg-t); }
+.btn-ghost:hover { color: var(--fg); }
 
 .btn-danger {
-  background: rgba(239,68,68,0.1);
+  background: transparent;
   color: var(--red);
-  border-color: rgba(239,68,68,0.2);
+  border-color: rgba(239,68,68,0.3);
 }
-.btn-danger:hover { background: rgba(239,68,68,0.2); }
+.btn-danger:hover { background: rgba(239,68,68,0.08); }
 
-.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.7rem; border-radius: 6px; }
-.btn-lg { padding: 0.75rem 1.5rem; font-size: 0.875rem; border-radius: 10px; }
+.btn-sm { padding: 0.3rem 0.625rem; font-size: 0.65rem; }
+.btn-lg { padding: 0.625rem 1.375rem; font-size: 0.8rem; }
 
 /* ================================================================
-   CARDS
+   GALLERY — reference image grid
    ================================================================ */
-.card {
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
   background: var(--bg-e);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.2s var(--ease);
 }
-.card:hover {
-  border-color: var(--border-st);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.3);
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
-.card-title {
-  font-family: var(--mono);
-  font-weight: 600;
-  font-size: 0.95rem;
+.gallery-item:hover img {
+  transform: scale(1.04);
+  filter: contrast(1.1);
+}
+.gallery-item.wide {
+  grid-column: span 2;
+  aspect-ratio: 2/1;
+}
+.gallery-caption {
+  font-size: 0.55rem;
+  color: var(--fg-q);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+/* ================================================================
+   PHILOSOPHY — pipeline flow
+   ================================================================ */
+.pipeline-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 2rem;
+  border: 1px dashed var(--steel);
+  overflow: hidden;
+}
+.pipeline-node {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-s);
+  border-right: 1px dashed var(--steel);
+}
+.pipeline-node:last-child { border-right: none; }
+.pipeline-node-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
-.card-body {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  color: var(--fg-s);
+.pipeline-node-label.cyan { color: var(--cyan); }
+.pipeline-node-label.indigo { color: var(--indigo); }
+.pipeline-node-label.green { color: var(--green); }
+.pipeline-node-body {
+  font-size: 0.7rem;
+  color: var(--fg-t);
   line-height: 1.6;
 }
-
-/* ================================================================
-   BADGE
-   ================================================================ */
-.badge {
-  display: inline-flex;
+.pipeline-arrow {
+  display: flex;
   align-items: center;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 500;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  letter-spacing: 0.03em;
-}
-.badge-indigo { background: rgba(99,102,241,0.15); color: var(--indigo); }
-.badge-violet { background: rgba(139,92,246,0.15); color: var(--violet); }
-.badge-cyan { background: rgba(6,182,212,0.15); color: var(--cyan); }
-.badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
-.badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
-.badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
-.badge-default { background: var(--bg-t); color: var(--fg-s); }
-
-/* ================================================================
-   INPUT & SELECT
-   ================================================================ */
-.input, .select {
-  font-family: var(--mono);
+  padding: 0 0.75rem;
+  color: var(--steel);
   font-size: 0.8rem;
-  background: var(--bg-s);
-  color: var(--fg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.625rem 0.875rem;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  width: 100%;
+  background: var(--void);
+  flex-shrink: 0;
+  border-right: 1px dashed var(--steel);
 }
-.input:focus, .select:focus {
-  border-color: var(--indigo);
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
-}
-.input::placeholder { color: var(--fg-q); }
-.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2rem; }
 
 /* ================================================================
    PALETTE
    ================================================================ */
 .palette-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border-s);
 }
 .swatch {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-}
-.swatch:hover { border-color: var(--border-st); transform: translateY(-2px); }
-.swatch-color {
-  height: 80px;
-  position: relative;
-}
-.swatch-info {
-  padding: 0.625rem 0.75rem;
-  background: var(--bg-s);
-}
-.swatch-name {
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-bottom: 0.125rem;
-}
-.swatch-hex {
-  font-size: 0.65rem;
-  color: var(--fg-t);
-}
-.swatch-use {
-  font-size: 0.6rem;
-  color: var(--fg-q);
-  margin-top: 0.25rem;
-}
-
-/* Gradient bar */
-.gradient-bar {
-  height: 48px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 50%, var(--cyan) 100%);
-  margin-bottom: 2rem;
-  border: 1px solid var(--border);
-  position: relative;
   overflow: hidden;
-}
-.gradient-bar::after {
-  content: 'linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4)';
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0.75rem;
-  font-size: 0.6rem;
-  color: rgba(255,255,255,0.6);
-  font-family: var(--mono);
-}
-
-/* ================================================================
-   TYPOGRAPHY SPECIMENS
-   ================================================================ */
-.type-specimen {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.5rem;
   background: var(--bg-s);
-  margin-bottom: 1rem;
 }
-.type-sample { margin-bottom: 0.75rem; }
-.type-meta {
-  font-size: 0.65rem;
-  color: var(--fg-t);
+.swatch:hover .swatch-info { background: var(--bg-t); }
+.swatch-color { height: 72px; position: relative; }
+.swatch-info {
+  padding: 0.5rem 0.625rem;
   border-top: 1px solid var(--border-s);
-  padding-top: 0.75rem;
+  background: var(--bg-s);
+  transition: background 0.1s;
 }
-.type-scale {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 2rem;
-}
-.type-scale-row {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border-s);
-}
-.type-scale-label {
-  font-size: 0.6rem;
-  color: var(--fg-q);
-  min-width: 80px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-}
-.type-scale-size {
-  font-size: 0.6rem;
-  color: var(--fg-t);
-  min-width: 100px;
-  flex-shrink: 0;
-}
+.swatch-name { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.125rem; }
+.swatch-hex { font-size: 0.6rem; color: var(--fg-t); }
+.swatch-use { font-size: 0.55rem; color: var(--fg-q); margin-top: 0.2rem; }
 
 /* ================================================================
-   MODE GRID
+   PIPELINE MODES
    ================================================================ */
 .mode-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--border-s);
 }
 .mode-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
   background: var(--bg-s);
-  transition: border-color 0.2s;
+  overflow: hidden;
 }
-.mode-card:hover { border-color: var(--border-st); }
 .mode-preview {
-  height: 120px;
+  height: 100px;
   position: relative;
   overflow: hidden;
 }
 .mode-header {
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 0.875rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px dashed var(--border-s);
   border-bottom: 1px solid var(--border-s);
 }
-.mode-name {
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--cyan);
-}
+.mode-name { font-weight: 600; font-size: 0.78rem; color: var(--cyan); }
 .mode-desc {
-  padding: 0.75rem 1rem;
-  font-family: var(--sans);
-  font-size: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.68rem;
   color: var(--fg-t);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .mode-cmd {
-  padding: 0.5rem 1rem;
-  font-size: 0.65rem;
+  padding: 0.4rem 0.875rem;
+  font-size: 0.6rem;
   color: var(--green);
   background: var(--void);
-  border-top: 1px solid var(--border-s);
+  border-top: 1px dashed var(--border-s);
   cursor: pointer;
+  letter-spacing: 0.04em;
 }
+.mode-cmd::before { content: '$ '; color: var(--fg-q); }
 .mode-cmd:hover { color: #4ade80; }
 
 /* Mode preview effects */
 .fx-dither-bw {
-  background: repeating-conic-gradient(var(--fg) 0% 25%, var(--void) 0% 50%) 0 0 / 4px 4px;
+  background: repeating-conic-gradient(var(--fg) 0% 25%, var(--void) 0% 50%) 0 0 / 3px 3px;
 }
 .fx-dither-accent {
-  background:
-    repeating-conic-gradient(var(--cyan) 0% 25%, var(--void) 0% 50%) 0 0 / 6px 6px;
-  opacity: 0.7;
+  background: repeating-conic-gradient(var(--cyan) 0% 25%, var(--void) 0% 50%) 0 0 / 5px 5px;
 }
 .fx-dither-full {
   background:
     linear-gradient(135deg, var(--indigo) 0%, var(--violet) 33%, var(--cyan) 66%, var(--fg) 100%),
-    repeating-conic-gradient(rgba(0,0,0,0.3) 0% 25%, transparent 0% 50%) 0 0 / 3px 3px;
+    repeating-conic-gradient(rgba(0,0,0,0.4) 0% 25%, transparent 0% 50%) 0 0 / 3px 3px;
   background-blend-mode: multiply;
 }
 .fx-riso {
   background: var(--cream);
-  background-image: radial-gradient(circle, var(--void) 1px, transparent 1px);
-  background-size: 6px 6px;
+  background-image: radial-gradient(circle, #1a1a1a 1.2px, transparent 1.2px);
+  background-size: 5px 5px;
 }
 .fx-thermal {
-  background: #fff;
+  background: #f8f8f8;
   background-image:
-    repeating-linear-gradient(0deg, transparent 0px, transparent 4px, rgba(0,0,0,0.05) 4px, rgba(0,0,0,0.05) 8px),
-    linear-gradient(180deg, #fff 0%, #ddd 50%, #333 100%);
+    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.06) 4px, rgba(0,0,0,0.06) 5px),
+    linear-gradient(180deg, #fff 0%, #ccc 60%, #222 100%);
 }
 .fx-scanline {
-  background: var(--void);
+  background: #020a0a;
   background-image:
-    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(6,182,212,0.1) 2px, rgba(6,182,212,0.1) 3px),
-    linear-gradient(180deg, rgba(99,102,241,0.2) 0%, rgba(6,182,212,0.2) 100%);
+    repeating-linear-gradient(0deg, rgba(6,182,212,0.12) 0px, rgba(6,182,212,0.12) 1px, transparent 1px, transparent 4px),
+    linear-gradient(180deg, rgba(6,182,212,0.08) 0%, rgba(139,92,246,0.08) 100%);
 }
 
 /* ================================================================
@@ -582,7 +539,7 @@ body::after {
 .prompt-filter-bar {
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -594,289 +551,266 @@ body::after {
   display: flex;
   gap: 0;
   border: 1px solid var(--border);
-  border-radius: 6px;
   overflow: hidden;
 }
 .prompt-set-btn {
   font-family: var(--mono);
-  font-size: 0.7rem;
-  padding: 0.5rem 1rem;
+  font-size: 0.65rem;
+  padding: 0.425rem 0.875rem;
   background: var(--bg-s);
   color: var(--fg-t);
   border: none;
+  border-right: 1px solid var(--border);
   cursor: pointer;
-  transition: all 0.15s;
+  letter-spacing: 0.06em;
+  transition: background 0.1s, color 0.1s;
 }
-.prompt-set-btn.active {
-  background: var(--indigo);
-  color: #fff;
+.prompt-set-btn:last-child { border-right: none; }
+.prompt-set-btn.active { background: var(--indigo); color: #fff; }
+.prompt-set-btn:hover:not(.active) { color: var(--fg); background: var(--bg-t); }
+
+/* Example prompts — full display */
+.prompt-examples {
+  margin-bottom: 2rem;
+  border: 1px dashed var(--steel);
+  background: var(--bg-s);
 }
-.prompt-set-btn:hover:not(.active) { color: var(--fg-s); }
+.prompt-example-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.6rem;
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  border-bottom: 1px solid var(--border-s);
+}
+.prompt-example-item {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border-s);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.prompt-example-item:last-child { border-bottom: none; }
+.prompt-example-id {
+  font-size: 0.6rem;
+  color: var(--cyan);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+  min-width: 60px;
+}
+.prompt-example-text {
+  font-size: 0.72rem;
+  color: var(--fg-s);
+  line-height: 1.65;
+  flex: 1;
+}
+.prompt-example-copy {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--fg-q);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border-s);
+  background: transparent;
+  transition: color 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+.prompt-example-copy:hover { color: var(--cyan); border-color: var(--cyan); }
 
 .prompt-category {
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 1px solid var(--border-s);
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1px;
 }
 .prompt-cat-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: 0.625rem;
+  padding: 0.6rem 0.875rem;
   background: var(--bg-s);
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   user-select: none;
-  transition: background 0.15s;
+  transition: background 0.1s;
 }
 .prompt-cat-header:hover { background: var(--bg-t); }
-.prompt-cat-header .arrow {
-  color: var(--fg-q);
-  transition: transform 0.2s;
-  font-size: 0.7rem;
-}
+.prompt-cat-header .arrow { color: var(--fg-q); font-size: 0.6rem; transition: transform 0.2s; }
 .prompt-cat-header.open .arrow { transform: rotate(90deg); }
-.prompt-cat-count {
-  margin-left: auto;
-  font-size: 0.65rem;
-  color: var(--fg-q);
-}
-.prompt-cat-body {
-  display: none;
-  padding: 0;
-}
+.prompt-cat-count { margin-left: auto; font-size: 0.6rem; color: var(--fg-q); }
+.prompt-cat-body { display: none; }
 .prompt-cat-body.open { display: block; }
 .prompt-item {
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.875rem;
   border-top: 1px solid var(--border-s);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--fg-s);
   line-height: 1.6;
   display: flex;
-  gap: 0.75rem;
+  gap: 0.625rem;
   align-items: flex-start;
 }
 .prompt-item:hover { background: rgba(255,255,255,0.02); }
-.prompt-id {
-  color: var(--cyan);
-  font-weight: 600;
-  white-space: nowrap;
-  flex-shrink: 0;
-  font-size: 0.65rem;
-  margin-top: 0.1rem;
-}
-.prompt-text {
-  flex: 1;
-  font-family: var(--sans);
-}
+.prompt-id { color: var(--cyan); font-weight: 600; white-space: nowrap; flex-shrink: 0; font-size: 0.62rem; margin-top: 0.1rem; }
 .prompt-copy {
   flex-shrink: 0;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   color: var(--fg-q);
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.4rem;
   border: 1px solid var(--border-s);
-  border-radius: 4px;
   background: transparent;
   font-family: var(--mono);
-  transition: all 0.15s;
+  transition: color 0.1s, border-color 0.1s;
   white-space: nowrap;
 }
-.prompt-copy:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
+.prompt-copy:hover { color: var(--cyan); border-color: var(--cyan); }
 
 /* ================================================================
-   TOKEN REFERENCE
+   COMPONENTS
    ================================================================ */
-.token-section {
-  margin-bottom: 1.5rem;
+.card {
+  background: var(--bg-e);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.25rem;
 }
+.card:hover { border-color: var(--border-st); }
+.card-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.375rem; }
+.card-body { font-size: 0.75rem; color: var(--fg-s); line-height: 1.6; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6rem;
+  font-weight: 500;
+  padding: 0.175rem 0.4rem;
+  border-radius: 0;
+  letter-spacing: 0.04em;
+}
+.badge-indigo { background: rgba(99,102,241,0.15); color: var(--indigo); }
+.badge-violet { background: rgba(139,92,246,0.15); color: var(--violet); }
+.badge-cyan { background: rgba(6,182,212,0.15); color: var(--cyan); }
+.badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+.badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+.badge-default { background: var(--bg-t); color: var(--fg-s); }
+
+.input, .select {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  background: var(--bg-s);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition: border-color 0.1s;
+  width: 100%;
+}
+.input:focus, .select:focus { border-color: var(--cyan); }
+.input::placeholder { color: var(--fg-q); }
+.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.625rem center; padding-right: 1.75rem; }
+
+.comp-group { margin-bottom: 2rem; }
+.comp-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--steel);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid var(--border-s);
+}
+.comp-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; }
+
+/* ================================================================
+   TOKENS
+   ================================================================ */
+.token-section { margin-bottom: 1.25rem; }
 .token-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 0;
+  padding: 0.6rem 0;
   cursor: pointer;
   border-bottom: 1px solid var(--border-s);
   user-select: none;
 }
 .token-header:hover .token-label { color: var(--cyan); }
-.token-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: color 0.15s;
-}
-.token-header .arrow {
-  color: var(--fg-q);
-  font-size: 0.7rem;
-  transition: transform 0.2s;
-}
+.token-label { font-size: 0.8rem; font-weight: 600; transition: color 0.1s; }
+.token-header .arrow { color: var(--fg-q); font-size: 0.65rem; transition: transform 0.2s; }
 .token-header.open .arrow { transform: rotate(90deg); }
-.token-body { display: none; padding: 1rem 0; }
+.token-body { display: none; padding: 0.875rem 0; }
 .token-body.open { display: block; }
 
-/* Spacing demos */
-.spacing-demo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-.spacing-bar {
-  height: 24px;
-  background: linear-gradient(90deg, var(--indigo), var(--cyan));
-  border-radius: 3px;
-  min-width: 1px;
-}
-.spacing-label {
-  font-size: 0.65rem;
-  color: var(--fg-t);
-  min-width: 120px;
-  flex-shrink: 0;
-}
-.spacing-value {
-  font-size: 0.6rem;
-  color: var(--fg-q);
-  cursor: pointer;
-}
+.spacing-demo { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem; }
+.spacing-bar { height: 20px; background: linear-gradient(90deg, var(--indigo), var(--cyan)); min-width: 1px; }
+.spacing-label { font-size: 0.62rem; color: var(--fg-t); min-width: 110px; flex-shrink: 0; }
+.spacing-value { font-size: 0.58rem; color: var(--fg-q); cursor: pointer; }
 .spacing-value:hover { color: var(--cyan); }
 
-/* Radius demos */
-.radius-grid {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.radius-demo {
-  text-align: center;
-}
-.radius-box {
-  width: 64px;
-  height: 64px;
-  background: var(--bg-t);
-  border: 1px solid var(--border-st);
-  margin-bottom: 0.5rem;
-}
-.radius-demo .label {
-  font-size: 0.6rem;
-  color: var(--fg-t);
-}
-.radius-demo .val {
-  font-size: 0.55rem;
-  color: var(--fg-q);
-}
+.radius-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.radius-demo { text-align: center; }
+.radius-box { width: 56px; height: 56px; background: var(--bg-t); border: 1px solid var(--border-st); margin-bottom: 0.375rem; }
+.radius-demo .label { font-size: 0.58rem; color: var(--fg-t); }
+.radius-demo .val { font-size: 0.52rem; color: var(--fg-q); }
 
-/* Shadow demos */
-.shadow-grid {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.shadow-demo {
-  text-align: center;
-}
-.shadow-box {
-  width: 80px;
-  height: 80px;
-  background: var(--bg-e);
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-.shadow-demo .label {
-  font-size: 0.6rem;
-  color: var(--fg-t);
-}
+.shadow-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.shadow-demo { text-align: center; }
+.shadow-box { width: 72px; height: 72px; background: var(--bg-e); margin-bottom: 0.375rem; }
+.shadow-demo .label { font-size: 0.58rem; color: var(--fg-t); }
 
 /* ================================================================
-   COMPONENT SHOWCASE
-   ================================================================ */
-.comp-group {
-  margin-bottom: 2.5rem;
-}
-.comp-label {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--fg-t);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.comp-row {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.comp-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-/* ================================================================
-   GET STARTED CARDS
+   GET STARTED
    ================================================================ */
 .start-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--border-s);
 }
 .start-card {
   background: var(--bg-s);
-  border: 1px solid var(--border);
-  border-radius: 12px;
   padding: 1.75rem;
-  transition: border-color 0.2s, transform 0.2s;
 }
-.start-card:hover {
-  border-color: var(--border-st);
-  transform: translateY(-2px);
+.start-card-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
-.start-icon {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-}
-.start-card h3 {
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.start-card p {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  color: var(--fg-s);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
+.start-card-label.dev { color: var(--indigo); }
+.start-card-label.design { color: var(--violet); }
+.start-card-label.content { color: var(--cyan); }
+.start-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.375rem; }
+.start-card p { font-size: 0.75rem; color: var(--fg-s); margin-bottom: 1.25rem; line-height: 1.65; }
+
 .code-block {
   background: var(--void);
-  border: 1px solid var(--border-s);
-  border-radius: 6px;
+  border: 1px dashed var(--border);
   padding: 0.75rem 1rem;
-  font-size: 0.7rem;
-  line-height: 1.7;
+  font-size: 0.68rem;
+  line-height: 1.75;
   overflow-x: auto;
   margin-bottom: 0.5rem;
   cursor: pointer;
   position: relative;
 }
+.code-block:hover { border-color: var(--steel); }
 .code-block:hover::after {
   content: 'click to copy';
   position: absolute;
-  top: 0.375rem;
+  top: 0.3rem;
   right: 0.5rem;
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   color: var(--fg-q);
 }
 .code-block .cm { color: var(--fg-q); }
@@ -891,76 +825,84 @@ body::after {
   max-width: 1280px;
   margin: 0 auto;
   padding: 3rem 2rem;
-  text-align: center;
-  border-top: 1px solid var(--border-s);
+  border-top: 1px dashed var(--steel);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  opacity: 0.7;
 }
-.footer-text {
-  font-size: 0.7rem;
-  color: var(--fg-q);
-  letter-spacing: 0.08em;
-}
-.footer-text a { color: var(--fg-t); }
-.footer-text a:hover { color: var(--cyan); }
+.footer-left { font-size: 0.65rem; color: var(--fg-q); line-height: 2; }
+.footer-left a { color: var(--steel); }
+.footer-left a:hover { color: var(--cyan); }
+.footer-right { font-size: 0.55rem; color: var(--fg-q); letter-spacing: 0.08em; text-align: right; line-height: 2; }
 
 /* ================================================================
-   TOAST (copied notification)
+   TOAST
    ================================================================ */
 .toast {
   position: fixed;
   bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
+  transform: translateX(-50%) translateY(80px);
   background: var(--bg-e);
   color: var(--green);
   font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 0.625rem 1.25rem;
-  border-radius: 8px;
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
   border: 1px solid rgba(34,197,94,0.3);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   z-index: 2000;
   pointer-events: none;
   opacity: 0;
-  transition: all 0.3s var(--ease-bounce);
+  transition: all 0.2s ease;
 }
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ================================================================
    RESPONSIVE
    ================================================================ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-links { display: none; }
-  .hero { padding: 5rem 1.25rem 3rem; min-height: 80vh; }
-  .section { padding: 3rem 1.25rem 2.5rem; }
-  .mode-grid { grid-template-columns: 1fr; }
+  .hero { padding: 0 1.25rem 4rem; }
+  .section { padding: 3.5rem 1.25rem 3rem; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item.wide { grid-column: span 2; }
+  .mode-grid { grid-template-columns: repeat(2, 1fr); }
   .start-grid { grid-template-columns: 1fr; }
-  .palette-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-  .comp-row { flex-direction: column; align-items: flex-start; }
-  .gradient-bar::after { display: none; }
+  .pipeline-flow { flex-direction: column; }
+  .pipeline-arrow { padding: 0.375rem 1.25rem; writing-mode: horizontal-tb; border-right: none; border-top: 1px dashed var(--steel); }
+  .pipeline-node { border-right: none; border-bottom: 1px dashed var(--steel); }
+  .pipeline-node:last-child { border-bottom: none; }
+  .hero-meta { display: none; }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; }
+  .mode-grid { grid-template-columns: 1fr; }
+  .palette-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
 }
 </style>
 </head>
 <body>
 
-<!-- TOAST -->
-<div class="toast" id="toast">Copied!</div>
+<div class="hero-bg"></div>
+<div class="toast" id="toast">Copied.</div>
 
 <!-- ================================================================
      NAVIGATION
      ================================================================ -->
-<nav class="nav" id="nav">
+<nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">NOUS <span>DESIGN</span></div>
     <div class="nav-links">
-      <a href="#philosophy">Philosophy</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#philosophy">Pipeline</a>
       <a href="#palette">Palette</a>
-      <a href="#typography">Type</a>
-      <a href="#components">Components</a>
       <a href="#modes">Modes</a>
       <a href="#prompts">Prompts</a>
+      <a href="#components">Components</a>
       <a href="#tokens">Tokens</a>
       <a href="#start">Get Started</a>
     </div>
@@ -970,118 +912,215 @@ body::after {
 <!-- ================================================================
      HERO
      ================================================================ -->
-<section class="hero" id="hero">
-  <div class="hero-eyebrow">Edgeless Lab / Open Source</div>
-  <h1 class="hero-title">
-    <span class="accent-grad">Nous Inspired</span><br>
-    Design System
-  </h1>
-  <p class="hero-sub">
-    A texture pipeline and visual language for structurally dithered,
-    print-quality aesthetics. Open source. Take everything.
-  </p>
-  <div class="hero-actions">
-    <a href="#tokens" class="btn btn-primary">Browse Tokens</a>
-    <a href="#prompts" class="btn btn-secondary">Get Prompts</a>
-    <a href="https://github.com/edgelesslab/design-system" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+<div class="hero">
+  <div class="hero-meta">
+    <div class="hero-meta-line">OUTPUT 001</div>
+    <div class="hero-meta-line">SEED: 3573860127</div>
+    <div class="hero-meta-line">VER: 2.1.0</div>
+    <div class="hero-meta-line">ALGO: FLOYD-STEINBERG</div>
+    <div class="hero-meta-line">STATUS: OPEN</div>
   </div>
+  <div class="hero-content">
+    <div class="hero-credit">Edgeless Lab / Open Source / MIT</div>
+    <h1 class="hero-title">NOUS INSPIRED</h1>
+    <div class="hero-title-sub">Design System</div>
+    <hr class="hero-rule">
+    <p class="hero-desc">
+      A texture pipeline and visual language built around structural dithering.
+      AI generates. Algorithms transform. Every pixel participates.<br>
+      300 prompts. 6 pipeline modes. Take everything.
+    </p>
+    <div class="hero-actions">
+      <a href="#prompts" class="btn btn-primary">Browse Prompts</a>
+      <a href="#start" class="btn btn-secondary">Get the Code</a>
+      <a href="#tokens" class="btn btn-ghost">View Spec &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     GALLERY
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section" id="gallery">
+  <div class="section-label" data-sec="[SEC_02]">Gallery</div>
+  <div class="output-meta">OUTPUT 002 / SEED: 8812043991 / RANGE: AESTHETIC_REFERENCES</div>
+  <h2 class="section-title">The Aesthetic Range</h2>
+  <p class="section-desc">
+    Cyanotype. Risograph. Woodcut. CRT. Glitch. Dither. The visual language spans centuries and media.
+    These are the reference images the system is built against.
+  </p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item wide">
+      <img src="../public/originals/IMG_8156.jpg" alt="Cyanotype classical face with celestial math overlays" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/originals/IMG_8154.jpg" alt="B&W scanline cross glitch circle" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/originals/IMG_8160.jpg" alt="Green risograph halftone anime poster" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/inspo/bluedither.jpeg" alt="Deep blue dithered figure in doorway" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/originals/IMG_8158.jpg" alt="Blue cyanotype classical statues" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/inspo/cosmos_535277155.jpeg" alt="B&W pixel art practical guide" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="../public/originals/IMG_8162.jpg" alt="Reference image 8162" loading="lazy">
+    </div>
+    <div class="gallery-item wide">
+      <img src="../public/originals/IMG_8163.jpg" alt="Reference image 8163" loading="lazy">
+    </div>
+  </div>
+  <div class="gallery-caption">// originals/ + inspo/ — reference corpus for prompt development</div>
 </section>
 
 <!-- ================================================================
      PHILOSOPHY
      ================================================================ -->
+<div class="section-divider"></div>
 <section class="section" id="philosophy">
-  <div class="section-label">Philosophy</div>
+  <div class="section-label" data-sec="[SEC_03]">Philosophy</div>
+  <div class="output-meta">OUTPUT 003 / SEED: 1192837465 / CLASS: PIPELINE_ARCHITECTURE</div>
   <h2 class="section-title">Two-Stage Pipeline</h2>
-  <div class="section-desc" style="margin-bottom: 1.5rem;">
-    AI generates composition, color, and mood. Then deterministic dithering
-    post-processes every pixel into a structural pattern. AI cannot produce
-    real structural dithering natively -- smooth gradients and soft noise are
-    not the same as Floyd-Steinberg error diffusion or ordered Bayer matrices
-    where every pixel participates in the pattern. The pipeline exists to
-    bridge this gap.
+  <p class="section-desc">
+    AI generates composition, color, and mood. Then deterministic dithering post-processes every pixel
+    into a structural pattern. AI cannot produce real structural dithering natively — smooth gradients
+    and soft noise are not the same as Floyd-Steinberg error diffusion or ordered Bayer matrices
+    where every pixel participates in the pattern.
+  </p>
+
+  <div class="pipeline-flow">
+    <div class="pipeline-node">
+      <div class="pipeline-node-label indigo">SOURCE</div>
+      <div class="pipeline-node-body">
+        Midjourney v6.1 / v8.1<br>
+        Flora AI (40+ models)<br>
+        Venice / Stable Diffusion
+      </div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node">
+      <div class="pipeline-node-label cyan">PIPELINE</div>
+      <div class="pipeline-node-body">
+        edgeless-texture-pipeline.py<br>
+        Floyd-Steinberg / Bayer Matrix<br>
+        Halftone / CRT / Thermal
+      </div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node">
+      <div class="pipeline-node-label green">OUTPUT</div>
+      <div class="pipeline-node-body">
+        Structurally dithered asset<br>
+        Print-quality 1-bit or 5-color<br>
+        Web / print / social ready
+      </div>
+    </div>
   </div>
-  <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; font-size: 0.75rem; color: var(--fg-t);">
-    <div style="padding: 0.625rem 1rem; border: 1px solid var(--indigo); border-radius: 6px;">
-      <span style="color: var(--indigo); font-weight: 600;">SOURCE</span><br>
-      <span style="font-size: 0.65rem;">Midjourney / Flora / Venice</span>
-    </div>
-    <span style="color: var(--fg-q);">&rarr;</span>
-    <div style="padding: 0.625rem 1rem; border: 1px solid var(--cyan); border-radius: 6px;">
-      <span style="color: var(--cyan); font-weight: 600;">PIPELINE</span><br>
-      <span style="font-size: 0.65rem;">edgeless-texture-pipeline.py</span>
-    </div>
-    <span style="color: var(--fg-q);">&rarr;</span>
-    <div style="padding: 0.625rem 1rem; border: 1px solid var(--green); border-radius: 6px;">
-      <span style="color: var(--green); font-weight: 600;">OUTPUT</span><br>
-      <span style="font-size: 0.65rem;">Structurally dithered asset</span>
-    </div>
+
+  <div style="font-size:0.7rem;color:var(--fg-t);line-height:1.75;max-width:600px;">
+    The pipeline is deterministic given the same input and seed. Every processed image is reproducible.
+    This matters for brand consistency across a corpus of AI-generated assets where stochastic variation
+    would otherwise make every piece feel disconnected.
   </div>
 </section>
 
 <!-- ================================================================
      PALETTE
      ================================================================ -->
+<div class="section-divider"></div>
 <section class="section" id="palette">
-  <div class="section-label">Color</div>
+  <div class="section-label" data-sec="[SEC_04]">Color Tokens</div>
+  <div class="output-meta">OUTPUT 004 / SEED: 4420198837 / CLASS: COLOR_SYSTEM</div>
   <h2 class="section-title">Palette</h2>
-  <div class="section-desc">
-    Seven canonical colors. All pipeline modes map to this palette.
-    Click any swatch to copy its hex value.
-  </div>
-
-  <div class="gradient-bar"></div>
-
+  <p class="section-desc">
+    Eight canonical colors. All pipeline modes map to this palette.
+    Click any swatch to copy the hex value.
+  </p>
   <div class="palette-grid" id="palette-grid"></div>
 </section>
 
 <!-- ================================================================
-     TYPOGRAPHY
+     PIPELINE MODES
      ================================================================ -->
-<section class="section" id="typography">
-  <div class="section-label">Typography</div>
-  <h2 class="section-title">Two Typefaces</h2>
-  <div class="section-desc">
-    JetBrains Mono is primary for display, headings, labels, code, and captions.
-    Inter for body text and long-form descriptions. Both loaded from Google Fonts.
+<div class="section-divider"></div>
+<section class="section" id="modes">
+  <div class="section-label" data-sec="[SEC_05]">Pipeline</div>
+  <div class="output-meta">OUTPUT 005 / SEED: 7734820011 / CLASS: DITHERING_MODES</div>
+  <h2 class="section-title">Dithering Modes</h2>
+  <p class="section-desc">
+    Six rendering modes. Each uses real dithering algorithms — not AI approximations.
+    Click any command to copy.
+  </p>
+  <div class="mode-grid" id="mode-grid"></div>
+</section>
+
+<!-- ================================================================
+     PROMPT LIBRARY
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section" id="prompts">
+  <div class="section-label" data-sec="[SEC_06]">Prompts</div>
+  <div class="output-meta">OUTPUT 006 / SEED: 9918273645 / CLASS: PROMPT_LIBRARY / COUNT: 300</div>
+  <h2 class="section-title">Prompt Library</h2>
+  <p class="section-desc">
+    300 prompts across 30 categories. v2 targets Midjourney v6.1. v3 targets v8.1.
+    Filter by set, search by keyword, click to copy any prompt.
+  </p>
+
+  <!-- Full example prompts displayed inline -->
+  <div class="prompt-examples">
+    <div class="prompt-example-header">// Example prompts — full display</div>
+    <div class="prompt-example-item">
+      <div class="prompt-example-id">ENV-01 v2</div>
+      <div class="prompt-example-text">Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, void black background, indigo and cyan accent light, structural dithering texture, monochrome brutalist architecture --ar 3:2 --style raw</div>
+      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
+    </div>
+    <div class="prompt-example-item">
+      <div class="prompt-example-id">OSC-01 v3</div>
+      <div class="prompt-example-text">Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift, dark void background, analog instrument aesthetic, scientific measurement device, 1970s laboratory equipment --ar 1:1 --style raw --v 6.1</div>
+      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
+    </div>
+    <div class="prompt-example-item">
+      <div class="prompt-example-id">COS-01 v2</div>
+      <div class="prompt-example-text">Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, orbital mechanics diagram overlay in monospace, deep space black background, cyan and indigo signal arcs --ar 16:9 --style raw</div>
+      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
+    </div>
   </div>
 
-  <div class="type-specimen">
-    <div class="type-sample" style="font-family: var(--mono); font-weight: 700; font-size: 2.25rem; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem;">
-      EDGELESS LAB
+  <div class="prompt-filter-bar">
+    <input class="input prompt-search" id="prompt-search" type="text" placeholder="Search prompts...">
+    <div class="prompt-set-toggle">
+      <button class="prompt-set-btn active" data-set="all">All (30)</button>
+      <button class="prompt-set-btn" data-set="v2">v2 — MJ 6.1 (15)</button>
+      <button class="prompt-set-btn" data-set="v3">v3 — MJ 8.1 (15)</button>
     </div>
-    <div class="type-sample" style="font-family: var(--mono); font-weight: 400; font-size: 1rem; color: var(--fg-s);">
-      Signal / Swarm / Courier / Agent Infrastructure
-    </div>
-    <div class="type-meta">JetBrains Mono -- Primary. Display, headings, labels, code. Weights 300-700.</div>
   </div>
 
-  <div class="type-specimen">
-    <div class="type-sample" style="font-family: var(--sans); font-weight: 400; font-size: 1.125rem; color: var(--fg-s); line-height: 1.7;">
-      The collective intelligence of autonomous agents, coordinated through a
-      dark infrastructure of signals, swarms, and relays. Structural dithering
-      gives every pixel a purpose.
-    </div>
-    <div class="type-meta">Inter -- Secondary. Body text, descriptions, long-form. Weights 300-700.</div>
-  </div>
-
-  <div class="type-scale" id="type-scale"></div>
+  <div id="prompt-list"></div>
 </section>
 
 <!-- ================================================================
      COMPONENTS
      ================================================================ -->
+<div class="section-divider"></div>
 <section class="section" id="components">
-  <div class="section-label">Components</div>
+  <div class="section-label" data-sec="[SEC_07]">Components</div>
+  <div class="output-meta">OUTPUT 007 / SEED: 3318827441 / CLASS: UI_COMPONENTS</div>
   <h2 class="section-title">Interactive Elements</h2>
-  <div class="section-desc">
-    Live HTML/CSS recreations styled with the design system tokens. Every variant,
-    every state. These are the same components shipped as React/TSX in the npm package.
-  </div>
+  <p class="section-desc">
+    Live HTML/CSS recreations using the design system tokens directly.
+    These are the same components shipped in the npm package.
+  </p>
 
-  <!-- Buttons -->
   <div class="comp-group">
-    <div class="comp-label">Button Variants</div>
+    <div class="comp-label">// Button — Variants</div>
     <div class="comp-row">
       <button class="btn btn-primary">Primary</button>
       <button class="btn btn-secondary">Secondary</button>
@@ -1091,7 +1130,7 @@ body::after {
   </div>
 
   <div class="comp-group">
-    <div class="comp-label">Button Sizes</div>
+    <div class="comp-label">// Button — Sizes</div>
     <div class="comp-row">
       <button class="btn btn-primary btn-sm">Small</button>
       <button class="btn btn-primary">Medium</button>
@@ -1099,167 +1138,115 @@ body::after {
     </div>
   </div>
 
-  <!-- Badges -->
   <div class="comp-group">
-    <div class="comp-label">Badges</div>
+    <div class="comp-label">// Badge</div>
     <div class="comp-row">
-      <span class="badge badge-indigo">Indigo</span>
-      <span class="badge badge-violet">Violet</span>
-      <span class="badge badge-cyan">Cyan</span>
-      <span class="badge badge-green">Success</span>
-      <span class="badge badge-amber">Warning</span>
-      <span class="badge badge-red">Error</span>
-      <span class="badge badge-default">Default</span>
+      <span class="badge badge-indigo">indigo</span>
+      <span class="badge badge-violet">violet</span>
+      <span class="badge badge-cyan">cyan</span>
+      <span class="badge badge-green">success</span>
+      <span class="badge badge-amber">warning</span>
+      <span class="badge badge-red">error</span>
+      <span class="badge badge-default">default</span>
     </div>
   </div>
 
-  <!-- Inputs -->
   <div class="comp-group">
-    <div class="comp-label">Input &amp; Select</div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
-      <div>
-        <input class="input" type="text" placeholder="Enter a value...">
-      </div>
-      <div>
-        <select class="select">
-          <option>Select a pipeline mode...</option>
-          <option>dither-bw</option>
-          <option>dither-accent</option>
-          <option>dither-full</option>
-          <option>riso</option>
-          <option>thermal</option>
-          <option>scanline</option>
-        </select>
-      </div>
+    <div class="comp-label">// Input &amp; Select</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem;">
+      <input class="input" type="text" placeholder="Enter a value...">
+      <select class="select">
+        <option>Select a pipeline mode...</option>
+        <option>dither-bw</option>
+        <option>dither-accent</option>
+        <option>dither-full</option>
+        <option>riso</option>
+        <option>thermal</option>
+        <option>scanline</option>
+      </select>
     </div>
   </div>
 
-  <!-- Cards -->
   <div class="comp-group">
-    <div class="comp-label">Cards</div>
+    <div class="comp-label">// Card</div>
     <div class="comp-grid">
       <div class="card">
         <div class="card-title">Default Card</div>
-        <div class="card-body">Container for content grouping. Consistent padding, border, radius. Hover for lift effect.</div>
+        <div class="card-body">Container for content grouping. Consistent padding and border. Hover for border emphasis.</div>
       </div>
-      <div class="card" style="border-color: var(--border-s);">
+      <div class="card" style="border-color:var(--border-s);">
         <div class="card-title">Subtle Border</div>
         <div class="card-body">Reduced border presence for nested or secondary content blocks.</div>
       </div>
-      <div class="card" style="border-color: transparent;">
-        <div class="card-title">No Border</div>
-        <div class="card-body">Surface elevation only. Used inside already-bordered containers.</div>
+      <div class="card" style="border-color:var(--steel);border-style:dashed;">
+        <div class="card-title">Dashed Variant</div>
+        <div class="card-body">Steel blue dashed border — the Nous-reference treatment for archival or metadata content.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================================================================
-     PIPELINE MODES
+     TOKENS
      ================================================================ -->
-<section class="section" id="modes">
-  <div class="section-label">Pipeline</div>
-  <h2 class="section-title">Dithering Modes</h2>
-  <div class="section-desc">
-    Six rendering modes that map any source image onto the Edgeless visual language.
-    Each uses real dithering algorithms, not AI approximations.
-  </div>
-
-  <div class="mode-grid" id="mode-grid"></div>
-</section>
-
-<!-- ================================================================
-     PROMPT LIBRARY
-     ================================================================ -->
-<section class="section" id="prompts">
-  <div class="section-label">Prompts</div>
-  <h2 class="section-title">Prompt Library</h2>
-  <div class="section-desc">
-    300 prompts across 30 categories. v2 targets Midjourney v6.1, v3 targets v8.1.
-    Filter by set, search by keyword, click to copy any prompt.
-  </div>
-
-  <div class="prompt-filter-bar">
-    <input class="input prompt-search" id="prompt-search" type="text" placeholder="Search prompts...">
-    <div class="prompt-set-toggle">
-      <button class="prompt-set-btn active" data-set="all">All</button>
-      <button class="prompt-set-btn" data-set="v2">v2 (MJ 6.1)</button>
-      <button class="prompt-set-btn" data-set="v3">v3 (MJ 8.1)</button>
-    </div>
-  </div>
-
-  <div id="prompt-list"></div>
-</section>
-
-<!-- ================================================================
-     TOKEN REFERENCE
-     ================================================================ -->
+<div class="section-divider"></div>
 <section class="section" id="tokens">
-  <div class="section-label">Reference</div>
+  <div class="section-label" data-sec="[SEC_08]">Tokens</div>
+  <div class="output-meta">OUTPUT 008 / SEED: 6641029938 / SRC: src/tokens/index.ts</div>
   <h2 class="section-title">Design Tokens</h2>
-  <div class="section-desc">
-    All token values from <code style="color:var(--cyan);">src/tokens/index.ts</code>
-    and <code style="color:var(--cyan);">src/styles/tokens.css</code>. Click values to copy
-    the CSS custom property.
-  </div>
-
+  <p class="section-desc">
+    All values from <code style="color:var(--cyan);">src/tokens/index.ts</code> and
+    <code style="color:var(--cyan);">src/styles/tokens.css</code>. Click values to copy.
+  </p>
   <div id="token-sections"></div>
 </section>
 
 <!-- ================================================================
      GET STARTED
      ================================================================ -->
+<div class="section-divider"></div>
 <section class="section" id="start">
-  <div class="section-label">Quickstart</div>
+  <div class="section-label" data-sec="[SEC_09]">Quickstart</div>
+  <div class="output-meta">OUTPUT 009 / SEED: 2201748839 / CLASS: INSTALLATION</div>
   <h2 class="section-title">Get Started</h2>
-  <div class="section-desc">
-    Three paths depending on what you need. All paths get you the full Nous aesthetic.
-  </div>
+  <p class="section-desc">
+    Three paths. All get you the full aesthetic.
+  </p>
 
   <div class="start-grid">
-    <!-- Developer -->
     <div class="start-card">
-      <div class="start-icon" style="background: rgba(99,102,241,0.15); color: var(--indigo);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3>Developer</h3>
-      <p>React components + Tailwind preset. Drop in and build.</p>
-      <div class="code-block" onclick="copyText(this.innerText)">
-        <span class="fn">pnpm</span> add @edgelesslab/design-system
-      </div>
-      <div class="code-block" onclick="copyText(this.innerText)">
-        <span class="kw">import</span> { Button, Card, Badge } <span class="kw">from</span> <span class="st">'@edgelesslab/design-system'</span>;
-      </div>
+      <div class="start-card-label dev">// Developer</div>
+      <h3>React + Tailwind</h3>
+      <p>Drop-in components with full TypeScript types. Tailwind preset included.</p>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="fn">pnpm</span> add @edgelesslab/design-system</div>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="kw">import</span> { Button, Card, Badge } <span class="kw">from</span>
+  <span class="st">'@edgelesslab/design-system'</span>;</div>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="cm">// tailwind.config.ts</span>
+<span class="kw">import</span> preset <span class="kw">from</span> <span class="st">'@edgelesslab/design-system/preset'</span>;</div>
     </div>
 
-    <!-- Designer -->
     <div class="start-card">
-      <div class="start-icon" style="background: rgba(139,92,246,0.15); color: var(--violet);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-      </div>
-      <h3>Designer</h3>
-      <p>CSS custom properties. Drop tokens.css into any project.</p>
-      <div class="code-block" onclick="copyText(this.innerText)">
-        <span class="cm">&lt;!-- Drop-in token file --&gt;</span>
-<span class="kw">&lt;link</span> rel=<span class="st">"stylesheet"</span> href=<span class="st">"tokens.css"</span><span class="kw">&gt;</span>
-      </div>
-      <div class="code-block" onclick="copyText(this.innerText)">
-        background: <span class="kw">var</span>(<span class="st">--color-accent-primary</span>);
-      </div>
+      <div class="start-card-label design">// Designer</div>
+      <h3>CSS Tokens</h3>
+      <p>Drop tokens.css into any project. Works without JavaScript.</p>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="cm">&lt;!-- single file, no build step --&gt;</span>
+<span class="kw">&lt;link</span> rel=<span class="st">"stylesheet"</span>
+      href=<span class="st">"tokens.css"</span><span class="kw">&gt;</span></div>
+      <div class="code-block" onclick="copyText(this.innerText)">background: <span class="kw">var</span>(<span class="st">--void</span>);
+color: <span class="kw">var</span>(<span class="st">--fg</span>);
+border: 1px dashed <span class="kw">var</span>(<span class="st">--steel</span>);</div>
     </div>
 
-    <!-- Content Creator -->
     <div class="start-card">
-      <div class="start-icon" style="background: rgba(6,182,212,0.15); color: var(--cyan);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
-      </div>
-      <h3>Content Creator</h3>
-      <p>300 prompts + texture pipeline. Generate and process.</p>
-      <div class="code-block" onclick="copyText(this.innerText)">
-        <span class="cm"># Pick a prompt, generate, then post-process:</span>
-<span class="fn">python3.11</span> scripts/edgeless-texture-pipeline.py \
-  input.png <span class="kw">--mode</span> <span class="st">dither-bw</span> <span class="kw">-o</span> output.png
-      </div>
+      <div class="start-card-label content">// Content Creator</div>
+      <h3>Prompts + Pipeline</h3>
+      <p>300 prompts ready to generate. Post-process any output through the pipeline.</p>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="cm"># clone and run</span>
+<span class="fn">git</span> clone github.com/edgelesslab/design-system
+<span class="fn">cd</span> design-system</div>
+      <div class="code-block" onclick="copyText(this.innerText)"><span class="fn">python3.11</span> scripts/edgeless-texture-pipeline.py \
+  input.png <span class="kw">--mode</span> <span class="st">dither-bw</span> \
+  <span class="kw">-o</span> output.png</div>
     </div>
   </div>
 </section>
@@ -1267,11 +1254,17 @@ body::after {
 <!-- ================================================================
      FOOTER
      ================================================================ -->
+<div class="section-divider"></div>
 <footer class="footer">
-  <div class="footer-text">
-    Nous Inspired. Open Source.
-    <a href="https://github.com/edgelesslab/design-system">MIT License</a>.<br>
-    Edgeless Lab &mdash; 2026
+  <div class="footer-left">
+    <a href="https://github.com/edgelesslab/design-system">github.com/edgelesslab/design-system</a><br>
+    MIT License &mdash; Take everything<br>
+    <span style="color:var(--steel);">Nous Inspired. Built by Edgeless Lab.</span>
+  </div>
+  <div class="footer-right">
+    OUTPUT 010 / SEED: 0000000000<br>
+    VER 2.1.0 / 2026<br>
+    ALGO: OPEN_SOURCE
   </div>
 </footer>
 
@@ -1279,95 +1272,66 @@ body::after {
      SCRIPTS
      ================================================================ -->
 <script>
-/* ------- TOAST ------- */
+/* --- TOAST --- */
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg || 'Copied!';
+  t.textContent = msg || 'Copied.';
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1400);
 }
-
 function copyText(text) {
   navigator.clipboard.writeText(text.trim()).then(() => showToast());
 }
 
-/* ------- NAV SCROLL ------- */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-/* ------- PALETTE ------- */
+/* --- PALETTE --- */
 const paletteData = [
-  { name: 'Void Black',  hex: '#0a0a0a', use: 'Primary background, shadows', dark: true },
-  { name: 'White',       hex: '#ffffff', use: 'Primary foreground, text', textDark: true },
+  { name: 'Void Black',  hex: '#0a0a0a', use: 'Primary background' },
+  { name: 'White',       hex: '#e8e8e8', use: 'Primary foreground', textDark: false },
+  { name: 'Steel Blue',  hex: '#4a7c9b', use: 'Borders, metadata, Nous-ref' },
+  { name: 'Cyan',        hex: '#06b6d4', use: 'Links, labels, active states' },
   { name: 'Indigo',      hex: '#6366f1', use: 'Primary accent, interactive' },
   { name: 'Violet',      hex: '#8b5cf6', use: 'Secondary accent, decorative' },
-  { name: 'Cyan',        hex: '#06b6d4', use: 'Tertiary accent, diagrams' },
-  { name: 'Green',       hex: '#22c55e', use: 'Success, online, sparse accent' },
-  { name: 'Cream',       hex: '#f5f0e8', use: 'Riso paper base, light mode', textDark: true },
+  { name: 'Green',       hex: '#22c55e', use: 'Success, CLI, sparse accent' },
+  { name: 'Cream',       hex: '#f5f0e8', use: 'Output/Seed annotations, riso' },
 ];
 
 const pg = document.getElementById('palette-grid');
 paletteData.forEach(c => {
   const s = document.createElement('div');
   s.className = 'swatch';
-  s.onclick = () => { copyText(c.hex); showToast('Copied ' + c.hex); };
-  const border = c.dark ? 'border-bottom:1px solid rgba(255,255,255,0.1)' : '';
-  s.innerHTML = `<div class="swatch-color" style="background:${c.hex};${border}"></div>
-    <div class="swatch-info"><div class="swatch-name">${c.name}</div>
-    <div class="swatch-hex">${c.hex}</div>
-    <div class="swatch-use">${c.use}</div></div>`;
+  s.onclick = () => { navigator.clipboard.writeText(c.hex).then(() => showToast('Copied ' + c.hex)); };
+  const needDark = c.hex === '#0a0a0a';
+  const borderStyle = needDark ? 'border-bottom:1px solid rgba(255,255,255,0.08);' : '';
+  s.innerHTML = `<div class="swatch-color" style="background:${c.hex};${borderStyle}"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">${c.name}</div>
+      <div class="swatch-hex">${c.hex}</div>
+      <div class="swatch-use">${c.use}</div>
+    </div>`;
   pg.appendChild(s);
 });
 
-/* ------- TYPE SCALE ------- */
-const typeScaleData = [
-  { label: '7xl', size: '4.5rem / 72px', text: 'Display' },
-  { label: '6xl', size: '3.75rem / 60px', text: 'Display' },
-  { label: '5xl', size: '3rem / 48px', text: 'Large Title' },
-  { label: '4xl', size: '2.25rem / 36px', text: 'Section Header' },
-  { label: '3xl', size: '1.875rem / 30px', text: 'Heading' },
-  { label: '2xl', size: '1.5rem / 24px', text: 'Subheading' },
-  { label: 'xl',  size: '1.25rem / 20px', text: 'Card Title' },
-  { label: 'lg',  size: '1.125rem / 18px', text: 'Lead Body' },
-  { label: 'base', size: '1rem / 16px', text: 'Body Text' },
-  { label: 'sm',  size: '0.875rem / 14px', text: 'Description' },
-  { label: 'xs',  size: '0.75rem / 12px', text: 'Caption / Meta' },
-];
-
-const ts = document.getElementById('type-scale');
-typeScaleData.forEach(t => {
-  const sizeRem = parseFloat(t.size);
-  const d = document.createElement('div');
-  d.className = 'type-scale-row';
-  d.innerHTML = `<div class="type-scale-label">${t.label}</div>
-    <div class="type-scale-size">${t.size}</div>
-    <div style="font-size:${sizeRem}rem;font-family:var(--mono);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.text}</div>`;
-  ts.appendChild(d);
-});
-
-/* ------- MODES ------- */
+/* --- MODES --- */
 const modesData = [
   { name: 'dither-bw', algo: 'Floyd-Steinberg', fx: 'fx-dither-bw',
-    desc: '1-bit black/white error diffusion. Every pixel is on or off. The closest to the original dot-matrix aesthetic.',
+    desc: '1-bit black/white error diffusion. Every pixel is on or off. Closest to the original dot-matrix aesthetic.',
     cmd: '--mode dither-bw' },
   { name: 'dither-accent', algo: 'Bayer 8x8', fx: 'fx-dither-accent',
-    desc: 'Ordered Bayer matrix dither to void + one accent color. Classic cross-hatch pattern. Accent selectable: cyan, violet, indigo, green.',
+    desc: 'Ordered Bayer matrix dither to void + one accent color. Classic cross-hatch. Accent: cyan, violet, indigo, green.',
     cmd: '--mode dither-accent --accent cyan' },
   { name: 'dither-full', algo: '5-Color FS', fx: 'fx-dither-full',
-    desc: 'Floyd-Steinberg to the full 5-color Edgeless palette (void, indigo, violet, cyan, white). Rich color with structural texture.',
+    desc: 'Floyd-Steinberg to the full 5-color palette (void, indigo, violet, cyan, white). Rich color with structural texture.',
     cmd: '--mode dither-full' },
   { name: 'riso', algo: 'Halftone Dot', fx: 'fx-riso',
-    desc: 'Risograph print simulation. Halftone dots on cream paper with two ink separations. Rotated screen angles prevent moire.',
+    desc: 'Risograph print simulation. Halftone dots on cream paper, two ink separations. Rotated screen angles prevent moire.',
     cmd: '--mode riso --accent cyan' },
-  { name: 'thermal', algo: 'Receipt', fx: 'fx-thermal',
+  { name: 'thermal', algo: 'Receipt Print', fx: 'fx-thermal',
     desc: 'Thermal receipt printer. Sigmoid contrast crush + 1-bit dither + horizontal banding + head smear blur. Black on white.',
     cmd: '--mode thermal' },
   { name: 'scanline', algo: 'CRT Sim', fx: 'fx-scanline',
-    desc: 'CRT/VHS monitor simulation. Scanline darkening, 5-bit color quantization, horizontal glitch offsets. Retro terminal aesthetic.',
+    desc: 'CRT/VHS monitor simulation. Scanline darkening, 5-bit color quantization, horizontal glitch offsets.',
     cmd: '--mode scanline' },
 ];
 
@@ -1376,13 +1340,16 @@ modesData.forEach(m => {
   const d = document.createElement('div');
   d.className = 'mode-card';
   d.innerHTML = `<div class="mode-preview ${m.fx}"></div>
-    <div class="mode-header"><span class="mode-name">${m.name}</span><span class="badge badge-cyan">${m.algo}</span></div>
+    <div class="mode-header">
+      <span class="mode-name">${m.name}</span>
+      <span class="badge badge-cyan">${m.algo}</span>
+    </div>
     <div class="mode-desc">${m.desc}</div>
     <div class="mode-cmd" onclick="copyText('${m.cmd}')">${m.cmd}</div>`;
   mg.appendChild(d);
 });
 
-/* ------- PROMPT LIBRARY ------- */
+/* --- PROMPT LIBRARY --- */
 const promptCategories = [
   { set:'v2', id:'ENV', name:'Environments', count:12, prompts:[
     {id:'ENV-01',text:'Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating...'},
@@ -1513,17 +1480,14 @@ function renderPrompts() {
   const list = document.getElementById('prompt-list');
   list.innerHTML = '';
   const q = searchQuery.toLowerCase();
-
   promptCategories.forEach(cat => {
     if (activeSet !== 'all' && cat.set !== activeSet) return;
     const matchPrompts = cat.prompts.filter(p =>
       !q || p.text.toLowerCase().includes(q) || p.id.toLowerCase().includes(q) || cat.name.toLowerCase().includes(q)
     );
     if (q && matchPrompts.length === 0) return;
-
     const div = document.createElement('div');
     div.className = 'prompt-category';
-    div.setAttribute('data-set', cat.set);
     const showBody = q && matchPrompts.length > 0;
     div.innerHTML = `<div class="prompt-cat-header${showBody ? ' open' : ''}" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
       <span class="arrow">&#9654;</span>
@@ -1534,15 +1498,14 @@ function renderPrompts() {
     <div class="prompt-cat-body${showBody ? ' open' : ''}">
       ${(q ? matchPrompts : cat.prompts).map(p => `<div class="prompt-item">
         <span class="prompt-id">${p.id}</span>
-        <span class="prompt-text">${p.text}</span>
-        <button class="prompt-copy" onclick="event.stopPropagation();copyText(this.parentElement.querySelector('.prompt-text').textContent)">copy</button>
+        <span>${p.text}</span>
+        <button class="prompt-copy" onclick="event.stopPropagation();copyText(this.parentElement.querySelector('span:nth-child(2)').textContent)">copy</button>
       </div>`).join('')}
     </div>`;
     list.appendChild(div);
   });
 }
 
-// Set toggle
 document.querySelectorAll('.prompt-set-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.prompt-set-btn').forEach(b => b.classList.remove('active'));
@@ -1551,16 +1514,13 @@ document.querySelectorAll('.prompt-set-btn').forEach(btn => {
     renderPrompts();
   });
 });
-
-// Search
 document.getElementById('prompt-search').addEventListener('input', e => {
   searchQuery = e.target.value;
   renderPrompts();
 });
-
 renderPrompts();
 
-/* ------- TOKEN REFERENCE ------- */
+/* --- TOKEN REFERENCE --- */
 const tokenData = [
   { name: 'Spacing', items: [
     { label: 'space-0.5', value: '0.125rem', px: '2px', w: 2 },
@@ -1600,7 +1560,6 @@ const tokenData = [
     { label: 'duration-slow', value: '300ms' },
     { label: 'duration-slower', value: '500ms' },
     { label: 'ease-default', value: 'cubic-bezier(0.4, 0, 0.2, 1)' },
-    { label: 'ease-in', value: 'cubic-bezier(0.4, 0, 1, 1)' },
     { label: 'ease-out', value: 'cubic-bezier(0, 0, 0.2, 1)' },
     { label: 'ease-bounce', value: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
   ], render: 'table' },
@@ -1609,9 +1568,7 @@ const tokenData = [
     { label: 'z-dropdown', value: '100' },
     { label: 'z-sticky', value: '200' },
     { label: 'z-modal', value: '300' },
-    { label: 'z-popover', value: '400' },
     { label: 'z-toast', value: '500' },
-    { label: 'z-tooltip', value: '600' },
   ], render: 'table' },
   { name: 'Breakpoints', items: [
     { label: 'sm', value: '640px' },
@@ -1623,13 +1580,10 @@ const tokenData = [
 ];
 
 const tokSec = document.getElementById('token-sections');
-
 tokenData.forEach(section => {
   const div = document.createElement('div');
   div.className = 'token-section';
-
   let bodyHTML = '';
-
   if (section.render === 'spacing') {
     bodyHTML = section.items.map(i =>
       `<div class="spacing-demo">
@@ -1640,13 +1594,8 @@ tokenData.forEach(section => {
     ).join('');
   } else if (section.render === 'radius') {
     const radii = [
-      { r: '0', l: 'none' },
-      { r: '4px', l: 'sm' },
-      { r: '8px', l: 'md' },
-      { r: '12px', l: 'lg' },
-      { r: '16px', l: 'xl' },
-      { r: '24px', l: '2xl' },
-      { r: '9999px', l: 'full' },
+      {r:'0',l:'none'},{r:'4px',l:'sm'},{r:'8px',l:'md'},
+      {r:'12px',l:'lg'},{r:'16px',l:'xl'},{r:'24px',l:'2xl'},{r:'9999px',l:'full'}
     ];
     bodyHTML = '<div class="radius-grid">' + radii.map(r =>
       `<div class="radius-demo">
@@ -1657,12 +1606,12 @@ tokenData.forEach(section => {
     ).join('') + '</div>';
   } else if (section.render === 'shadow') {
     const shadows = [
-      { s: '0 1px 2px 0 rgba(0,0,0,0.3)', l: 'sm' },
-      { s: '0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3)', l: 'md' },
-      { s: '0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.3)', l: 'lg' },
-      { s: '0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.4)', l: 'xl' },
-      { s: '0 0 20px rgba(99,102,241,0.3)', l: 'glow' },
-      { s: '0 0 40px rgba(99,102,241,0.4)', l: 'glow-lg' },
+      {s:'0 1px 2px 0 rgba(0,0,0,0.3)',l:'sm'},
+      {s:'0 4px 6px -1px rgba(0,0,0,0.4)',l:'md'},
+      {s:'0 10px 15px -3px rgba(0,0,0,0.5)',l:'lg'},
+      {s:'0 20px 25px -5px rgba(0,0,0,0.5)',l:'xl'},
+      {s:'0 0 20px rgba(99,102,241,0.3)',l:'glow'},
+      {s:'0 0 40px rgba(99,102,241,0.4)',l:'glow-lg'},
     ];
     bodyHTML = '<div class="shadow-grid">' + shadows.map(sh =>
       `<div class="shadow-demo">
@@ -1671,20 +1620,18 @@ tokenData.forEach(section => {
       </div>`
     ).join('') + '</div>';
   } else {
-    bodyHTML = '<div style="display:grid;gap:0.25rem;">' + section.items.map(i =>
-      `<div style="display:flex;gap:1rem;padding:0.375rem 0;border-bottom:1px solid var(--border-s);font-size:0.7rem;align-items:center;">
-        <span style="color:var(--fg-t);min-width:140px;">--${i.label}</span>
+    bodyHTML = '<div style="display:grid;gap:0;">' + section.items.map(i =>
+      `<div style="display:flex;gap:1rem;padding:0.35rem 0;border-bottom:1px solid var(--border-s);font-size:0.68rem;align-items:center;">
+        <span style="color:var(--fg-t);min-width:160px;">--${i.label}</span>
         <span style="color:var(--fg-q);cursor:pointer;" onclick="copyText('${i.value}')">${i.value}</span>
       </div>`
     ).join('') + '</div>';
   }
-
   div.innerHTML = `<div class="token-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
     <span class="arrow">&#9654;</span>
     <span class="token-label">${section.name}</span>
   </div>
   <div class="token-body">${bodyHTML}</div>`;
-
   tokSec.appendChild(div);
 });
 </script>
