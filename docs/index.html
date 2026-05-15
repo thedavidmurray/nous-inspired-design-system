@@ -1120,7 +1120,7 @@ body::after {
   <div class="output-meta">OUTPUT 003 / SEED: 5519204738 / CLASS: PROMPT_TO_OUTPUT</div>
   <h2 class="section-title">Prompt &rarr; Output</h2>
   <p class="section-desc">
-    Every image was generated from a prompt in the library, then post-processed through the pipeline.
+    Every image was generated from a prompt in the library using Midjourney v6.1, then post-processed through the pipeline.
     The prompt is the creative input. The pipeline is the aesthetic transform. Here are the results paired with their source prompts.
   </p>
 
@@ -1128,42 +1128,57 @@ body::after {
 
     <div class="gen-card">
       <div class="gen-card-img">
-        <img src="images/v2-01-hive-core-flux2pro.png" alt="Hive Core — server cathedral" loading="lazy">
+        <img src="images/mj-server-cathedral.jpg" alt="Server Cathedral — Hive swarm coordinator" loading="lazy">
       </div>
       <div class="gen-card-info">
-        <div class="gen-card-name">Hive Core</div>
-        <div class="gen-card-model">Flux 2 Pro</div>
-        <div class="gen-card-prompt" id="prompt-hive">Massive underground server cathedral for the Hive swarm coordinator. Void black architecture with towering cyan data columns, violet neural network maps on walls, indigo structural beams. White Courier monospace status readouts floating in AR. Green heartbeat pulses. Halftone dithered texture overlay. ASCII block pattern floor grating. Minimal dark high contrast brutalist tech cathedral.</div>
+        <div class="gen-card-name">Server Cathedral</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-cathedral">Massive underground server cathedral for the Hive swarm coordinator. Void black architecture (#0a0a0a) with towering cyan accent (#06b6d4) data columns reaching into darkness. Violet accent (#8b5cf6) neural network maps projected on walls. Indigo accent (#6366f1) secondary structural beams. White foreground (#ffffff) Courier monospace status readouts floating in AR. Green (#22c55e) heartbeat pulses along fiber optic veins. ASCII block pattern floor grating. Minimal dark brutalist tech cathedral. No humans visible, pure machine habitat.</div>
         <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-hive">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-hive').textContent)">copy prompt</button>
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-cathedral">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-cathedral').textContent)">copy prompt</button>
         </div>
       </div>
     </div>
 
     <div class="gen-card">
       <div class="gen-card-img">
-        <img src="images/v2-05-blue-distressed-nanobanana.png" alt="Blue Distressed Infrastructure" loading="lazy">
+        <img src="images/mj-swarm-topology.jpg" alt="Swarm Topology — technical diagram" loading="lazy">
       </div>
       <div class="gen-card-info">
-        <div class="gen-card-name">Blue Distressed</div>
-        <div class="gen-card-model">NanoBanana</div>
-        <div class="gen-card-prompt" id="prompt-blue">A monochromatic intensely blue-toned distressed photograph of abstract digital infrastructure. Void black deep shadows. Cyan primary tone wash across server racks and cable bundles. Violet secondary highlights on circuit boards. Heavy film grain, scan lines, dithered halftone texture overlay. Courier monospace timestamp watermark. Minimal dark high contrast brutalist distressed photography.</div>
+        <div class="gen-card-name">Swarm Topology</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-topology">Dark technical diagram poster titled SWARM TOPOLOGY for the Edgeless agent network. Void black background (#0a0a0a) with cyan accent (#06b6d4) connection lines between nodes. Violet accent (#8b5cf6) agent identity markers. Indigo accent (#6366f1) data flow direction arrows. White foreground (#ffffff) Courier monospace node labels and JetBrains Mono technical annotations. Minimal dark high contrast brutalist technical diagram. Geometric grid structure.</div>
         <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-blue">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-blue').textContent)">copy prompt</button>
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-topology">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-topology').textContent)">copy prompt</button>
         </div>
       </div>
     </div>
 
     <div class="gen-card">
       <div class="gen-card-img">
-        <img src="images/v2-04-editorial-cover-ideogram.png" alt="Editorial Cover" loading="lazy">
+        <img src="images/mj-violet-archive.jpg" alt="Violet Archive — infinite vertical library" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Violet Archive</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-archive">Infinite vertical library of the Violet Archive. Void black shelving (#0a0a0a) stretching into darkness. Cyan accent (#06b6d4) glowing spine labels on archival containers. Violet accent (#8b5cf6) illuminated reading alcoves. Indigo accent (#6366f1) ascending staircases. White foreground (#ffffff) Courier monospace catalog numbers. Green (#22c55e) access indicator lights. ASCII block decorative column headers. Minimal dark high contrast knowledge storage. Liminal library atmosphere.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-archive">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-archive').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/mj-editorial-cover.jpg" alt="Editorial Cover — catalog reference" loading="lazy">
       </div>
       <div class="gen-card-info">
         <div class="gen-card-name">Editorial Cover</div>
-        <div class="gen-card-model">Ideogram</div>
-        <div class="gen-card-prompt" id="prompt-edit">Editorial catalog cover for Edgeless Lab. Void black background. Large title in white JetBrains Mono font. Cyan subtitle text. Violet abstract dithered portrait element in center. Indigo grid lines and gutters. Green small edition number. Minimal dark high contrast brutalist editorial design. Swiss typography grid layout. Halftone dithered texture throughout.</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-edit">Editorial catalog cover reference for the Edgeless publication system. Void black background (#0a0a0a) with cyan accent (#06b6d4) typographic title treatments. Violet accent (#8b5cf6) decorative border elements. Indigo accent (#6366f1) secondary graphic accents. White foreground (#ffffff) Courier monospace masthead text and JetBrains Mono subtitle details. Minimal dark high contrast brutalist editorial design. Swiss grid composition.</div>
         <div class="gen-card-actions">
           <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-edit">expand</button>
           <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-edit').textContent)">copy prompt</button>
@@ -1173,12 +1188,57 @@ body::after {
 
     <div class="gen-card">
       <div class="gen-card-img">
-        <img src="images/v2-02-kilo-chamber-flux2pro.png" alt="Kilo Chamber — coding execution room" loading="lazy">
+        <img src="images/mj-signal-dawn.jpg" alt="Signal Dawn — first light across the network" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Signal Dawn</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-dawn">First light of a new signal across the Edgeless network. Void black horizon (#0a0a0a) with a thin cyan accent (#06b6d4) dawn line breaking. Violet accent (#8b5cf6) atmospheric scattering above. Indigo accent (#6366f1) distant network nodes awakening. White foreground (#ffffff) fine particle mist. Green (#22c55e) first successful handshakes. ASCII block pattern terrain. Minimal dark high contrast landscape. Hopeful brutalist futurism.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-dawn">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-dawn').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/mj-orbital-relay.jpg" alt="Orbital Relay — satellite signal infrastructure" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Orbital Relay</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-orbital">Orbital satellite signal relay for the Courier network. Void black space (#0a0a0a) background. Cyan accent (#06b6d4) concentric broadcast rings emanating from satellite dish. Violet accent (#8b5cf6) secondary relay nodes. Indigo accent (#6366f1) data packet trails. White foreground (#ffffff) fine particle details. Green (#22c55e) connection handshake flares. ASCII art telemetry overlay. Minimal dark high contrast space technology.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-orbital">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-orbital').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/mj-audit-chamber.jpg" alt="Audit Chamber — forensic investigation space" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Audit Chamber</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-audit">Forensic audit chamber for the Ombudsman. Void black courtroom-like space (#0a0a0a) with cyan accent (#06b6d4) evidence projection beams. Violet accent (#8b5cf6) timeline reconstruction threads. Indigo accent (#6366f1) cross-reference verification nodes. White foreground (#ffffff) Courier monospace finding reports. Green (#22c55e) compliant verdicts. Red (#ef4444) violation markers. ASCII block decorative seal. Minimal dark brutalist justice aesthetic.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-audit">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-audit').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/mj-kilo-chamber.jpg" alt="Kilo Chamber — coding execution room" loading="lazy">
       </div>
       <div class="gen-card-info">
         <div class="gen-card-name">Kilo Chamber</div>
-        <div class="gen-card-model">Flux 2 Pro</div>
-        <div class="gen-card-prompt" id="prompt-kilo">High-intensity coding execution chamber. Dark void black room with walls of glowing cyan terminal screens, violet error traces cascading on opposite wall, indigo code diff highlights on ceiling. White Courier monospace compilation output. Green success checkmarks. Dithered halftone texture. ASCII art progress bars. Minimal dark high contrast brutalist developer lair. Risograph print aesthetic with grain.</div>
+        <div class="gen-card-model">Midjourney v6.1</div>
+        <div class="gen-card-prompt" id="prompt-kilo">High-intensity coding execution chamber for Agent KILO. Dark void black room (#0a0a0a) with walls of glowing cyan accent (#06b6d4) terminal screens. Violet accent (#8b5cf6) error stack traces cascading down surfaces. Indigo accent (#6366f1) code diff highlights. White foreground (#ffffff) Courier monospace compilation output. Green (#22c55e) success checkmarks exploding like fireworks. ASCII art progress bars filling rapidly. Brutalist dark developer lair.</div>
         <div class="gen-card-actions">
           <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-kilo">expand</button>
           <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-kilo').textContent)">copy prompt</button>
@@ -1186,68 +1246,8 @@ body::after {
       </div>
     </div>
 
-    <div class="gen-card">
-      <div class="gen-card-img">
-        <img src="images/v2-03b-obsidian-gate-styleref-8154.png" alt="Obsidian Gate — knowledge archive" loading="lazy">
-      </div>
-      <div class="gen-card-info">
-        <div class="gen-card-name">Obsidian Gate</div>
-        <div class="gen-card-model">Flux 2 Pro + Style Ref</div>
-        <div class="gen-card-prompt" id="prompt-obsidian">Style-filtered distressed photograph of the Obsidian Gate knowledge archive. Void black deep shadow substrate with violet dominant halftone dither across encrypted data vaults. Cyan secondary access light streaks. Indigo tertiary depth. White Courier monospace vault ID readouts. Heavy analog film grain, distressed texture overlay, scan lines. Minimal dark high contrast brutalist archival architecture.</div>
-        <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-obsidian">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-obsidian').textContent)">copy prompt</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="gen-card">
-      <div class="gen-card-img">
-        <img src="images/v2-06-hermes-reference-nanobanana.png" alt="Hermes Reference — risograph print" loading="lazy">
-      </div>
-      <div class="gen-card-info">
-        <div class="gen-card-name">Hermes Reference</div>
-        <div class="gen-card-model">NanoBanana</div>
-        <div class="gen-card-prompt" id="prompt-hermes">Physical photograph of Edgeless Hermes signal infrastructure printed on textured paper. Cyan typography in Courier monospace on dark surface. Violet geometric decorative elements. Indigo border lines. White primary heading in JetBrains Mono. Risograph dithered halftone print texture. Visible paper grain and ink density variation. Minimal dark high contrast brutalist print artifact.</div>
-        <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-hermes">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-hermes').textContent)">copy prompt</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="gen-card">
-      <div class="gen-card-img">
-        <img src="images/v2-09-texture-study-flux2pro.png" alt="Texture Study — dither patterns" loading="lazy">
-      </div>
-      <div class="gen-card-info">
-        <div class="gen-card-name">Texture Study</div>
-        <div class="gen-card-model">Flux 2 Pro</div>
-        <div class="gen-card-prompt" id="prompt-texture">Abstract texture study for Edgeless design system. Void black field with ordered dither gradient patterns. Cyan primary dither zone transitioning through indigo mid-tones to violet secondary zone. White fine pixel details at dither boundaries. Green sparse accent pixels. Courier monospace tiny label: "TEXTURE REF 002". Multiple dither algorithms visible: ordered, Floyd-Steinberg, halftone dot screen.</div>
-        <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-texture">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-texture').textContent)">copy prompt</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="gen-card">
-      <div class="gen-card-img">
-        <img src="images/v2-10-clapper-device-ideogram.png" alt="Clapper V2 — sacred object portrait" loading="lazy">
-      </div>
-      <div class="gen-card-info">
-        <div class="gen-card-name">Clapper V2</div>
-        <div class="gen-card-model">Ideogram</div>
-        <div class="gen-card-prompt" id="prompt-clapper">Sacred object portrait of the Clapper v2 device. Void black background. Sleek hardware object centered with cyan metallic finish. Text "CLAPPER V2" in white Courier monospace. Violet internal circuit glow through translucent casing. Green power indicator LED. JetBrains Mono serial number etched on surface. ASCII block decorative pedestal. Minimal dark high contrast brutalist product photography.</div>
-        <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-clapper">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-clapper').textContent)">copy prompt</button>
-        </div>
-      </div>
-    </div>
-
   </div>
-  <div class="gallery-caption">// 8 generated examples from v2 prompt set — paired with source prompts. Models: Flux 2 Pro, Ideogram, NanoBanana</div>
+  <div class="gallery-caption">// 8 generated examples from v2 prompt set — paired with source prompts. Model: Midjourney v6.1</div>
 </section>
 
 <!-- ================================================================
