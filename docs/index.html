@@ -356,6 +356,35 @@ body::after {
   margin-top: 0.5rem;
 }
 
+/* Gallery hero video */
+.gallery-video {
+  width: 100%;
+  margin-bottom: 2px;
+  position: relative;
+  overflow: hidden;
+  border: 1px dashed var(--steel);
+}
+.gallery-video video {
+  width: 100%;
+  display: block;
+  max-height: 480px;
+  object-fit: cover;
+}
+.gallery-video-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(10,10,10,0.8);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.6;
+  backdrop-filter: blur(4px);
+}
+
 /* Sub-section header within gallery */
 .gallery-sub {
   margin-top: 3rem;
@@ -1021,6 +1050,13 @@ body::after {
     Cyanotype photography. Risograph printing. CRT scanlines. ASCII patterns. Dithered gradients.
     The aesthetic draws from Nous Research's visual identity and extends it across centuries of print and screen media.
   </p>
+
+  <div class="gallery-video">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="images/ancient-gui-bitmap.mp4" type="video/mp4">
+    </video>
+    <div class="gallery-video-label">// generated output — ancient graphical user interface bitmap aesthetic</div>
+  </div>
 
   <div class="gallery-grid">
     <div class="gallery-item wide">
@@ -1875,6 +1911,12 @@ tokenData.forEach(section => {
   </div>
   <div class="token-body">${bodyHTML}</div>`;
   tokSec.appendChild(div);
+});
+
+/* --- VIDEO AUTOPLAY RETRY --- */
+document.querySelectorAll('video[autoplay]').forEach(v => {
+  v.addEventListener('canplay', () => { v.play().catch(() => {}); });
+  if (v.readyState >= 3) v.play().catch(() => {});
 });
 </script>
 </body>
