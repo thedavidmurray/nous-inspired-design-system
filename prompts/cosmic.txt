@@ -1,0 +1,36 @@
+# =============================================================================
+# COSMIC — Space, Orbital, Signals, Transmissions
+# Post-process: dither-bw, dither-accent cyan, scanline
+# MJ settings: --style raw --stylize 250-350 --v 6.1
+# =============================================================================
+
+
+--- COS-01. SATELLITE RELAY ---
+Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, fine particle details, ASCII telemetry overlay, minimal dark space technology, cosmic scale --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- COS-02. SIGNAL DAWN ---
+Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist, dark terrain with visible pixel texture, hopeful brutalist futurism, high contrast landscape, minimal, epic scale environmental art --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- COS-03. DEEP SPACE ANTENNA ---
+Single massive deep space antenna dish pointed at the stars, structure silhouetted against star field, receiver focus at center glowing faintly, cable stays visible as fine lines, ground station buildings as dark blocks below, no human figures, Goldstone tracking station aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- COS-04. ORBITAL DEBRIS FIELD ---
+Field of satellite debris fragments tumbling in low Earth orbit, each piece catching sunlight at different angles, Earth limb visible as thin blue line below, fine particle cloud, no human figures, Kessler syndrome visualization, dark space debris aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- COS-05. PULSAR TIMING DIAGRAM ---
+Technical diagram of pulsar radio emissions, rotating neutron star with magnetic field lines, emission cone sweeping through space, timing pulse train below as periodic waveform, dark background with white and cyan lines, astrophysics textbook aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- COS-06. RADIO TELESCOPE ARRAY ---
+Row of radio telescope dishes in a desert landscape, all pointed at the same sky coordinates, cables running between them on the ground, correlation building in distance, pre-dawn sky, no human figures, VLA New Mexico aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- COS-07. VOYAGER GOLDEN RECORD ---
+Close-up of a golden phonograph record surface, concentric grooves catching light, cover diagram showing hydrogen atom and pulsar map, etched instructions for playback, gold reflections on dark background, interstellar message aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- COS-08. MISSION CONTROL SCREEN ---
+Single CRT screen showing orbital trajectory plot, green phosphor on dark background, coordinate grid with numbers, spacecraft position dot with velocity vector, ground track projection, mission elapsed time in monospace, Apollo-era mission control aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- COS-09. IONOSPHERE LAYERS ---
+Cross-section diagram of Earth's ionosphere layers, labeled bands at different altitudes, radio wave paths bouncing between layers, frequency cutoff annotations in monospace, dark background with colored layers, atmospheric science textbook aesthetic --ar 9:16 --style raw --stylize 200 --v 6.1
+
+--- COS-10. CONSTELLATION MAP ---
+Star chart showing satellite constellation positions, dots connected by orbital plane lines, ground coverage footprint circles, ascending node markers, epoch time in monospace at corner, dark navy background, orbital mechanics reference map aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1

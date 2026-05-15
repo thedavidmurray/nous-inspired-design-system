@@ -1,0 +1,301 @@
+# =============================================================================
+# ENVIRONMENTS — Spaces, Architecture, Interiors
+# Post-process: dither-bw, thermal, scanline
+# MJ settings: --style raw --stylize 250 --v 6.1
+# =============================================================================
+
+
+--- ENV-01. SERVER CATHEDRAL ---
+Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, no humans visible, pure machine habitat, dark brutalist architecture, high contrast monochrome, epic scale, technical illustration --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ENV-02. TERMINAL WALL ---
+Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls between screens, dark void room, no human figures, cyberpunk developer lair, high contrast --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ENV-03. VPS MAINTENANCE TUNNELS ---
+Subterranean industrial corridors, emergency lighting strips, server rack indicator arrays, cable management channels, maintenance logs projected on walls in monospace, directional signage in block letters, industrial liminal aesthetic, dark brutalist infrastructure --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-04. SIGNAL OPERATIONS CENTER ---
+Dark underground operations room, wall of mismatched monitors showing waveforms and signal maps, operator stations with no chairs, green and cyan status indicators, paper printouts scattered on metal desks, ceiling cable trays, cold fluorescent light bars, no human figures, paranoid cold war signal intelligence aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-05. DATA CENTER AISLE ---
+Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-06. UNDERGROUND PRINT SHOP ---
+Risograph press in a dark basement workshop, ink drums in cyan and violet, paper stacks on industrial shelving, registration marks on walls, test prints hanging on clotheslines, bare bulb lighting, concrete floor with ink stains, no human figures, underground zine culture aesthetic --ar 4:3 --style raw --stylize 300 --v 6.1
+
+--- ENV-07. TAPE ARCHIVE VAULT ---
+Climate-controlled vault of magnetic tape reels stacked floor to ceiling, catalog numbers in monospace on spine labels, preservation equipment, dim amber lighting, metal shelving units, static discharge warning signs, no human figures, archival preservation aesthetic --ar 9:16 --style raw --stylize 250 --v 6.1
+
+--- ENV-08. ANTENNA FARM ---
+Field of satellite dishes and antenna arrays against a dark sky, red warning lights on tower tips, cable runs between structures, control shed with glowing instruments, radar rotation visible as light streaks, no human figures, remote listening post, cold surveillance aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-09. ROUTER CLOSET ---
+Cramped network closet, tangled patch cables in blue and yellow, blinking port lights, wall-mounted switches stacked tight, label maker tags on every cable, cable management attempted and failed, harsh overhead fluorescent, no human figures, sysadmin infrastructure aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- ENV-10. BROADCAST TRANSMITTER ROOM ---
+Industrial radio transmitter room, vacuum tube amplifiers glowing amber, heavy gauge wiring, transmission power meters, frequency dials in monospace labels, cooling fans running, concrete block walls, emergency shutoff switch, no human figures, cold war broadcast infrastructure --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- ENV-11. QUANTUM COMPUTATION LAB ---
+Dark laboratory with a quantum processor suspended in a cryogenic chamber, golden wiring cascading down like chandeliers, helium cooling lines, measurement instruments on black surfaces, blue ambient glow from the processor, no human figures, extreme precision scientific aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- ENV-12. DECOMMISSIONED CONTROL ROOM ---
+Abandoned control room with dead screens and dark indicator panels, dust on surfaces, one emergency light still glowing red, chair pushed back from console, paper logbooks open, peeling paint on walls, industrial decay, no human figures, Chernobyl control room aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+# =============================================================================
+# DIAGRAMS — Technical, Network, Data Visualization
+# Post-process: dither-accent cyan, dither-full, riso
+# MJ settings: --style raw --stylize 150 --v 6.1
+# =============================================================================
+
+
+--- DIAG-01. SWARM TOPOLOGY MAP ---
+Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization, Swiss grid layout, minimal brutalist infographic, blueprint aesthetic, no decorative elements --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- DIAG-02. SIGNAL PROPAGATION DIAGRAM ---
+Technical diagram showing concentric signal rings emanating from a central transmitter, dotted ray lines showing signal paths, atmospheric interference zones labeled, frequency bands marked in monospace, dark background, radar screen aesthetic, Swiss grid technical illustration --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- DIAG-03. AGENT STATE MACHINE ---
+Finite state machine diagram with rectangular states connected by labeled transition arrows, each state containing monospace text, dark background with white and cyan lines, error states in red, init state highlighted, formal computer science diagram aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1
+
+--- DIAG-04. MESSAGE QUEUE FLOW ---
+Left-to-right flow diagram showing message producers, queue buffers, and consumer processes, each element as geometric blocks, throughput metrics in monospace labels, dark background, pipeline architecture visualization, technical documentation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- DIAG-05. NETWORK LATENCY HEATMAP ---
+Grid heatmap showing latency between network nodes, dark background, cells colored from green through yellow to red, axis labels in monospace showing node names, legend bar at bottom, data center infrastructure monitoring aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- DIAG-06. CRYPTOGRAPHIC KEY EXCHANGE ---
+Technical diagram showing two endpoints exchanging encrypted messages, lock and key symbols, dotted lines for encrypted channels, solid for cleartext, certificate chain visualization, dark background with cyan and white elements, security protocol documentation aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- DIAG-07. ORBITAL MECHANICS PLOT ---
+Keplerian orbit diagram showing satellite trajectories around a central body, transfer orbit in dashed cyan line, velocity vectors as arrows, orbital parameters labeled in monospace, dark void background, astrodynamics textbook aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- DIAG-08. LOG TIMELINE ---
+Horizontal timeline diagram showing system events as vertical ticks, colored by severity, timestamp labels in monospace at intervals, event clusters visible as dense tick regions, dark background, observability dashboard aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- DIAG-09. DEPENDENCY GRAPH ---
+Directed acyclic graph showing package dependencies, rectangular nodes with version numbers, arrow connections showing import relationships, circular dependency highlighted in red, dark background, build system visualization aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- DIAG-10. FREQUENCY SPECTRUM WATERFALL ---
+Waterfall spectrogram showing radio frequency over time, vertical axis is frequency, horizontal is time, signal intensity as brightness, narrowband signals as bright vertical lines, broadband noise as texture, dark background, signals intelligence monitoring aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1
+# =============================================================================
+# EDITORIAL — Print, Zine, Catalog, Typography
+# Post-process: riso cyan, riso violet, thermal, dither-bw
+# MJ settings: --style raw --stylize 200-300 --v 6.1
+# =============================================================================
+
+
+--- EDIT-01. ZINE COVER ---
+Front cover of a hand-printed technology zine, large blocky title in uppercase, abstract halftone illustration below, issue number and date in monospace, registration marks visible, cheap paper texture, two-color print in black and cyan, underground publishing aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-02. BROADSHEET FOLD ---
+Newspaper-style broadsheet layout, dense columns of monospace text, halftone photograph inset, large serif headline, column rules, masthead with volume number, paper fold crease visible down center, newsprint texture, black ink only, investigative journalism aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-03. FIELD MANUAL PAGE ---
+Interior page from a technical field manual, numbered step-by-step instructions in monospace, line diagram illustration, warning box with hazard symbol, page number in corner, binding margin visible, matte paper texture, military technical manual aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-04. CONFERENCE BADGE ---
+Rectangular conference lanyard badge, large name field blank, event title in monospace at top, geometric border pattern, barcode at bottom, schedule grid on reverse visible as bleed-through, white card stock, single color print, tech conference aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-05. INDEX CARD SYSTEM ---
+Stack of index cards with handwritten and typed entries, tab dividers visible, catalog numbers in monospace, cross-reference annotations, paper clip holding related cards, soft shadows, slightly yellowed paper, library catalog aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- EDIT-06. SPECIMEN SHEET ---
+Typography specimen sheet showing multiple weights and sizes of a monospace typeface, pangram sentences, character set grid, point size labels, printing registration marks, cream paper stock, letterpress aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-07. POSTAL ENVELOPE ---
+Manila envelope with typed address in monospace, stamps, postmark cancellation, routing codes in red, handling marks, rubber stamp impressions, coffee ring stain, CLASSIFIED watermark, postal service bureaucracy aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- EDIT-08. SYSTEM POSTER ---
+Large format instructional poster, exploded technical diagram in center, numbered callouts around perimeter, title bar at top in bold monospace, revision date and document number at bottom, blueprint blue on white, industrial safety documentation aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-09. RECEIPT ROLL ---
+Continuous thermal receipt paper unfurling vertically, dense transaction log in monospace, separator lines between entries, faded and banded sections, slight paper curl, total line at bottom, convenience store receipt aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1
+
+--- EDIT-10. BROADCAST LOG ---
+Handwritten broadcast log on ruled paper, columns for time, frequency, call sign, and notes, pencil and pen entries mixed, corrections with strikethrough, coffee mug ring, desk lamp shadow, shortwave radio operator aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- EDIT-11. PATCH NOTES ---
+Printed changelog document, version numbers as section headers, bullet point lists of changes, deprecated features in strikethrough, monospace throughout, staple marks in corner, laser printer output on white paper, software release documentation aesthetic --ar 3:4 --style raw --stylize 100 --v 6.1
+
+--- EDIT-12. EVENT FLYER ---
+Photocopied event flyer, bold condensed title, abstract geometric illustration, date and venue in monospace, tear-off tabs at bottom with phone numbers, paper grain and copy artifacts visible, single color xerox on colored paper, DIY punk show flyer aesthetic --ar 3:4 --style raw --stylize 250 --v 6.1
+# =============================================================================
+# TEXTURES — Patterns, Gradients, Material Studies
+# Post-process: dither-bw, dither-full, dither-accent
+# MJ settings: --style raw --stylize 100-200 --v 6.1
+# =============================================================================
+
+
+--- TEX-01. ORDERED DITHER GRADIENT ---
+Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen, Floyd-Steinberg error diffusion, Bayer matrix threshold, tiny monospace label, pure pixel graphic, not photographic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-02. MOIRE INTERFERENCE ---
+Overlapping rotated line grids creating moire interference patterns, precise geometric lines, varying rotation angles creating different moire densities, high contrast black and white, mathematical precision, optical illusion pattern study --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-03. HALFTONE DOT SCREEN ---
+Close-up of halftone printing dots at different densities, showing how dots merge in shadow areas, CMYK-style separated screens at different angles, newsprint magnification aesthetic, print production reference --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-04. SCAN LINE TEXTURE ---
+Horizontal scan line pattern with varying brightness, phosphor glow between lines, slight barrel distortion at edges, RGB subpixel pattern visible at macro scale, CRT monitor close-up aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- TEX-05. PAPER GRAIN ---
+Extreme close-up of handmade paper surface, visible fiber structure, slight texture variation, warm cream tone, chain and laid lines visible, watermark shadow, fine art printmaking paper aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- TEX-06. INK DENSITY STUDY ---
+Gradations of ink density on paper, from dry brush to flooded, showing how ink interacts with paper surface, feathering at edges, pool marks where ink collected, letterpress ink study aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- TEX-07. STATIC NOISE ---
+Pure static noise pattern like TV snow, random black and white pixels at full density, no visible pattern or structure, analog television interference, dead channel aesthetic --ar 1:1 --style raw --stylize 50 --v 6.1
+
+--- TEX-08. CIRCUIT TRACE PATTERN ---
+Abstract pattern of PCB circuit traces, right-angle routing, via holes as dots, copper trace on dark substrate, varying trace widths, component pad patterns, no actual components, pure geometric circuit aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- TEX-09. THERMAL GRADIENT ---
+Horizontal thermal gradient from cold to hot, dark blue through green to yellow to white, false color thermal imaging palette, temperature scale in monospace at edge, infrared camera output aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- TEX-10. WOVEN MESH ---
+Tight grid of interwoven lines creating a mesh pattern, alternating over-under weave visible, slight depth from shadow between strands, industrial filter mesh, wire cloth macro photography aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- TEX-11. EROSION PATTERN ---
+Abstract erosion pattern in dark material, branching channels like river deltas seen from space, fractal branching at multiple scales, high contrast negative image, geological erosion simulation aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- TEX-12. PUNCH CARD GRID ---
+Grid of punch card holes on cardboard stock, some holes punched some intact, column and row numbers in small monospace, IBM 80-column format, cream cardboard with clean rectangular holes, vintage computing data entry aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+# =============================================================================
+# COSMIC — Space, Orbital, Signals, Transmissions
+# Post-process: dither-bw, dither-accent cyan, scanline
+# MJ settings: --style raw --stylize 250-350 --v 6.1
+# =============================================================================
+
+
+--- COS-01. SATELLITE RELAY ---
+Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, fine particle details, ASCII telemetry overlay, minimal dark space technology, cosmic scale --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- COS-02. SIGNAL DAWN ---
+Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist, dark terrain with visible pixel texture, hopeful brutalist futurism, high contrast landscape, minimal, epic scale environmental art --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- COS-03. DEEP SPACE ANTENNA ---
+Single massive deep space antenna dish pointed at the stars, structure silhouetted against star field, receiver focus at center glowing faintly, cable stays visible as fine lines, ground station buildings as dark blocks below, no human figures, Goldstone tracking station aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- COS-04. ORBITAL DEBRIS FIELD ---
+Field of satellite debris fragments tumbling in low Earth orbit, each piece catching sunlight at different angles, Earth limb visible as thin blue line below, fine particle cloud, no human figures, Kessler syndrome visualization, dark space debris aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- COS-05. PULSAR TIMING DIAGRAM ---
+Technical diagram of pulsar radio emissions, rotating neutron star with magnetic field lines, emission cone sweeping through space, timing pulse train below as periodic waveform, dark background with white and cyan lines, astrophysics textbook aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- COS-06. RADIO TELESCOPE ARRAY ---
+Row of radio telescope dishes in a desert landscape, all pointed at the same sky coordinates, cables running between them on the ground, correlation building in distance, pre-dawn sky, no human figures, VLA New Mexico aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- COS-07. VOYAGER GOLDEN RECORD ---
+Close-up of a golden phonograph record surface, concentric grooves catching light, cover diagram showing hydrogen atom and pulsar map, etched instructions for playback, gold reflections on dark background, interstellar message aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- COS-08. MISSION CONTROL SCREEN ---
+Single CRT screen showing orbital trajectory plot, green phosphor on dark background, coordinate grid with numbers, spacecraft position dot with velocity vector, ground track projection, mission elapsed time in monospace, Apollo-era mission control aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- COS-09. IONOSPHERE LAYERS ---
+Cross-section diagram of Earth's ionosphere layers, labeled bands at different altitudes, radio wave paths bouncing between layers, frequency cutoff annotations in monospace, dark background with colored layers, atmospheric science textbook aesthetic --ar 9:16 --style raw --stylize 200 --v 6.1
+
+--- COS-10. CONSTELLATION MAP ---
+Star chart showing satellite constellation positions, dots connected by orbital plane lines, ground coverage footprint circles, ascending node markers, epoch time in monospace at corner, dark navy background, orbital mechanics reference map aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+# =============================================================================
+# ARTIFACTS — Devices, Objects, Relics, Shrines
+# Post-process: dither-accent cyan, dither-bw, thermal
+# MJ settings: --style raw --stylize 200-300 --v 6.1
+# NOTE: Absolutely no human figures or faces
+# =============================================================================
+
+
+--- ART-01. HARDWARE DEVICE ---
+Sleek hardware device centered on geometric pedestal, translucent casing showing internal circuit glow, power indicator LED, serial number etched on surface, void black background, brutalist industrial product photography, centered composition, minimal --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-02. MAGNETIC TAPE REEL ---
+Single reel of magnetic tape on a spindle, tape partially unwound trailing across surface, oxide coating visible as matte brown, hub and flange details, catalog label in monospace, void black background, data storage archaeology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ART-03. OSCILLOSCOPE FACE ---
+Close-up of an oscilloscope CRT display showing a complex waveform, green phosphor trace, graticule grid, vertical and horizontal scale markings, adjustment knobs visible at edges, dark laboratory background, test equipment aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- ART-04. FLOPPY DISK COLLECTION ---
+Grid of 3.5-inch floppy disks arranged flat, each with a different handwritten label in marker, metal slider visible, varying colors of plastic shells, one disk slightly overlapping another, top-down view, void black background, data archaeology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-05. PAGER ---
+Black pager device with green LCD display showing a numeric message, belt clip, single-line screen with monospace digits, small antenna nub, scuffed plastic casing, void black background, 1990s communication technology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-06. MODEM ---
+External dial-up modem, row of status LEDs (TX, RX, CD, DTR), serial port at rear, phone jack, compact beige plastic housing, model number plate, void black background, internet archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ART-07. KEY CARD ---
+Magnetic stripe access card, corporate logo embossed, employee number in monospace, magnetic stripe as dark band, hole punch for lanyard, slightly worn edges, void black background, access control aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- ART-08. CIRCUIT BOARD ---
+Populated printed circuit board, chips with part numbers visible, traces routing between components, solder joints, bypass capacitors, crystal oscillator, edge connector fingers, void black background, electronics engineering aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ART-09. PATCH CABLE BUNDLE ---
+Tight bundle of network patch cables in multiple colors, bundled with velcro ties at intervals, RJ45 connectors fanned out at ends, strain relief boots visible, void black background, network infrastructure aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-10. DOT MATRIX PRINTOUT ---
+Sheet of dot matrix printer paper with perforated tractor feed edges, printed text in monospace showing system log output, continuous form paper with green bar stripes, sprocket holes on margins, vintage computer output aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+# =============================================================================
+# ARCHIVE — Memory, Decay, Deprecated, Archaeological
+# Post-process: thermal, dither-bw, riso violet
+# MJ settings: --style raw --stylize 250-350 --v 6.1
+# =============================================================================
+
+
+--- ARC-01. DATA NECROPOLIS ---
+Graveyard of deprecated technologies, weathered holographic tombstones with version numbers, fading inscriptions, archival retrieval conduits, deprecation notices in monospace, cross markers in ASCII block style, poetic obsolescence aesthetic, dark brutalist memorial --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ARC-02. FORGOTTEN SERVER ROOM ---
+Abandoned server room with racks still powered, blinking status LEDs in darkness, dust motes in emergency light beams, disconnected cables hanging, floor tiles removed showing cable runs, no human figures, digital ghost town aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- ARC-03. ERASED WHITEBOARD ---
+Whiteboard with ghost traces of erased diagrams still faintly visible, marker smudges, partially legible architecture diagrams, dry-erase marker in tray, fluorescent office lighting, software engineering archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ARC-04. BACKUP TAPE VAULT ---
+Deep underground vault with rows of backup tape cartridges in fireproof cabinets, temperature and humidity gauges on walls, airlock door visible, dim red preservation lighting, catalog system in monospace on cabinet labels, disaster recovery aesthetic --ar 9:16 --style raw --stylize 250 --v 6.1
+
+--- ARC-05. DECOMMISSION NOTICE ---
+Official decommission notice document, printed on letterhead, seal stamped, system name and serial number in monospace, effective date, authorized signatures redacted, bureaucratic system retirement aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- ARC-06. CORE DUMP ---
+Visual representation of a memory core dump, hexadecimal values in a dense monospace grid, repeating patterns visible in the data, address markers on left margin, highlighted anomaly region, dark background, system forensics aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- ARC-07. LEGACY MIGRATION MAP ---
+Diagram showing migration paths between legacy systems, old systems as dark weathered boxes, new systems as clean outlines, data flow arrows with transformation labels, version numbers, some paths marked deprecated with strikethrough, system modernization planning aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- ARC-08. FOSSIL INTERFACE ---
+Screenshot of an ancient graphical user interface, bitmap icons at low resolution, menu bar with unfamiliar options, dialog box with monospace text, window border decorations from early computing, 8-bit color palette, software archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+# =============================================================================
+# UI SCREENS — Terminal, Dashboard, Interface Mockups
+# Post-process: scanline, dither-accent cyan, dither-bw
+# MJ settings: --style raw --stylize 150-250 --v 6.1
+# =============================================================================
+
+
+--- UI-01. TERMINAL SESSION ---
+Full-screen terminal emulator showing a multi-pane tmux session, code in one pane, logs in another, git status in third, system monitor in fourth, green and cyan text on void black background, monospace font throughout, developer workstation aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-02. MONITORING DASHBOARD ---
+Dark monitoring dashboard with multiple metric tiles, sparkline graphs showing system health, status indicators as colored dots, uptime counters in monospace, alert banner at top, grid layout with subtle borders, DevOps observability aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-03. BOOT SEQUENCE ---
+Computer boot screen showing POST diagnostics, memory test progress bar, device enumeration list, BIOS version in monospace, cursor blinking at bottom, dark background with white text, system initialization aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1
+
+--- UI-04. PACKET CAPTURE ---
+Network packet capture display, hex dump in left column, ASCII interpretation in right, highlighted bytes in cyan, packet header breakdown above, filter expression bar at top, dark background, Wireshark-style network analysis aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-05. DATABASE QUERY ---
+Terminal showing SQL query results in a formatted table, column headers, aligned monospace data rows, row count at bottom, query execution time displayed, schema name in prompt, dark background, database administration aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-06. GIT LOG GRAPH ---
+Terminal showing git log with branch graph visualization, ASCII art tree of merges and branches, commit hashes in abbreviated hex, author names and dates, colorized branch names, dark background, version control archaeology aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-07. SYSTEM ALERT ---
+Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- UI-08. API DOCUMENTATION ---
+Dark-themed API documentation page, endpoint URL in monospace, HTTP method badge, request/response JSON with syntax highlighting, authentication header example, curl command, clean technical documentation aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1
+
+--- UI-09. CRON SCHEDULER ---
+Terminal showing crontab entries, five-field time expressions, command paths, comment lines explaining each job, system cron directory listing, next execution times calculated, dark background, system automation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-10. DEPLOYMENT PIPELINE ---
+CI/CD pipeline visualization, sequential stages as connected blocks, each stage showing pass/fail status, build artifacts flowing between stages, deployment target at end, dark background with green success indicators, continuous delivery aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1

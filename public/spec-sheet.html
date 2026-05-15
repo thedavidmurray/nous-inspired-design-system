@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDGELESS LAB / Nous Inspired Design System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --void: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --bg-elevated: #222222;
+    --fg-primary: #ffffff;
+    --fg-secondary: rgba(255,255,255,0.7);
+    --fg-tertiary: rgba(255,255,255,0.5);
+    --fg-quaternary: rgba(255,255,255,0.25);
+    --accent-indigo: #6366f1;
+    --accent-violet: #8b5cf6;
+    --accent-cyan: #06b6d4;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--void);
+    color: var(--fg-primary);
+    font-family: var(--mono);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--fg-quaternary);
+    padding: 3rem 2rem 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .header h1 {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 span { color: var(--accent-cyan); }
+  .header .subtitle {
+    font-size: 0.85rem;
+    color: var(--fg-tertiary);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .header .meta {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--fg-quaternary);
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--fg-quaternary);
+    padding: 0.75rem 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--fg-secondary);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--fg-quaternary);
+  }
+  section h2 {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    color: var(--accent-cyan);
+  }
+  section h2::before {
+    content: '// ';
+    color: var(--fg-quaternary);
+  }
+  section .section-desc {
+    font-size: 0.8rem;
+    color: var(--fg-tertiary);
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+  h3 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    margin: 2rem 0 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* PALETTE */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .swatch {
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .swatch-color {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+  }
+  .swatch-info {
+    padding: 0.5rem;
+    background: var(--bg-secondary);
+    font-size: 0.7rem;
+  }
+  .swatch-info .name {
+    color: var(--fg-primary);
+    font-weight: 500;
+  }
+  .swatch-info .hex {
+    color: var(--fg-tertiary);
+  }
+  .swatch-info .usage {
+    color: var(--fg-quaternary);
+    font-size: 0.65rem;
+    margin-top: 0.25rem;
+  }
+
+  /* TYPOGRAPHY */
+  .type-specimen {
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background: var(--bg-secondary);
+  }
+  .type-specimen .sample {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .type-specimen .details {
+    font-size: 0.7rem;
+    color: var(--fg-tertiary);
+  }
+
+  /* MODE CARDS */
+  .mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .mode-card {
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+  }
+  .mode-card .mode-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--fg-quaternary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mode-card .mode-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+  }
+  .mode-card .mode-tag {
+    font-size: 0.6rem;
+    color: var(--void);
+    background: var(--accent-cyan);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .mode-card .mode-desc {
+    padding: 0.75rem 1rem;
+    font-size: 0.7rem;
+    color: var(--fg-tertiary);
+    line-height: 1.5;
+  }
+  .mode-card .mode-cmd {
+    padding: 0.5rem 1rem 0.75rem;
+    font-size: 0.65rem;
+    color: var(--success);
+    background: var(--void);
+    border-top: 1px solid var(--fg-quaternary);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* IMAGE GRID */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .image-grid.compact {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .image-cell {
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    transition: border-color 0.2s;
+  }
+  .image-cell:hover {
+    border-color: var(--accent-cyan);
+  }
+  .image-cell img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: zoom-in;
+  }
+  .image-cell .caption {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.6rem;
+    color: var(--fg-tertiary);
+    border-top: 1px solid var(--fg-quaternary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* COMPARISON ROW */
+  .comparison-row {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .comparison-row.cols-9 {
+    grid-template-columns: repeat(9, 1fr);
+  }
+  .comparison-label {
+    font-size: 0.6rem;
+    color: var(--fg-quaternary);
+    text-align: center;
+    padding: 0.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .comparison-row img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 2px;
+  }
+
+  /* PIPELINE DIAGRAM */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+  .pipeline-node {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    text-align: center;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+  .pipeline-node .node-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--fg-primary);
+    margin-bottom: 0.25rem;
+  }
+  .pipeline-node .node-sub {
+    font-size: 0.6rem;
+    color: var(--fg-tertiary);
+  }
+  .pipeline-node.source { border-color: var(--accent-indigo); }
+  .pipeline-node.source .node-title { color: var(--accent-indigo); }
+  .pipeline-node.process { border-color: var(--accent-cyan); }
+  .pipeline-node.process .node-title { color: var(--accent-cyan); }
+  .pipeline-node.output { border-color: var(--success); }
+  .pipeline-node.output .node-title { color: var(--success); }
+  .pipeline-arrow {
+    color: var(--fg-quaternary);
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+  }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: var(--bg-secondary);
+    border: 1px solid var(--fg-quaternary);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    font-size: 0.7rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  .code-block .comment { color: var(--fg-quaternary); }
+  .code-block .cmd { color: var(--success); }
+  .code-block .flag { color: var(--accent-cyan); }
+  .code-block .str { color: var(--accent-violet); }
+
+  /* TOKENS TABLE */
+  .tokens-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+    margin-bottom: 2rem;
+  }
+  .tokens-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--fg-quaternary);
+    color: var(--fg-tertiary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.6rem;
+  }
+  .tokens-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--fg-secondary);
+  }
+  .tokens-table .token-preview {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    border: 1px solid var(--fg-quaternary);
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  /* FOOTER */
+  .footer {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-size: 0.65rem;
+    color: var(--fg-quaternary);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .comparison-row.cols-9 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .pipeline { flex-wrap: wrap; justify-content: center; }
+    .header h1 { font-size: 1.5rem; }
+    nav { gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>EDGELESS <span>LAB</span></h1>
+  <div class="subtitle">Nous Inspired Design System &mdash; Texture Pipeline &amp; Visual Language</div>
+  <div class="meta">v2.0 &mdash; 2026-05-12 &mdash; Nous-sourced originals &mdash; 8 pipeline modes &mdash; INTERNAL / PRE-RELEASE</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#nous-dna">Nous DNA</a>
+  <a href="#palette">Palette</a>
+  <a href="#typography">Typography</a>
+  <a href="#pipeline">Pipeline</a>
+  <a href="#modes">Modes</a>
+  <a href="#originals">Originals</a>
+  <a href="#originals-processed">Originals x Pipeline</a>
+  <a href="#generated">Generated v2</a>
+  <a href="#generated-processed">Generated x Pipeline</a>
+  <a href="#usage">Usage</a>
+</nav>
+
+<!-- 00. NOUS DNA -->
+<section id="nous-dna">
+  <h2>Nous DNA</h2>
+  <p class="section-desc">All 10 source originals come from Nous Research. These physical photographs and prints define the entire Edgeless visual language &mdash; dot-matrix, risograph, thermal receipt, halftone, dithered. Every pipeline mode exists to reproduce these qualities programmatically.</p>
+
+  <h3>Source Inspirations (Nous)</h3>
+  <div class="image-grid">
+    <div class="image-cell"><img src="inspo/are na color inspo.jpeg" alt="Are.na color inspo" onclick="openLightbox(this)"><div class="caption">Are.na color reference</div></div>
+    <div class="image-cell"><img src="inspo/bluedither.jpeg" alt="Blue dither" onclick="openLightbox(this)"><div class="caption">Blue dither pattern</div></div>
+    <div class="image-cell"><img src="inspo/cosmos_535277155.jpeg" alt="Cosmos texture" onclick="openLightbox(this)"><div class="caption">Cosmos texture</div></div>
+    <div class="image-cell"><img src="inspo/liminalspace.jpg" alt="Liminal space" onclick="openLightbox(this)"><div class="caption">Liminal space</div></div>
+    <div class="image-cell"><img src="inspo/whole electronic earth catalog.jpeg" alt="Whole Earth Catalog" onclick="openLightbox(this)"><div class="caption">Whole Earth Catalog</div></div>
+  </div>
+
+  <h3>Nous Inspo &rarr; Pipeline Output</h3>
+  <p class="section-desc">Each inspiration run through key pipeline modes, showing how the system transforms any input into the Nous aesthetic.</p>
+  <div class="image-grid compact">
+    <div class="image-cell"><img src="inspo/bluedither.jpeg" alt="source" onclick="openLightbox(this)"><div class="caption">Blue dither / source</div></div>
+    <div class="image-cell"><img src="processed/dither-bw/bluedither-dither-bw.png" alt="dither-bw" onclick="openLightbox(this)"><div class="caption">Blue dither / dither-bw</div></div>
+    <div class="image-cell"><img src="processed/dither-full/bluedither-dither-full.png" alt="dither-full" onclick="openLightbox(this)"><div class="caption">Blue dither / dither-full</div></div>
+    <div class="image-cell"><img src="processed/thermal/bluedither-thermal.png" alt="thermal" onclick="openLightbox(this)"><div class="caption">Blue dither / thermal</div></div>
+
+    <div class="image-cell"><img src="inspo/liminalspace.jpg" alt="source" onclick="openLightbox(this)"><div class="caption">Liminal / source</div></div>
+    <div class="image-cell"><img src="processed/dither-bw/liminalspace-dither-bw.png" alt="dither-bw" onclick="openLightbox(this)"><div class="caption">Liminal / dither-bw</div></div>
+    <div class="image-cell"><img src="processed/dither-full/liminalspace-dither-full.png" alt="dither-full" onclick="openLightbox(this)"><div class="caption">Liminal / dither-full</div></div>
+    <div class="image-cell"><img src="processed/thermal/liminalspace-thermal.png" alt="thermal" onclick="openLightbox(this)"><div class="caption">Liminal / thermal</div></div>
+
+    <div class="image-cell"><img src="inspo/cosmos_535277155.jpeg" alt="source" onclick="openLightbox(this)"><div class="caption">Cosmos / source</div></div>
+    <div class="image-cell"><img src="processed/dither-bw/cosmos_535277155-dither-bw.png" alt="dither-bw" onclick="openLightbox(this)"><div class="caption">Cosmos / dither-bw</div></div>
+    <div class="image-cell"><img src="processed/dither-full/cosmos_535277155-dither-full.png" alt="dither-full" onclick="openLightbox(this)"><div class="caption">Cosmos / dither-full</div></div>
+    <div class="image-cell"><img src="processed/thermal/cosmos_535277155-thermal.png" alt="thermal" onclick="openLightbox(this)"><div class="caption">Cosmos / thermal</div></div>
+
+    <div class="image-cell"><img src="inspo/whole electronic earth catalog.jpeg" alt="source" onclick="openLightbox(this)"><div class="caption">WEC / source</div></div>
+    <div class="image-cell"><img src="processed/dither-bw/whole electronic earth catalog-dither-bw.png" alt="dither-bw" onclick="openLightbox(this)"><div class="caption">WEC / dither-bw</div></div>
+    <div class="image-cell"><img src="processed/dither-full/whole electronic earth catalog-dither-full.png" alt="dither-full" onclick="openLightbox(this)"><div class="caption">WEC / dither-full</div></div>
+    <div class="image-cell"><img src="processed/thermal/whole electronic earth catalog-thermal.png" alt="thermal" onclick="openLightbox(this)"><div class="caption">WEC / thermal</div></div>
+
+    <div class="image-cell"><img src="inspo/are na color inspo.jpeg" alt="source" onclick="openLightbox(this)"><div class="caption">Are.na / source</div></div>
+    <div class="image-cell"><img src="processed/dither-bw/are na color inspo-dither-bw.png" alt="dither-bw" onclick="openLightbox(this)"><div class="caption">Are.na / dither-bw</div></div>
+    <div class="image-cell"><img src="processed/dither-full/are na color inspo-dither-full.png" alt="dither-full" onclick="openLightbox(this)"><div class="caption">Are.na / dither-full</div></div>
+    <div class="image-cell"><img src="processed/thermal/are na color inspo-thermal.png" alt="thermal" onclick="openLightbox(this)"><div class="caption">Are.na / thermal</div></div>
+  </div>
+</section>
+
+<!-- 01. PALETTE -->
+<section id="palette">
+  <h2>Color Palette</h2>
+  <p class="section-desc">Canonical Edgeless tokens. All pipeline modes map to this palette. No off-palette colors permitted in brand materials.</p>
+
+  <h3>Core</h3>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0a0a0a; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <span style="color:rgba(255,255,255,0.4); font-size:0.6rem;">void</span>
+      </div>
+      <div class="swatch-info">
+        <div class="name">Void Black</div>
+        <div class="hex">#0a0a0a &mdash; rgb(10,10,10)</div>
+        <div class="usage">Primary bg, shadows, negative space</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ffffff;">
+        <span style="color:#0a0a0a; font-size:0.6rem;">fg-primary</span>
+      </div>
+      <div class="swatch-info">
+        <div class="name">White</div>
+        <div class="hex">#ffffff &mdash; rgb(255,255,255)</div>
+        <div class="usage">Primary text, highlights, dither-bw output</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Accents</h3>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6366f1;"></div>
+      <div class="swatch-info">
+        <div class="name">Indigo</div>
+        <div class="hex">#6366f1 &mdash; rgb(99,102,241)</div>
+        <div class="usage">Primary accent, interactive, links</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#8b5cf6;"></div>
+      <div class="swatch-info">
+        <div class="name">Violet</div>
+        <div class="hex">#8b5cf6 &mdash; rgb(139,92,246)</div>
+        <div class="usage">Secondary accent, decorative, gradients</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#06b6d4;"></div>
+      <div class="swatch-info">
+        <div class="name">Cyan</div>
+        <div class="hex">#06b6d4 &mdash; rgb(6,182,212)</div>
+        <div class="usage">Tertiary accent, diagrams, data viz</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Semantic</h3>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22c55e;"></div>
+      <div class="swatch-info">
+        <div class="name">Green / Success</div>
+        <div class="hex">#22c55e &mdash; rgb(34,197,94)</div>
+        <div class="usage">Success, online, heartbeat, sparse accent</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f59e0b;"></div>
+      <div class="swatch-info">
+        <div class="name">Amber / Warning</div>
+        <div class="hex">#f59e0b</div>
+        <div class="usage">Warnings, degraded status</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ef4444;"></div>
+      <div class="swatch-info">
+        <div class="name">Red / Error</div>
+        <div class="hex">#ef4444</div>
+        <div class="usage">Errors, destructive actions</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Surfaces</h3>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#111111; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+      <div class="swatch-info">
+        <div class="name">bg-secondary</div>
+        <div class="hex">#111111</div>
+        <div class="usage">Cards, panels</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a1a1a; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+      <div class="swatch-info">
+        <div class="name">bg-tertiary</div>
+        <div class="hex">#1a1a1a</div>
+        <div class="usage">Hover states, nested surfaces</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#222222; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+      <div class="swatch-info">
+        <div class="name">bg-elevated</div>
+        <div class="hex">#222222</div>
+        <div class="usage">Modals, toasts, elevated elements</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f5f0e8;"></div>
+      <div class="swatch-info">
+        <div class="name">Cream (riso paper)</div>
+        <div class="hex">#f5f0e8</div>
+        <div class="usage">Risograph mode paper base, light-mode variants</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02. TYPOGRAPHY -->
+<section id="typography">
+  <h2>Typography</h2>
+  <p class="section-desc">Two typeface system. JetBrains Mono is primary for all brand, code, and display use. Inter for body copy when needed.</p>
+
+  <div class="type-specimen">
+    <div class="sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">EDGELESS LAB</div>
+    <div class="sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 1.2rem;">Signal / Swarm / Courier / Agent Infrastructure</div>
+    <div class="details">JetBrains Mono &mdash; Primary. Display, headings, labels, code, captions. Weights: 300-700.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="sample" style="font-family: 'Inter', sans-serif; font-weight: 400;">The collective intelligence of autonomous agents, coordinated through a dark infrastructure of signals, swarms, and relays.</div>
+    <div class="details">Inter &mdash; Secondary. Body text, descriptions, long-form. Weights: 300-700.</div>
+  </div>
+
+  <h3>Scale</h3>
+  <table class="tokens-table">
+    <tr><th>Token</th><th>Size</th><th>Use</th></tr>
+    <tr><td>display-lg</td><td>2.5rem / 40px</td><td>Hero, cover titles</td></tr>
+    <tr><td>display</td><td>2rem / 32px</td><td>Section headers</td></tr>
+    <tr><td>heading</td><td>1.25rem / 20px</td><td>Card titles, mode labels</td></tr>
+    <tr><td>body</td><td>0.875rem / 14px</td><td>Descriptions, paragraphs</td></tr>
+    <tr><td>caption</td><td>0.75rem / 12px</td><td>Image captions, metadata</td></tr>
+    <tr><td>micro</td><td>0.625rem / 10px</td><td>Timestamps, version numbers</td></tr>
+  </table>
+</section>
+
+<!-- 03. PIPELINE -->
+<section id="pipeline">
+  <h2>Texture Pipeline</h2>
+  <p class="section-desc">Two-stage process: generate composition via AI, then apply deterministic structural dithering. AI can't produce structural dithering natively &mdash; every pixel must participate in the pattern.</p>
+
+  <div class="pipeline">
+    <div class="pipeline-node source">
+      <div class="node-title">SOURCE</div>
+      <div class="node-sub">Midjourney / Flora / Venice</div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node source">
+      <div class="node-title">COMPOSE</div>
+      <div class="node-sub">AI generates layout, color, mood</div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node process">
+      <div class="node-title">PIPELINE</div>
+      <div class="node-sub">edgeless-texture-pipeline.py</div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node process">
+      <div class="node-title">MODE</div>
+      <div class="node-sub">dither / riso / thermal / scan</div>
+    </div>
+    <div class="pipeline-arrow">&rarr;</div>
+    <div class="pipeline-node output">
+      <div class="node-title">OUTPUT</div>
+      <div class="node-sub">Structurally dithered asset</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <span class="comment"># Single image</span><br>
+    <span class="cmd">python3.11</span> scripts/edgeless-texture-pipeline.py input.png <span class="flag">--mode</span> <span class="str">dither-bw</span> <span class="flag">-o</span> out.png<br><br>
+    <span class="comment"># Batch (whole directory)</span><br>
+    <span class="cmd">python3.11</span> scripts/edgeless-texture-pipeline.py <span class="flag">--batch</span> images/ <span class="flag">--mode</span> <span class="str">riso</span> <span class="flag">--accent</span> <span class="str">cyan</span> <span class="flag">--output-dir</span> processed/<br><br>
+    <span class="comment"># Available accents: cyan, violet, indigo, green, white</span>
+  </div>
+</section>
+
+<!-- 04. MODES -->
+<section id="modes">
+  <h2>Pipeline Modes</h2>
+  <p class="section-desc">Eight rendering modes that map any source image onto the Edgeless visual language. Each uses real dithering algorithms, not AI approximations.</p>
+
+  <div class="mode-grid">
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">dither-bw</span>
+        <span class="mode-tag">Floyd-Steinberg</span>
+      </div>
+      <div class="mode-desc">1-bit black/white Floyd-Steinberg error diffusion. The closest to the original IMG_8154 dot-matrix aesthetic. Every pixel is either on or off &mdash; no grey.</div>
+      <div class="mode-cmd">--mode dither-bw</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">dither-accent</span>
+        <span class="mode-tag">Bayer 8x8</span>
+      </div>
+      <div class="mode-desc">Ordered Bayer matrix dither to void + one accent color. Produces the classic cross-hatch pattern. Accent selectable: cyan, violet, indigo, green, white.</div>
+      <div class="mode-cmd">--mode dither-accent --accent cyan</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">dither-full</span>
+        <span class="mode-tag">5-Color FS</span>
+      </div>
+      <div class="mode-desc">Floyd-Steinberg error diffusion to the full 5-color Edgeless palette (void, indigo, violet, cyan, white). Rich color with structural texture.</div>
+      <div class="mode-cmd">--mode dither-full</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">riso</span>
+        <span class="mode-tag" style="background:var(--accent-violet);">Halftone Dot</span>
+      </div>
+      <div class="mode-desc">Risograph print simulation. Halftone dot screen on cream (#f5f0e8) paper base with two ink separations: black + accent. Rotated screen angles prevent moire.</div>
+      <div class="mode-cmd">--mode riso --accent cyan</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">scanline</span>
+        <span class="mode-tag" style="background:var(--accent-indigo);">CRT Sim</span>
+      </div>
+      <div class="mode-desc">CRT/VHS monitor simulation. Scanline darkening every 3rd row, 5-bit color quantization, horizontal glitch offsets. Retro terminal aesthetic.</div>
+      <div class="mode-cmd">--mode scanline</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">thermal</span>
+        <span class="mode-tag" style="background:var(--fg-primary); color:var(--void);">Receipt</span>
+      </div>
+      <div class="mode-desc">Thermal receipt printer. Sigmoid contrast crush + 1-bit dither + horizontal banding artifacts + thermal head smear blur. Black ink on white paper.</div>
+      <div class="mode-cmd">--mode thermal</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">riso-violet</span>
+        <span class="mode-tag" style="background:var(--accent-violet);">Halftone Dot</span>
+      </div>
+      <div class="mode-desc">Same risograph engine as riso-cyan but with violet (#8b5cf6) ink separation. Use for warmer, more editorial print feel.</div>
+      <div class="mode-cmd">--mode riso --accent violet</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-header">
+        <span class="mode-name">dither-accent-violet</span>
+        <span class="mode-tag">Bayer 8x8</span>
+      </div>
+      <div class="mode-desc">Ordered dither to void + violet. Same structured pattern as cyan accent but with the secondary brand color.</div>
+      <div class="mode-cmd">--mode dither-accent --accent violet</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05. ORIGINALS -->
+<section id="originals">
+  <h2>Source Originals</h2>
+  <p class="section-desc">Physical photographs and scans that define the design DNA. These are the ground truth &mdash; every pipeline mode is validated against these originals.</p>
+
+  <div class="image-grid">
+    <div class="image-cell"><img src="originals/IMG_8154.jpg" alt="IMG_8154" onclick="openLightbox(this)"><div class="caption">IMG_8154 &mdash; dot-matrix primary</div></div>
+    <div class="image-cell"><img src="originals/IMG_8155.jpg" alt="IMG_8155" onclick="openLightbox(this)"><div class="caption">IMG_8155 &mdash; risograph print</div></div>
+    <div class="image-cell"><img src="originals/IMG_8156.jpg" alt="IMG_8156" onclick="openLightbox(this)"><div class="caption">IMG_8156 &mdash; courier card</div></div>
+    <div class="image-cell"><img src="originals/IMG_8157.jpg" alt="IMG_8157" onclick="openLightbox(this)"><div class="caption">IMG_8157 &mdash; signal poster</div></div>
+    <div class="image-cell"><img src="originals/IMG_8158.jpg" alt="IMG_8158" onclick="openLightbox(this)"><div class="caption">IMG_8158 &mdash; zine spread</div></div>
+    <div class="image-cell"><img src="originals/IMG_8159.jpg" alt="IMG_8159" onclick="openLightbox(this)"><div class="caption">IMG_8159 &mdash; thermal receipt</div></div>
+    <div class="image-cell"><img src="originals/IMG_8160.jpg" alt="IMG_8160" onclick="openLightbox(this)"><div class="caption">IMG_8160 &mdash; editorial layout</div></div>
+    <div class="image-cell"><img src="originals/IMG_8161.jpg" alt="IMG_8161" onclick="openLightbox(this)"><div class="caption">IMG_8161 &mdash; network diagram</div></div>
+    <div class="image-cell"><img src="originals/IMG_8162.jpg" alt="IMG_8162" onclick="openLightbox(this)"><div class="caption">IMG_8162 &mdash; dither study</div></div>
+    <div class="image-cell"><img src="originals/IMG_8163.jpg" alt="IMG_8163" onclick="openLightbox(this)"><div class="caption">IMG_8163 &mdash; CRT terminal</div></div>
+  </div>
+</section>
+
+<!-- 06. ORIGINALS x PIPELINE -->
+<section id="originals-processed">
+  <h2>Originals x Pipeline</h2>
+  <p class="section-desc">Every original run through all 8 pipeline modes. Read left-to-right: source &rarr; dither-bw &rarr; dither-accent (cyan) &rarr; dither-accent (violet) &rarr; dither-full &rarr; riso (cyan) &rarr; riso (violet) &rarr; thermal &rarr; scanline.</p>
+
+  <!-- Column headers -->
+  <div class="comparison-row cols-9" style="margin-bottom:0;">
+    <div class="comparison-label">Source</div>
+    <div class="comparison-label">dither-bw</div>
+    <div class="comparison-label">accent-cyan</div>
+    <div class="comparison-label">accent-violet</div>
+    <div class="comparison-label">dither-full</div>
+    <div class="comparison-label">riso-cyan</div>
+    <div class="comparison-label">riso-violet</div>
+    <div class="comparison-label">thermal</div>
+    <div class="comparison-label">scanline</div>
+  </div>
+
+  <script>
+    // We'll generate these rows dynamically
+    const originals = [
+      'IMG_8154', 'IMG_8155', 'IMG_8156', 'IMG_8157', 'IMG_8158',
+      'IMG_8159', 'IMG_8160', 'IMG_8161', 'IMG_8162', 'IMG_8163'
+    ];
+  </script>
+
+  <div id="originals-comparison"></div>
+</section>
+
+<!-- 07. GENERATED V2 -->
+<section id="generated">
+  <h2>Generated v2</h2>
+  <p class="section-desc">AI-generated compositions via Flora, refined with style references from originals. These serve as pipeline input &mdash; the raw compositions before structural dithering.</p>
+
+  <div class="image-grid" id="generated-grid"></div>
+</section>
+
+<!-- 08. GENERATED x PIPELINE -->
+<section id="generated-processed">
+  <h2>Generated x Pipeline</h2>
+  <p class="section-desc">Generated v2 compositions run through all pipeline modes. Same format: source &rarr; 8 modes.</p>
+
+  <div class="comparison-row cols-9" style="margin-bottom:0;">
+    <div class="comparison-label">Source</div>
+    <div class="comparison-label">dither-bw</div>
+    <div class="comparison-label">accent-cyan</div>
+    <div class="comparison-label">accent-violet</div>
+    <div class="comparison-label">dither-full</div>
+    <div class="comparison-label">riso-cyan</div>
+    <div class="comparison-label">riso-violet</div>
+    <div class="comparison-label">thermal</div>
+    <div class="comparison-label">scanline</div>
+  </div>
+
+  <div id="generated-comparison"></div>
+</section>
+
+<!-- 11. USAGE -->
+<section id="usage">
+  <h2>Usage Guide</h2>
+  <p class="section-desc">Recommended mode selection per content type.</p>
+
+  <table class="tokens-table">
+    <tr><th>Content Type</th><th>Primary Mode</th><th>Alt Mode</th><th>Notes</th></tr>
+    <tr><td>Social media (dark)</td><td>dither-bw</td><td>dither-accent cyan</td><td>Maximum brand impact, single-color identity</td></tr>
+    <tr><td>Social media (light)</td><td>riso cyan</td><td>riso violet</td><td>Cream paper base, halftone dots</td></tr>
+    <tr><td>Editorial / print</td><td>riso violet</td><td>thermal</td><td>Physical print aesthetic</td></tr>
+    <tr><td>Terminal / dev</td><td>scanline</td><td>dither-accent cyan</td><td>CRT retro feel</td></tr>
+    <tr><td>Data viz / diagrams</td><td>dither-full</td><td>dither-accent cyan</td><td>Multi-color palette preserved</td></tr>
+    <tr><td>Agent portraits</td><td>dither-bw</td><td>dither-accent violet</td><td>High contrast identity</td></tr>
+    <tr><td>Receipts / logs</td><td>thermal</td><td>dither-bw</td><td>Receipt printer aesthetic</td></tr>
+    <tr><td>Product shots</td><td>dither-accent cyan</td><td>dither-full</td><td>Clean brand accent on void</td></tr>
+    <tr><td>Cover art</td><td>dither-full</td><td>riso cyan</td><td>Full palette expression</td></tr>
+    <tr><td>Texture / pattern</td><td>dither-bw</td><td>dither-full</td><td>Structural reference material</td></tr>
+  </table>
+
+  <h3>Midjourney Settings</h3>
+  <div class="code-block">
+    <span class="comment"># Base parameters for all Edgeless prompts</span><br>
+    <span class="flag">--style</span> <span class="str">raw</span> <span class="flag">--stylize</span> <span class="str">250</span> <span class="flag">--v</span> <span class="str">6.1</span><br><br>
+    <span class="comment"># Required negative constraints in every prompt:</span><br>
+    <span class="str">NOT photorealistic</span> &mdash; prevents smooth renders<br>
+    <span class="str">absolutely no human figures</span> &mdash; pure machine habitat<br>
+    <span class="str">distinct accent colors</span> &mdash; prevents mono-color collapse<br><br>
+    <span class="comment"># Post-process ALL MJ output through the pipeline before use</span>
+  </div>
+
+  <h3>Flora / Venice Model Selection</h3>
+  <table class="tokens-table">
+    <tr><th>Model</th><th>Best For</th><th>Avoid</th></tr>
+    <tr><td>Flux 2 Pro</td><td>Atmospheric environments, landscapes, moody scenes</td><td>Text-heavy compositions</td></tr>
+    <tr><td>Recraft V4 Pro</td><td>UI mockups, vector diagrams, technical illustrations</td><td>Organic textures</td></tr>
+    <tr><td>Ideogram 3.0</td><td>Anything with readable text or typography</td><td>Complex scenes without text focus</td></tr>
+    <tr><td>Nano Banana Pro</td><td>High-fidelity product shots, texture details</td><td>Abstract concepts</td></tr>
+  </table>
+</section>
+
+<div class="footer">
+  EDGELESS LAB &mdash; NOUS INSPIRED DESIGN SYSTEM v2.0 &mdash; CONFIDENTIAL<br>
+  Generated 2026-05-12 &mdash; Nous-sourced originals &mdash; 8 pipeline modes
+</div>
+
+<script>
+function openLightbox(imgEl) {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  lbImg.src = imgEl.src;
+  lb.classList.add('active');
+}
+
+// Build originals comparison rows
+(function() {
+  const container = document.getElementById('originals-comparison');
+  const originals = [
+    'IMG_8154', 'IMG_8155', 'IMG_8156', 'IMG_8157', 'IMG_8158',
+    'IMG_8159', 'IMG_8160', 'IMG_8161', 'IMG_8162', 'IMG_8163'
+  ];
+
+  originals.forEach(name => {
+    const row = document.createElement('div');
+    row.className = 'comparison-row cols-9';
+
+    // Source
+    const srcCell = document.createElement('div');
+    const srcImg = document.createElement('img');
+    srcImg.src = `originals/${name}.jpg`;
+    srcImg.alt = name;
+    srcImg.onclick = function() { openLightbox(this); };
+    srcCell.appendChild(srcImg);
+    row.appendChild(srcCell);
+
+    // Modes
+    const modes = [
+      { dir: 'dither-bw', suffix: 'dither-bw' },
+      { dir: 'dither-accent-cyan', suffix: 'dither-accent' },
+      { dir: 'dither-accent-violet', suffix: 'dither-accent' },
+      { dir: 'dither-full', suffix: 'dither-full' },
+      { dir: 'riso-cyan', suffix: 'riso' },
+      { dir: 'riso-violet', suffix: 'riso' },
+      { dir: 'thermal', suffix: 'thermal' },
+      { dir: 'scanline', suffix: 'scanline' },
+    ];
+
+    modes.forEach(m => {
+      const cell = document.createElement('div');
+      const img = document.createElement('img');
+      img.src = `processed/${m.dir}/${name}-${m.suffix}.jpg`;
+      img.alt = `${name} ${m.dir}`;
+      img.onclick = function() { openLightbox(this); };
+      img.onerror = function() { this.style.opacity = '0.2'; };
+      cell.appendChild(img);
+      row.appendChild(cell);
+    });
+
+    container.appendChild(row);
+  });
+})();
+
+// Build generated v2 grid
+(function() {
+  const grid = document.getElementById('generated-grid');
+  const generated = [
+    { file: 'generatedExamples/v2/v2-01b-hive-core-styleref-8154.png', label: 'Hive Core (styleref)' },
+    { file: 'generatedExamples/v2/v2-02b-kilo-chamber-styleref-8163.png', label: 'KILO Chamber (styleref)' },
+    { file: 'generatedExamples/v2/v2-04-editorial-cover-ideogram.png', label: 'Editorial Cover' },
+    { file: 'generatedExamples/v2/v2-10-clapper-device-ideogram.png', label: 'Clapper Device' },
+    { file: 'generatedExamples/v2/courier-relay-orbital.png', label: 'Courier Relay Orbital' },
+    { file: 'generatedExamples/hermes-signal-dawn.png', label: 'HERMES Signal Dawn' },
+    { file: 'generatedExamples/swarm topology.png', label: 'Swarm Topology (dark)' },
+  ];
+
+  generated.forEach(g => {
+    const cell = document.createElement('div');
+    cell.className = 'image-cell';
+    cell.innerHTML = `<img src="${g.file}" alt="${g.label}" onclick="openLightbox(this)"><div class="caption">${g.label}</div>`;
+    grid.appendChild(cell);
+  });
+})();
+
+// Build generated comparison rows
+(function() {
+  const container = document.getElementById('generated-comparison');
+  const sources = [
+    { name: 'v2-01b-hive-core-styleref-8154', ext: 'png', srcDir: 'generatedExamples/v2' },
+    { name: 'v2-02b-kilo-chamber-styleref-8163', ext: 'png', srcDir: 'generatedExamples/v2' },
+    { name: 'v2-04-editorial-cover-ideogram', ext: 'png', srcDir: 'generatedExamples/v2' },
+    { name: 'v2-10-clapper-device-ideogram', ext: 'png', srcDir: 'generatedExamples/v2' },
+    { name: 'courier-relay-orbital', ext: 'png', srcDir: 'generatedExamples/v2' },
+    { name: 'hermes-signal-dawn', ext: 'png', srcDir: 'generatedExamples' },
+    { name: 'swarm topology', ext: 'png', srcDir: 'generatedExamples' },
+  ];
+
+  const modes = [
+    'dither-bw', 'dither-accent-cyan', 'dither-accent-violet',
+    'dither-full', 'riso-cyan', 'riso-violet', 'thermal', 'scanline'
+  ];
+
+  sources.forEach(s => {
+    const row = document.createElement('div');
+    row.className = 'comparison-row cols-9';
+
+    // Source
+    const srcCell = document.createElement('div');
+    const srcImg = document.createElement('img');
+    srcImg.src = `${s.srcDir}/${s.name}.${s.ext}`;
+    srcImg.alt = s.name;
+    srcImg.onclick = function() { openLightbox(this); };
+    srcCell.appendChild(srcImg);
+    row.appendChild(srcCell);
+
+    // Processed modes
+    modes.forEach(mode => {
+      const cell = document.createElement('div');
+      const img = document.createElement('img');
+      img.src = `processed/${mode}/${s.name}.png`;
+      img.alt = `${s.name} ${mode}`;
+      img.onclick = function() { openLightbox(this); };
+      img.onerror = function() { this.style.opacity = '0.2'; };
+      cell.appendChild(img);
+      row.appendChild(cell);
+    });
+
+    container.appendChild(row);
+  });
+})();
+
+</script>
+
+</body>
+</html>

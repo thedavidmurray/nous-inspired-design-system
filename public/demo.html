@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edgeless Lab Design System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: {
+              primary: '#0a0a0a',
+              secondary: '#111111',
+              tertiary: '#1a1a1a',
+              elevated: '#222222',
+            },
+            foreground: {
+              primary: '#ffffff',
+              secondary: 'rgba(255,255,255,0.7)',
+              tertiary: 'rgba(255,255,255,0.5)',
+            },
+            accent: {
+              DEFAULT: '#6366f1',
+              secondary: '#8b5cf6',
+              tertiary: '#06b6d4',
+            },
+            border: {
+              default: 'rgba(255,255,255,0.12)',
+              subtle: 'rgba(255,255,255,0.08)',
+            }
+          },
+          fontFamily: {
+            sans: 'Inter, system-ui, sans-serif',
+            mono: 'JetBrains Mono, monospace',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow {
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+    }
+    ::selection {
+      background: rgba(99, 102, 241, 0.3);
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-background-primary text-foreground-primary antialiased">
+  <!-- Navigation -->
+  <nav class="border-b border-border-default">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-white">E</div>
+        <span class="font-semibold">Edgeless Lab</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-foreground-secondary">
+        <a href="#tokens" class="hover:text-foreground-primary transition-colors">Tokens</a>
+        <a href="#components" class="hover:text-foreground-primary transition-colors">Components</a>
+        <a href="#typography" class="hover:text-foreground-primary transition-colors">Typography</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="py-24 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium border border-accent/20 mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        Design System v0.1.0
+      </div>
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
+        Design system worthy of<br>
+        <span class="gradient-text">top-tier sites</span>
+      </h1>
+      <p class="text-xl text-foreground-secondary max-w-2xl mx-auto mb-10">
+        Deep void aesthetics. Electric accents. Generous whitespace. 
+        Quality bar: Vercel, Linear, Raycast.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <button class="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-all active:scale-95">
+          Get Started
+        </button>
+        <button class="px-6 py-3 bg-background-elevated text-foreground-primary rounded-lg font-medium border border-border-default hover:bg-background-tertiary transition-all">
+          View on GitHub
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Color Tokens -->
+  <section id="tokens" class="py-20 px-6 border-t border-border-default">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold tracking-tight mb-2">Color Tokens</h2>
+      <p class="text-foreground-secondary mb-12">High-contrast palette for dark-first experiences</p>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Backgrounds -->
+        <div class="p-4 rounded-xl bg-background-primary border border-border-default">
+          <div class="h-20 rounded-lg bg-background-primary border border-border-subtle mb-3"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">bg-primary</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#0a0a0a</p>
+        </div>
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg bg-background-secondary mb-3"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">bg-secondary</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#111111</p>
+        </div>
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg bg-background-tertiary mb-3"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">bg-tertiary</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#1a1a1a</p>
+        </div>
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg bg-background-elevated mb-3"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">bg-elevated</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#222222</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mt-4">
+        <!-- Accents -->
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg mb-3" style="background: #6366f1;"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">accent</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#6366f1 Indigo</p>
+        </div>
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg mb-3" style="background: #8b5cf6;"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">accent-secondary</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#8b5cf6 Violet</p>
+        </div>
+        <div class="p-4 rounded-xl bg-background-elevated border border-border-default">
+          <div class="h-20 rounded-lg mb-3" style="background: #06b6d4;"></div>
+          <code class="text-xs text-foreground-tertiary font-mono">accent-tertiary</code>
+          <p class="text-xs text-foreground-tertiary mt-1">#06b6d4 Cyan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section id="components" class="py-20 px-6 border-t border-border-default">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold tracking-tight mb-2">Components</h2>
+      <p class="text-foreground-secondary mb-12">Built with purpose, not decoration</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Buttons -->
+        <div class="p-6 rounded-xl bg-background-elevated border border-border-default">
+          <h3 class="font-semibold mb-4">Buttons</h3>
+          <div class="flex flex-wrap gap-3">
+            <button class="px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-all active:scale-95 text-sm">
+              Primary
+            </button>
+            <button class="px-4 py-2 bg-background-tertiary text-foreground-primary rounded-lg font-medium border border-border-default hover:bg-background-secondary transition-all text-sm">
+              Secondary
+            </button>
+            <button class="px-4 py-2 text-foreground-secondary hover:text-foreground-primary hover:bg-background-tertiary rounded-lg font-medium transition-all text-sm">
+              Ghost
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-3">
+            <button class="h-10 px-4 bg-accent text-white rounded-lg font-medium text-sm">Small</button>
+            <button class="h-10 px-4 bg-background-tertiary text-foreground-primary rounded-lg font-medium border border-border-default text-sm">Default</button>
+            <button class="h-12 px-6 bg-accent text-white rounded-lg font-medium text-base">Large</button>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="p-6 rounded-xl bg-background-elevated border border-border-default">
+          <h3 class="font-semibold mb-4">Badges</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-2.5 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium border border-accent/20">Accent</span>
+            <span class="px-2.5 py-1 rounded-full bg-green-500/10 text-green-500 text-xs font-medium border border-green-500/20">Success</span>
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20">Warning</span>
+            <span class="px-2.5 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20">Error</span>
+            <span class="px-2.5 py-1 rounded-full bg-background-tertiary text-foreground-tertiary text-xs font-medium border border-border-default">Neutral</span>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="p-6 rounded-xl bg-background-elevated border border-border-default glow">
+          <h3 class="font-semibold mb-4">Elevated Card</h3>
+          <div class="p-6 rounded-xl bg-background-primary border border-border-default">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center text-accent">✦</div>
+              <div>
+                <h4 class="font-medium">Card Title</h4>
+                <p class="text-sm text-foreground-tertiary">Supporting description</p>
+              </div>
+            </div>
+            <p class="text-sm text-foreground-secondary leading-relaxed">
+              Cards are elevated surfaces for content grouping. Consistent padding, border, and radius create visual harmony.
+            </p>
+          </div>
+        </div>
+
+        <!-- Inputs -->
+        <div class="p-6 rounded-xl bg-background-elevated border border-border-default">
+          <h3 class="font-semibold mb-4">Inputs</h3>
+          <div class="space-y-3">
+            <input 
+              type="text" 
+              placeholder="Placeholder text..."
+              class="w-full bg-background-secondary border border-border-default rounded-lg px-4 py-2 text-foreground-primary placeholder:text-foreground-quaternary focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm"
+            >
+            <input 
+              type="text" 
+              value="Filled input"
+              class="w-full bg-background-secondary border border-border-default rounded-lg px-4 py-2 text-foreground-primary focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm"
+            >
+            <input 
+              type="text" 
+              disabled
+              value="Disabled input"
+              class="w-full bg-background-secondary border border-border-default rounded-lg px-4 py-2 text-foreground-quaternary cursor-not-allowed text-sm"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section id="typography" class="py-20 px-6 border-t border-border-default">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold tracking-tight mb-2">Typography</h2>
+      <p class="text-foreground-secondary mb-12">Inter for UI, JetBrains Mono for code</p>
+
+      <div class="space-y-8">
+        <div class="border-b border-border-default pb-6">
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">7xl - Display</p>
+          <p class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">The quick brown fox</p>
+        </div>
+        <div class="border-b border-border-default pb-6">
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">5xl - Hero</p>
+          <p class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">The quick brown fox jumps</p>
+        </div>
+        <div class="border-b border-border-default pb-6">
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">3xl - Section</p>
+          <p class="text-2xl sm:text-3xl font-semibold tracking-tight">Build world-class AI-native products</p>
+        </div>
+        <div class="border-b border-border-default pb-6">
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">xl - Title</p>
+          <p class="text-xl font-semibold">Design tokens that scale</p>
+        </div>
+        <div class="border-b border-border-default pb-6">
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">base - Body</p>
+          <p class="text-base text-foreground-secondary leading-relaxed max-w-2xl">
+            Typography is the foundation of interface clarity. We use Inter for its geometric precision and excellent legibility at all sizes.
+          </p>
+        </div>
+        <div>
+          <p class="text-xs text-foreground-tertiary font-mono mb-2">sm - Caption</p>
+          <p class="text-sm text-foreground-tertiary font-mono bg-background-tertiary px-2 py-1 rounded inline-block">
+            const designSystem = await deploy();
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-border-default">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 rounded bg-accent flex items-center justify-center text-xs font-bold text-white">E</div>
+        <span class="text-sm text-foreground-tertiary">© 2026 Edgeless Lab. MIT License.</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-foreground-secondary">
+        <a href="#" class="hover:text-foreground-primary transition-colors">Documentation</a>
+        <a href="#" class="hover:text-foreground-primary transition-colors">GitHub</a>
+        <a href="#" class="hover:text-foreground-primary transition-colors">Storybook</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

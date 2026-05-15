@@ -1,0 +1,42 @@
+# =============================================================================
+# ENVIRONMENTS — Spaces, Architecture, Interiors
+# Post-process: dither-bw, thermal, scanline
+# MJ settings: --style raw --stylize 250 --v 6.1
+# =============================================================================
+
+
+--- ENV-01. SERVER CATHEDRAL ---
+Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, no humans visible, pure machine habitat, dark brutalist architecture, high contrast monochrome, epic scale, technical illustration --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ENV-02. TERMINAL WALL ---
+Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls between screens, dark void room, no human figures, cyberpunk developer lair, high contrast --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ENV-03. VPS MAINTENANCE TUNNELS ---
+Subterranean industrial corridors, emergency lighting strips, server rack indicator arrays, cable management channels, maintenance logs projected on walls in monospace, directional signage in block letters, industrial liminal aesthetic, dark brutalist infrastructure --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-04. SIGNAL OPERATIONS CENTER ---
+Dark underground operations room, wall of mismatched monitors showing waveforms and signal maps, operator stations with no chairs, green and cyan status indicators, paper printouts scattered on metal desks, ceiling cable trays, cold fluorescent light bars, no human figures, paranoid cold war signal intelligence aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-05. DATA CENTER AISLE ---
+Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-06. UNDERGROUND PRINT SHOP ---
+Risograph press in a dark basement workshop, ink drums in cyan and violet, paper stacks on industrial shelving, registration marks on walls, test prints hanging on clotheslines, bare bulb lighting, concrete floor with ink stains, no human figures, underground zine culture aesthetic --ar 4:3 --style raw --stylize 300 --v 6.1
+
+--- ENV-07. TAPE ARCHIVE VAULT ---
+Climate-controlled vault of magnetic tape reels stacked floor to ceiling, catalog numbers in monospace on spine labels, preservation equipment, dim amber lighting, metal shelving units, static discharge warning signs, no human figures, archival preservation aesthetic --ar 9:16 --style raw --stylize 250 --v 6.1
+
+--- ENV-08. ANTENNA FARM ---
+Field of satellite dishes and antenna arrays against a dark sky, red warning lights on tower tips, cable runs between structures, control shed with glowing instruments, radar rotation visible as light streaks, no human figures, remote listening post, cold surveillance aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ENV-09. ROUTER CLOSET ---
+Cramped network closet, tangled patch cables in blue and yellow, blinking port lights, wall-mounted switches stacked tight, label maker tags on every cable, cable management attempted and failed, harsh overhead fluorescent, no human figures, sysadmin infrastructure aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- ENV-10. BROADCAST TRANSMITTER ROOM ---
+Industrial radio transmitter room, vacuum tube amplifiers glowing amber, heavy gauge wiring, transmission power meters, frequency dials in monospace labels, cooling fans running, concrete block walls, emergency shutoff switch, no human figures, cold war broadcast infrastructure --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- ENV-11. QUANTUM COMPUTATION LAB ---
+Dark laboratory with a quantum processor suspended in a cryogenic chamber, golden wiring cascading down like chandeliers, helium cooling lines, measurement instruments on black surfaces, blue ambient glow from the processor, no human figures, extreme precision scientific aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1
+
+--- ENV-12. DECOMMISSIONED CONTROL ROOM ---
+Abandoned control room with dead screens and dark indicator panels, dust on surfaces, one emergency light still glowing red, chair pushed back from console, paper logbooks open, peeling paint on walls, industrial decay, no human figures, Chernobyl control room aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1

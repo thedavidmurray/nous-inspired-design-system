@@ -1,0 +1,573 @@
+# =============================================================================
+# EDGELESS LAB — COMPLETE PROMPT LIBRARY v3
+# 150 prompts across 15 categories
+# Nous Inspired Design System — Complementary Set
+#
+# RULES:
+#   - on every prompt
+#   - NO --chaos, --stylize, --s, --v (user defaults)
+#   - NO human faces or figures
+#   - Aesthetic: gritty, structural, technical, dithered-feeling
+#
+# CATEGORIES:
+#   01. OSCILLOSCOPE    (OSC-01..10)
+#   02. METALLURGY      (MET-01..10)
+#   03. CARTOGRAPHIC-DEEP (CAR-01..10)
+#   04. PRINTMAKING     (PRM-01..10)
+#   05. MECHANICAL      (MCH-01..10)
+#   06. OPTICS          (OPT-01..10)
+#   07. TEXTILE         (TXL-01..10)
+#   08. CHEMISTRY       (CHM-01..10)
+#   09. NAVIGATION      (NAV-01..10)
+#   10. TRANSMISSION    (TRX-01..10)
+#   11. MEASUREMENT     (MSR-01..10)
+#   12. DECAY           (DEC-01..10)
+#   13. NOTATION        (NOT-01..10)
+#   14. COMPUTATION     (CMP-01..10)
+#   15. CONTAINMENT     (CNT-01..10)
+# =============================================================================
+
+
+
+# =============================================================================
+# 01. OSCILLOSCOPE — Waveforms, Lissajous, Signal Traces (10)
+# =============================================================================
+
+--- OSC-01. LISSAJOUS FIGURE ---
+Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift, dark laboratory background, analog test equipment aesthetic --ar 1:1
+
+--- OSC-02. SQUARE WAVE RINGING ---
+Oscilloscope display showing a square wave with visible ringing and overshoot on rising edges, probe compensation artifacts, time base markers in monospace, horizontal sweep line, dark background with green phosphor glow, signal integrity analysis aesthetic --ar 16:9
+
+--- OSC-03. DUAL TRACE PHASE ---
+Two overlapping sine waves on an oscilloscope screen showing phase difference, Channel A and Channel B traces in different intensities, trigger marker on left edge, voltage scale visible, dark CRT with amber phosphor, phase measurement aesthetic --ar 4:3
+
+--- OSC-04. XY MODE PATTERN ---
+Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1
+
+--- OSC-05. NOISE FLOOR ---
+Oscilloscope trace showing amplified noise floor, random fluctuations at high gain, bandwidth-limited noise texture, AC coupling transient visible, trigger level hunting on unstable signal, dark background, electronic noise characterization aesthetic --ar 16:9
+
+--- OSC-06. SWEEP GENERATOR OUTPUT ---
+Frequency sweep displayed on oscilloscope, amplitude envelope changing across screen as frequency increases left to right, resonant peaks visible, marker dots at calibration frequencies, logarithmic sweep trace, RF test equipment aesthetic --ar 16:9
+
+--- OSC-07. PULSE TRAIN ---
+Clean digital pulse train on oscilloscope, precise rectangular pulses with measured rise time annotations, pulse width markers, period measurement cursors, ground reference line, dark background with cyan phosphor trace, digital timing analysis aesthetic --ar 16:9
+
+--- OSC-08. DECAYING OSCILLATION ---
+Damped sinusoidal oscillation on oscilloscope screen, exponentially decreasing amplitude envelope, ring-down visible over multiple cycles, time constant measurement markers, dark background with green trace, transient response analysis aesthetic --ar 4:3
+
+--- OSC-09. VECTOR DISPLAY ---
+Vector graphics rendered on an oscilloscope CRT, wireframe geometric shapes drawn by electron beam, bright vertices where beam pauses, visible retrace lines at low intensity, XY deflection pattern, vintage vector display aesthetic --ar 1:1
+
+--- OSC-10. SPECTRUM ANALYZER ---
+Swept spectrum analyzer display showing RF spectrum, multiple signal peaks at different frequencies, noise floor as textured baseline, resolution bandwidth setting visible, center frequency and span markers in monospace, dark background, radio frequency measurement aesthetic --ar 16:9
+
+
+
+# =============================================================================
+# 02. METALLURGY — Smelting, Forge, Crystalline Metal Structures (10)
+# =============================================================================
+
+--- MET-01. GRAIN BOUNDARY ---
+Metallographic cross-section of steel under polarized light microscope, crystal grain boundaries as dark lines forming polygonal mosaic, varying grain sizes, etched surface revealing microstructure, materials science microscopy aesthetic --ar 1:1
+
+--- MET-02. DENDRITIC GROWTH ---
+Dendrite crystal formation in solidifying metal, branching tree-like structures growing into liquid phase, primary and secondary arms visible, interdendritic porosity, backlit against dark field, solidification metallurgy aesthetic --ar 1:1
+
+--- MET-03. FORGE SCALE ---
+Close-up of hammer scale on forged iron surface, layered oxide flaking away revealing bright metal beneath, blue-black iridescent oxidation colors, rough textured surface, dark background, blacksmithing material study aesthetic --ar 4:3
+
+--- MET-04. CRUCIBLE POUR ---
+Molten metal being poured from a graphite crucible, bright white-orange stream against absolute darkness, splatter droplets frozen in flight, heat distortion visible, no human hands or figures, foundry process aesthetic --ar 3:4
+
+--- MET-05. PHASE DIAGRAM ---
+Iron-carbon phase diagram as a technical illustration, temperature on vertical axis, carbon percentage on horizontal, phase regions labeled in monospace, eutectic and eutectoid points marked, transformation lines, dark background, materials engineering textbook aesthetic --ar 4:3
+
+--- MET-06. WELD CROSS SECTION ---
+Macro cross-section of a butt weld, heat-affected zone visible as distinct bands, fusion line, weld bead geometry, base metal grain structure transitioning to columnar weld grains, etched and polished, welding metallurgy aesthetic --ar 4:3
+
+--- MET-07. PEARLITE LAMELLAE ---
+High magnification view of pearlite microstructure in steel, alternating lamellae of ferrite and cementite, fingerprint-like pattern at microscale, dark-field illumination, scale bar in corner, physical metallurgy microscopy aesthetic --ar 1:1
+
+--- MET-08. ELECTROPLATING BATH ---
+Industrial electroplating setup, cathode workpiece submerged in dark electrolyte solution, anode bars visible, bubble streams rising from cathode surface, current connections, chemical patina on tank edges, no human figures, surface finishing process aesthetic --ar 4:3
+
+--- MET-09. CRYSTAL PULLED FROM MELT ---
+Czochralski crystal being slowly pulled from a melt, cylindrical boule emerging from crucible surface, meniscus visible at solid-liquid interface, radiant heat glow, no human figures, semiconductor crystal growth aesthetic --ar 9:16
+
+--- MET-10. QUENCH CRACKING ---
+Hardened steel specimen showing quench cracks radiating from sharp corners, crack paths following grain boundaries, temper color visible on surface, fractography detail, dark background, failure analysis aesthetic --ar 1:1
+
+
+
+# =============================================================================
+# 03. CARTOGRAPHIC-DEEP — Bathymetric, Geological, Mineral Surveys (10)
+# =============================================================================
+
+--- CAR-01. BATHYMETRIC CHART ---
+Deep ocean bathymetric chart, depth contours in fathoms, submarine canyon systems, abyssal plain labeled, mid-ocean ridge topography, sounding points with depth values in monospace, blue-black color scheme, oceanographic survey aesthetic --ar 16:9
+
+--- CAR-02. GEOLOGICAL CROSS SECTION ---
+Geological cross-section through folded strata, anticlines and synclines, fault planes with displacement arrows, rock unit labels in monospace, unconformity surfaces, intrusive bodies, stipple and hatch fill patterns, structural geology textbook aesthetic --ar 16:9
+
+--- CAR-03. MINERAL SURVEY MAP ---
+Mining district survey map, ore body outlines, drill hole locations with assay values, strike and dip symbols, claim boundaries, elevation contours, mine shaft locations marked with standard symbols, dark background, economic geology aesthetic --ar 4:3
+
+--- CAR-04. SEISMIC SECTION ---
+Seismic reflection profile, horizontal distance vs two-way travel time, reflection horizons as wavy lines, fault offsets visible, velocity model overlay, processing artifacts, dark background with variable density display, petroleum exploration aesthetic --ar 16:9
+
+--- CAR-05. SOIL BORING LOG ---
+Geotechnical boring log diagram, columnar section showing soil layers, SPT blow counts, sample types, water table symbol, depth scale in feet, soil descriptions in monospace, classification symbols, foundation engineering aesthetic --ar 9:16
+
+--- CAR-06. MAGNETIC ANOMALY MAP ---
+Aeromagnetic survey map showing total field magnetic anomalies, contour lines in nanoteslas, linear anomalies indicating subsurface structures, flight line traces, survey grid coordinates, dark background with warm-to-cool color gradient, geophysical exploration aesthetic --ar 1:1
+
+--- CAR-07. CAVE SURVEY ---
+Plan and profile view of a cave system survey, passage outlines, ceiling heights, stalactite and stalagmite symbols, water features, survey station markers, cross-sections at key points, compass bearing annotations, speleological cartography aesthetic --ar 4:3
+
+--- CAR-08. GLACIAL MORPHOLOGY MAP ---
+Geomorphological map of glacial landscape, moraine ridges, drumlin fields with orientation arrows, esker sinuous ridges, kettle lake depressions, glacial striae directions, ice margin positions labeled by date, quaternary geology aesthetic --ar 4:3
+
+--- CAR-09. WELL LOG COMPOSITE ---
+Composite well log display, gamma ray curve, resistivity curves at multiple investigation depths, neutron-density crossover, lithology column, formation tops labeled in monospace, depth track, petrophysical evaluation aesthetic --ar 9:16
+
+--- CAR-10. TECTONIC PLATE MAP ---
+Tectonic plate boundary map, divergent boundaries as double lines, convergent boundaries with subduction teeth, transform faults as offset lines, earthquake epicenters as dots sized by magnitude, plate motion vectors, dark background, plate tectonics aesthetic --ar 16:9
+
+
+
+# =============================================================================
+# 04. PRINTMAKING — Etching, Woodcut, Lithography, Screen Print (10)
+# =============================================================================
+
+--- PRM-01. COPPER ETCHING PLATE ---
+Copper intaglio plate with etched design visible in raking light, acid-bitten lines of varying depth, plate edges beveled, ground residue in corners, ink traces in grooves, dark background, printmaking studio aesthetic --ar 1:1
+
+--- PRM-02. WOODCUT BLOCK ---
+End-grain woodblock with carved relief image, tool marks visible in cleared areas, raised printing surface with ink residue, wood grain texture in non-image areas, gouge marks, dark background, woodblock printing aesthetic --ar 1:1
+
+--- PRM-03. LITHOGRAPHY STONE ---
+Bavarian limestone lithography stone, drawn image visible on polished surface, grease crayon marks, tusche washes showing tonal range, registration marks in corners, stone grain texture, printmaking material aesthetic --ar 4:3
+
+--- PRM-04. SCREEN MESH CLOSE-UP ---
+Extreme close-up of silkscreen mesh, thread intersections forming grid, stencil emulsion blocking some openings, ink residue in mesh, monofilament weave structure visible, halftone dot pattern in stencil, screen printing process aesthetic --ar 1:1
+
+--- PRM-05. REGISTRATION MARKS ---
+Multiple color separation layers slightly misregistered, creating visible offset between layers, registration crosshairs, color bar test strip, trap overlap zones, CMYK build visible, commercial print production aesthetic --ar 4:3
+
+--- PRM-06. BRAYER AND INK SLAB ---
+Rubber brayer roller on an inking slab, thin film of black ink rolled out evenly, texture of ink surface catching light, palette knife nearby, ink can edge visible, dark studio background, relief printing preparation aesthetic --ar 4:3
+
+--- PRM-07. AQUATINT TEXTURE ---
+Close-up of aquatint etching showing tonal gradation achieved through rosin grain, pitting pattern visible at magnification, tonal steps from light to dark, plate tone in wiped areas, intaglio printmaking texture study --ar 1:1
+
+--- PRM-08. LINOCUT PROOF ---
+Fresh linocut print on Japanese paper, bold graphic shapes, visible cutting direction in carved areas, slight ink variation showing hand-pressing, paper grain beneath, registration pin holes in margins, relief printmaking proof aesthetic --ar 3:4
+
+--- PRM-09. TYPE CHASE ---
+Letterpress type locked in a chase, quoins and furniture spacing material visible, individual metal type sorts arranged in mirror reading, ink on type faces, chase frame iron, overhead view, traditional typography composition aesthetic --ar 1:1
+
+--- PRM-10. DRYPOINT BURR ---
+Extreme close-up of drypoint engraving burr on a metal plate, raised metal curl alongside incised line, characteristic soft fuzzy line quality, plate surface scratches, raking light revealing depth, intaglio printmaking detail aesthetic --ar 4:3
+
+
+
+# =============================================================================
+# 05. MECHANICAL — Gears, Clockwork, Automata, Precision Instruments (10)
+# =============================================================================
+
+--- MCH-01. GEAR TRAIN ---
+Meshing spur gear train, involute tooth profiles engaging, multiple reduction stages, shaft bearings visible, gear ratios annotated in monospace, dark background with metallic surfaces catching side light, mechanical engineering aesthetic --ar 4:3
+
+--- MCH-02. ESCAPEMENT MECHANISM ---
+Clock escapement mechanism in detail, escape wheel teeth interacting with pallet fork, impulse and locking faces visible, pivot jewels, balance wheel partially visible, dark background, horological precision aesthetic --ar 1:1
+
+--- MCH-03. DIFFERENTIAL GEARS ---
+Cutaway of a differential gear assembly, spider gears meshing with side gears, ring gear engagement, pinion shaft, bearing races, cross-section technical illustration style, dark background, automotive mechanical aesthetic --ar 4:3
+
+--- MCH-04. CAM AND FOLLOWER ---
+Mechanical cam profile with roller follower, displacement diagram overlaid, dwell and rise periods labeled, cam lobe geometry, return spring, follower guide, dark background, mechanism design textbook aesthetic --ar 4:3
+
+--- MCH-05. BALL BEARING CROSS SECTION ---
+Cross-section of a deep groove ball bearing, balls seated in races, cage separator, inner and outer ring cross profiles, contact angle visible, grease fill, precision ground surfaces, dark background, bearing engineering aesthetic --ar 1:1
+
+--- MCH-06. AUTOMATON INTERIOR ---
+Interior mechanism of a mechanical automaton, interconnected cams on a common shaft, linkages driving articulated limbs, music box cylinder with pins, spring motor barrel, dark background, 18th century mechanical marvel aesthetic --ar 4:3
+
+--- MCH-07. MICROMETER SPINDLE ---
+Cutaway of a micrometer head, precision-ground lead screw thread, thimble graduation marks, anvil face flatness, carbide measuring surfaces, ratchet stop mechanism, dark background, precision metrology instrument aesthetic --ar 16:9
+
+--- MCH-08. TYPEWRITER MECHANISM ---
+Typewriter type bar mechanism from below, basket of type bars radiating from segment, ribbon advance mechanism, key lever linkage, bell crank pivot, dark background with metallic highlights, mechanical office technology aesthetic --ar 4:3
+
+--- MCH-09. GOVERNOR MECHANISM ---
+Centrifugal governor spinning, weighted balls extended on arms, linkage connecting to throttle valve, spindle rotation implied by blur, pivot collar, dark background, steam age control theory aesthetic --ar 3:4
+
+--- MCH-10. WATCH MAINSPRING ---
+Coiled mainspring inside its barrel, blue-tempered steel spiral, barrel arbor at center, click spring and ratchet wheel, power reserve visible in spring tension, dark background, watchmaking craftsmanship aesthetic --ar 1:1
+
+
+
+# =============================================================================
+# 06. OPTICS — Lenses, Prisms, Diffraction, Interference (10)
+# =============================================================================
+
+--- OPT-01. PRISM DISPERSION ---
+Glass prism splitting white light into spectral components, individual wavelength paths traced as geometric rays, dispersion angle increasing toward violet end, dark background, Newtonian optics demonstration aesthetic --ar 4:3
+
+--- OPT-02. FRESNEL LENS CROSS SECTION ---
+Cross-section of a Fresnel lens showing concentric stepped rings, ray paths converging to focal point, each ring section contributing to focus, lighthouse lens scale, dark background, optical engineering aesthetic --ar 1:1
+
+--- OPT-03. DIFFRACTION GRATING ---
+Laser light hitting a diffraction grating producing multiple order spots, zeroth order bright, first and second order spots symmetric, intensity decreasing with order number, grating lines visible in close-up, dark background, wave optics aesthetic --ar 16:9
+
+--- OPT-04. NEWTON RINGS ---
+Newton's rings interference pattern, concentric circular fringes of light and dark, center dark spot, ring spacing decreasing outward, formed between convex lens and flat glass, monochromatic illumination, thin film interference aesthetic --ar 1:1
+
+--- OPT-05. LENS ELEMENT STACK ---
+Exploded view of a compound lens assembly, individual glass elements separated along optical axis, anti-reflection coatings showing as colored reflections, spacer rings, lens barrel cutaway, dark background, optical design aesthetic --ar 9:16
+
+--- OPT-06. FIBER OPTIC BUNDLE END ---
+Polished end face of a coherent fiber optic bundle, individual fiber cores as bright dots in hexagonal packing, cladding dark between cores, ferrule edge visible, dark background, fiber optics technology aesthetic --ar 1:1
+
+--- OPT-07. HOLOGRAPHIC PLATE ---
+Holographic plate illuminated by reference beam, reconstructed interference fringes visible as fine parallel lines, rainbow diffraction colors at viewing angle, glass plate edge, dark background, holography recording aesthetic --ar 4:3
+
+--- OPT-08. MICHELSON INTERFEROMETER ---
+Diagram of Michelson interferometer, beam splitter at center, two perpendicular arms with mirrors, recombined beams creating fringe pattern on detector, compensator plate, coherent source, dark background, precision measurement optics aesthetic --ar 1:1
+
+--- OPT-09. CAUSTIC PATTERN ---
+Light caustic pattern formed by reflection from curved surface, concentrated bright curves and cusps, envelope of reflected rays, rippling water surface casting caustics, high contrast on dark surface, geometric optics aesthetic --ar 1:1
+
+--- OPT-10. POLARIZATION FILTER STACK ---
+Stacked polarizing filters at various angles, transmitted intensity varying with relative orientation, extinction cross visible, birefringent crystal between crossed polarizers showing stress colors, dark background, polarization optics aesthetic --ar 4:3
+
+
+
+# =============================================================================
+# 07. TEXTILE — Weaving Looms, Fabric Structures, Knit Patterns (10)
+# =============================================================================
+
+--- TXL-01. WARP AND WEFT ---
+Extreme close-up of plain weave fabric, individual warp and weft threads interlocking, thread texture and twist visible, slight irregularities in hand-woven cloth, natural fiber surface, macro textile photography aesthetic --ar 1:1
+
+--- TXL-02. JACQUARD PUNCH CARDS ---
+Chain of Jacquard loom punch cards, holes controlling individual warp threads, card linkage mechanism visible, sequential pattern cards in a long chain, dark background, programmable textile technology aesthetic --ar 9:16
+
+--- TXL-03. SELVAGE EDGE ---
+Fabric selvage edge detail, tightly woven border transitioning to cut edge, manufacturer's color stripe identification, warp thread turnback, raw edge fraying, macro detail, textile manufacturing aesthetic --ar 16:9
+
+--- TXL-04. KNIT STITCH MACRO ---
+Extreme macro of knitted stockinette fabric, individual yarn loops interlocking in V-shaped columns, purl bumps on reverse visible at edge, yarn fiber halo, even tension, dark background, knitting structure study aesthetic --ar 1:1
+
+--- TXL-05. LOOM HEDDLES ---
+Rows of wire heddles on a floor loom, warp threads passing through heddle eyes, harness frames at different heights creating shed opening, threading pattern visible, dark workshop background, handweaving technology aesthetic --ar 4:3
+
+--- TXL-06. BOBBIN LACE PATTERN ---
+Bobbin lace in progress on a pillow, pins marking pattern points, multiple thread pairs crossing and twisting, pattern pricking underneath, bobbins hanging below work edge, dark background, traditional lacework aesthetic --ar 3:4
+
+--- TXL-07. SHIBORI RESIST ---
+Bound and dyed shibori textile, resist-pattern revealing undyed areas, compressed fold marks, irregular organic pattern from binding technique, indigo-dyed cotton, dark background, Japanese dyework aesthetic --ar 1:1
+
+--- TXL-08. WOVEN DRAFT NOTATION ---
+Weaving draft on graph paper, threading sequence, tie-up grid, treadling order, drawdown pattern showing resulting fabric structure, filled and empty squares forming binary pattern, dark background, weave structure notation aesthetic --ar 1:1
+
+--- TXL-09. SPINNING WHEEL MECHANISM ---
+Spinning wheel drive mechanism, flyer and bobbin assembly, drive band tension, orifice hook, maiden bearing, dark workshop background, no human figures, fiber arts mechanical technology aesthetic --ar 4:3
+
+--- TXL-10. FELTING FIBERS ---
+Microscope view of felted wool fibers, interlocked scales on fiber surfaces creating permanent bond, random fiber orientation, matted structure at different magnifications, dark field illumination, textile material science aesthetic --ar 1:1
+
+
+
+# =============================================================================
+# 08. CHEMISTRY — Molecular Models, Lab Equipment, Crystallography (10)
+# =============================================================================
+
+--- CHM-01. CRYSTAL LATTICE ---
+Ball-and-stick model of a face-centered cubic crystal lattice, atoms as spheres at lattice points, bonds as rods, unit cell outlined, Miller index planes indicated, dark background, crystallography textbook aesthetic --ar 1:1
+
+--- CHM-02. DISTILLATION APPARATUS ---
+Fractional distillation column setup, round-bottom flask on heating mantle, vigreux column, condenser with cooling water connections, receiving flask, thermometer adapter, ground glass joints, dark laboratory background, organic chemistry aesthetic --ar 9:16
+
+--- CHM-03. TITRATION BURETTE ---
+Burette clamped on ring stand, meniscus visible at eye level, stopcock valve, graduated markings, titration flask below with color indicator change, dark laboratory background, analytical chemistry aesthetic --ar 9:16
+
+--- CHM-04. PERIODIC TABLE FRAGMENT ---
+Worn periodic table wall chart showing transition metals section, element symbols in bold, atomic numbers, electron configurations in fine print, yellowed paper, tape repairs at edges, dog-eared corner, chemistry classroom relic aesthetic --ar 4:3
+
+--- CHM-05. X-RAY DIFFRACTION ---
+X-ray diffraction pattern on film, concentric Debye-Scherrer rings, bright spots indicating crystal symmetry, beam stop shadow at center, film edge markings, crystallographic analysis data, dark background aesthetic --ar 1:1
+
+--- CHM-06. MOLECULAR ORBITAL ---
+Calculated molecular orbital surface, electron density isosurface showing bonding and antibonding lobes, positive and negative phase regions, node planes visible, wireframe molecular skeleton beneath, dark background, computational chemistry aesthetic --ar 1:1
+
+--- CHM-07. RECRYSTALLIZATION ---
+Crystals growing in a saturated solution, well-formed geometric crystal faces, mother liquor surrounding, crystal habit showing lattice symmetry, seed crystal at origin point, macro photography, crystal growth process aesthetic --ar 1:1
+
+--- CHM-08. GAS CHROMATOGRAPH TRACE ---
+Gas chromatography output, detector response vs retention time, multiple resolved peaks, baseline drift, solvent front, internal standard peak labeled, retention time annotations in monospace, dark background, analytical instrumentation aesthetic --ar 16:9
+
+--- CHM-09. ELECTROCHEMICAL CELL ---
+Electrochemical half-cell diagram, electrode submerged in electrolyte, salt bridge connecting to second half-cell, ion migration arrows, voltage measurement, Nernst equation notation, dark background, electrochemistry textbook aesthetic --ar 4:3
+
+--- CHM-10. VACUUM MANIFOLD ---
+Glass vacuum manifold with multiple stopcocks, Schlenk line configuration, vacuum and inert gas connections, bubbler, cold trap, pressure gauge, glass-blown joints and connectors, dark laboratory background, air-free chemistry aesthetic --ar 16:9
+
+
+
+# =============================================================================
+# 09. NAVIGATION — Sextants, Astrolabes, Compass, Star Finders (10)
+# =============================================================================
+
+--- NAV-01. SEXTANT ---
+Brass marine sextant, arc scale with vernier, index mirror and horizon glass, telescope eyepiece, dark patina on metal surfaces, void black background, celestial navigation instrument aesthetic --ar 1:1
+
+--- NAV-02. ASTROLABE FACE ---
+Medieval brass astrolabe rete overlay, star pointers labeled in engraved script, ecliptic circle, altitude circles on tympan beneath, rule arm, dark background, Islamic astronomical instrument aesthetic --ar 1:1
+
+--- NAV-03. COMPASS CARD ---
+Detailed compass rose card, 32 wind directions labeled, fleur-de-lis at north, degree graduations around rim, magnetic declination annotation, aged parchment texture, dark background, maritime navigation aesthetic --ar 1:1
+
+--- NAV-04. STAR FINDER ---
+Rude star finder planisphere, transparent overlay rotating over star field base, altitude and azimuth curves, constellation labels in monospace, observation latitude setting, dark background, practical celestial navigation aesthetic --ar 1:1
+
+--- NAV-05. SIGHT REDUCTION TABLE ---
+Page from H.O. 229 sight reduction tables, dense columns of numbers in monospace, entering arguments on edges, interpolation values, page header with latitude and declination ranges, government printing aesthetic --ar 3:4
+
+--- NAV-06. GYROCOMPASS MECHANISM ---
+Cutaway of marine gyrocompass, spinning rotor in gimbal mount, damping mechanism, azimuth gear ring, follow-up motor, heading repeater synchro, dark background, inertial navigation technology aesthetic --ar 4:3
+
+--- NAV-07. DEAD RECKONING PLOT ---
+Navigation chart with dead reckoning track plotted, course lines with time marks, set and drift triangle, estimated position vs fix position, divider tool marks, pencil lines on chart paper, maritime navigation workbook aesthetic --ar 4:3
+
+--- NAV-08. PELORUS BEARING CIRCLE ---
+Ship's pelorus mounted on bridge wing, bearing circle with degree markings, vanes aligned for taking visual bearing, gimbal mount, dark sea and sky background, no human figures, maritime observation instrument aesthetic --ar 1:1
+
+--- NAV-09. MERCATOR GRID ---
+Empty Mercator projection grid, latitude and longitude lines, increasing spacing toward poles, prime meridian marked, tropic and arctic circles, graticule labels in monospace, dark background, cartographic projection study aesthetic --ar 16:9
+
+--- NAV-10. CHRONOMETER ---
+Marine chronometer in gimbal box, precision clock face with subsidiary seconds dial, power reserve indicator, chronometer number engraved on dial, brass gimbal ring, dark mahogany box, timekeeping instrument aesthetic --ar 1:1
+
+
+
+# =============================================================================
+# 10. TRANSMISSION — Radio Towers, Antenna Arrays, Broadcast (10)
+# =============================================================================
+
+--- TRX-01. LATTICE TOWER ---
+Steel lattice radio tower from below looking up, converging structural members forming geometric pattern, guy wires radiating outward, aviation warning lights, overcast sky, no human figures, broadcast infrastructure aesthetic --ar 9:16
+
+--- TRX-02. YAGI ANTENNA ---
+Multi-element Yagi-Uda antenna, driven element, reflector, and director elements on boom, feed point balun, mounting bracket, dark sky background, amateur radio antenna aesthetic --ar 16:9
+
+--- TRX-03. WAVEGUIDE JUNCTION ---
+Microwave waveguide magic tee junction, rectangular waveguide sections meeting at right angles, flange bolts, E-plane and H-plane ports, dark background, microwave engineering component aesthetic --ar 4:3
+
+--- TRX-04. SHORTWAVE DIAL ---
+Shortwave radio receiver dial, band spread tuning, frequency markings across multiple bands, logging scale, S-meter, dial pointer with cord drive mechanism, amber dial illumination, vintage communications receiver aesthetic --ar 4:3
+
+--- TRX-05. ANTENNA PATTERN ---
+Radiation pattern diagram of a directional antenna, polar plot showing main lobe, side lobes, back lobe, half-power beamwidth marked, null positions, gain values in dBi on rings, dark background, antenna engineering aesthetic --ar 1:1
+
+--- TRX-06. COAXIAL CABLE CROSS SECTION ---
+Cross-section of coaxial cable showing center conductor, dielectric insulator, braided shield, outer jacket, connector attached at one end, impedance annotation, dark background, RF transmission line aesthetic --ar 16:9
+
+--- TRX-07. TRANSMISSION LINE SMITH CHART ---
+Smith chart with impedance plot, normalized resistance and reactance circles, plotted impedance trajectory showing matching network transformation, VSWR circle, dark background with fine grid, RF engineering aesthetic --ar 1:1
+
+--- TRX-08. BROADCAST CONSOLE ---
+Radio broadcast mixing console, fader channels, VU meters, cue buttons, talkback microphone, on-air indicator light, program and audition buses, clock display, no human figures, dark studio, broadcast operations aesthetic --ar 16:9
+
+--- TRX-09. DIPOLE ARRAY ---
+Curtain array of stacked dipole antennas on a reflector screen, feed harness visible, phasing network junction boxes, support structure, multiple bays creating high gain, dark sky, shortwave broadcasting infrastructure aesthetic --ar 3:4
+
+--- TRX-10. KLYSTRON TUBE ---
+Cross-section of a klystron amplifier tube, electron beam path through resonant cavities, bunching and catching cavities, collector, cathode and heater, cooling jacket, dark background, high-power microwave tube aesthetic --ar 9:16
+
+
+
+# =============================================================================
+# 11. MEASUREMENT — Calipers, Micrometers, Gauges, Precision Tools (10)
+# =============================================================================
+
+--- MSR-01. VERNIER CALIPER ---
+Precision vernier caliper, main scale and vernier scale aligned, jaw opening measuring a cylindrical object, depth rod extended, lock screw, fine engraved graduations, dark background, metrology instrument aesthetic --ar 16:9
+
+--- MSR-02. DIAL INDICATOR ---
+Dial test indicator with magnetic base, needle at zero, plunger contacting surface, revolution counter subdial, tolerance markers set on bezel, dark background, dimensional inspection aesthetic --ar 1:1
+
+--- MSR-03. GAUGE BLOCK STACK ---
+Wrung stack of precision gauge blocks, mirror-finish surfaces adhering by molecular attraction, block sizes etched on sides in monospace, buildup dimensions calculated, dark background, dimensional metrology aesthetic --ar 4:3
+
+--- MSR-04. SURFACE PLATE ---
+Granite surface plate with precision flat surface, indicator stand positioned for measurement, parallel bars, angle blocks, layout fluid stain, dark workshop background, quality inspection aesthetic --ar 4:3
+
+--- MSR-05. THREAD GAUGE ---
+Thread pitch gauge fan opened showing multiple blades, tooth profiles at different pitches, pivot rivet, blade labels stamped in metal, one blade engaged with threaded fastener, dark background, mechanical fastener inspection aesthetic --ar 4:3
+
+--- MSR-06. LEVEL VIAL ---
+Precision spirit level vial, bubble centered between graduation marks, curved glass tube, meniscus visible, mounting base with adjustment screws, dark background, surveying instrument detail aesthetic --ar 16:9
+
+--- MSR-07. FEELER GAUGE ---
+Fan of feeler gauge blades of graduated thickness, thinnest blades flexible, thickness values stamped on each blade, inserted into a gap measuring clearance, dark background, mechanical fit assessment aesthetic --ar 4:3
+
+--- MSR-08. OPTICAL COMPARATOR ---
+Optical comparator screen showing magnified part profile, overlay template alignment, angular measurement lines, radius measurements, tolerance zone boundaries, green screen with shadow profile, measurement laboratory aesthetic --ar 4:3
+
+--- MSR-09. PRESSURE GAUGE ---
+Bourdon tube pressure gauge face, needle indicating on dial, psi and kPa dual scales, red zone marking maximum pressure, black case, dark industrial background, process instrumentation aesthetic --ar 1:1
+
+--- MSR-10. COORDINATE MEASURING ---
+Coordinate measuring machine probe tip approaching a precision part, ruby stylus sphere, articulating probe head, granite table, part fixture, measurement readout implied, dark background, dimensional verification aesthetic --ar 4:3
+
+
+
+# =============================================================================
+# 12. DECAY — Rust, Patina, Erosion, Entropy, Material Degradation (10)
+# =============================================================================
+
+--- DEC-01. RUST BLOOM ---
+Iron surface covered in active rust blooms, layered oxide flaking and lifting, bright orange-brown corrosion products, moisture beads trapped under oxide layers, pitting beneath, dark background, ferrous corrosion study aesthetic --ar 1:1
+
+--- DEC-02. COPPER PATINA ---
+Architectural copper panel with developed verdigris patina, green-blue copper carbonate formation, drip patterns from rain exposure, interface between aged and fresh copper, dark background, atmospheric corrosion aesthetic --ar 4:3
+
+--- DEC-03. CONCRETE SPALLING ---
+Deteriorating reinforced concrete, spalled surface revealing corroded rebar, rust staining streaking downward, aggregate exposed, freeze-thaw damage pattern, delamination layers, structural decay aesthetic --ar 4:3
+
+--- DEC-04. PAINT DELAMINATION ---
+Multiple layers of old paint cracking and peeling, alligator pattern crazing, previous color layers revealed at different depths, substrate visible through gaps, environmental weathering, material archaeology aesthetic --ar 1:1
+
+--- DEC-05. EROSION CHANNEL ---
+Water erosion channels carved in sedimentary rock, V-shaped cuts following weakness planes, sediment deposits at channel junctions, differential erosion around harder inclusions, dark stone, geomorphological decay aesthetic --ar 3:4
+
+--- DEC-06. MAGNETIC TAPE DEGRADATION ---
+Degraded magnetic tape, oxide shedding from binder, sticky-shed syndrome visible as tacky residue, edge damage from poor storage, warped reel, dark background, data loss through material decay aesthetic --ar 4:3
+
+--- DEC-07. CIRCUIT BOARD CORROSION ---
+Corroded circuit board, green verdigris on copper traces, electrolytic migration between conductors, flux residue attracting moisture, component leads oxidized, dark background, electronic failure forensics aesthetic --ar 4:3
+
+--- DEC-08. ENTROPY GRADIENT ---
+Abstract representation of increasing entropy, ordered crystalline structure on one side gradually dissolving into random particle distribution, phase transition boundary, information decay visualization, dark background, thermodynamic aesthetic --ar 16:9
+
+--- DEC-09. FOSSIL IMPRESSION ---
+Fossil impression in sedimentary rock, organism outline preserved as negative space, surrounding matrix texture, partial dissolution of original structure, geological time scale implied, dark background, paleontological preservation aesthetic --ar 1:1
+
+--- DEC-10. GALVANIC CORROSION ---
+Junction of dissimilar metals showing galvanic corrosion, anodic metal pitted and consumed, cathodic metal protected, electrolyte staining at joint, fastener head corroded, dark background, electrochemical degradation aesthetic --ar 4:3
+
+
+
+# =============================================================================
+# 13. NOTATION — Musical Scores, Mathematical, Symbolic Systems (10)
+# =============================================================================
+
+--- NOT-01. HAND-ENGRAVED SCORE ---
+Hand-engraved musical score on copper plate, note heads and stems as incised marks, staff lines ruled with precision, dynamic markings, articulation, dark patina on plate surface, music engraving craft aesthetic --ar 4:3
+
+--- NOT-02. TENSOR NOTATION ---
+Blackboard filled with tensor calculus notation, Einstein summation convention, index gymnastics, Christoffel symbols, covariant derivatives, chalk dust visible, erased traces of previous work, theoretical physics aesthetic --ar 16:9
+
+--- NOT-03. LOGIC GATES ---
+Boolean logic gate diagram, AND OR NOT NAND NOR XOR gates in standard symbols, interconnected with signal lines, truth tables adjacent, timing diagram below, dark background, digital logic textbook aesthetic --ar 4:3
+
+--- NOT-04. CIRCUIT SCHEMATIC ---
+Hand-drawn electronic circuit schematic, component symbols with values annotated, node voltages, signal flow direction, ground symbols, power rails, grid paper background, analog electronics design aesthetic --ar 4:3
+
+--- NOT-05. CHOREOGRAPHIC NOTATION ---
+Labanotation or Benesh movement notation score, vertical staff with position symbols, direction and level indicators, timing marks, abstract representation of motion without human figures, dance notation system aesthetic --ar 9:16
+
+--- NOT-06. CHEMICAL EQUATION ---
+Complex chemical reaction mechanism written on a chalkboard, curved arrows showing electron movement, intermediates in brackets, catalytic cycle, reagents and conditions above arrows, organic chemistry notation aesthetic --ar 16:9
+
+--- NOT-07. KNITTING CHART ---
+Knitting pattern chart on graph paper, standardized symbols for different stitches, cable crossing notation, repeat brackets, row numbers, symbol legend, dark background, fiber arts notation system aesthetic --ar 3:4
+
+--- NOT-08. PHONETIC TRANSCRIPTION ---
+IPA phonetic transcription of speech, broad and narrow transcription compared, diacritical marks, tone markings, syllable boundaries, stress marks, articulatory diagrams alongside, linguistics notation aesthetic --ar 4:3
+
+--- NOT-09. ASTRONOMICAL SYMBOLS ---
+Reference sheet of astronomical and astrological symbols, planet glyphs, zodiac signs, aspect symbols, degree-minute-second notation, celestial coordinate shorthand, dark background, astronomical notation system aesthetic --ar 1:1
+
+--- NOT-10. BRAILLE MUSIC ---
+Braille music notation embossed on heavy paper, tactile dots forming musical phrases, measure numbers, key and time signature indicators, raised dot patterns under raking sidelight, accessibility music notation aesthetic --ar 4:3
+
+
+
+# =============================================================================
+# 14. COMPUTATION — Abacus, Slide Rules, Mechanical Calculators (10)
+# =============================================================================
+
+--- CMP-01. ABACUS ---
+Japanese soroban abacus, bamboo frame with rods, beads in calculation position, heaven and earth bead arrangement showing a specific number, reckoning bar dividing sections, dark background, manual computation aesthetic --ar 16:9
+
+--- CMP-02. SLIDE RULE SCALES ---
+Close-up of slide rule logarithmic scales, C and D scales aligned for multiplication, cursor hairline positioned, CI scale for reciprocals, K scale for cubes, fine engine-divided graduations, analog computation aesthetic --ar 16:9
+
+--- CMP-03. CURTA CALCULATOR ---
+Curta mechanical calculator, cylindrical body, setting sliders, crank handle, result counter windows showing digits, cleared zeros, dark background, precision mechanical computation aesthetic --ar 3:4
+
+--- CMP-04. CORE MEMORY PLANE ---
+Magnetic core memory plane, tiny ferrite toroids threaded on wire grid, sense and inhibit wires, X and Y drive lines, hand-woven matrix, dark background, early computer memory aesthetic --ar 1:1
+
+--- CMP-05. DIFFERENCE ENGINE COLUMN ---
+Single column of a Babbage difference engine, stacked number wheels with digits visible, carry mechanism between wheels, shaft and gear linkages, dark background with brass mechanical elements, Victorian computation aesthetic --ar 9:16
+
+--- CMP-06. NIXIE TUBE DISPLAY ---
+Row of Nixie tube numerical displays, wire mesh cathodes forming stacked digit shapes, neon glow around active digit, base pins, amber-orange illumination, dark background, cold cathode display aesthetic --ar 16:9
+
+--- CMP-07. PROGRAMMING DRUM ---
+Drum programmer from an industrial controller, rows of adjustable pegs on a rotating cylinder, cam followers reading peg positions, step sequence counter, dark background, electromechanical sequencing aesthetic --ar 4:3
+
+--- CMP-08. PAPER TAPE READER ---
+Paper tape reader mechanism, sprocket feed holes, data holes in 8-level code, optical sensor array, takeup reel, tape tension arm, partially read tape showing punched pattern, dark background, early I/O device aesthetic --ar 4:3
+
+--- CMP-09. TOGGLE SWITCH PANEL ---
+Front panel of early computer with rows of toggle switches, indicator lights, rotary selector switches, panel labels in monospace, address and data register displays, sense switch row, dark equipment room, early mainframe operator interface aesthetic --ar 16:9
+
+--- CMP-10. NOMOGRAM ---
+Multi-scale nomogram for engineering calculation, three or more graduated axes, alignment line solving equation, pivot point, scale labels in monospace, isopleth drawn across scales, dark background, graphical computation aesthetic --ar 3:4
+
+
+
+# =============================================================================
+# 15. CONTAINMENT — Vessels, Chambers, Reactors, Sealed Systems (10)
+# =============================================================================
+
+--- CNT-01. PRESSURE VESSEL ---
+Cylindrical pressure vessel with dished ends, welded seams visible, nozzle penetrations with flanged connections, nameplate with MAWP rating, dark industrial background, ASME code vessel aesthetic --ar 4:3
+
+--- CNT-02. VACUUM CHAMBER ---
+High vacuum chamber with viewport windows, conflat flanges with copper gaskets, feedthrough connections, ion gauge, gate valve, pumping port, interior visible through window, dark laboratory background, ultra-high vacuum aesthetic --ar 1:1
+
+--- CNT-03. BELL JAR ---
+Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4
+
+--- CNT-04. DEWAR FLASK ---
+Silvered glass Dewar flask cutaway, double-walled construction, evacuated interspace, silvered surfaces for radiation reduction, pour spout, cryogenic liquid nitrogen visible inside, dark background, thermal isolation aesthetic --ar 9:16
+
+--- CNT-05. FARADAY CAGE ---
+Interior of a Faraday cage room, copper mesh on walls ceiling and floor, filtered power entry panel, waveguide-below-cutoff ventilation ducts, RF-tight door with finger stock gaskets, dark interior, electromagnetic shielding aesthetic --ar 4:3
+
+--- CNT-06. REACTOR VESSEL CUTAWAY ---
+Nuclear reactor pressure vessel cutaway diagram, core barrel, fuel assemblies, control rod guide tubes, coolant inlet and outlet nozzles, vessel head with penetrations, dark background, nuclear engineering aesthetic --ar 9:16
+
+--- CNT-07. AUTOCLAVE ---
+Industrial autoclave with door open, internal chamber with rack supports, door locking ring mechanism, pressure relief valves, temperature sensor ports, gasket sealing surface, dark background, high-pressure processing aesthetic --ar 4:3
+
+--- CNT-08. GLOVE BOX ---
+Inert atmosphere glove box, transparent panels showing interior workspace, port-mounted gloves, antechamber transfer lock, gas purification readout, pressure differential gauge, dark laboratory background, controlled atmosphere aesthetic --ar 16:9
+
+--- CNT-09. CALORIMETER BOMB ---
+Bomb calorimeter device, heavy-walled steel bomb vessel, ignition wire leads, oxygen filling valve, water jacket surrounding, thermometer insertion point, dark background, thermodynamic measurement aesthetic --ar 1:1
+
+--- CNT-10. CONTAINMENT BUILDING ---
+Cross-section of reactor containment building, thick reinforced concrete shell, steel liner, equipment airlock, personnel airlock, polar crane, steam generators inside, dark background, nuclear safety barrier aesthetic --ar 4:3
+
+
+# =============================================================================
+# END — 150 PROMPTS / 15 CATEGORIES (v3)
+# =============================================================================

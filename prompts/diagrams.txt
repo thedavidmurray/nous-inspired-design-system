@@ -1,0 +1,36 @@
+# =============================================================================
+# DIAGRAMS — Technical, Network, Data Visualization
+# Post-process: dither-accent cyan, dither-full, riso
+# MJ settings: --style raw --stylize 150 --v 6.1
+# =============================================================================
+
+
+--- DIAG-01. SWARM TOPOLOGY MAP ---
+Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization, Swiss grid layout, minimal brutalist infographic, blueprint aesthetic, no decorative elements --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- DIAG-02. SIGNAL PROPAGATION DIAGRAM ---
+Technical diagram showing concentric signal rings emanating from a central transmitter, dotted ray lines showing signal paths, atmospheric interference zones labeled, frequency bands marked in monospace, dark background, radar screen aesthetic, Swiss grid technical illustration --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- DIAG-03. AGENT STATE MACHINE ---
+Finite state machine diagram with rectangular states connected by labeled transition arrows, each state containing monospace text, dark background with white and cyan lines, error states in red, init state highlighted, formal computer science diagram aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1
+
+--- DIAG-04. MESSAGE QUEUE FLOW ---
+Left-to-right flow diagram showing message producers, queue buffers, and consumer processes, each element as geometric blocks, throughput metrics in monospace labels, dark background, pipeline architecture visualization, technical documentation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- DIAG-05. NETWORK LATENCY HEATMAP ---
+Grid heatmap showing latency between network nodes, dark background, cells colored from green through yellow to red, axis labels in monospace showing node names, legend bar at bottom, data center infrastructure monitoring aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- DIAG-06. CRYPTOGRAPHIC KEY EXCHANGE ---
+Technical diagram showing two endpoints exchanging encrypted messages, lock and key symbols, dotted lines for encrypted channels, solid for cleartext, certificate chain visualization, dark background with cyan and white elements, security protocol documentation aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- DIAG-07. ORBITAL MECHANICS PLOT ---
+Keplerian orbit diagram showing satellite trajectories around a central body, transfer orbit in dashed cyan line, velocity vectors as arrows, orbital parameters labeled in monospace, dark void background, astrodynamics textbook aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- DIAG-08. LOG TIMELINE ---
+Horizontal timeline diagram showing system events as vertical ticks, colored by severity, timestamp labels in monospace at intervals, event clusters visible as dense tick regions, dark background, observability dashboard aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- DIAG-09. DEPENDENCY GRAPH ---
+Directed acyclic graph showing package dependencies, rectangular nodes with version numbers, arrow connections showing import relationships, circular dependency highlighted in red, dark background, build system visualization aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- DIAG-10. FREQUENCY SPECTRUM WATERFALL ---
+Waterfall spectrogram showing radio frequency over time, vertical axis is frequency, horizontal is time, signal intensity as brightness, narrowband signals as bright vertical lines, broadband noise as texture, dark background, signals intelligence monitoring aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1

@@ -1,0 +1,42 @@
+# =============================================================================
+# EDITORIAL — Print, Zine, Catalog, Typography
+# Post-process: riso cyan, riso violet, thermal, dither-bw
+# MJ settings: --style raw --stylize 200-300 --v 6.1
+# =============================================================================
+
+
+--- EDIT-01. ZINE COVER ---
+Front cover of a hand-printed technology zine, large blocky title in uppercase, abstract halftone illustration below, issue number and date in monospace, registration marks visible, cheap paper texture, two-color print in black and cyan, underground publishing aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-02. BROADSHEET FOLD ---
+Newspaper-style broadsheet layout, dense columns of monospace text, halftone photograph inset, large serif headline, column rules, masthead with volume number, paper fold crease visible down center, newsprint texture, black ink only, investigative journalism aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-03. FIELD MANUAL PAGE ---
+Interior page from a technical field manual, numbered step-by-step instructions in monospace, line diagram illustration, warning box with hazard symbol, page number in corner, binding margin visible, matte paper texture, military technical manual aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-04. CONFERENCE BADGE ---
+Rectangular conference lanyard badge, large name field blank, event title in monospace at top, geometric border pattern, barcode at bottom, schedule grid on reverse visible as bleed-through, white card stock, single color print, tech conference aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-05. INDEX CARD SYSTEM ---
+Stack of index cards with handwritten and typed entries, tab dividers visible, catalog numbers in monospace, cross-reference annotations, paper clip holding related cards, soft shadows, slightly yellowed paper, library catalog aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- EDIT-06. SPECIMEN SHEET ---
+Typography specimen sheet showing multiple weights and sizes of a monospace typeface, pangram sentences, character set grid, point size labels, printing registration marks, cream paper stock, letterpress aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- EDIT-07. POSTAL ENVELOPE ---
+Manila envelope with typed address in monospace, stamps, postmark cancellation, routing codes in red, handling marks, rubber stamp impressions, coffee ring stain, CLASSIFIED watermark, postal service bureaucracy aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- EDIT-08. SYSTEM POSTER ---
+Large format instructional poster, exploded technical diagram in center, numbered callouts around perimeter, title bar at top in bold monospace, revision date and document number at bottom, blueprint blue on white, industrial safety documentation aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- EDIT-09. RECEIPT ROLL ---
+Continuous thermal receipt paper unfurling vertically, dense transaction log in monospace, separator lines between entries, faded and banded sections, slight paper curl, total line at bottom, convenience store receipt aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1
+
+--- EDIT-10. BROADCAST LOG ---
+Handwritten broadcast log on ruled paper, columns for time, frequency, call sign, and notes, pencil and pen entries mixed, corrections with strikethrough, coffee mug ring, desk lamp shadow, shortwave radio operator aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- EDIT-11. PATCH NOTES ---
+Printed changelog document, version numbers as section headers, bullet point lists of changes, deprecated features in strikethrough, monospace throughout, staple marks in corner, laser printer output on white paper, software release documentation aesthetic --ar 3:4 --style raw --stylize 100 --v 6.1
+
+--- EDIT-12. EVENT FLYER ---
+Photocopied event flyer, bold condensed title, abstract geometric illustration, date and venue in monospace, tear-off tabs at bottom with phone numbers, paper grain and copy artifacts visible, single color xerox on colored paper, DIY punk show flyer aesthetic --ar 3:4 --style raw --stylize 250 --v 6.1

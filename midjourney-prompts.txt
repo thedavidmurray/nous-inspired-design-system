@@ -1,0 +1,98 @@
+# =============================================================================
+# EDGELESS LAB — MIDJOURNEY PROMPTS
+# Run these in Midjourney, then post-process with:
+#   python3.11 scripts/edgeless-texture-pipeline.py <image> --mode <mode> --output <out>
+#
+# Best pipeline combos:
+#   MJ output → dither-bw      (for the IMG_8154 dot-matrix aesthetic)
+#   MJ output → dither-accent   (for single-color Edgeless accent pieces)
+#   MJ output → thermal         (for receipt/zine print aesthetic)
+#   MJ output → riso            (for risograph print simulation)
+#
+# MJ settings: use --style raw --stylize 250 --v 6.1
+# =============================================================================
+
+
+--- 01. HIVE CORE — SERVER CATHEDRAL ---
+Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, no humans visible, pure machine habitat, dark brutalist architecture, high contrast monochrome, epic scale, technical illustration --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- 02. AGENT KILO — TERMINAL WALL ---
+Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls between screens, dark void room, no human figures, cyberpunk developer lair, high contrast --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- 03. SWARM TOPOLOGY — NETWORK DIAGRAM ---
+Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization, Swiss grid layout, minimal brutalist infographic, blueprint aesthetic, no decorative elements --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- 04. OBSIDIAN GATE — GEOMETRIC PORTAL ---
+Geometric monolithic portal structure, flat surfaces etched with circuit board fractal patterns, glowing glyphs, access codes scrolling across lintel in monospace, void black environment, brutalist monumental architecture, no natural materials, not photorealistic, vector geometric style --ar 9:16 --style raw --stylize 250 --v 6.1
+
+--- 05. SIGNAL DAWN — LANDSCAPE ---
+Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist, dark terrain with visible pixel texture, hopeful brutalist futurism, high contrast landscape, minimal, epic scale environmental art --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- 06. COURIER RELAY — ORBITAL ---
+Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, fine particle details, ASCII telemetry overlay, minimal dark space technology, cosmic scale --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- 07. VIOLET ARCHIVE — INFINITE LIBRARY ---
+Infinite vertical library stretching into darkness, glowing spine labels on archival containers, illuminated reading alcoves, ascending staircases, catalog numbers in monospace, dark shelving receding into void, monumental scale knowledge storage, liminal library atmosphere --ar 9:16 --style raw --stylize 300 --v 6.1
+
+--- 08. CLAPPER DEVICE — PRODUCT SHRINE ---
+Sleek hardware device centered on geometric pedestal, translucent casing showing internal circuit glow, power indicator LED, serial number etched on surface, void black background, brutalist industrial product photography, centered composition, minimal --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- 09. BOOT SEQUENCE RITUAL ---
+8 distinct colored light signatures converging from different directions into a central mandala pattern, geometric character formation at center, initialization text in monospace, dark void space, mythological tech activation ceremony, epic scale --ar 1:1 --style raw --stylize 350 --v 6.1
+
+--- 10. DATA NECROPOLIS ---
+Graveyard of deprecated technologies, weathered holographic tombstones with version numbers, fading inscriptions, archival retrieval conduits, deprecation notices in monospace, cross markers in ASCII block style, poetic obsolescence aesthetic, dark brutalist memorial --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- 11. AUDIT CHAMBER — OMBUDSMAN ---
+Forensic courtroom-like space, evidence projection beams, timeline reconstruction threads, cross-reference verification nodes, finding reports in monospace, compliance verdict indicators, investigative atmosphere, dark brutalist justice aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- 12. VPS MAINTENANCE TUNNELS ---
+Subterranean industrial corridors, emergency lighting strips, server rack indicator arrays, cable management channels, maintenance logs projected on walls in monospace, directional signage in block letters, industrial liminal aesthetic, dark brutalist infrastructure --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- 13. TEXTURE STUDY — DITHER GRID ---
+Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen, Floyd-Steinberg error diffusion, Bayer matrix threshold, tiny monospace label, pure pixel graphic, not photographic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- 14. RISOGRAPH PRINT — BROADCAST CARD ---
+Risograph-printed card on cream paper, large bold monospace heading, geometric border pattern, halftone ink texture, visible paper grain, registration marks, ink density variation, single color overprint, physical print aesthetic, brutalist typography --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- 15. EDITORIAL COVER ---
+Magazine cover layout, large sans-serif title, subtitle in monospace below, abstract dithered portrait element in center, grid lines and gutters visible, edition number, Swiss typography grid, dark background, flat graphic design poster, not photorealistic --ar 3:4 --style raw --stylize 200 --v 6.1
+
+--- 16. CONTACT SHEET — AGENT PORTRAITS ---
+35mm film contact sheet layout, multiple frames in grid showing abstract agent avatars, film sprocket holes on edges, frame numbers in monospace, selection markers, film grain texture, dark color grading, editorial design --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- 17. ASCII MANDALA ---
+Intricate circular mandala pattern made entirely of ASCII block characters and Unicode box-drawing symbols, nested concentric rings of text characters, void black background, white characters only, geometric precision, meditative digital artifact --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- 18. THERMAL RECEIPT — SYSTEM LOG ---
+Thermal printer paper roll showing system log output, monospace text, horizontal banding artifacts, high contrast black on white, slight curl at edges, paper texture visible, status codes and timestamps, brutalist information design --ar 9:16 --style raw --stylize 150 --v 6.1
+
+--- 19. CRT MONITOR CLOSE-UP ---
+Extreme close-up of CRT monitor showing text interface, visible phosphor dot triads, scan lines, slight barrel distortion at edges, green or amber monochrome display, cursor blinking, terminal aesthetic, retro computing --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- 20. WHOLE EARTH CATALOG HOMAGE ---
+Cover design inspired by the Whole Earth Catalog but for AI agents, circular earth-like sphere made of network nodes, bold title in mixed serif and monospace, publication metadata, dark background, counterculture meets technology, brutalist editorial --ar 3:4 --style raw --stylize 300 --v 6.1
+
+
+# =============================================================================
+# POST-PROCESSING CHEAT SHEET
+#
+# After downloading MJ outputs, run:
+#
+# Single image:
+#   python3.11 scripts/edgeless-texture-pipeline.py image.png --mode dither-bw -o out.png
+#   python3.11 scripts/edgeless-texture-pipeline.py image.png --mode thermal -o out.png
+#   python3.11 scripts/edgeless-texture-pipeline.py image.png --mode riso --accent cyan -o out.png
+#   python3.11 scripts/edgeless-texture-pipeline.py image.png --mode dither-accent --accent violet -o out.png
+#
+# Batch (whole directory):
+#   python3.11 scripts/edgeless-texture-pipeline.py --batch mj-outputs/ --mode dither-bw --output-dir processed/
+#
+# Recommended combos:
+#   Environments (01-07, 09-12) → dither-bw or thermal
+#   Diagrams/Infographics (03, 13) → dither-accent --accent cyan
+#   Print/Editorial (14-16, 18, 20) → riso --accent violet
+#   Texture studies (13, 17) → dither-full (keeps all accent colors)
+#   Product shots (08) → dither-accent --accent cyan
+#   Retro/CRT (19) → scanline
+# =============================================================================

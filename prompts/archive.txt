@@ -1,0 +1,30 @@
+# =============================================================================
+# ARCHIVE — Memory, Decay, Deprecated, Archaeological
+# Post-process: thermal, dither-bw, riso violet
+# MJ settings: --style raw --stylize 250-350 --v 6.1
+# =============================================================================
+
+
+--- ARC-01. DATA NECROPOLIS ---
+Graveyard of deprecated technologies, weathered holographic tombstones with version numbers, fading inscriptions, archival retrieval conduits, deprecation notices in monospace, cross markers in ASCII block style, poetic obsolescence aesthetic, dark brutalist memorial --ar 16:9 --style raw --stylize 250 --v 6.1
+
+--- ARC-02. FORGOTTEN SERVER ROOM ---
+Abandoned server room with racks still powered, blinking status LEDs in darkness, dust motes in emergency light beams, disconnected cables hanging, floor tiles removed showing cable runs, no human figures, digital ghost town aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1
+
+--- ARC-03. ERASED WHITEBOARD ---
+Whiteboard with ghost traces of erased diagrams still faintly visible, marker smudges, partially legible architecture diagrams, dry-erase marker in tray, fluorescent office lighting, software engineering archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ARC-04. BACKUP TAPE VAULT ---
+Deep underground vault with rows of backup tape cartridges in fireproof cabinets, temperature and humidity gauges on walls, airlock door visible, dim red preservation lighting, catalog system in monospace on cabinet labels, disaster recovery aesthetic --ar 9:16 --style raw --stylize 250 --v 6.1
+
+--- ARC-05. DECOMMISSION NOTICE ---
+Official decommission notice document, printed on letterhead, seal stamped, system name and serial number in monospace, effective date, authorized signatures redacted, bureaucratic system retirement aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1
+
+--- ARC-06. CORE DUMP ---
+Visual representation of a memory core dump, hexadecimal values in a dense monospace grid, repeating patterns visible in the data, address markers on left margin, highlighted anomaly region, dark background, system forensics aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- ARC-07. LEGACY MIGRATION MAP ---
+Diagram showing migration paths between legacy systems, old systems as dark weathered boxes, new systems as clean outlines, data flow arrows with transformation labels, version numbers, some paths marked deprecated with strikethrough, system modernization planning aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- ARC-08. FOSSIL INTERFACE ---
+Screenshot of an ancient graphical user interface, bitmap icons at low resolution, menu bar with unfamiliar options, dialog box with monospace text, window border decorations from early computing, 8-bit color palette, software archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1

@@ -1,0 +1,42 @@
+# =============================================================================
+# TEXTURES — Patterns, Gradients, Material Studies
+# Post-process: dither-bw, dither-full, dither-accent
+# MJ settings: --style raw --stylize 100-200 --v 6.1
+# =============================================================================
+
+
+--- TEX-01. ORDERED DITHER GRADIENT ---
+Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen, Floyd-Steinberg error diffusion, Bayer matrix threshold, tiny monospace label, pure pixel graphic, not photographic --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-02. MOIRE INTERFERENCE ---
+Overlapping rotated line grids creating moire interference patterns, precise geometric lines, varying rotation angles creating different moire densities, high contrast black and white, mathematical precision, optical illusion pattern study --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-03. HALFTONE DOT SCREEN ---
+Close-up of halftone printing dots at different densities, showing how dots merge in shadow areas, CMYK-style separated screens at different angles, newsprint magnification aesthetic, print production reference --ar 1:1 --style raw --stylize 100 --v 6.1
+
+--- TEX-04. SCAN LINE TEXTURE ---
+Horizontal scan line pattern with varying brightness, phosphor glow between lines, slight barrel distortion at edges, RGB subpixel pattern visible at macro scale, CRT monitor close-up aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- TEX-05. PAPER GRAIN ---
+Extreme close-up of handmade paper surface, visible fiber structure, slight texture variation, warm cream tone, chain and laid lines visible, watermark shadow, fine art printmaking paper aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- TEX-06. INK DENSITY STUDY ---
+Gradations of ink density on paper, from dry brush to flooded, showing how ink interacts with paper surface, feathering at edges, pool marks where ink collected, letterpress ink study aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- TEX-07. STATIC NOISE ---
+Pure static noise pattern like TV snow, random black and white pixels at full density, no visible pattern or structure, analog television interference, dead channel aesthetic --ar 1:1 --style raw --stylize 50 --v 6.1
+
+--- TEX-08. CIRCUIT TRACE PATTERN ---
+Abstract pattern of PCB circuit traces, right-angle routing, via holes as dots, copper trace on dark substrate, varying trace widths, component pad patterns, no actual components, pure geometric circuit aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- TEX-09. THERMAL GRADIENT ---
+Horizontal thermal gradient from cold to hot, dark blue through green to yellow to white, false color thermal imaging palette, temperature scale in monospace at edge, infrared camera output aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- TEX-10. WOVEN MESH ---
+Tight grid of interwoven lines creating a mesh pattern, alternating over-under weave visible, slight depth from shadow between strands, industrial filter mesh, wire cloth macro photography aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- TEX-11. EROSION PATTERN ---
+Abstract erosion pattern in dark material, branching channels like river deltas seen from space, fractal branching at multiple scales, high contrast negative image, geological erosion simulation aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- TEX-12. PUNCH CARD GRID ---
+Grid of punch card holes on cardboard stock, some holes punched some intact, column and row numbers in small monospace, IBM 80-column format, cream cardboard with clean rectangular holes, vintage computing data entry aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1

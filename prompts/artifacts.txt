@@ -1,0 +1,37 @@
+# =============================================================================
+# ARTIFACTS — Devices, Objects, Relics, Shrines
+# Post-process: dither-accent cyan, dither-bw, thermal
+# MJ settings: --style raw --stylize 200-300 --v 6.1
+# NOTE: Absolutely no human figures or faces
+# =============================================================================
+
+
+--- ART-01. HARDWARE DEVICE ---
+Sleek hardware device centered on geometric pedestal, translucent casing showing internal circuit glow, power indicator LED, serial number etched on surface, void black background, brutalist industrial product photography, centered composition, minimal --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-02. MAGNETIC TAPE REEL ---
+Single reel of magnetic tape on a spindle, tape partially unwound trailing across surface, oxide coating visible as matte brown, hub and flange details, catalog label in monospace, void black background, data storage archaeology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1
+
+--- ART-03. OSCILLOSCOPE FACE ---
+Close-up of an oscilloscope CRT display showing a complex waveform, green phosphor trace, graticule grid, vertical and horizontal scale markings, adjustment knobs visible at edges, dark laboratory background, test equipment aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1
+
+--- ART-04. FLOPPY DISK COLLECTION ---
+Grid of 3.5-inch floppy disks arranged flat, each with a different handwritten label in marker, metal slider visible, varying colors of plastic shells, one disk slightly overlapping another, top-down view, void black background, data archaeology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-05. PAGER ---
+Black pager device with green LCD display showing a numeric message, belt clip, single-line screen with monospace digits, small antenna nub, scuffed plastic casing, void black background, 1990s communication technology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-06. MODEM ---
+External dial-up modem, row of status LEDs (TX, RX, CD, DTR), serial port at rear, phone jack, compact beige plastic housing, model number plate, void black background, internet archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ART-07. KEY CARD ---
+Magnetic stripe access card, corporate logo embossed, employee number in monospace, magnetic stripe as dark band, hole punch for lanyard, slightly worn edges, void black background, access control aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1
+
+--- ART-08. CIRCUIT BOARD ---
+Populated printed circuit board, chips with part numbers visible, traces routing between components, solder joints, bypass capacitors, crystal oscillator, edge connector fingers, void black background, electronics engineering aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1
+
+--- ART-09. PATCH CABLE BUNDLE ---
+Tight bundle of network patch cables in multiple colors, bundled with velcro ties at intervals, RJ45 connectors fanned out at ends, strain relief boots visible, void black background, network infrastructure aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1
+
+--- ART-10. DOT MATRIX PRINTOUT ---
+Sheet of dot matrix printer paper with perforated tractor feed edges, printed text in monospace showing system log output, continuous form paper with green bar stripes, sprocket holes on margins, vintage computer output aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1

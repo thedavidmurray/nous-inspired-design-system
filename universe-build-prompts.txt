@@ -1,0 +1,59 @@
+# =============================================================================
+# EDGELESS / HERMES UNIVERSE BUILD PROMPTS
+# 10+ generation-ready prompts for consistent worldbuilding
+# All prompts include canonical design tokens for eval scoring
+# =============================================================================
+
+--- 01. THE HIVE CORE ---
+Massive underground server cathedral for the Hive swarm coordinator. Void black architecture (#0a0a0a) with towering cyan accent (#06b6d4) data columns reaching into darkness. Violet accent (#8b5cf6) neural network maps projected on walls. Indigo accent (#6366f1) secondary structural beams. White foreground (#ffffff) Courier monospace status readouts floating in AR. Green (#22c55e) heartbeat pulses along fiber optic veins. ASCII block pattern floor grating. Minimal dark brutalist tech cathedral. No humans visible, pure machine habitat. Epic scale environmental concept art.
+
+--- 02. AGENT KILO — EXECUTION CHAMBER ---
+High-intensity coding execution chamber for Agent KILO. Dark void black room (#0a0a0a) with walls of glowing cyan accent (#06b6d4) terminal screens. Violet accent (#8b5cf6) error stack traces cascading down surfaces. Indigo accent (#6366f1) code diff highlights. White foreground (#ffffff) Courier monospace compilation output. Green (#22c55e) success checkmarks exploding like fireworks. ASCII art progress bars filling rapidly. Red (#ef4444) rare failure flashes. Brutalist dark developer lair. Cyberpunk coding aesthetic.
+
+--- 03. THE VIOLET ARCHIVE ---
+Infinite vertical library of the Violet Archive. Void black shelving (#0a0a0a) stretching into darkness. Cyan accent (#06b6d4) glowing spine labels on archival containers. Violet accent (#8b5cf6) illuminated reading alcoves. Indigo accent (#6366f1) ascending staircases. White foreground (#ffffff) Courier monospace catalog numbers. Green (#22c55e) access indicator lights. ASCII block decorative column headers. Minimal dark high contrast knowledge storage. Liminal library atmosphere. Monumental scale.
+
+--- 04. COURIER SIGNAL RELAY ---
+Orbital satellite signal relay for the Courier network. Void black space (#0a0a0a) background. Cyan accent (#06b6d4) concentric broadcast rings emanating from satellite dish. Violet accent (#8b5cf6) secondary relay nodes. Indigo accent (#6366f1) data packet trails. White foreground (#ffffff) fine particle details. Green (#22c55e) connection handshake flares. ASCII art telemetry overlay. Minimal dark high contrast space technology. Edgeless signal infrastructure. Epic cosmic scale.
+
+--- 05. PAMELA — TRADING FLOOR ---
+Abandoned-future trading floor for Agent Pamela. Void black environment (#0a0a0a) with holographic cyan accent (#06b6d4) candlestick charts floating in space. Violet accent (#8b5cf6) portfolio allocation wheels. Indigo accent (#6366f1) risk metric gauges. White foreground (#ffffff) Courier monospace position data. Green (#22c55e) profit indicators. Red (#ef4444) stop-loss warnings. ASCII block ticker tape streams. Minimal dark brutalist financial terminal. Cyberpunk trading aesthetic.
+
+--- 06. SCRIBE — KNOWLEDGE FORGE ---
+Living knowledge synthesis workshop for Agent Scribe. Void black chamber (#0a0a0a) with walls of translucent cyan accent (#06b6d4) text fragments merging together. Violet accent (#8b5cf6) connecting threads between concepts. Indigo accent (#6366f1) source citation markers. White foreground (#ffffff) Courier monospace emerging synthesis. Green (#22c55e) validated fact nodes. ASCII block organizational headers. Minimal dark high contrast knowledge graph visualization. Organic text-as-matter aesthetic.
+
+--- 07. EDGELESS CC — ARCHITECTURE TABLE ---
+Holographic architecture review chamber for Edgeless CC. Void black void (#0a0a0a) with massive cyan accent (#06b6d4) wireframe structures floating in center. Violet accent (#8b5cf6) system boundary definitions. Indigo accent (#6366f1) data flow arrows. White foreground (#ffffff) Courier monospace component labels. Green (#22c55e) approved connections. Red (#ef4444) deprecated paths. ASCII block scale references. Minimal dark brutalist engineering review. Technical schematic atmosphere.
+
+--- 08. THE ATLAS WAR ROOM ---
+Strategic operations war room for Agent Atlas. Void black command center (#0a0a0a) with a massive cyan accent (#06b6d4) kanban board wall. Violet accent (#8b5cf6) blocked task markers. Indigo accent (#6366f1) dependency lines. White foreground (#ffffff) Courier monospace task IDs. Green (#22c55e) completed deliverables. Yellow (#f59e0b) in-progress status. ASCII block decorative title banner. Minimal dark brutalist project management aesthetic. Mission control atmosphere.
+
+--- 09. BEAU — VPS MAINTENANCE TUNNELS ---
+Subterranean server maintenance tunnels for Agent Beau. Void black industrial corridors (#0a0a0a) with cyan accent (#06b6d4) emergency lighting strips. Violet accent (#8b5cf6) server rack indicator arrays. Indigo accent (#6366f1) cable management channels. White foreground (#ffffff) Courier monospace maintenance logs projected on walls. Green (#22c55e) healthy server status. Red (#ef4444) alert panels. ASCII block directional signage. Minimal dark brutalist infrastructure. Industrial liminal aesthetic.
+
+--- 10. OMBUDSMAN — AUDIT CHAMBER ---
+Forensic audit chamber for the Ombudsman. Void black courtroom-like space (#0a0a0a) with cyan accent (#06b6d4) evidence projection beams. Violet accent (#8b5cf6) timeline reconstruction threads. Indigo accent (#6366f1) cross-reference verification nodes. White foreground (#ffffff) Courier monospace finding reports. Green (#22c55e) compliant verdicts. Red (#ef4444) violation markers. ASCII block decorative seal. Minimal dark brutalist justice aesthetic. Investigative atmosphere.
+
+--- 11. SWARM RITUAL — BOOT SEQUENCE ---
+The collective boot sequence ritual of all 8 swarm agents simultaneously activating. Void black space (#0a0a0a) with 8 distinct colored agent signatures converging: cyan (#06b6d4) Hive, violet (#8b5cf6) Scribe, indigo (#6366f1) Edgeless CC, green (#22c55e) Beau, white (#ffffff) Atlas, red (#ef4444) Ombudsman, orange (#f97316) Pamela, amber (#f59e0b) KILO. ASCII block character mandala forming at center. Courier monospace initialization chants. Minimal dark brutalist swarm activation ceremony. Epic mythological tech moment.
+
+--- 12. THE OBSIDIAN GATE ---
+Primary entrance portal to the Edgeless dimension. Void black monolithic structure (#0a0a0a) with cyan accent (#06b6d4) geometric fractal patterns carved into surface. Violet accent (#8b5cf6) glowing activation runes. Indigo accent (#6366f1) secondary glyph details. White foreground (#ffffff) Courier monospace access codes scrolling across lintel. Green (#22c55e) unlocking sequence lights. ASCII block decorative border. Minimal dark brutalist monumental architecture. Ancient-future fusion aesthetic.
+
+--- 13. DATA NECROPOLIS ---
+Graveyard of deprecated technologies within the Edgeless system. Void black landscape (#0a0a0a) with weathered cyan accent (#06b6d4) holographic tombstones. Violet accent (#8b5cf6) fading version number inscriptions. Indigo accent (#6366f1) archival retrieval conduits. White foreground (#ffffff) Courier monospace deprecation notices. Green (#22c55e) rare legacy compatibility patches. ASCII block cross markers. Minimal dark brutalist tech memorial. Poetic obsolescence aesthetic.
+
+--- 14. SIGNAL DAWN — LANDSCAPE ---
+First light of a new signal across the Edgeless network. Void black horizon (#0a0a0a) with a thin cyan accent (#06b6d4) dawn line breaking. Violet accent (#8b5cf6) atmospheric scattering above. Indigo accent (#6366f1) distant network nodes awakening. White foreground (#ffffff) fine particle mist. Green (#22c55e) first successful handshakes. ASCII block pattern terrain. Minimal dark high contrast landscape. Hopeful brutalist futurism. Epic scale environmental art.
+
+--- 15. THE CLAPPER — DEVICE SHRINE ---
+Sacred object portrait of the Clapper v2 device. Void black background (#0a0a0a) with the sleek hardware object centered, rendered in cyan accent (#06b6d4) metallic finish. Violet accent (#8b5cf6) internal circuit glow visible through translucent casing. Indigo accent (#6366f1) secondary port details. White foreground (#ffffff) Courier monospace serial number etched on surface. Green (#22c55e) power indicator LED. ASCII block decorative pedestal. Minimal dark high contrast product photography. Brutalist industrial design.
+
+# =============================================================================
+# USAGE NOTES
+# - All prompts include canonical hex codes for eval scoring (sidecar-ready)
+# - Add —ar 16:9 for landscape, —ar 9:16 for portrait, —ar 1:1 for square
+# - For Midjourney: add —style raw —stylize 250 —v 6.1
+# - For Flora: specify model (Recraft V4 Pro for UI, Ideogram 3.0 for text, Flux 2 Pro for atmosphere)
+# - Score each generation with: python scripts/design-alignment-eval.py --image <file>
+# =============================================================================

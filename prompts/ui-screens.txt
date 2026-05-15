@@ -1,0 +1,36 @@
+# =============================================================================
+# UI SCREENS — Terminal, Dashboard, Interface Mockups
+# Post-process: scanline, dither-accent cyan, dither-bw
+# MJ settings: --style raw --stylize 150-250 --v 6.1
+# =============================================================================
+
+
+--- UI-01. TERMINAL SESSION ---
+Full-screen terminal emulator showing a multi-pane tmux session, code in one pane, logs in another, git status in third, system monitor in fourth, green and cyan text on void black background, monospace font throughout, developer workstation aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-02. MONITORING DASHBOARD ---
+Dark monitoring dashboard with multiple metric tiles, sparkline graphs showing system health, status indicators as colored dots, uptime counters in monospace, alert banner at top, grid layout with subtle borders, DevOps observability aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-03. BOOT SEQUENCE ---
+Computer boot screen showing POST diagnostics, memory test progress bar, device enumeration list, BIOS version in monospace, cursor blinking at bottom, dark background with white text, system initialization aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1
+
+--- UI-04. PACKET CAPTURE ---
+Network packet capture display, hex dump in left column, ASCII interpretation in right, highlighted bytes in cyan, packet header breakdown above, filter expression bar at top, dark background, Wireshark-style network analysis aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-05. DATABASE QUERY ---
+Terminal showing SQL query results in a formatted table, column headers, aligned monospace data rows, row count at bottom, query execution time displayed, schema name in prompt, dark background, database administration aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-06. GIT LOG GRAPH ---
+Terminal showing git log with branch graph visualization, ASCII art tree of merges and branches, commit hashes in abbreviated hex, author names and dates, colorized branch names, dark background, version control archaeology aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
+
+--- UI-07. SYSTEM ALERT ---
+Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1
+
+--- UI-08. API DOCUMENTATION ---
+Dark-themed API documentation page, endpoint URL in monospace, HTTP method badge, request/response JSON with syntax highlighting, authentication header example, curl command, clean technical documentation aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1
+
+--- UI-09. CRON SCHEDULER ---
+Terminal showing crontab entries, five-field time expressions, command paths, comment lines explaining each job, system cron directory listing, next execution times calculated, dark background, system automation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1
+
+--- UI-10. DEPLOYMENT PIPELINE ---
+CI/CD pipeline visualization, sequential stages as connected blocks, each stage showing pass/fail status, build artifacts flowing between stages, deployment target at end, dark background with green success indicators, continuous delivery aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1
