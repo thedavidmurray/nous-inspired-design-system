@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nous Inspired Design System</title>
-<meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. Open source.">
+<meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. 300 prompts, 6 pipeline modes. Open source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@ body::before {
 }
 
 /* ================================================================
-   SCANLINE OVERLAY — visible, not subtle
+   SCANLINE OVERLAY
    ================================================================ */
 body::after {
   content: '';
@@ -97,7 +97,7 @@ body::after {
   -webkit-backdrop-filter: blur(8px);
 }
 .nav-inner {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -123,22 +123,27 @@ body::after {
   text-transform: uppercase;
   padding: 0.35rem 0.6rem;
   text-decoration: none;
-  border: none;
   transition: color 0.1s;
 }
 .nav-links a:hover { color: var(--cyan); text-decoration: none; }
 
 /* ================================================================
-   DASHED SECTION DIVIDERS
+   SHARED SECTION LAYOUT
    ================================================================ */
 .section {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 5rem 2rem 4rem;
 }
-.section + .section {
+.section-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+.section + .section,
+.section-wide + .section,
+.section + .section-wide {
   border-top: 1px dashed var(--steel);
-  opacity-on: 1;
 }
 .section-divider {
   width: 100%;
@@ -149,8 +154,6 @@ body::after {
   margin: 0;
   opacity: 0.5;
 }
-
-/* Terminal-style section labels */
 .section-label {
   font-size: 0.6rem;
   font-weight: 500;
@@ -174,8 +177,6 @@ body::after {
   background: var(--border-s);
   max-width: 200px;
 }
-
-/* Nous-style metadata annotation */
 .output-meta {
   font-size: 0.6rem;
   color: var(--cream);
@@ -184,7 +185,6 @@ body::after {
   margin-bottom: 1.25rem;
   font-style: italic;
 }
-
 .section-title {
   font-weight: 700;
   font-size: 1.25rem;
@@ -201,20 +201,18 @@ body::after {
 }
 
 /* ================================================================
-   HERO
+   HERO — compact, visual
    ================================================================ */
 .hero {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 2rem 5rem;
-  max-width: 1280px;
+  padding: 0 2rem 4rem;
+  max-width: 1400px;
   margin: 0 auto;
   position: relative;
 }
-
-/* Grid pattern — sparse, architectural */
 .hero-bg {
   position: fixed;
   inset: 0;
@@ -225,13 +223,11 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
 .hero-content {
   position: relative;
   z-index: 1;
-  padding-top: 7rem;
+  padding-top: 5rem;
 }
-
 .hero-credit {
   font-size: 0.6rem;
   letter-spacing: 0.2em;
@@ -239,7 +235,6 @@ body::after {
   color: var(--steel);
   margin-bottom: 0.75rem;
 }
-
 .hero-title {
   font-weight: 700;
   font-size: clamp(2.25rem, 5.5vw, 4rem);
@@ -248,7 +243,6 @@ body::after {
   margin-bottom: 0.25rem;
   color: var(--fg);
 }
-
 .hero-title-sub {
   font-weight: 300;
   font-size: clamp(1.25rem, 3vw, 2rem);
@@ -257,7 +251,6 @@ body::after {
   margin-bottom: 2rem;
   color: var(--fg-s);
 }
-
 .hero-rule {
   width: 100%;
   border: none;
@@ -265,7 +258,6 @@ body::after {
   margin-bottom: 1.5rem;
   opacity: 0.4;
 }
-
 .hero-desc {
   font-size: 0.8rem;
   color: var(--fg-s);
@@ -273,16 +265,10 @@ body::after {
   line-height: 1.75;
   margin-bottom: 2rem;
 }
-
-.hero-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
+.hero-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .hero-meta {
   position: absolute;
-  top: 7rem;
+  top: 5rem;
   right: 0;
   text-align: right;
 }
@@ -295,7 +281,7 @@ body::after {
 }
 
 /* ================================================================
-   BUTTONS — zero radius, raw
+   BUTTONS
    ================================================================ */
 .btn {
   display: inline-flex;
@@ -316,40 +302,19 @@ body::after {
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
 .btn:hover { text-decoration: none; }
-
-.btn-primary {
-  background: var(--cyan);
-  color: var(--void);
-  border-color: var(--cyan);
-}
+.btn-primary { background: var(--cyan); color: var(--void); border-color: var(--cyan); }
 .btn-primary:hover { background: #0891b2; border-color: #0891b2; }
-
-.btn-secondary {
-  background: transparent;
-  color: var(--fg);
-  border-color: var(--border-st);
-}
+.btn-secondary { background: transparent; color: var(--fg); border-color: var(--border-st); }
 .btn-secondary:hover { border-color: var(--fg-t); background: rgba(255,255,255,0.04); }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--fg-t);
-  border-color: transparent;
-}
+.btn-ghost { background: transparent; color: var(--fg-t); border-color: transparent; }
 .btn-ghost:hover { color: var(--fg); }
-
-.btn-danger {
-  background: transparent;
-  color: var(--red);
-  border-color: rgba(239,68,68,0.3);
-}
+.btn-danger { background: transparent; color: var(--red); border-color: rgba(239,68,68,0.3); }
 .btn-danger:hover { background: rgba(239,68,68,0.08); }
-
 .btn-sm { padding: 0.3rem 0.625rem; font-size: 0.65rem; }
 .btn-lg { padding: 0.625rem 1.375rem; font-size: 0.8rem; }
 
 /* ================================================================
-   GALLERY — reference image grid
+   GALLERY — masonry-ish reference grid
    ================================================================ */
 .gallery-grid {
   display: grid;
@@ -379,12 +344,168 @@ body::after {
   grid-column: span 2;
   aspect-ratio: 2/1;
 }
+.gallery-item.tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
 .gallery-caption {
   font-size: 0.55rem;
   color: var(--fg-q);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-top: 0.5rem;
+}
+
+/* Sub-section header within gallery */
+.gallery-sub {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+.gallery-sub-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 0.25rem;
+}
+.gallery-sub-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+}
+.gallery-sub-desc {
+  font-size: 0.72rem;
+  color: var(--fg-t);
+  max-width: 600px;
+  line-height: 1.65;
+}
+
+/* ================================================================
+   PROMPT + IMAGE PAIRS
+   ================================================================ */
+.gen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+.gen-card {
+  background: var(--bg-s);
+  border: 1px solid var(--border-s);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.gen-card-img {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.gen-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05);
+  transition: transform 0.3s ease;
+}
+.gen-card:hover .gen-card-img img {
+  transform: scale(1.03);
+}
+.gen-card-info {
+  padding: 0.875rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px dashed var(--steel);
+}
+.gen-card-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.gen-card-model {
+  font-size: 0.55rem;
+  color: var(--fg-q);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.gen-card-prompt {
+  font-size: 0.62rem;
+  color: var(--fg-t);
+  line-height: 1.6;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.gen-card-prompt.expanded {
+  -webkit-line-clamp: unset;
+}
+.gen-card-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.gen-card-btn {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--fg-q);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border-s);
+  background: transparent;
+  transition: color 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+.gen-card-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+/* ================================================================
+   PIPELINE BEFORE/AFTER SHOWCASE
+   ================================================================ */
+.pipeline-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+.pipeline-showcase-item {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-e);
+}
+.pipeline-showcase-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.pipeline-showcase-item:hover img { transform: scale(1.03); }
+.pipeline-showcase-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(10,10,10,0.85);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  backdrop-filter: blur(4px);
+}
+.pipeline-showcase-label span {
+  color: var(--fg-q);
+  font-weight: 400;
 }
 
 /* ================================================================
@@ -502,13 +623,17 @@ body::after {
 .mode-cmd::before { content: '$ '; color: var(--fg-q); }
 .mode-cmd:hover { color: #4ade80; }
 
-/* Mode preview effects */
-.fx-dither-bw {
-  background: repeating-conic-gradient(var(--fg) 0% 25%, var(--void) 0% 50%) 0 0 / 3px 3px;
+/* Mode preview — now uses actual images */
+.mode-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.fx-dither-accent {
-  background: repeating-conic-gradient(var(--cyan) 0% 25%, var(--void) 0% 50%) 0 0 / 5px 5px;
-}
+
+/* Fallback pattern effects */
+.fx-dither-bw { background: repeating-conic-gradient(var(--fg) 0% 25%, var(--void) 0% 50%) 0 0 / 3px 3px; }
+.fx-dither-accent { background: repeating-conic-gradient(var(--cyan) 0% 25%, var(--void) 0% 50%) 0 0 / 5px 5px; }
 .fx-dither-full {
   background:
     linear-gradient(135deg, var(--indigo) 0%, var(--violet) 33%, var(--cyan) 66%, var(--fg) 100%),
@@ -543,10 +668,7 @@ body::after {
   flex-wrap: wrap;
   align-items: center;
 }
-.prompt-search {
-  flex: 1;
-  min-width: 200px;
-}
+.prompt-search { flex: 1; min-width: 200px; }
 .prompt-set-toggle {
   display: flex;
   gap: 0;
@@ -568,59 +690,6 @@ body::after {
 .prompt-set-btn:last-child { border-right: none; }
 .prompt-set-btn.active { background: var(--indigo); color: #fff; }
 .prompt-set-btn:hover:not(.active) { color: var(--fg); background: var(--bg-t); }
-
-/* Example prompts — full display */
-.prompt-examples {
-  margin-bottom: 2rem;
-  border: 1px dashed var(--steel);
-  background: var(--bg-s);
-}
-.prompt-example-header {
-  padding: 0.5rem 1rem;
-  font-size: 0.6rem;
-  color: var(--cream);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.5;
-  border-bottom: 1px solid var(--border-s);
-}
-.prompt-example-item {
-  padding: 0.875rem 1rem;
-  border-bottom: 1px solid var(--border-s);
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.prompt-example-item:last-child { border-bottom: none; }
-.prompt-example-id {
-  font-size: 0.6rem;
-  color: var(--cyan);
-  font-weight: 700;
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding-top: 0.1rem;
-  min-width: 60px;
-}
-.prompt-example-text {
-  font-size: 0.72rem;
-  color: var(--fg-s);
-  line-height: 1.65;
-  flex: 1;
-}
-.prompt-example-copy {
-  flex-shrink: 0;
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  color: var(--fg-q);
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-  border: 1px solid var(--border-s);
-  background: transparent;
-  transition: color 0.1s, border-color 0.1s;
-  white-space: nowrap;
-}
-.prompt-example-copy:hover { color: var(--cyan); border-color: var(--cyan); }
-
 .prompt-category {
   border: 1px solid var(--border-s);
   overflow: hidden;
@@ -755,13 +824,11 @@ body::after {
 .spacing-label { font-size: 0.62rem; color: var(--fg-t); min-width: 110px; flex-shrink: 0; }
 .spacing-value { font-size: 0.58rem; color: var(--fg-q); cursor: pointer; }
 .spacing-value:hover { color: var(--cyan); }
-
 .radius-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .radius-demo { text-align: center; }
 .radius-box { width: 56px; height: 56px; background: var(--bg-t); border: 1px solid var(--border-st); margin-bottom: 0.375rem; }
 .radius-demo .label { font-size: 0.58rem; color: var(--fg-t); }
 .radius-demo .val { font-size: 0.52rem; color: var(--fg-q); }
-
 .shadow-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .shadow-demo { text-align: center; }
 .shadow-box { width: 72px; height: 72px; background: var(--bg-e); margin-bottom: 0.375rem; }
@@ -792,7 +859,6 @@ body::after {
 .start-card-label.content { color: var(--cyan); }
 .start-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.375rem; }
 .start-card p { font-size: 0.75rem; color: var(--fg-s); margin-bottom: 1.25rem; line-height: 1.65; }
-
 .code-block {
   background: var(--void);
   border: 1px dashed var(--border);
@@ -822,7 +888,7 @@ body::after {
    FOOTER
    ================================================================ */
 .footer {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 3rem 2rem;
   border-top: 1px dashed var(--steel);
@@ -862,12 +928,16 @@ body::after {
 /* ================================================================
    RESPONSIVE
    ================================================================ */
+@media (max-width: 1100px) {
+  .gen-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .hero { padding: 0 1.25rem 4rem; }
-  .section { padding: 3.5rem 1.25rem 3rem; }
+  .section, .section-wide { padding: 3.5rem 1.25rem 3rem; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-item.wide { grid-column: span 2; }
+  .gen-grid { grid-template-columns: 1fr; }
   .mode-grid { grid-template-columns: repeat(2, 1fr); }
   .start-grid { grid-template-columns: 1fr; }
   .pipeline-flow { flex-direction: column; }
@@ -875,13 +945,14 @@ body::after {
   .pipeline-node { border-right: none; border-bottom: 1px dashed var(--steel); }
   .pipeline-node:last-child { border-bottom: none; }
   .hero-meta { display: none; }
+  .pipeline-showcase { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 600px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; }
   .mode-grid { grid-template-columns: 1fr; }
   .palette-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .pipeline-showcase { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -898,13 +969,13 @@ body::after {
     <div class="nav-logo">NOUS <span>DESIGN</span></div>
     <div class="nav-links">
       <a href="#gallery">Gallery</a>
-      <a href="#philosophy">Pipeline</a>
-      <a href="#palette">Palette</a>
+      <a href="#generated">Generated</a>
+      <a href="#pipeline-demo">Pipeline</a>
       <a href="#modes">Modes</a>
       <a href="#prompts">Prompts</a>
       <a href="#components">Components</a>
       <a href="#tokens">Tokens</a>
-      <a href="#start">Get Started</a>
+      <a href="#start">Start</a>
     </div>
   </div>
 </nav>
@@ -931,24 +1002,24 @@ body::after {
       300 prompts. 6 pipeline modes. Take everything.
     </p>
     <div class="hero-actions">
-      <a href="#prompts" class="btn btn-primary">Browse Prompts</a>
-      <a href="#start" class="btn btn-secondary">Get the Code</a>
-      <a href="#tokens" class="btn btn-ghost">View Spec &rarr;</a>
+      <a href="#generated" class="btn btn-primary">See the Work</a>
+      <a href="#prompts" class="btn btn-secondary">Browse Prompts</a>
+      <a href="#start" class="btn btn-ghost">Get the Code &rarr;</a>
     </div>
   </div>
 </div>
 
 <!-- ================================================================
-     GALLERY
+     SEC 02 — AESTHETIC DNA GALLERY
      ================================================================ -->
 <div class="section-divider"></div>
-<section class="section" id="gallery">
-  <div class="section-label" data-sec="[SEC_02]">Gallery</div>
-  <div class="output-meta">OUTPUT 002 / SEED: 8812043991 / RANGE: AESTHETIC_REFERENCES</div>
-  <h2 class="section-title">The Aesthetic Range</h2>
+<section class="section-wide" id="gallery">
+  <div class="section-label" data-sec="[SEC_02]">Aesthetic DNA</div>
+  <div class="output-meta">OUTPUT 002 / SEED: 8812043991 / RANGE: REFERENCE_CORPUS</div>
+  <h2 class="section-title">The Visual Language</h2>
   <p class="section-desc">
-    Cyanotype. Risograph. Woodcut. CRT. Glitch. Dither. The visual language spans centuries and media.
-    These are the reference images the system is built against.
+    Cyanotype photography. Risograph printing. CRT scanlines. ASCII patterns. Dithered gradients.
+    The aesthetic draws from Nous Research's visual identity and extends it across centuries of print and screen media.
   </p>
 
   <div class="gallery-grid">
@@ -956,88 +1027,274 @@ body::after {
       <img src="images/IMG_8156.jpg" alt="Cyanotype classical face with celestial math overlays" loading="lazy">
     </div>
     <div class="gallery-item">
+      <img src="images/IMG_8157.jpg" alt="Blue cyanotype Hermes statue with caduceus" loading="lazy">
+    </div>
+    <div class="gallery-item">
       <img src="images/IMG_8154.jpg" alt="B&W scanline cross glitch circle" loading="lazy">
     </div>
     <div class="gallery-item">
-      <img src="images/IMG_8160.jpg" alt="Green risograph halftone anime poster" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/bluedither.jpeg" alt="Deep blue dithered figure in doorway" loading="lazy">
+      <img src="images/IMG_8161.jpg" alt="Cyanotype knight in ornate armor" loading="lazy">
     </div>
     <div class="gallery-item">
       <img src="images/IMG_8158.jpg" alt="Blue cyanotype classical statues" loading="lazy">
     </div>
     <div class="gallery-item">
-      <img src="images/cosmos_535277155.jpeg" alt="B&W pixel art practical guide" loading="lazy">
+      <img src="images/IMG_8160.jpg" alt="Green risograph halftone anime poster" loading="lazy">
     </div>
     <div class="gallery-item">
-      <img src="images/IMG_8162.jpg" alt="Reference image 8162" loading="lazy">
+      <img src="images/IMG_8155.jpg" alt="Portal anime risograph print" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/bluedither.jpeg" alt="Deep blue dithered figure in doorway" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/IMG_8159.jpg" alt="Blue connected network figures diagram" loading="lazy">
     </div>
     <div class="gallery-item wide">
-      <img src="images/IMG_8163.jpg" alt="Reference image 8163" loading="lazy">
+      <img src="images/IMG_8163.jpg" alt="Master reference mood board — flagship aesthetic sheet" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/liminalspace.jpg" alt="B&W grainy liminal corridor space" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/cosmos_535277155.jpeg" alt="Pixel art — practical guide to walking through walls" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/arena-color-inspo.jpeg" alt="Gradient color orb — violet red cyan" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/whole-earth-catalog.jpeg" alt="Whole Electronic Earth Catalog 1989 bitmap" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/IMG_8162.jpg" alt="Reference image" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/hermes-signal-dawn.png" alt="Hermes signal dawn — dark horizon with text" loading="lazy">
     </div>
   </div>
-  <div class="gallery-caption">// originals/ + inspo/ — reference corpus for prompt development</div>
+  <div class="gallery-caption">// 16 reference images from originals/, inspo/, and early generated outputs</div>
 </section>
 
 <!-- ================================================================
-     PHILOSOPHY
+     SEC 03 — GENERATED EXAMPLES WITH PROMPTS
      ================================================================ -->
 <div class="section-divider"></div>
-<section class="section" id="philosophy">
-  <div class="section-label" data-sec="[SEC_03]">Philosophy</div>
-  <div class="output-meta">OUTPUT 003 / SEED: 1192837465 / CLASS: PIPELINE_ARCHITECTURE</div>
-  <h2 class="section-title">Two-Stage Pipeline</h2>
+<section class="section-wide" id="generated">
+  <div class="section-label" data-sec="[SEC_03]">Generated Outputs</div>
+  <div class="output-meta">OUTPUT 003 / SEED: 5519204738 / CLASS: PROMPT_TO_OUTPUT</div>
+  <h2 class="section-title">Prompt &rarr; Output</h2>
   <p class="section-desc">
-    AI generates composition, color, and mood. Then deterministic dithering post-processes every pixel
-    into a structural pattern. AI cannot produce real structural dithering natively — smooth gradients
-    and soft noise are not the same as Floyd-Steinberg error diffusion or ordered Bayer matrices
-    where every pixel participates in the pattern.
+    Every image was generated from a prompt in the library, then post-processed through the pipeline.
+    The prompt is the creative input. The pipeline is the aesthetic transform. Here are the results paired with their source prompts.
   </p>
 
-  <div class="pipeline-flow">
-    <div class="pipeline-node">
-      <div class="pipeline-node-label indigo">SOURCE</div>
-      <div class="pipeline-node-body">
-        Midjourney v6.1 / v8.1<br>
-        Flora AI (40+ models)<br>
-        Venice / Stable Diffusion
+  <div class="gen-grid">
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-01-hive-core-flux2pro.png" alt="Hive Core — server cathedral" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Hive Core</div>
+        <div class="gen-card-model">Flux 2 Pro</div>
+        <div class="gen-card-prompt" id="prompt-hive">Massive underground server cathedral for the Hive swarm coordinator. Void black architecture with towering cyan data columns, violet neural network maps on walls, indigo structural beams. White Courier monospace status readouts floating in AR. Green heartbeat pulses. Halftone dithered texture overlay. ASCII block pattern floor grating. Minimal dark high contrast brutalist tech cathedral.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-hive">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-hive').textContent)">copy prompt</button>
+        </div>
       </div>
     </div>
-    <div class="pipeline-arrow">&rarr;</div>
-    <div class="pipeline-node">
-      <div class="pipeline-node-label cyan">PIPELINE</div>
-      <div class="pipeline-node-body">
-        edgeless-texture-pipeline.py<br>
-        Floyd-Steinberg / Bayer Matrix<br>
-        Halftone / CRT / Thermal
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-05-blue-distressed-nanobanana.png" alt="Blue Distressed Infrastructure" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Blue Distressed</div>
+        <div class="gen-card-model">NanoBanana</div>
+        <div class="gen-card-prompt" id="prompt-blue">A monochromatic intensely blue-toned distressed photograph of abstract digital infrastructure. Void black deep shadows. Cyan primary tone wash across server racks and cable bundles. Violet secondary highlights on circuit boards. Heavy film grain, scan lines, dithered halftone texture overlay. Courier monospace timestamp watermark. Minimal dark high contrast brutalist distressed photography.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-blue">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-blue').textContent)">copy prompt</button>
+        </div>
       </div>
     </div>
-    <div class="pipeline-arrow">&rarr;</div>
-    <div class="pipeline-node">
-      <div class="pipeline-node-label green">OUTPUT</div>
-      <div class="pipeline-node-body">
-        Structurally dithered asset<br>
-        Print-quality 1-bit or 5-color<br>
-        Web / print / social ready
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-04-editorial-cover-ideogram.png" alt="Editorial Cover" loading="lazy">
       </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Editorial Cover</div>
+        <div class="gen-card-model">Ideogram</div>
+        <div class="gen-card-prompt" id="prompt-edit">Editorial catalog cover for Edgeless Lab. Void black background. Large title in white JetBrains Mono font. Cyan subtitle text. Violet abstract dithered portrait element in center. Indigo grid lines and gutters. Green small edition number. Minimal dark high contrast brutalist editorial design. Swiss typography grid layout. Halftone dithered texture throughout.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-edit">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-edit').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-02-kilo-chamber-flux2pro.png" alt="Kilo Chamber — coding execution room" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Kilo Chamber</div>
+        <div class="gen-card-model">Flux 2 Pro</div>
+        <div class="gen-card-prompt" id="prompt-kilo">High-intensity coding execution chamber. Dark void black room with walls of glowing cyan terminal screens, violet error traces cascading on opposite wall, indigo code diff highlights on ceiling. White Courier monospace compilation output. Green success checkmarks. Dithered halftone texture. ASCII art progress bars. Minimal dark high contrast brutalist developer lair. Risograph print aesthetic with grain.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-kilo">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-kilo').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-03b-obsidian-gate-styleref-8154.png" alt="Obsidian Gate — knowledge archive" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Obsidian Gate</div>
+        <div class="gen-card-model">Flux 2 Pro + Style Ref</div>
+        <div class="gen-card-prompt" id="prompt-obsidian">Style-filtered distressed photograph of the Obsidian Gate knowledge archive. Void black deep shadow substrate with violet dominant halftone dither across encrypted data vaults. Cyan secondary access light streaks. Indigo tertiary depth. White Courier monospace vault ID readouts. Heavy analog film grain, distressed texture overlay, scan lines. Minimal dark high contrast brutalist archival architecture.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-obsidian">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-obsidian').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-06-hermes-reference-nanobanana.png" alt="Hermes Reference — risograph print" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Hermes Reference</div>
+        <div class="gen-card-model">NanoBanana</div>
+        <div class="gen-card-prompt" id="prompt-hermes">Physical photograph of Edgeless Hermes signal infrastructure printed on textured paper. Cyan typography in Courier monospace on dark surface. Violet geometric decorative elements. Indigo border lines. White primary heading in JetBrains Mono. Risograph dithered halftone print texture. Visible paper grain and ink density variation. Minimal dark high contrast brutalist print artifact.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-hermes">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-hermes').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-09-texture-study-flux2pro.png" alt="Texture Study — dither patterns" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Texture Study</div>
+        <div class="gen-card-model">Flux 2 Pro</div>
+        <div class="gen-card-prompt" id="prompt-texture">Abstract texture study for Edgeless design system. Void black field with ordered dither gradient patterns. Cyan primary dither zone transitioning through indigo mid-tones to violet secondary zone. White fine pixel details at dither boundaries. Green sparse accent pixels. Courier monospace tiny label: "TEXTURE REF 002". Multiple dither algorithms visible: ordered, Floyd-Steinberg, halftone dot screen.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-texture">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-texture').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <div class="gen-card-img">
+        <img src="images/v2-10-clapper-device-ideogram.png" alt="Clapper V2 — sacred object portrait" loading="lazy">
+      </div>
+      <div class="gen-card-info">
+        <div class="gen-card-name">Clapper V2</div>
+        <div class="gen-card-model">Ideogram</div>
+        <div class="gen-card-prompt" id="prompt-clapper">Sacred object portrait of the Clapper v2 device. Void black background. Sleek hardware object centered with cyan metallic finish. Text "CLAPPER V2" in white Courier monospace. Violet internal circuit glow through translucent casing. Green power indicator LED. JetBrains Mono serial number etched on surface. ASCII block decorative pedestal. Minimal dark high contrast brutalist product photography.</div>
+        <div class="gen-card-actions">
+          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-clapper">expand</button>
+          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-clapper').textContent)">copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="gallery-caption">// 8 generated examples from v2 prompt set — paired with source prompts. Models: Flux 2 Pro, Ideogram, NanoBanana</div>
+</section>
+
+<!-- ================================================================
+     SEC 04 — PIPELINE BEFORE/AFTER DEMO
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section-wide" id="pipeline-demo">
+  <div class="section-label" data-sec="[SEC_04]">Pipeline</div>
+  <div class="output-meta">OUTPUT 004 / SEED: 1192837465 / CLASS: PIPELINE_DEMO</div>
+  <h2 class="section-title">One Source, Six Outputs</h2>
+  <p class="section-desc">
+    The same generated image run through all six pipeline modes. AI cannot produce real structural dithering natively &mdash;
+    smooth gradients and soft noise are not Floyd-Steinberg error diffusion or ordered Bayer matrices.
+    The pipeline is deterministic: same input + same seed = same output.
+  </p>
+
+  <div class="pipeline-showcase">
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-dither-bw.png" alt="dither-bw mode" loading="lazy">
+      <div class="pipeline-showcase-label">dither-bw <span>Floyd-Steinberg 1-bit</span></div>
+    </div>
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-riso-cyan.png" alt="riso-cyan mode" loading="lazy">
+      <div class="pipeline-showcase-label">riso-cyan <span>Halftone on cream</span></div>
+    </div>
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-scanline.png" alt="scanline mode" loading="lazy">
+      <div class="pipeline-showcase-label">scanline <span>CRT simulation</span></div>
+    </div>
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-dither-accent-violet.png" alt="dither-accent-violet mode" loading="lazy">
+      <div class="pipeline-showcase-label">dither-accent <span>Bayer 8x8 violet</span></div>
+    </div>
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-thermal.png" alt="thermal mode" loading="lazy">
+      <div class="pipeline-showcase-label">thermal <span>Receipt printer</span></div>
+    </div>
+    <div class="pipeline-showcase-item">
+      <img src="images/v2-01b-dither-full.png" alt="dither-full mode" loading="lazy">
+      <div class="pipeline-showcase-label">dither-full <span>5-color error diffusion</span></div>
     </div>
   </div>
+  <div class="gallery-caption">// source: v2-01b hive core (style-ref 8154) &rarr; edgeless-texture-pipeline.py &rarr; 6 deterministic outputs</div>
 
-  <div style="font-size:0.7rem;color:var(--fg-t);line-height:1.75;max-width:600px;">
-    The pipeline is deterministic given the same input and seed. Every processed image is reproducible.
-    This matters for brand consistency across a corpus of AI-generated assets where stochastic variation
-    would otherwise make every piece feel disconnected.
+  <div style="margin-top:3rem;">
+    <div class="pipeline-flow">
+      <div class="pipeline-node">
+        <div class="pipeline-node-label indigo">SOURCE</div>
+        <div class="pipeline-node-body">
+          Midjourney v6.1 / v8.1<br>
+          Flora AI (40+ models)<br>
+          Venice / Stable Diffusion
+        </div>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-node">
+        <div class="pipeline-node-label cyan">PIPELINE</div>
+        <div class="pipeline-node-body">
+          edgeless-texture-pipeline.py<br>
+          Floyd-Steinberg / Bayer Matrix<br>
+          Halftone / CRT / Thermal
+        </div>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-node">
+        <div class="pipeline-node-label green">OUTPUT</div>
+        <div class="pipeline-node-body">
+          Structurally dithered asset<br>
+          Print-quality 1-bit or 5-color<br>
+          Web / print / social ready
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ================================================================
-     PALETTE
+     SEC 05 — PALETTE
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="palette">
-  <div class="section-label" data-sec="[SEC_04]">Color Tokens</div>
-  <div class="output-meta">OUTPUT 004 / SEED: 4420198837 / CLASS: COLOR_SYSTEM</div>
+  <div class="section-label" data-sec="[SEC_05]">Color Tokens</div>
+  <div class="output-meta">OUTPUT 005 / SEED: 4420198837 / CLASS: COLOR_SYSTEM</div>
   <h2 class="section-title">Palette</h2>
   <p class="section-desc">
     Eight canonical colors. All pipeline modes map to this palette.
@@ -1047,59 +1304,39 @@ body::after {
 </section>
 
 <!-- ================================================================
-     PIPELINE MODES
+     SEC 06 — PIPELINE MODES (detailed)
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="modes">
-  <div class="section-label" data-sec="[SEC_05]">Pipeline</div>
-  <div class="output-meta">OUTPUT 005 / SEED: 7734820011 / CLASS: DITHERING_MODES</div>
-  <h2 class="section-title">Dithering Modes</h2>
+  <div class="section-label" data-sec="[SEC_06]">Dithering Modes</div>
+  <div class="output-meta">OUTPUT 006 / SEED: 7734820011 / CLASS: DITHERING_MODES</div>
+  <h2 class="section-title">Six Rendering Modes</h2>
   <p class="section-desc">
-    Six rendering modes. Each uses real dithering algorithms — not AI approximations.
+    Each uses real dithering algorithms &mdash; not AI approximations.
     Click any command to copy.
   </p>
   <div class="mode-grid" id="mode-grid"></div>
 </section>
 
 <!-- ================================================================
-     PROMPT LIBRARY
+     SEC 07 — PROMPT LIBRARY
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="prompts">
-  <div class="section-label" data-sec="[SEC_06]">Prompts</div>
-  <div class="output-meta">OUTPUT 006 / SEED: 9918273645 / CLASS: PROMPT_LIBRARY / COUNT: 300</div>
+  <div class="section-label" data-sec="[SEC_07]">Prompts</div>
+  <div class="output-meta">OUTPUT 007 / SEED: 9918273645 / CLASS: PROMPT_LIBRARY / COUNT: 300</div>
   <h2 class="section-title">Prompt Library</h2>
   <p class="section-desc">
     300 prompts across 30 categories. v2 targets Midjourney v6.1. v3 targets v8.1.
     Filter by set, search by keyword, click to copy any prompt.
   </p>
 
-  <!-- Full example prompts displayed inline -->
-  <div class="prompt-examples">
-    <div class="prompt-example-header">// Example prompts — full display</div>
-    <div class="prompt-example-item">
-      <div class="prompt-example-id">ENV-01 v2</div>
-      <div class="prompt-example-text">Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, void black background, indigo and cyan accent light, structural dithering texture, monochrome brutalist architecture --ar 3:2 --style raw</div>
-      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
-    </div>
-    <div class="prompt-example-item">
-      <div class="prompt-example-id">OSC-01 v3</div>
-      <div class="prompt-example-text">Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift, dark void background, analog instrument aesthetic, scientific measurement device, 1970s laboratory equipment --ar 1:1 --style raw --v 6.1</div>
-      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
-    </div>
-    <div class="prompt-example-item">
-      <div class="prompt-example-id">COS-01 v2</div>
-      <div class="prompt-example-text">Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, orbital mechanics diagram overlay in monospace, deep space black background, cyan and indigo signal arcs --ar 16:9 --style raw</div>
-      <button class="prompt-example-copy" onclick="copyText(this.previousElementSibling.textContent)">copy</button>
-    </div>
-  </div>
-
   <div class="prompt-filter-bar">
     <input class="input prompt-search" id="prompt-search" type="text" placeholder="Search prompts...">
     <div class="prompt-set-toggle">
       <button class="prompt-set-btn active" data-set="all">All (30)</button>
-      <button class="prompt-set-btn" data-set="v2">v2 — MJ 6.1 (15)</button>
-      <button class="prompt-set-btn" data-set="v3">v3 — MJ 8.1 (15)</button>
+      <button class="prompt-set-btn" data-set="v2">v2 &mdash; MJ 6.1 (15)</button>
+      <button class="prompt-set-btn" data-set="v3">v3 &mdash; MJ 8.1 (15)</button>
     </div>
   </div>
 
@@ -1107,12 +1344,12 @@ body::after {
 </section>
 
 <!-- ================================================================
-     COMPONENTS
+     SEC 08 — COMPONENTS
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="components">
-  <div class="section-label" data-sec="[SEC_07]">Components</div>
-  <div class="output-meta">OUTPUT 007 / SEED: 3318827441 / CLASS: UI_COMPONENTS</div>
+  <div class="section-label" data-sec="[SEC_08]">Components</div>
+  <div class="output-meta">OUTPUT 008 / SEED: 3318827441 / CLASS: UI_COMPONENTS</div>
   <h2 class="section-title">Interactive Elements</h2>
   <p class="section-desc">
     Live HTML/CSS recreations using the design system tokens directly.
@@ -1120,7 +1357,7 @@ body::after {
   </p>
 
   <div class="comp-group">
-    <div class="comp-label">// Button — Variants</div>
+    <div class="comp-label">// Button &mdash; Variants</div>
     <div class="comp-row">
       <button class="btn btn-primary">Primary</button>
       <button class="btn btn-secondary">Secondary</button>
@@ -1130,7 +1367,7 @@ body::after {
   </div>
 
   <div class="comp-group">
-    <div class="comp-label">// Button — Sizes</div>
+    <div class="comp-label">// Button &mdash; Sizes</div>
     <div class="comp-row">
       <button class="btn btn-primary btn-sm">Small</button>
       <button class="btn btn-primary">Medium</button>
@@ -1180,19 +1417,19 @@ body::after {
       </div>
       <div class="card" style="border-color:var(--steel);border-style:dashed;">
         <div class="card-title">Dashed Variant</div>
-        <div class="card-body">Steel blue dashed border — the Nous-reference treatment for archival or metadata content.</div>
+        <div class="card-body">Steel blue dashed border &mdash; the Nous-reference treatment for archival content.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================================================================
-     TOKENS
+     SEC 09 — TOKENS
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="tokens">
-  <div class="section-label" data-sec="[SEC_08]">Tokens</div>
-  <div class="output-meta">OUTPUT 008 / SEED: 6641029938 / SRC: src/tokens/index.ts</div>
+  <div class="section-label" data-sec="[SEC_09]">Tokens</div>
+  <div class="output-meta">OUTPUT 009 / SEED: 6641029938 / SRC: src/tokens/index.ts</div>
   <h2 class="section-title">Design Tokens</h2>
   <p class="section-desc">
     All values from <code style="color:var(--cyan);">src/tokens/index.ts</code> and
@@ -1202,12 +1439,12 @@ body::after {
 </section>
 
 <!-- ================================================================
-     GET STARTED
+     SEC 10 — GET STARTED
      ================================================================ -->
 <div class="section-divider"></div>
 <section class="section" id="start">
-  <div class="section-label" data-sec="[SEC_09]">Quickstart</div>
-  <div class="output-meta">OUTPUT 009 / SEED: 2201748839 / CLASS: INSTALLATION</div>
+  <div class="section-label" data-sec="[SEC_10]">Quickstart</div>
+  <div class="output-meta">OUTPUT 010 / SEED: 2201748839 / CLASS: INSTALLATION</div>
   <h2 class="section-title">Get Started</h2>
   <p class="section-desc">
     Three paths. All get you the full aesthetic.
@@ -1221,8 +1458,6 @@ body::after {
       <div class="code-block" onclick="copyText(this.innerText)"><span class="fn">pnpm</span> add @edgelesslab/design-system</div>
       <div class="code-block" onclick="copyText(this.innerText)"><span class="kw">import</span> { Button, Card, Badge } <span class="kw">from</span>
   <span class="st">'@edgelesslab/design-system'</span>;</div>
-      <div class="code-block" onclick="copyText(this.innerText)"><span class="cm">// tailwind.config.ts</span>
-<span class="kw">import</span> preset <span class="kw">from</span> <span class="st">'@edgelesslab/design-system/preset'</span>;</div>
     </div>
 
     <div class="start-card">
@@ -1243,7 +1478,7 @@ border: 1px dashed <span class="kw">var</span>(<span class="st">--steel</span>);
       <p>300 prompts ready to generate. Post-process any output through the pipeline.</p>
       <div class="code-block" onclick="copyText(this.innerText)"><span class="cm"># clone and run</span>
 <span class="fn">git</span> clone github.com/thedavidmurray/nous-inspired-design-system
-<span class="fn">cd</span> design-system</div>
+<span class="fn">cd</span> nous-inspired-design-system</div>
       <div class="code-block" onclick="copyText(this.innerText)"><span class="fn">python3.11</span> scripts/edgeless-texture-pipeline.py \
   input.png <span class="kw">--mode</span> <span class="st">dither-bw</span> \
   <span class="kw">-o</span> output.png</div>
@@ -1262,8 +1497,8 @@ border: 1px dashed <span class="kw">var</span>(<span class="st">--steel</span>);
     <span style="color:var(--steel);">Nous Inspired. Built by Edgeless Lab.</span>
   </div>
   <div class="footer-right">
-    OUTPUT 010 / SEED: 0000000000<br>
-    VER 2.1.0 / 2026<br>
+    OUTPUT 011 / SEED: 0000000000<br>
+    VER 2.2.0 / 2026<br>
     ALGO: OPEN_SOURCE
   </div>
 </footer>
@@ -1285,10 +1520,17 @@ function copyText(text) {
   navigator.clipboard.writeText(text.trim()).then(() => showToast());
 }
 
+/* --- TOGGLE PROMPT EXPAND --- */
+function togglePrompt(btn) {
+  const target = document.getElementById(btn.dataset.target);
+  target.classList.toggle('expanded');
+  btn.textContent = target.classList.contains('expanded') ? 'collapse' : 'expand';
+}
+
 /* --- PALETTE --- */
 const paletteData = [
   { name: 'Void Black',  hex: '#0a0a0a', use: 'Primary background' },
-  { name: 'White',       hex: '#e8e8e8', use: 'Primary foreground', textDark: false },
+  { name: 'White',       hex: '#e8e8e8', use: 'Primary foreground' },
   { name: 'Steel Blue',  hex: '#4a7c9b', use: 'Borders, metadata, Nous-ref' },
   { name: 'Cyan',        hex: '#06b6d4', use: 'Links, labels, active states' },
   { name: 'Indigo',      hex: '#6366f1', use: 'Primary accent, interactive' },
@@ -1315,22 +1557,22 @@ paletteData.forEach(c => {
 
 /* --- MODES --- */
 const modesData = [
-  { name: 'dither-bw', algo: 'Floyd-Steinberg', fx: 'fx-dither-bw',
+  { name: 'dither-bw', algo: 'Floyd-Steinberg', img: 'images/v2-01b-dither-bw.png',
     desc: '1-bit black/white error diffusion. Every pixel is on or off. Closest to the original dot-matrix aesthetic.',
     cmd: '--mode dither-bw' },
-  { name: 'dither-accent', algo: 'Bayer 8x8', fx: 'fx-dither-accent',
+  { name: 'dither-accent', algo: 'Bayer 8x8', img: 'images/v2-01b-dither-accent-violet.png',
     desc: 'Ordered Bayer matrix dither to void + one accent color. Classic cross-hatch. Accent: cyan, violet, indigo, green.',
     cmd: '--mode dither-accent --accent cyan' },
-  { name: 'dither-full', algo: '5-Color FS', fx: 'fx-dither-full',
+  { name: 'dither-full', algo: '5-Color FS', img: 'images/v2-01b-dither-full.png',
     desc: 'Floyd-Steinberg to the full 5-color palette (void, indigo, violet, cyan, white). Rich color with structural texture.',
     cmd: '--mode dither-full' },
-  { name: 'riso', algo: 'Halftone Dot', fx: 'fx-riso',
+  { name: 'riso', algo: 'Halftone Dot', img: 'images/v2-01b-riso-cyan.png',
     desc: 'Risograph print simulation. Halftone dots on cream paper, two ink separations. Rotated screen angles prevent moire.',
     cmd: '--mode riso --accent cyan' },
-  { name: 'thermal', algo: 'Receipt Print', fx: 'fx-thermal',
+  { name: 'thermal', algo: 'Receipt Print', img: 'images/v2-01b-thermal.png',
     desc: 'Thermal receipt printer. Sigmoid contrast crush + 1-bit dither + horizontal banding + head smear blur. Black on white.',
     cmd: '--mode thermal' },
-  { name: 'scanline', algo: 'CRT Sim', fx: 'fx-scanline',
+  { name: 'scanline', algo: 'CRT Sim', img: 'images/v2-01b-scanline.png',
     desc: 'CRT/VHS monitor simulation. Scanline darkening, 5-bit color quantization, horizontal glitch offsets.',
     cmd: '--mode scanline' },
 ];
@@ -1339,7 +1581,7 @@ const mg = document.getElementById('mode-grid');
 modesData.forEach(m => {
   const d = document.createElement('div');
   d.className = 'mode-card';
-  d.innerHTML = `<div class="mode-preview ${m.fx}"></div>
+  d.innerHTML = `<div class="mode-preview"><img src="${m.img}" alt="${m.name} mode preview" loading="lazy"></div>
     <div class="mode-header">
       <span class="mode-name">${m.name}</span>
       <span class="badge badge-cyan">${m.algo}</span>
@@ -1352,7 +1594,7 @@ modesData.forEach(m => {
 /* --- PROMPT LIBRARY --- */
 const promptCategories = [
   { set:'v2', id:'ENV', name:'Environments', count:12, prompts:[
-    {id:'ENV-01',text:'Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating...'},
+    {id:'ENV-01',text:'Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, void black background, indigo and cyan accent light, structural dithering texture, monochrome brutalist architecture --ar 3:2 --style raw'},
     {id:'ENV-02',text:'Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls...'},
   ]},
   { set:'v2', id:'DIAG', name:'Diagrams', count:12, prompts:[
