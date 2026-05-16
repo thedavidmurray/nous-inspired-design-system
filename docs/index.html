@@ -497,6 +497,52 @@ body::after {
 .gen-card-btn:hover { color: var(--cyan); border-color: var(--cyan); }
 
 /* ================================================================
+   V3 POSTER GALLERY (pipeline-processed + typography)
+   ================================================================ */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+.poster-card {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-s);
+  border: 1px solid var(--border-s);
+}
+.poster-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.poster-card:hover img {
+  transform: scale(1.02);
+}
+.poster-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(10,10,10,0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.poster-card:hover .poster-card-label { opacity: 1; }
+@media (max-width: 768px) {
+  .poster-grid { grid-template-columns: repeat(2, 1fr); }
+  .poster-card-label { opacity: 1; }
+}
+
+/* ================================================================
    PIPELINE BEFORE/AFTER SHOWCASE
    ================================================================ */
 .pipeline-showcase {
@@ -1248,6 +1294,83 @@ body::after {
 
   </div>
   <div class="gallery-caption">// 8 generated examples from v2 prompt set — paired with source prompts. Model: Midjourney v6.1</div>
+
+  <div style="height: 2rem;"></div>
+  <div class="output-meta">OUTPUT 003b / SEED: 8821047356 / CLASS: V3_PIPELINE_PROCESSED</div>
+  <h2 class="section-title">V3 Prompt Set &mdash; Pipeline Processed</h2>
+  <p class="section-desc">
+    Raw Midjourney v8.1 outputs from the v3 prompt categories, run through the texture pipeline (dither-bw, riso, scanline, thermal, dither-accent)
+    and typeset with JetBrains Mono poster treatments. The pipeline strips photographic sharpness and enforces structural dithering.
+    16 categories represented: Oscilloscope, Navigation, Measurement, Computation, Containment, Chemistry, Textile, Printmaking, Notation, Transmission.
+  </p>
+
+  <div class="poster-grid">
+    <div class="poster-card">
+      <img src="images/mj-v3-oscilloscope.jpg" alt="Oscilloscope — XY mode harmonic pattern" loading="lazy">
+      <div class="poster-card-label">scanline / Oscilloscope</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-star-finder.jpg" alt="Star Finder — planisphere celestial overlay" loading="lazy">
+      <div class="poster-card-label">dither-accent cyan / Navigation</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-smith-chart.jpg" alt="Smith Chart — impedance plot" loading="lazy">
+      <div class="poster-card-label">dither-accent violet / Measurement</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-logic-gates.jpg" alt="Logic Gates — Boolean diagram" loading="lazy">
+      <div class="poster-card-label">riso cyan / Computation</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-reactor.jpg" alt="Reactor Containment — cross-section" loading="lazy">
+      <div class="poster-card-label">dither-bw / Containment</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-bell-jar.jpg" alt="Bell Jar — vacuum plate evacuated" loading="lazy">
+      <div class="poster-card-label">dither-accent violet / Chemistry</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-faraday-cage.jpg" alt="Faraday Cage — interior copper mesh" loading="lazy">
+      <div class="poster-card-label">thermal / Containment</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-jacquard.jpg" alt="Jacquard Cards — punch card loom pattern" loading="lazy">
+      <div class="poster-card-label">riso indigo / Textile</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-boring-log.jpg" alt="Boring Log — geotechnical columnar section" loading="lazy">
+      <div class="poster-card-label">dither-full / Measurement</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-lithograph.jpg" alt="Lithograph Stone — Bavarian limestone" loading="lazy">
+      <div class="poster-card-label">dither-bw / Printmaking</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-drypoint.jpg" alt="Drypoint Burr — engraving metal plate" loading="lazy">
+      <div class="poster-card-label">riso cyan / Printmaking</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-burette.jpg" alt="Burette — ring stand meniscus" loading="lazy">
+      <div class="poster-card-label">scanline / Chemistry</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-phonetic.jpg" alt="IPA Transcription — phonetic broad narrow" loading="lazy">
+      <div class="poster-card-label">dither-accent indigo / Notation</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-nomogram.jpg" alt="Nomogram — multi-scale engineering" loading="lazy">
+      <div class="poster-card-label">thermal / Measurement</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-alert.jpg" alt="System Alert — full-screen incident response" loading="lazy">
+      <div class="poster-card-label">scanline / Transmission</div>
+    </div>
+    <div class="poster-card">
+      <img src="images/mj-v3-styleref.jpg" alt="Signal Capture — style ref transmission relay" loading="lazy">
+      <div class="poster-card-label">dither-accent cyan / Transmission</div>
+    </div>
+  </div>
+  <div class="gallery-caption">// 16 v3 outputs — Midjourney v8.1 raw → pipeline processed → JetBrains Mono poster typography. All 6 modes represented.</div>
 </section>
 
 <!-- ================================================================
