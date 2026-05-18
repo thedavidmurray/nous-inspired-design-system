@@ -511,10 +511,12 @@ body::after {
   background: var(--bg-s);
   border: 1px solid var(--border-s);
   cursor: pointer;
+  aspect-ratio: 4 / 5;
 }
 .poster-card img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -1141,26 +1143,11 @@ body::after {
   </div>
 
   <div class="gallery-grid">
-    <div class="gallery-item wide">
-      <img src="images/IMG_8156.jpg" alt="Cyanotype classical face with celestial math overlays" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/IMG_8157.jpg" alt="Blue cyanotype Hermes statue with caduceus" loading="lazy">
-    </div>
     <div class="gallery-item">
       <img src="images/IMG_8154.jpg" alt="B&W scanline cross glitch circle" loading="lazy">
     </div>
     <div class="gallery-item">
-      <img src="images/IMG_8161.jpg" alt="Cyanotype knight in ornate armor" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/IMG_8158.jpg" alt="Blue cyanotype classical statues" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/IMG_8160.jpg" alt="Green risograph halftone anime poster" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/IMG_8155.jpg" alt="Portal anime risograph print" loading="lazy">
+      <img src="images/IMG_8161.jpg" alt="Cyanotype knight in ornate armor — face obscured" loading="lazy">
     </div>
     <div class="gallery-item">
       <img src="images/bluedither.jpeg" alt="Deep blue dithered figure in doorway" loading="lazy">
@@ -1169,7 +1156,7 @@ body::after {
       <img src="images/IMG_8159.jpg" alt="Blue connected network figures diagram" loading="lazy">
     </div>
     <div class="gallery-item wide">
-      <img src="images/IMG_8163.jpg" alt="Master reference mood board — flagship aesthetic sheet" loading="lazy">
+      <img src="images/IMG_8163.jpg" alt="Hermes 3 Dataset — flagship aesthetic reference" loading="lazy">
     </div>
     <div class="gallery-item">
       <img src="images/liminalspace.jpg" alt="B&W grainy liminal corridor space" loading="lazy">
@@ -1178,19 +1165,10 @@ body::after {
       <img src="images/cosmos_535277155.jpeg" alt="Pixel art — practical guide to walking through walls" loading="lazy">
     </div>
     <div class="gallery-item">
-      <img src="images/arena-color-inspo.jpeg" alt="Gradient color orb — violet red cyan" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/whole-earth-catalog.jpeg" alt="Whole Electronic Earth Catalog 1989 bitmap" loading="lazy">
-    </div>
-    <div class="gallery-item">
-      <img src="images/IMG_8162.jpg" alt="Reference image" loading="lazy">
-    </div>
-    <div class="gallery-item">
       <img src="images/hermes-signal-dawn.png" alt="Hermes signal dawn — dark horizon with text" loading="lazy">
     </div>
   </div>
-  <div class="gallery-caption">// 16 reference images from originals/, inspo/, and early generated outputs</div>
+  <div class="gallery-caption">// 8 reference images from originals/, inspo/, and early generated outputs</div>
 </section>
 
 <!-- ================================================================
@@ -1219,21 +1197,6 @@ body::after {
         <div class="gen-card-actions">
           <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-cathedral">expand</button>
           <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-cathedral').textContent)">copy prompt</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="gen-card">
-      <div class="gen-card-img">
-        <img src="images/mj-swarm-topology.jpg" alt="Swarm Topology — technical diagram" loading="lazy">
-      </div>
-      <div class="gen-card-info">
-        <div class="gen-card-name">Swarm Topology</div>
-        <div class="gen-card-model">Midjourney v6.1</div>
-        <div class="gen-card-prompt" id="prompt-topology">Dark technical diagram poster titled SWARM TOPOLOGY for the Edgeless agent network. Void black background (#0a0a0a) with cyan accent (#06b6d4) connection lines between nodes. Violet accent (#8b5cf6) agent identity markers. Indigo accent (#6366f1) data flow direction arrows. White foreground (#ffffff) Courier monospace node labels and JetBrains Mono technical annotations. Minimal dark high contrast brutalist technical diagram. Geometric grid structure.</div>
-        <div class="gen-card-actions">
-          <button class="gen-card-btn" onclick="togglePrompt(this)" data-target="prompt-topology">expand</button>
-          <button class="gen-card-btn" onclick="copyText(document.getElementById('prompt-topology').textContent)">copy prompt</button>
         </div>
       </div>
     </div>
@@ -1329,7 +1292,7 @@ body::after {
     </div>
 
   </div>
-  <div class="gallery-caption">// 8 generated examples from v2 prompt set — paired with source prompts. Model: Midjourney v6.1</div>
+  <div class="gallery-caption">// 7 generated examples from v2 prompt set — paired with source prompts. Model: Midjourney v6.1</div>
 
   <div style="height: 2rem;"></div>
   <div class="output-meta">OUTPUT 003b / SEED: 8821047356 / CLASS: V3_PIPELINE_PROCESSED</div>
