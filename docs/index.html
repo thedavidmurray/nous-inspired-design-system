@@ -1661,6 +1661,12 @@ border: 1px dashed <span class="kw">var</span>(<span class="st">--steel</span>);
   </div>
 </footer>
 
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close">[ESC]</button>
+  <img id="lightbox-img" src="" alt="Full size">
+</div>
+
 <!-- ================================================================
      SCRIPTS
      ================================================================ -->
@@ -2290,11 +2296,5 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') lbOverlay.classList.remove('active');
 });
 </script>
-
-<!-- Lightbox overlay -->
-<div class="lightbox-overlay" id="lightbox-overlay">
-  <button class="lightbox-close">[ESC]</button>
-  <img id="lightbox-img" src="" alt="Full size">
-</div>
 </body>
 </html>
