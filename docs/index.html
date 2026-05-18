@@ -2285,13 +2285,13 @@ document.querySelectorAll('video[autoplay]').forEach(v => {
 const lbOverlay = document.getElementById('lightbox-overlay');
 const lbImg = document.getElementById('lightbox-img');
 document.querySelectorAll('.poster-card').forEach(card => {
-  card.addEventListener('click', () => {
+  card.onclick = () => {
     const src = card.querySelector('img').src;
     lbImg.src = src;
     lbOverlay.classList.add('active');
-  });
+  };
 });
-lbOverlay.addEventListener('click', () => { lbOverlay.classList.remove('active'); });
+lbOverlay.onclick = () => { lbOverlay.classList.remove('active'); };
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') lbOverlay.classList.remove('active');
 });
