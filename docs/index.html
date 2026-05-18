@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nous Inspired Design System</title>
-<meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. 300 prompts, 6 pipeline modes. Open source.">
+<meta name="description" content="A texture pipeline and visual language for structurally dithered, print-quality aesthetics. 300 prompts, 6 modifications. Open source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -510,11 +510,11 @@ body::after {
   position: relative;
   background: var(--bg-s);
   border: 1px solid var(--border-s);
+  cursor: pointer;
 }
 .poster-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -541,6 +541,42 @@ body::after {
   .poster-grid { grid-template-columns: repeat(2, 1fr); }
   .poster-card-label { opacity: 1; }
 }
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(5,5,5,0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 1px solid var(--border);
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  color: var(--fg-s);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+}
+.lightbox-close:hover { color: var(--fg); }
 
 /* ================================================================
    PIPELINE BEFORE/AFTER SHOWCASE
@@ -1046,7 +1082,7 @@ body::after {
       <a href="#gallery">Gallery</a>
       <a href="#generated">Generated</a>
       <a href="#pipeline-demo">Pipeline</a>
-      <a href="#modes">Modes</a>
+      <a href="#modes">Modifications</a>
       <a href="#prompts">Prompts</a>
       <a href="#components">Components</a>
       <a href="#tokens">Tokens</a>
@@ -1074,7 +1110,7 @@ body::after {
     <p class="hero-desc">
       A texture pipeline and visual language built around structural dithering.
       AI generates. Algorithms transform. Every pixel participates.<br>
-      300 prompts. 6 pipeline modes. Take everything.
+      300 prompts. 6 modifications. Take everything.
     </p>
     <div class="hero-actions">
       <a href="#generated" class="btn btn-primary">See the Work</a>
@@ -1382,7 +1418,7 @@ body::after {
   <div class="output-meta">OUTPUT 004 / SEED: 1192837465 / CLASS: PIPELINE_DEMO</div>
   <h2 class="section-title">One Source, Six Outputs</h2>
   <p class="section-desc">
-    The same generated image run through all six pipeline modes. AI cannot produce real structural dithering natively &mdash;
+    The same generated image run through all six modifications. AI cannot produce real structural dithering natively &mdash;
     smooth gradients and soft noise are not Floyd-Steinberg error diffusion or ordered Bayer matrices.
     The pipeline is deterministic: same input + same seed = same output.
   </p>
@@ -1456,7 +1492,7 @@ body::after {
   <div class="output-meta">OUTPUT 005 / SEED: 4420198837 / CLASS: COLOR_SYSTEM</div>
   <h2 class="section-title">Palette</h2>
   <p class="section-desc">
-    Eight canonical colors. All pipeline modes map to this palette.
+    Eight canonical colors. All modifications map to this palette.
     Click any swatch to copy the hex value.
   </p>
   <div class="palette-grid" id="palette-grid"></div>
@@ -1469,7 +1505,7 @@ body::after {
 <section class="section" id="modes">
   <div class="section-label" data-sec="[SEC_06]">Dithering Modes</div>
   <div class="output-meta">OUTPUT 006 / SEED: 7734820011 / CLASS: DITHERING_MODES</div>
-  <h2 class="section-title">Six Rendering Modes</h2>
+  <h2 class="section-title">Six Modifications</h2>
   <p class="section-desc">
     Each uses real dithering algorithms &mdash; not AI approximations.
     Click any command to copy.
@@ -1548,11 +1584,11 @@ body::after {
   </div>
 
   <div class="comp-group">
-    <div class="comp-label">// Input &amp; Select</div>
+    <div class="comp-label">// Input &amp; Select <span style="color:var(--fg-t);font-weight:400;font-size:0.6rem;">&mdash; component preview, not wired to pipeline</span></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem;">
       <input class="input" type="text" placeholder="Enter a value...">
       <select class="select">
-        <option>Select a pipeline mode...</option>
+        <option>Select a modification...</option>
         <option>dither-bw</option>
         <option>dither-accent</option>
         <option>dither-full</option>
@@ -1753,124 +1789,358 @@ modesData.forEach(m => {
 /* --- PROMPT LIBRARY --- */
 const promptCategories = [
   { set:'v2', id:'ENV', name:'Environments', count:12, prompts:[
-    {id:'ENV-01',text:'Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, void black background, indigo and cyan accent light, structural dithering texture, monochrome brutalist architecture --ar 3:2 --style raw'},
-    {id:'ENV-02',text:'Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls...'},
+    {id:"ENV-01",text:"Massive underground server cathedral, towering data columns reaching into darkness, neural network maps projected on walls, fiber optic veins glowing along floor, ASCII character patterns on grating, no humans visible, pure machine habitat, dark brutalist architecture, high contrast monochrome, epic scale, technical illustration --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-02",text:"Room made entirely of CRT terminal screens displaying scrolling code, green checkmark symbols floating, ASCII progress bars, grid floor reflecting screen light, brutalist concrete walls between screens, dark void room, no human figures, cyberpunk developer lair, high contrast --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-03",text:"Subterranean industrial corridors, emergency lighting strips, server rack indicator arrays, cable management channels, maintenance logs projected on walls in monospace, directional signage in block letters, industrial liminal aesthetic, dark brutalist infrastructure --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-04",text:"Dark underground operations room, wall of mismatched monitors showing waveforms and signal maps, operator stations with no chairs, green and cyan status indicators, paper printouts scattered on metal desks, ceiling cable trays, cold fluorescent light bars, no human figures, paranoid cold war signal intelligence aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-05",text:"Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-06",text:"Risograph press in a dark basement workshop, ink drums in cyan and violet, paper stacks on industrial shelving, registration marks on walls, test prints hanging on clotheslines, bare bulb lighting, concrete floor with ink stains, no human figures, underground zine culture aesthetic --ar 4:3 --style raw --stylize 300 --v 6.1"},
+    {id:"ENV-07",text:"Climate-controlled vault of magnetic tape reels stacked floor to ceiling, catalog numbers in monospace on spine labels, preservation equipment, dim amber lighting, metal shelving units, static discharge warning signs, no human figures, archival preservation aesthetic --ar 9:16 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-08",text:"Field of satellite dishes and antenna arrays against a dark sky, red warning lights on tower tips, cable runs between structures, control shed with glowing instruments, radar rotation visible as light streaks, no human figures, remote listening post, cold surveillance aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-09",text:"Industrial radio transmitter room, vacuum tube amplifiers glowing amber, heavy gauge wiring, transmission power meters, frequency dials in monospace labels, cooling fans running, concrete block walls, emergency shutoff switch, no human figures, cold war broadcast infrastructure --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-10",text:"Dark laboratory with a quantum processor suspended in a cryogenic chamber, golden wiring cascading down like chandeliers, helium cooling lines, measurement instruments on black surfaces, blue ambient glow from the processor, no human figures, extreme precision scientific aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1"},
+    {id:"ENV-11",text:"Abandoned control room with dead screens and dark indicator panels, dust on surfaces, one emergency light still glowing red, chair pushed back from console, paper logbooks open, peeling paint on walls, industrial decay, no human figures, Chernobyl control room aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ENV-12",text:"Intersection of pneumatic tube delivery pipes in a building core, transparent tube sections showing capsules in transit, routing manifold with destination labels in monospace, air pressure gauges, brass fittings on dark iron pipe, no human figures, retro-futurist communication infrastructure --ar 1:1 --style raw --stylize 250 --v 6.1"}
   ]},
   { set:'v2', id:'DIAG', name:'Diagrams', count:12, prompts:[
-    {id:'DIAG-01',text:'Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization...'},
-    {id:'DIAG-03',text:'Finite state machine diagram with rectangular states connected by labeled transition arrows, each state containing monospace text, dark background with white and cyan lines...'},
+    {id:"DIAG-01",text:"Technical diagram of interconnected hexagonal nodes connected by data flow lines, labeled nodes in monospace font, dark background, geometric network visualization, Swiss grid layout, minimal brutalist infographic, blueprint aesthetic, no decorative elements --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"DIAG-02",text:"Technical diagram showing concentric signal rings emanating from a central transmitter, dotted ray lines showing signal paths, atmospheric interference zones labeled, frequency bands marked in monospace, dark background, radar screen aesthetic, Swiss grid technical illustration --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"DIAG-03",text:"Finite state machine diagram with rectangular states connected by labeled transition arrows, each state containing monospace text, dark background with white and cyan lines, error states in red, init state highlighted, formal computer science diagram aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-04",text:"Left-to-right flow diagram showing message producers, queue buffers, and consumer processes, each element as geometric blocks, throughput metrics in monospace labels, dark background, pipeline architecture visualization, technical documentation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-05",text:"Grid heatmap showing latency between network nodes, dark background, cells colored from green through yellow to red, axis labels in monospace showing node names, legend bar at bottom, data center infrastructure monitoring aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-06",text:"Keplerian orbit diagram showing satellite trajectories around a central body, transfer orbit in dashed cyan line, velocity vectors as arrows, orbital parameters labeled in monospace, dark void background, astrodynamics textbook aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"DIAG-07",text:"Waterfall spectrogram showing radio frequency over time, vertical axis is frequency, horizontal is time, signal intensity as brightness, narrowband signals as bright vertical lines, broadband noise as texture, dark background, signals intelligence monitoring aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"DIAG-08",text:"Directed acyclic graph showing package dependencies, rectangular nodes with version numbers, arrow connections showing import relationships, circular dependency highlighted in red, dark background, build system visualization aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-09",text:"Diagram of distributed consensus protocol, multiple node columns showing message exchanges as horizontal arrows, commit and abort paths, timeout markers, phase labels in monospace, dark background, distributed systems textbook aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-10",text:"Computer memory layout diagram, stacked rectangular blocks showing heap, stack, text, and data segments, address ranges in hex on left margin, pointer arrows between blocks, dark background with colored sections, systems programming textbook aesthetic --ar 9:16 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-11",text:"Network packet dissection diagram, horizontal byte-level breakdown with field labels, bit positions numbered along top, header fields in different shades, payload as hatched region, RFC-style protocol documentation aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"DIAG-12",text:"Fault tree analysis diagram, top event at apex, AND/OR gates connecting to basic events at leaves, probability annotations, failure mode labels in monospace, dark background, reliability engineering aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1"}
   ]},
   { set:'v2', id:'EDIT', name:'Editorial', count:12, prompts:[
-    {id:'EDIT-01',text:'Front cover of a hand-printed technology zine, large blocky title in uppercase, abstract halftone illustration below, issue number and date in monospace...'},
-    {id:'EDIT-06',text:'Continuous thermal receipt paper unfurling vertically, dense transaction log in monospace, separator lines between entries, faded and banded sections...'},
+    {id:"EDIT-01",text:"Front cover of a hand-printed technology zine, large blocky title in uppercase, abstract halftone illustration below, issue number and date in monospace, registration marks visible, cheap paper texture, two-color print in black and cyan, underground publishing aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1"},
+    {id:"EDIT-02",text:"Newspaper-style broadsheet layout, dense columns of monospace text, halftone photograph inset, large serif headline, column rules, masthead with volume number, paper fold crease visible down center, newsprint texture, black ink only, investigative journalism aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1"},
+    {id:"EDIT-03",text:"Interior page from a technical field manual, numbered step-by-step instructions in monospace, line diagram illustration, warning box with hazard symbol, page number in corner, binding margin visible, matte paper texture, military technical manual aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1"},
+    {id:"EDIT-04",text:"Stack of index cards with handwritten and typed entries, tab dividers visible, catalog numbers in monospace, cross-reference annotations, paper clip holding related cards, soft shadows, slightly yellowed paper, library catalog aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"EDIT-05",text:"Typography specimen sheet showing multiple weights and sizes of a monospace typeface, pangram sentences, character set grid, point size labels, printing registration marks, cream paper stock, letterpress aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1"},
+    {id:"EDIT-06",text:"Continuous thermal receipt paper unfurling vertically, dense transaction log in monospace, separator lines between entries, faded and banded sections, slight paper curl, total line at bottom, convenience store receipt aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1"},
+    {id:"EDIT-07",text:"Handwritten broadcast log on ruled paper, columns for time, frequency, call sign, and notes, pencil and pen entries mixed, corrections with strikethrough, coffee mug ring, desk lamp shadow, shortwave radio operator aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"EDIT-08",text:"Photocopied event flyer, bold condensed title, abstract geometric illustration, date and venue in monospace, tear-off tabs at bottom with phone numbers, paper grain and copy artifacts visible, single color xerox on colored paper, DIY punk show flyer aesthetic --ar 3:4 --style raw --stylize 250 --v 6.1"},
+    {id:"EDIT-09",text:"Manila envelope with typed address in monospace, stamps, postmark cancellation, routing codes in red, handling marks, rubber stamp impressions, coffee ring stain, CLASSIFIED watermark, postal service bureaucracy aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"EDIT-10",text:"Microfiche transparency sheet, tiny document frames in a grid, header strip with catalog info in monospace, film edge markings, held up against a backlight showing document thumbnails, archival research aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"EDIT-11",text:"Multi-part carbon copy form, visible carbon paper between layers, filled fields in typewriter monospace, check boxes, form number and revision date, perforation line at bottom, bureaucratic data entry aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1"},
+    {id:"EDIT-12",text:"Library book due date slip pasted inside a book cover, stamped dates in a column showing years of circulation, library name at top, book pocket below, card catalog number, well-worn paper edges, institutional lending aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'TEX', name:'Textures', count:10, prompts:[
-    {id:'TEX-01',text:'Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen...'},
-    {id:'TEX-05',text:'Abstract pattern of PCB circuit traces, right-angle routing, via holes as dots, copper trace on dark substrate, varying trace widths...'},
+    {id:"TEX-01",text:"Abstract ordered dither gradient pattern, transition from black through mid-tones to white, multiple dithering algorithms visible side by side, halftone dot screen, Floyd-Steinberg error diffusion, Bayer matrix threshold, tiny monospace label, pure pixel graphic, not photographic --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"TEX-02",text:"Overlapping rotated line grids creating moire interference patterns, precise geometric lines, varying rotation angles creating different moire densities, high contrast black and white, mathematical precision, optical illusion pattern study --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"TEX-03",text:"Close-up of halftone printing dots at different densities, showing how dots merge in shadow areas, CMYK-style separated screens at different angles, newsprint magnification aesthetic, print production reference --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"TEX-04",text:"Horizontal scan line pattern with varying brightness, phosphor glow between lines, slight barrel distortion at edges, RGB subpixel pattern visible at macro scale, CRT monitor close-up aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"TEX-05",text:"Abstract pattern of PCB circuit traces, right-angle routing, via holes as dots, copper trace on dark substrate, varying trace widths, component pad patterns, no actual components, pure geometric circuit aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"TEX-06",text:"Pure static noise pattern like TV snow, random black and white pixels at full density, no visible pattern or structure, analog television interference, dead channel aesthetic --ar 1:1 --style raw --stylize 50 --v 6.1"},
+    {id:"TEX-07",text:"Abstract erosion pattern in dark material, branching channels like river deltas seen from space, fractal branching at multiple scales, high contrast negative image, geological erosion simulation aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"TEX-08",text:"Grid of punch card holes on cardboard stock, some holes punched some intact, column and row numbers in small monospace, IBM 80-column format, cream cardboard with clean rectangular holes, vintage computing data entry aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"TEX-09",text:"Tight grid of interwoven copper wire creating a Faraday cage mesh pattern, alternating over-under weave visible, oxidation patina in green, dark background, electromagnetic shielding material aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"TEX-10",text:"Microscope image of magnetic domains in a ferromagnetic material, labyrinthine patterns of light and dark regions, domain walls as sharp boundaries, Kerr effect visualization, materials science microscopy aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'COS', name:'Cosmic', count:10, prompts:[
-    {id:'COS-01',text:'Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines...'},
-    {id:'COS-02',text:'Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist...'},
+    {id:"COS-01",text:"Satellite signal relay in void of space, concentric broadcast rings emanating from dish, secondary relay nodes as geometric shapes, data packet trails as dotted lines, fine particle details, ASCII telemetry overlay, minimal dark space technology, cosmic scale --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"COS-02",text:"Thin bright line breaking across a dark horizon, atmospheric scattering above, distant nodes awakening as points of light, fine particle mist, dark terrain with visible pixel texture, hopeful brutalist futurism, high contrast landscape, minimal, epic scale environmental art --ar 16:9 --style raw --stylize 300 --v 6.1"},
+    {id:"COS-03",text:"Single massive deep space antenna dish pointed at the stars, structure silhouetted against star field, receiver focus at center glowing faintly, cable stays visible as fine lines, ground station buildings as dark blocks below, no human figures, Goldstone tracking station aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1"},
+    {id:"COS-04",text:"Field of satellite debris fragments tumbling in low Earth orbit, each piece catching sunlight at different angles, Earth limb visible as thin blue line below, fine particle cloud, no human figures, Kessler syndrome visualization, dark space debris aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"COS-05",text:"Technical diagram of pulsar radio emissions, rotating neutron star with magnetic field lines, emission cone sweeping through space, timing pulse train below as periodic waveform, dark background with white and cyan lines, astrophysics textbook aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"COS-06",text:"Row of radio telescope dishes in a desert landscape, all pointed at the same sky coordinates, cables running between them on the ground, correlation building in distance, pre-dawn sky, no human figures, VLA New Mexico aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1"},
+    {id:"COS-07",text:"Close-up of a golden phonograph record surface, concentric grooves catching light, cover diagram showing hydrogen atom and pulsar map, etched instructions for playback, gold reflections on dark background, interstellar message aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1"},
+    {id:"COS-08",text:"Single CRT screen showing orbital trajectory plot, green phosphor on dark background, coordinate grid with numbers, spacecraft position dot with velocity vector, ground track projection, mission elapsed time in monospace, Apollo-era mission control aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"COS-09",text:"Diagram of the five Lagrange points in a two-body gravitational system, equipotential contour lines, stability regions shaded, spacecraft positions at L1 and L2, gravitational field vectors, dark background, celestial mechanics textbook aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"COS-10",text:"Cross-section of Earth's magnetosphere deflecting solar wind, bow shock wave, magnetopause boundary, Van Allen radiation belts as nested tori, field lines flowing around the obstacle, dark space background, space physics diagram aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'ART', name:'Artifacts', count:10, prompts:[
-    {id:'ART-01',text:'Ancient stone tablet with circuit-board-like etchings, glowing trace lines in indigo, weathered monolith surface, archaeological technology artifact...'},
-    {id:'ART-02',text:'Glass vacuum tube array on a dark chassis, amber filament glow, bakelite socket bases, hand-wired point-to-point connections...'},
+    {id:"ART-01",text:"Single reel of magnetic tape on a spindle, tape partially unwound trailing across surface, oxide coating visible as matte brown, hub and flange details, catalog label in monospace, void black background, data storage archaeology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"ART-02",text:"Close-up of an oscilloscope CRT display showing a complex waveform, green phosphor trace, graticule grid, vertical and horizontal scale markings, adjustment knobs visible at edges, dark laboratory background, test equipment aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"ART-03",text:"Grid of 3.5-inch floppy disks arranged flat, each with a different handwritten label in marker, metal slider visible, varying colors of plastic shells, one disk slightly overlapping another, top-down view, void black background, data archaeology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"ART-04",text:"Populated printed circuit board, chips with part numbers visible, traces routing between components, solder joints, bypass capacitors, crystal oscillator, edge connector fingers, void black background, electronics engineering aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"ART-05",text:"Sheet of dot matrix printer paper with perforated tractor feed edges, printed text in monospace showing system log output, continuous form paper with green bar stripes, sprocket holes on margins, vintage computer output aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1"},
+    {id:"ART-06",text:"Handheld Geiger-Muller counter, analog meter with logarithmic scale, speaker grille, probe wand with cable, toggle switches, battery compartment, scuffed yellow casing, void black background, radiation detection instrument aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"ART-07",text:"Precision engineering slide rule, logarithmic scales visible, cursor hairline, metal frame, engraved graduations, stock and slide aligned, void black background, pre-digital computation instrument aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"ART-08",text:"Single vacuum tube standing upright, glass envelope showing internal electrode structure, getter flash visible as mirror coating, pin base, filament glow, void black background, analog electronics component aesthetic --ar 3:4 --style raw --stylize 250 --v 6.1"},
+    {id:"ART-09",text:"Brass telegraph key on a wooden base, contact lever, spring tension adjustment, binding posts with wire connections, polished metal surfaces, void black background, early telecommunications aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"ART-10",text:"Open hard drive showing mirror-finish platters and read/write head assembly, actuator arm, voice coil motor, spindle hub, circuit board visible beneath, void black background, data storage precision engineering aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'ARC', name:'Archive', count:8, prompts:[
-    {id:'ARC-01',text:'Deteriorating magnetic tape reel, oxide shedding visible, tape edge damage, plastic reel warping, archival storage failure, data decay aesthetic...'},
-    {id:'ARC-02',text:'Filing cabinet drawer pulled open, dense hanging folders with typed labels, yellowed paper edges, institutional green metal, overhead fluorescent light...'},
+    {id:"ARC-01",text:"Graveyard of deprecated technologies, weathered holographic tombstones with version numbers, fading inscriptions, archival retrieval conduits, deprecation notices in monospace, cross markers in ASCII block style, poetic obsolescence aesthetic, dark brutalist memorial --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"ARC-02",text:"Abandoned server room with racks still powered, blinking status LEDs in darkness, dust motes in emergency light beams, disconnected cables hanging, floor tiles removed showing cable runs, no human figures, digital ghost town aesthetic --ar 16:9 --style raw --stylize 300 --v 6.1"},
+    {id:"ARC-03",text:"Whiteboard with ghost traces of erased diagrams still faintly visible, marker smudges, partially legible architecture diagrams, dry-erase marker in tray, fluorescent office lighting, software engineering archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"ARC-04",text:"Visual representation of a memory core dump, hexadecimal values in a dense monospace grid, repeating patterns visible in the data, address markers on left margin, highlighted anomaly region, dark background, system forensics aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"ARC-05",text:"Diagram showing migration paths between legacy systems, old systems as dark weathered boxes, new systems as clean outlines, data flow arrows with transformation labels, version numbers, some paths marked deprecated with strikethrough, system modernization planning aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"ARC-06",text:"Screenshot of an ancient graphical user interface, bitmap icons at low resolution, menu bar with unfamiliar options, dialog box with monospace text, window border decorations from early computing, 8-bit color palette, software archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"ARC-07",text:"Industrial degaussing apparatus with a reel of tape being erased, electromagnetic coil visible, warning labels, power indicators, data destruction certification form on clipboard nearby, void black background, information security destruction aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"ARC-08",text:"Technical manual left in sunlight, cover faded and warped, spine cracked, page edges yellowed, title barely legible, dust jacket partially detached, library discard stamp, obsolete knowledge aesthetic --ar 3:4 --style raw --stylize 250 --v 6.1"}
   ]},
   { set:'v2', id:'UI', name:'UI Screens', count:10, prompts:[
-    {id:'UI-01',text:'Dark terminal interface with green text on black, command prompt cursor blinking, ASCII art header, scrolling log output, monospace typeface throughout...'},
-    {id:'UI-02',text:'Dashboard with hexagonal grid layout, real-time data feeds, agent status cards, throughput graphs, dark theme UI, cyan accent highlights...'},
+    {id:"UI-01",text:"Full-screen terminal emulator showing a multi-pane tmux session, code in one pane, logs in another, git status in third, system monitor in fourth, green and cyan text on void black background, monospace font throughout, developer workstation aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"UI-02",text:"Dark monitoring dashboard with multiple metric tiles, sparkline graphs showing system health, status indicators as colored dots, uptime counters in monospace, alert banner at top, grid layout with subtle borders, DevOps observability aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"UI-03",text:"Computer boot screen showing POST diagnostics, memory test progress bar, device enumeration list, BIOS version in monospace, cursor blinking at bottom, dark background with white text, system initialization aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"UI-04",text:"Network packet capture display, hex dump in left column, ASCII interpretation in right, highlighted bytes in cyan, packet header breakdown above, filter expression bar at top, dark background, Wireshark-style network analysis aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"UI-05",text:"Terminal showing git log with branch graph visualization, ASCII art tree of merges and branches, commit hashes in abbreviated hex, author names and dates, colorized branch names, dark background, version control archaeology aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"UI-06",text:"Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"UI-07",text:"CI/CD pipeline visualization, sequential stages as connected blocks, each stage showing pass/fail status, build artifacts flowing between stages, deployment target at end, dark background with green success indicators, continuous delivery aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"UI-08",text:"Kernel panic screen, dense stack trace in white monospace on black, register dump, memory addresses, backtrace with function names, blinking cursor at bottom, no recovery option, fatal system failure aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"UI-09",text:"Vertical streams of falling characters on a dark background, mixture of katakana, Latin, and numeric characters, varying brightness showing depth, green phosphor color, no human figures, digital rain aesthetic --ar 9:16 --style raw --stylize 200 --v 6.1"},
+    {id:"UI-10",text:"Terminal showing htop process viewer, CPU usage bars at top, memory gauge, sorted process list with PID, user, CPU%, MEM%, command columns, tree view showing parent-child relationships, dark background, system administration aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"}
   ]},
-  { set:'v2', id:'SUR', name:'Surveillance', count:10, prompts:[
-    {id:'SUR-01',text:'Grid of security camera feeds on a monitoring wall, timestamp overlays in monospace, static interference on some feeds, dark control room...'},
-    {id:'SUR-02',text:'Satellite reconnaissance image, high-altitude aerial view, grid reference overlay, measurement annotations in monospace, grayscale with contrast enhancement...'},
+  { set:'v2', id:'SURV', name:'Surveillance', count:10, prompts:[
+    {id:"SURV-01",text:"Security monitor wall showing 16 CCTV feeds in a 4x4 grid, grainy low-resolution footage, timestamp overlays in monospace, camera numbers, some feeds showing empty corridors, one feed showing static, dark control room, surveillance aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"SURV-02",text:"Circular radar display with rotating sweep line, blips at various ranges, range rings labeled in nautical miles, bearing markers around circumference, green phosphor on dark background, air traffic control aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"SURV-03",text:"Sonar waterfall display, horizontal sweep showing frequency returns over time, biological and mechanical signatures as bright traces, bottom depth contour, range scale in meters, dark blue background, submarine sonar operator aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"SURV-04",text:"Thermal camera view of industrial equipment, false color heat map, hot spots in white-yellow, cool areas in dark purple, temperature scale bar at side, crosshair at center, timestamp, predictive maintenance thermography aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"SURV-05",text:"Shortwave radio receiving setup tuned to a number station broadcast, receiver frequency display showing digits, signal strength meter, recording tape spinning, notepad with groups of five digits written in pencil, cold war espionage aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"SURV-06",text:"Seismograph paper recording showing P-wave and S-wave arrivals, needle trace on moving paper drum, time marks at regular intervals, station identifier in monospace, earthquake event recording, geological monitoring aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"SURV-07",text:"Ground track map showing satellite orbital passes over a world map, Mercator projection, ascending and descending passes as curved lines, acquisition of signal and loss of signal times, ground station coverage circles, dark background, satellite operations aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"SURV-08",text:"Typed transcript of intercepted communications, speaker labels as codenames, timestamps in brackets, redaction bars over classified portions, classification markings at top and bottom of page, typewriter font on government paper, intelligence analysis aesthetic --ar 3:4 --style raw --stylize 150 --v 6.1"},
+    {id:"SURV-09",text:"Floor plan overlay showing accumulated motion detection data as a heatmap, high traffic areas in warm colors, dead zones in cool, sensor positions marked, time period label in monospace, building security analytics aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"SURV-10",text:"Facility floor plan with radiation survey measurements, dose rate values at sample points, contour lines connecting equal values, controlled area boundaries, posted area signs, monitoring instrument readings in margins, health physics aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"}
   ]},
-  { set:'v2', id:'INF', name:'Infrastructure', count:10, prompts:[
-    {id:'INF-01',text:'Underground cable tunnel, bundled fiber optic runs on cable trays, junction boxes with monospace labels, emergency lighting strips, concrete walls...'},
-    {id:'INF-02',text:'Electrical substation at dusk, transformer banks, high-voltage insulators, chain-link perimeter, warning signage, sodium vapor light glow...'},
+  { set:'v2', id:'INFRA', name:'Infrastructure', count:10, prompts:[
+    {id:"INFRA-01",text:"Map of undersea fiber optic cable routes, cables as lines of varying thickness showing capacity, landing stations as dots on coastlines, cable names in monospace labels, ocean depth shading, dark background, telecommunications infrastructure aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"INFRA-02",text:"Electrical grid diagram showing generation sources, transmission lines, substations, and distribution feeders, voltage levels labeled, switch positions indicated, load flow arrows, single-line diagram convention, dark background, electrical engineering aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"INFRA-03",text:"Mechanical piping diagram of a data center cooling system, CRAH units, chilled water loops, pump symbols, valve positions, temperature sensors, flow direction arrows, equipment tags in monospace, MEP engineering aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"INFRA-04",text:"Open fiber optic splice tray showing organized fiber loops, fusion splices protected by heat shrink, fiber identification labels, color-coded tubes, splice tray stack in a junction box, close-up detail, telecommunications craftsmanship aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"INFRA-05",text:"Cross-section diagram of a telecommunications manhole, conduit entries, cable racking, ground water sump, ladder rungs, duct banks radiating outward, utility markings, dark background, underground infrastructure aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"INFRA-06",text:"Data center rack elevation diagram, 42U rack with equipment drawn to scale, port-level detail on switches, PDU placement, cable management, U-position labels, heat output annotations, dark background, data center planning aesthetic --ar 9:16 --style raw --stylize 100 --v 6.1"},
+    {id:"INFRA-07",text:"Internet backbone routing map, autonomous system numbers in circles, peering connections as lines, traffic volume as line thickness, Internet Exchange Points as larger nodes, dark background, network architecture aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"INFRA-08",text:"Tree diagram of DNS resolution, root servers at top, TLD servers below, authoritative nameservers, recursive resolver path shown with arrows, TTL values labeled, query and response differentiated, dark background, internet infrastructure aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"INFRA-09",text:"Overhead cable tray in a data center, organized fiber and copper cable runs, cable labels at regular intervals, fire stop penetrations, grounding straps, cable tray supports, industrial ceiling infrastructure, liminal data center aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"INFRA-10",text:"Room filled with rows of UPS battery cabinets, hydrogen detector on ceiling, eye wash station, battery monitoring panel with individual cell voltages in monospace display, heavy copper bus bars, chemical spill kit, critical power infrastructure aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'CART', name:'Cartography', count:8, prompts:[
-    {id:'CART-01',text:'Topographic map with dense contour lines, elevation labels in monospace, UTM grid overlay, terrain feature symbols, ridge and valley shading...'},
-    {id:'CART-02',text:'Nautical chart detail, depth soundings in fathoms, navigation hazard symbols, channel markers, compass rose, tidal current arrows...'},
+    {id:"CART-01",text:"Topographic contour map of mountainous terrain, contour lines at regular intervals, elevation labels, triangulation points, grid coordinates in monospace, brown ink on cream paper, geological survey aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"CART-02",text:"Nautical chart segment showing depth soundings, navigational buoys, shipping lanes, compass rose, latitude and longitude grid, chart datum note in monospace, hand-colored bathymetric shading, maritime navigation aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"CART-03",text:"Cellular network coverage map, signal strength zones as concentric polygons around tower locations, coverage gaps visible as dark areas, frequency band labels, dark background, telecommunications planning aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"CART-04",text:"Abstract subway system map, colored lines connecting station dots, interchange nodes as larger circles, station names in monospace, river as a blue curve, not geographically accurate, Beck-style diagrammatic map aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"CART-05",text:"Synoptic weather chart, isobars as contour lines, frontal boundaries with standard symbols, wind barbs, station models, pressure annotations in monospace, dark background, meteorological analysis aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"CART-06",text:"Celestial star chart showing constellation patterns, star magnitudes as varying dot sizes, right ascension and declination grid, constellation boundary lines, star names in monospace labels, dark blue background, astronomical observation aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"CART-07",text:"Hand-drawn site survey sketch on grid paper, building footprints with dimensions, setback lines, utility run markings, compass arrow, scale bar, surveyor's notes in margin, pencil on engineering paper, field survey aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"CART-08",text:"Radio frequency propagation prediction map, signal strength contours radiating from transmitter, terrain obstruction shadows, fresnel zone clearance areas, receiver sensitivity threshold line, dark background, RF engineering aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"}
   ]},
   { set:'v2', id:'BIO', name:'Biology', count:8, prompts:[
-    {id:'BIO-01',text:'Microscope view of diatom frustule, intricate silica shell pattern, radial symmetry, pore structure visible, dark field illumination...'},
-    {id:'BIO-02',text:'Neural network branching pattern, dendrites and axons, synaptic connections as bright points, dark void background, neuroscience microscopy...'},
+    {id:"BIO-01",text:"Microscope image of stained neurons, cell bodies as dark blobs, dendrites branching outward, axons as long thin lines, synaptic connections visible, dark field illumination, neuroscience histology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"BIO-02",text:"Underground fungal mycelium network, fine white threads branching through dark soil, nutrient exchange nodes, fruiting body attachment points, root system connections, macro photography, forest floor ecology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"BIO-03",text:"Microscope timelapse of cell mitosis, chromosomes aligning at metaphase plate, spindle fibers visible, cell membrane constricting, daughter cells forming, phase contrast microscopy, cellular biology aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"BIO-04",text:"Backlit leaf showing vascular network, primary and secondary veins branching fractally, light passing through thin tissue between veins, high contrast silhouette, botanical study aesthetic --ar 3:4 --style raw --stylize 200 --v 6.1"},
+    {id:"BIO-05",text:"Extreme close-up of coral polyp structure, radial symmetry of tentacles, calcium carbonate skeleton visible, repeating geometric pattern across colony, dark water background, marine biology macro aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"BIO-06",text:"Cladistic phylogenetic tree diagram, branching from a common ancestor, species labels at leaf nodes in monospace, branch lengths proportional to evolutionary distance, bootstrap support values, dark background, computational biology aesthetic --ar 3:4 --style raw --stylize 100 --v 6.1"},
+    {id:"BIO-07",text:"Physarum polycephalum slime mold network on a dark substrate, yellow-orange veins connecting food sources, network optimization visible in vein thickness, Petri dish edge visible, computational biology aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"BIO-08",text:"Scanning electron microscope image of a diatom, intricate silica frustule with geometric pore patterns, radial symmetry, false-colored structural details, scale bar in corner, dark background, microscopy aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'AUD', name:'Audio', count:8, prompts:[
-    {id:'AUD-01',text:'Vinyl record groove close-up, concentric spiral tracks, dust particles visible, stylus cantilever shadow, side-lit surface detail...'},
-    {id:'AUD-02',text:'Reel-to-reel tape machine transport, tape path through heads, tension arms, VU meters, brushed aluminum faceplate, studio recording aesthetic...'},
+    {id:"AUD-01",text:"Digital audio waveform in an editor window, stereo channels stacked, amplitude envelope visible, selection highlighted in blue, timeline ruler in samples, zoom level showing individual sample points, dark background, audio engineering aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"AUD-02",text:"Audio spectrogram showing speech, time on horizontal axis, frequency on vertical, formant bands visible as bright horizontal streaks, plosive bursts as vertical lines, logarithmic frequency scale, dark background, acoustic analysis aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"},
+    {id:"AUD-03",text:"Audio patch bay panel, rows of TRS jacks, patchcords connecting various points, normalled connections indicated, channel labels in monospace on strips, signal flow diagram printed above, recording studio infrastructure aesthetic --ar 16:9 --style raw --stylize 200 --v 6.1"},
+    {id:"AUD-04",text:"Eurorack modular synthesizer panel, dense array of knobs, jacks, and patch cables in multiple colors, module nameplates, LED indicators, no human hands visible, electronic music instrument aesthetic --ar 4:3 --style raw --stylize 250 --v 6.1"},
+    {id:"AUD-05",text:"Extreme close-up of vinyl record groove under microscope, groove modulation visible as wall undulations, stereo encoding as vertical and lateral movement, stylus tip for scale, dark background, analog audio medium aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"AUD-06",text:"Real-time FFT frequency analyzer display, bar graph showing frequency bins, peak hold indicators, reference curves overlaid, frequency and amplitude axes labeled in monospace, dark background, audio measurement aesthetic --ar 16:9 --style raw --stylize 100 --v 6.1"},
+    {id:"AUD-07",text:"Overhead view of an analog mixing console faders, rows of channel strips, VU meters at unity, aux send knobs, EQ sections, master bus fader, no human hands, dark studio lighting, recording engineering aesthetic --ar 16:9 --style raw --stylize 250 --v 6.1"},
+    {id:"AUD-08",text:"Paper tape from a Morse code decoder, dots and dashes printed as ink marks, decoded letters below each group, tape reel at one end, printer mechanism, continuous strip against dark background, radio telegraphy aesthetic --ar 16:9 --style raw --stylize 150 --v 6.1"}
   ]},
-  { set:'v2', id:'TYP', name:'Typography', count:8, prompts:[
-    {id:'TYP-01',text:'Metal movable type sorts arranged in a composing stick, individual letterforms in reverse, ink on type faces, lead alloy material...'},
-    {id:'TYP-02',text:'Dot matrix printer output close-up, individual pin strikes forming characters, ribbon ink transfer pattern, continuous form paper, tractor feed holes...'},
+  { set:'v2', id:'TYPE', name:'Typography', count:8, prompts:[
+    {id:"TYPE-01",text:"Complete ASCII character set displayed in a grid, each glyph in its cell with hex code below, uppercase, lowercase, numerals, punctuation, control characters as abbreviations, monospace rendering, type specimen reference aesthetic --ar 1:1 --style raw --stylize 100 --v 6.1"},
+    {id:"TYPE-02",text:"Single enlarged letter showing typographic anatomy labels, baseline, x-height, ascender, descender, serif detail, counter space, stress angle, caliper marks for stem width, technical type design study aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"TYPE-03",text:"Kerning pair reference sheet, problematic letter combinations shown at large size with kern values, ruler measurements, optical spacing comparison, before and after, cream paper, typography craftsmanship aesthetic --ar 4:3 --style raw --stylize 150 --v 6.1"},
+    {id:"TYPE-04",text:"Large-scale rendering of a bitmap font on a pixel grid, each pixel as a visible square, anti-aliasing disabled, character spacing marked, multiple sizes showing how the design adapts, dark background, pixel typography aesthetic --ar 4:3 --style raw --stylize 100 --v 6.1"},
+    {id:"TYPE-05",text:"Collection of wooden printing type blocks arranged in a case, different sizes and fonts, end grain visible, ink stains on printing surfaces, individual letters as physical objects, letterpress printmaking aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"TYPE-06",text:"Galley proof printed on long paper strip, columns of text with proofreader marks in red, insertion carets, deletion strikes, margin notes, crop marks, traditional print production proofing aesthetic --ar 9:16 --style raw --stylize 150 --v 6.1"},
+    {id:"TYPE-07",text:"Close-up of Braille embossed on heavy paper, raised dots catching sidelight and casting small shadows, regular grid pattern of cells, mixed text and Braille on same page, accessibility typography aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"},
+    {id:"TYPE-08",text:"Letraset dry transfer lettering sheet, partially used, some characters transferred leaving empty outlines, burnishing tool nearby, carrier sheet with registration marks, graphic design process aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"}
   ]},
   { set:'v2', id:'RIT', name:'Ritual', count:8, prompts:[
-    {id:'RIT-01',text:'Geometric mandala of circuit traces and sacred geometry, concentric rings of data patterns, void center, indigo and violet accents on black...'},
-    {id:'RIT-02',text:'Stone circle with antenna elements, standing stones as radio masts, ground plane radials as stone paths, frequency resonance, ancient technology hybrid...'},
+    {id:"RIT-01",text:"Intricate circular mandala pattern made entirely of ASCII block characters and Unicode box-drawing symbols, nested concentric rings of text characters, void black background, white characters only, geometric precision, meditative digital artifact --ar 1:1 --style raw --stylize 150 --v 6.1"},
+    {id:"RIT-02",text:"8 distinct colored light signatures converging from different directions into a central mandala pattern, geometric character formation at center, initialization text in monospace, dark void space, mythological tech activation ceremony, epic scale --ar 1:1 --style raw --stylize 350 --v 6.1"},
+    {id:"RIT-03",text:"Circuit board layout following sacred geometry proportions, golden ratio spirals in trace routing, Flower of Life pattern in via placement, Metatron's cube as a component footprint, copper on dark substrate, esoteric engineering aesthetic --ar 1:1 --style raw --stylize 250 --v 6.1"},
+    {id:"RIT-04",text:"Tibetan prayer wheel but instead of mantras it contains scrolling data, spinning cylinder with characters visible through windows, mechanical rotation mechanism, dark temple interior, candlelight, no human figures, techno-spiritual aesthetic --ar 3:4 --style raw --stylize 300 --v 6.1"},
+    {id:"RIT-05",text:"Grid of I Ching hexagrams arranged as a complete system, broken and unbroken lines, hexagram numbers, transformation arrows between related hexagrams, dark background, ancient computation system aesthetic --ar 1:1 --style raw --stylize 200 --v 6.1"},
+    {id:"RIT-06",text:"Interior of a cathedral-like space where the architecture is made of constructive and destructive wave interference patterns, standing waves forming columns, nodes and antinodes visible, no human figures, physics-as-architecture aesthetic --ar 9:16 --style raw --stylize 350 --v 6.1"},
+    {id:"RIT-07",text:"Flat arrangement of technology artifacts laid out as ritual offerings on a dark surface, components arranged in geometric patterns, each item precisely spaced, candle light, no human figures, techno-animist shrine aesthetic --ar 1:1 --style raw --stylize 300 --v 6.1"},
+    {id:"RIT-08",text:"Vertical structure of stacked signal processing equipment forming an altar-like tower, each tier a different era of technology, vacuum tubes at base, transistors above, ICs above that, modern chips at top, void black background, technological evolution totem aesthetic --ar 9:16 --style raw --stylize 300 --v 6.1"}
   ]},
   { set:'v3', id:'OSC', name:'Oscilloscope', count:10, prompts:[
-    {id:'OSC-01',text:'Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift...'},
-    {id:'OSC-07',text:'Clean digital pulse train on oscilloscope, precise rectangular pulses with measured rise time annotations, pulse width markers, dark background with cyan phosphor trace...'},
+    {id:"OSC-01",text:"Glowing Lissajous curve on an oscilloscope CRT, green phosphor trace forming a complex 3:4 ratio figure, graticule grid visible, long exposure trail showing phase drift, dark laboratory background, analog test equipment aesthetic --ar 1:1"},
+    {id:"OSC-02",text:"Oscilloscope display showing a square wave with visible ringing and overshoot on rising edges, probe compensation artifacts, time base markers in monospace, horizontal sweep line, dark background with green phosphor glow, signal integrity analysis aesthetic --ar 16:9"},
+    {id:"OSC-03",text:"Two overlapping sine waves on an oscilloscope screen showing phase difference, Channel A and Channel B traces in different intensities, trigger marker on left edge, voltage scale visible, dark CRT with amber phosphor, phase measurement aesthetic --ar 4:3"},
+    {id:"OSC-04",text:"Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1"},
+    {id:"OSC-05",text:"Oscilloscope trace showing amplified noise floor, random fluctuations at high gain, bandwidth-limited noise texture, AC coupling transient visible, trigger level hunting on unstable signal, dark background, electronic noise characterization aesthetic --ar 16:9"},
+    {id:"OSC-06",text:"Frequency sweep displayed on oscilloscope, amplitude envelope changing across screen as frequency increases left to right, resonant peaks visible, marker dots at calibration frequencies, logarithmic sweep trace, RF test equipment aesthetic --ar 16:9"},
+    {id:"OSC-07",text:"Clean digital pulse train on oscilloscope, precise rectangular pulses with measured rise time annotations, pulse width markers, period measurement cursors, ground reference line, dark background with cyan phosphor trace, digital timing analysis aesthetic --ar 16:9"},
+    {id:"OSC-08",text:"Damped sinusoidal oscillation on oscilloscope screen, exponentially decreasing amplitude envelope, ring-down visible over multiple cycles, time constant measurement markers, dark background with green trace, transient response analysis aesthetic --ar 4:3"},
+    {id:"OSC-09",text:"Vector graphics rendered on an oscilloscope CRT, wireframe geometric shapes drawn by electron beam, bright vertices where beam pauses, visible retrace lines at low intensity, XY deflection pattern, vintage vector display aesthetic --ar 1:1"},
+    {id:"OSC-10",text:"Swept spectrum analyzer display showing RF spectrum, multiple signal peaks at different frequencies, noise floor as textured baseline, resolution bandwidth setting visible, center frequency and span markers in monospace, dark background, radio frequency measurement aesthetic --ar 16:9"}
   ]},
   { set:'v3', id:'MET', name:'Metallurgy', count:10, prompts:[
-    {id:'MET-01',text:'Metallographic cross-section of steel under polarized light microscope, crystal grain boundaries as dark lines forming polygonal mosaic, varying grain sizes...'},
-    {id:'MET-04',text:'Molten metal being poured from a graphite crucible, bright white-orange stream against absolute darkness, splatter droplets frozen in flight...'},
+    {id:"MET-01",text:"Metallographic cross-section of steel under polarized light microscope, crystal grain boundaries as dark lines forming polygonal mosaic, varying grain sizes, etched surface revealing microstructure, materials science microscopy aesthetic --ar 1:1"},
+    {id:"MET-02",text:"Dendrite crystal formation in solidifying metal, branching tree-like structures growing into liquid phase, primary and secondary arms visible, interdendritic porosity, backlit against dark field, solidification metallurgy aesthetic --ar 1:1"},
+    {id:"MET-03",text:"Close-up of hammer scale on forged iron surface, layered oxide flaking away revealing bright metal beneath, blue-black iridescent oxidation colors, rough textured surface, dark background, blacksmithing material study aesthetic --ar 4:3"},
+    {id:"MET-04",text:"Molten metal being poured from a graphite crucible, bright white-orange stream against absolute darkness, splatter droplets frozen in flight, heat distortion visible, no human hands or figures, foundry process aesthetic --ar 3:4"},
+    {id:"MET-05",text:"Iron-carbon phase diagram as a technical illustration, temperature on vertical axis, carbon percentage on horizontal, phase regions labeled in monospace, eutectic and eutectoid points marked, transformation lines, dark background, materials engineering textbook aesthetic --ar 4:3"},
+    {id:"MET-06",text:"Macro cross-section of a butt weld, heat-affected zone visible as distinct bands, fusion line, weld bead geometry, base metal grain structure transitioning to columnar weld grains, etched and polished, welding metallurgy aesthetic --ar 4:3"},
+    {id:"MET-07",text:"High magnification view of pearlite microstructure in steel, alternating lamellae of ferrite and cementite, fingerprint-like pattern at microscale, dark-field illumination, scale bar in corner, physical metallurgy microscopy aesthetic --ar 1:1"},
+    {id:"MET-08",text:"Industrial electroplating setup, cathode workpiece submerged in dark electrolyte solution, anode bars visible, bubble streams rising from cathode surface, current connections, chemical patina on tank edges, no human figures, surface finishing process aesthetic --ar 4:3"},
+    {id:"MET-09",text:"Czochralski crystal being slowly pulled from a melt, cylindrical boule emerging from crucible surface, meniscus visible at solid-liquid interface, radiant heat glow, no human figures, semiconductor crystal growth aesthetic --ar 9:16"},
+    {id:"MET-10",text:"Hardened steel specimen showing quench cracks radiating from sharp corners, crack paths following grain boundaries, temper color visible on surface, fractography detail, dark background, failure analysis aesthetic --ar 1:1"}
   ]},
   { set:'v3', id:'CAR', name:'Cartographic-Deep', count:10, prompts:[
-    {id:'CAR-01',text:'Deep ocean bathymetric chart, depth contours in fathoms, submarine canyon systems, abyssal plain labeled, mid-ocean ridge topography...'},
-    {id:'CAR-04',text:'Seismic reflection profile, horizontal distance vs two-way travel time, reflection horizons as wavy lines, fault offsets visible...'},
+    {id:"CAR-01",text:"Deep ocean bathymetric chart, depth contours in fathoms, submarine canyon systems, abyssal plain labeled, mid-ocean ridge topography, sounding points with depth values in monospace, blue-black color scheme, oceanographic survey aesthetic --ar 16:9"},
+    {id:"CAR-02",text:"Geological cross-section through folded strata, anticlines and synclines, fault planes with displacement arrows, rock unit labels in monospace, unconformity surfaces, intrusive bodies, stipple and hatch fill patterns, structural geology textbook aesthetic --ar 16:9"},
+    {id:"CAR-03",text:"Mining district survey map, ore body outlines, drill hole locations with assay values, strike and dip symbols, claim boundaries, elevation contours, mine shaft locations marked with standard symbols, dark background, economic geology aesthetic --ar 4:3"},
+    {id:"CAR-04",text:"Seismic reflection profile, horizontal distance vs two-way travel time, reflection horizons as wavy lines, fault offsets visible, velocity model overlay, processing artifacts, dark background with variable density display, petroleum exploration aesthetic --ar 16:9"},
+    {id:"CAR-05",text:"Geotechnical boring log diagram, columnar section showing soil layers, SPT blow counts, sample types, water table symbol, depth scale in feet, soil descriptions in monospace, classification symbols, foundation engineering aesthetic --ar 9:16"},
+    {id:"CAR-06",text:"Aeromagnetic survey map showing total field magnetic anomalies, contour lines in nanoteslas, linear anomalies indicating subsurface structures, flight line traces, survey grid coordinates, dark background with warm-to-cool color gradient, geophysical exploration aesthetic --ar 1:1"},
+    {id:"CAR-07",text:"Plan and profile view of a cave system survey, passage outlines, ceiling heights, stalactite and stalagmite symbols, water features, survey station markers, cross-sections at key points, compass bearing annotations, speleological cartography aesthetic --ar 4:3"},
+    {id:"CAR-08",text:"Geomorphological map of glacial landscape, moraine ridges, drumlin fields with orientation arrows, esker sinuous ridges, kettle lake depressions, glacial striae directions, ice margin positions labeled by date, quaternary geology aesthetic --ar 4:3"},
+    {id:"CAR-09",text:"Composite well log display, gamma ray curve, resistivity curves at multiple investigation depths, neutron-density crossover, lithology column, formation tops labeled in monospace, depth track, petrophysical evaluation aesthetic --ar 9:16"},
+    {id:"CAR-10",text:"Tectonic plate boundary map, divergent boundaries as double lines, convergent boundaries with subduction teeth, transform faults as offset lines, earthquake epicenters as dots sized by magnitude, plate motion vectors, dark background, plate tectonics aesthetic --ar 16:9"}
   ]},
   { set:'v3', id:'PRM', name:'Printmaking', count:10, prompts:[
-    {id:'PRM-01',text:'Copper intaglio plate with etched design visible in raking light, acid-bitten lines of varying depth, plate edges beveled, ground residue...'},
-    {id:'PRM-09',text:'Letterpress type locked in a chase, quoins and furniture spacing material visible, individual metal type sorts arranged in mirror reading...'},
+    {id:"PRM-01",text:"Copper intaglio plate with etched design visible in raking light, acid-bitten lines of varying depth, plate edges beveled, ground residue in corners, ink traces in grooves, dark background, printmaking studio aesthetic --ar 1:1"},
+    {id:"PRM-02",text:"End-grain woodblock with carved relief image, tool marks visible in cleared areas, raised printing surface with ink residue, wood grain texture in non-image areas, gouge marks, dark background, woodblock printing aesthetic --ar 1:1"},
+    {id:"PRM-03",text:"Bavarian limestone lithography stone, drawn image visible on polished surface, grease crayon marks, tusche washes showing tonal range, registration marks in corners, stone grain texture, printmaking material aesthetic --ar 4:3"},
+    {id:"PRM-04",text:"Extreme close-up of silkscreen mesh, thread intersections forming grid, stencil emulsion blocking some openings, ink residue in mesh, monofilament weave structure visible, halftone dot pattern in stencil, screen printing process aesthetic --ar 1:1"},
+    {id:"PRM-05",text:"Multiple color separation layers slightly misregistered, creating visible offset between layers, registration crosshairs, color bar test strip, trap overlap zones, CMYK build visible, commercial print production aesthetic --ar 4:3"},
+    {id:"PRM-06",text:"Rubber brayer roller on an inking slab, thin film of black ink rolled out evenly, texture of ink surface catching light, palette knife nearby, ink can edge visible, dark studio background, relief printing preparation aesthetic --ar 4:3"},
+    {id:"PRM-07",text:"Close-up of aquatint etching showing tonal gradation achieved through rosin grain, pitting pattern visible at magnification, tonal steps from light to dark, plate tone in wiped areas, intaglio printmaking texture study --ar 1:1"},
+    {id:"PRM-08",text:"Fresh linocut print on Japanese paper, bold graphic shapes, visible cutting direction in carved areas, slight ink variation showing hand-pressing, paper grain beneath, registration pin holes in margins, relief printmaking proof aesthetic --ar 3:4"},
+    {id:"PRM-09",text:"Letterpress type locked in a chase, quoins and furniture spacing material visible, individual metal type sorts arranged in mirror reading, ink on type faces, chase frame iron, overhead view, traditional typography composition aesthetic --ar 1:1"},
+    {id:"PRM-10",text:"Extreme close-up of drypoint engraving burr on a metal plate, raised metal curl alongside incised line, characteristic soft fuzzy line quality, plate surface scratches, raking light revealing depth, intaglio printmaking detail aesthetic --ar 4:3"}
   ]},
   { set:'v3', id:'MCH', name:'Mechanical', count:10, prompts:[
-    {id:'MCH-01',text:'Meshing spur gear train, involute tooth profiles engaging, multiple reduction stages, shaft bearings visible, gear ratios annotated in monospace...'},
-    {id:'MCH-02',text:'Clock escapement mechanism in detail, escape wheel teeth interacting with pallet fork, impulse and locking faces visible, pivot jewels...'},
+    {id:"MCH-01",text:"Meshing spur gear train, involute tooth profiles engaging, multiple reduction stages, shaft bearings visible, gear ratios annotated in monospace, dark background with metallic surfaces catching side light, mechanical engineering aesthetic --ar 4:3"},
+    {id:"MCH-02",text:"Clock escapement mechanism in detail, escape wheel teeth interacting with pallet fork, impulse and locking faces visible, pivot jewels, balance wheel partially visible, dark background, horological precision aesthetic --ar 1:1"},
+    {id:"MCH-03",text:"Cutaway of a differential gear assembly, spider gears meshing with side gears, ring gear engagement, pinion shaft, bearing races, cross-section technical illustration style, dark background, automotive mechanical aesthetic --ar 4:3"},
+    {id:"MCH-04",text:"Mechanical cam profile with roller follower, displacement diagram overlaid, dwell and rise periods labeled, cam lobe geometry, return spring, follower guide, dark background, mechanism design textbook aesthetic --ar 4:3"},
+    {id:"MCH-05",text:"Cross-section of a deep groove ball bearing, balls seated in races, cage separator, inner and outer ring cross profiles, contact angle visible, grease fill, precision ground surfaces, dark background, bearing engineering aesthetic --ar 1:1"},
+    {id:"MCH-06",text:"Interior mechanism of a mechanical automaton, interconnected cams on a common shaft, linkages driving articulated limbs, music box cylinder with pins, spring motor barrel, dark background, 18th century mechanical marvel aesthetic --ar 4:3"},
+    {id:"MCH-07",text:"Cutaway of a micrometer head, precision-ground lead screw thread, thimble graduation marks, anvil face flatness, carbide measuring surfaces, ratchet stop mechanism, dark background, precision metrology instrument aesthetic --ar 16:9"},
+    {id:"MCH-08",text:"Typewriter type bar mechanism from below, basket of type bars radiating from segment, ribbon advance mechanism, key lever linkage, bell crank pivot, dark background with metallic highlights, mechanical office technology aesthetic --ar 4:3"},
+    {id:"MCH-09",text:"Centrifugal governor spinning, weighted balls extended on arms, linkage connecting to throttle valve, spindle rotation implied by blur, pivot collar, dark background, steam age control theory aesthetic --ar 3:4"},
+    {id:"MCH-10",text:"Coiled mainspring inside its barrel, blue-tempered steel spiral, barrel arbor at center, click spring and ratchet wheel, power reserve visible in spring tension, dark background, watchmaking craftsmanship aesthetic --ar 1:1"}
   ]},
   { set:'v3', id:'OPT', name:'Optics', count:10, prompts:[
-    {id:'OPT-01',text:'Laser beam passing through a series of optical elements, beam splitters, mirrors, lenses on an optical bench, coherent light paths...'},
-    {id:'OPT-02',text:'Fresnel lens cross-section showing concentric prismatic rings, refraction angles, focal point convergence, lighthouse optics aesthetic...'},
+    {id:"OPT-01",text:"Glass prism splitting white light into spectral components, individual wavelength paths traced as geometric rays, dispersion angle increasing toward violet end, dark background, Newtonian optics demonstration aesthetic --ar 4:3"},
+    {id:"OPT-02",text:"Cross-section of a Fresnel lens showing concentric stepped rings, ray paths converging to focal point, each ring section contributing to focus, lighthouse lens scale, dark background, optical engineering aesthetic --ar 1:1"},
+    {id:"OPT-03",text:"Laser light hitting a diffraction grating producing multiple order spots, zeroth order bright, first and second order spots symmetric, intensity decreasing with order number, grating lines visible in close-up, dark background, wave optics aesthetic --ar 16:9"},
+    {id:"OPT-04",text:"Newton's rings interference pattern, concentric circular fringes of light and dark, center dark spot, ring spacing decreasing outward, formed between convex lens and flat glass, monochromatic illumination, thin film interference aesthetic --ar 1:1"},
+    {id:"OPT-05",text:"Exploded view of a compound lens assembly, individual glass elements separated along optical axis, anti-reflection coatings showing as colored reflections, spacer rings, lens barrel cutaway, dark background, optical design aesthetic --ar 9:16"},
+    {id:"OPT-06",text:"Polished end face of a coherent fiber optic bundle, individual fiber cores as bright dots in hexagonal packing, cladding dark between cores, ferrule edge visible, dark background, fiber optics technology aesthetic --ar 1:1"},
+    {id:"OPT-07",text:"Holographic plate illuminated by reference beam, reconstructed interference fringes visible as fine parallel lines, rainbow diffraction colors at viewing angle, glass plate edge, dark background, holography recording aesthetic --ar 4:3"},
+    {id:"OPT-08",text:"Diagram of Michelson interferometer, beam splitter at center, two perpendicular arms with mirrors, recombined beams creating fringe pattern on detector, compensator plate, coherent source, dark background, precision measurement optics aesthetic --ar 1:1"},
+    {id:"OPT-09",text:"Light caustic pattern formed by reflection from curved surface, concentrated bright curves and cusps, envelope of reflected rays, rippling water surface casting caustics, high contrast on dark surface, geometric optics aesthetic --ar 1:1"},
+    {id:"OPT-10",text:"Stacked polarizing filters at various angles, transmitted intensity varying with relative orientation, extinction cross visible, birefringent crystal between crossed polarizers showing stress colors, dark background, polarization optics aesthetic --ar 4:3"}
   ]},
   { set:'v3', id:'TXL', name:'Textile', count:10, prompts:[
-    {id:'TXL-01',text:'Jacquard loom punch cards controlling a complex weave pattern, binary hole patterns, card chain mechanism, woven output showing programmed design...'},
-    {id:'TXL-02',text:'Extreme macro of plain weave fabric showing individual warp and weft thread interlacing, fiber twist direction visible, thread spacing...'},
+    {id:"TXL-01",text:"Extreme close-up of plain weave fabric, individual warp and weft threads interlocking, thread texture and twist visible, slight irregularities in hand-woven cloth, natural fiber surface, macro textile photography aesthetic --ar 1:1"},
+    {id:"TXL-02",text:"Chain of Jacquard loom punch cards, holes controlling individual warp threads, card linkage mechanism visible, sequential pattern cards in a long chain, dark background, programmable textile technology aesthetic --ar 9:16"},
+    {id:"TXL-03",text:"Fabric selvage edge detail, tightly woven border transitioning to cut edge, manufacturer's color stripe identification, warp thread turnback, raw edge fraying, macro detail, textile manufacturing aesthetic --ar 16:9"},
+    {id:"TXL-04",text:"Extreme macro of knitted stockinette fabric, individual yarn loops interlocking in V-shaped columns, purl bumps on reverse visible at edge, yarn fiber halo, even tension, dark background, knitting structure study aesthetic --ar 1:1"},
+    {id:"TXL-05",text:"Rows of wire heddles on a floor loom, warp threads passing through heddle eyes, harness frames at different heights creating shed opening, threading pattern visible, dark workshop background, handweaving technology aesthetic --ar 4:3"},
+    {id:"TXL-06",text:"Bobbin lace in progress on a pillow, pins marking pattern points, multiple thread pairs crossing and twisting, pattern pricking underneath, bobbins hanging below work edge, dark background, traditional lacework aesthetic --ar 3:4"},
+    {id:"TXL-07",text:"Bound and dyed shibori textile, resist-pattern revealing undyed areas, compressed fold marks, irregular organic pattern from binding technique, indigo-dyed cotton, dark background, Japanese dyework aesthetic --ar 1:1"},
+    {id:"TXL-08",text:"Weaving draft on graph paper, threading sequence, tie-up grid, treadling order, drawdown pattern showing resulting fabric structure, filled and empty squares forming binary pattern, dark background, weave structure notation aesthetic --ar 1:1"},
+    {id:"TXL-09",text:"Spinning wheel drive mechanism, flyer and bobbin assembly, drive band tension, orifice hook, maiden bearing, dark workshop background, no human figures, fiber arts mechanical technology aesthetic --ar 4:3"},
+    {id:"TXL-10",text:"Microscope view of felted wool fibers, interlocked scales on fiber surfaces creating permanent bond, random fiber orientation, matted structure at different magnifications, dark field illumination, textile material science aesthetic --ar 1:1"}
   ]},
   { set:'v3', id:'CHM', name:'Chemistry', count:10, prompts:[
-    {id:'CHM-01',text:'Crystal growth in a supersaturated solution, geometric facets forming as molecules organize, Ostwald ripening visible, dark field microscopy...'},
-    {id:'CHM-02',text:'Distillation column with multiple plate trays, vapor-liquid equilibrium, reflux condenser, temperature gradient indicators...'},
+    {id:"CHM-01",text:"Ball-and-stick model of a face-centered cubic crystal lattice, atoms as spheres at lattice points, bonds as rods, unit cell outlined, Miller index planes indicated, dark background, crystallography textbook aesthetic --ar 1:1"},
+    {id:"CHM-02",text:"Fractional distillation column setup, round-bottom flask on heating mantle, vigreux column, condenser with cooling water connections, receiving flask, thermometer adapter, ground glass joints, dark laboratory background, organic chemistry aesthetic --ar 9:16"},
+    {id:"CHM-03",text:"Burette clamped on ring stand, meniscus visible at eye level, stopcock valve, graduated markings, titration flask below with color indicator change, dark laboratory background, analytical chemistry aesthetic --ar 9:16"},
+    {id:"CHM-04",text:"Worn periodic table wall chart showing transition metals section, element symbols in bold, atomic numbers, electron configurations in fine print, yellowed paper, tape repairs at edges, dog-eared corner, chemistry classroom relic aesthetic --ar 4:3"},
+    {id:"CHM-05",text:"X-ray diffraction pattern on film, concentric Debye-Scherrer rings, bright spots indicating crystal symmetry, beam stop shadow at center, film edge markings, crystallographic analysis data, dark background aesthetic --ar 1:1"},
+    {id:"CHM-06",text:"Calculated molecular orbital surface, electron density isosurface showing bonding and antibonding lobes, positive and negative phase regions, node planes visible, wireframe molecular skeleton beneath, dark background, computational chemistry aesthetic --ar 1:1"},
+    {id:"CHM-07",text:"Crystals growing in a saturated solution, well-formed geometric crystal faces, mother liquor surrounding, crystal habit showing lattice symmetry, seed crystal at origin point, macro photography, crystal growth process aesthetic --ar 1:1"},
+    {id:"CHM-08",text:"Gas chromatography output, detector response vs retention time, multiple resolved peaks, baseline drift, solvent front, internal standard peak labeled, retention time annotations in monospace, dark background, analytical instrumentation aesthetic --ar 16:9"},
+    {id:"CHM-09",text:"Electrochemical half-cell diagram, electrode submerged in electrolyte, salt bridge connecting to second half-cell, ion migration arrows, voltage measurement, Nernst equation notation, dark background, electrochemistry textbook aesthetic --ar 4:3"},
+    {id:"CHM-10",text:"Glass vacuum manifold with multiple stopcocks, Schlenk line configuration, vacuum and inert gas connections, bubbler, cold trap, pressure gauge, glass-blown joints and connectors, dark laboratory background, air-free chemistry aesthetic --ar 16:9"}
   ]},
   { set:'v3', id:'NAV', name:'Navigation', count:10, prompts:[
-    {id:'NAV-01',text:'Sextant measurement of celestial angle, graduated arc, vernier scale in monospace, index mirror and horizon glass, star field background...'},
-    {id:'NAV-02',text:'Gyrocompass mechanism cutaway, spinning rotor, gimbal rings, precession forces indicated by arrows, heading repeater dial...'},
+    {id:"NAV-01",text:"Brass marine sextant, arc scale with vernier, index mirror and horizon glass, telescope eyepiece, dark patina on metal surfaces, void black background, celestial navigation instrument aesthetic --ar 1:1"},
+    {id:"NAV-02",text:"Medieval brass astrolabe rete overlay, star pointers labeled in engraved script, ecliptic circle, altitude circles on tympan beneath, rule arm, dark background, Islamic astronomical instrument aesthetic --ar 1:1"},
+    {id:"NAV-03",text:"Detailed compass rose card, 32 wind directions labeled, fleur-de-lis at north, degree graduations around rim, magnetic declination annotation, aged parchment texture, dark background, maritime navigation aesthetic --ar 1:1"},
+    {id:"NAV-04",text:"Rude star finder planisphere, transparent overlay rotating over star field base, altitude and azimuth curves, constellation labels in monospace, observation latitude setting, dark background, practical celestial navigation aesthetic --ar 1:1"},
+    {id:"NAV-05",text:"Page from H.O. 229 sight reduction tables, dense columns of numbers in monospace, entering arguments on edges, interpolation values, page header with latitude and declination ranges, government printing aesthetic --ar 3:4"},
+    {id:"NAV-06",text:"Cutaway of marine gyrocompass, spinning rotor in gimbal mount, damping mechanism, azimuth gear ring, follow-up motor, heading repeater synchro, dark background, inertial navigation technology aesthetic --ar 4:3"},
+    {id:"NAV-07",text:"Navigation chart with dead reckoning track plotted, course lines with time marks, set and drift triangle, estimated position vs fix position, divider tool marks, pencil lines on chart paper, maritime navigation workbook aesthetic --ar 4:3"},
+    {id:"NAV-08",text:"Ship's pelorus mounted on bridge wing, bearing circle with degree markings, vanes aligned for taking visual bearing, gimbal mount, dark sea and sky background, no human figures, maritime observation instrument aesthetic --ar 1:1"},
+    {id:"NAV-09",text:"Empty Mercator projection grid, latitude and longitude lines, increasing spacing toward poles, prime meridian marked, tropic and arctic circles, graticule labels in monospace, dark background, cartographic projection study aesthetic --ar 16:9"},
+    {id:"NAV-10",text:"Marine chronometer in gimbal box, precision clock face with subsidiary seconds dial, power reserve indicator, chronometer number engraved on dial, brass gimbal ring, dark mahogany box, timekeeping instrument aesthetic --ar 1:1"}
   ]},
   { set:'v3', id:'TRX', name:'Transmission', count:10, prompts:[
-    {id:'TRX-01',text:'Morse code transmission key, brass contacts, spring tension adjustment, connection terminals, telegraph sounder nearby, dark desktop...'},
-    {id:'TRX-02',text:'Fiber optic cable cross-section, bundled glass cores, cladding layers, strength members, outer jacket, total internal reflection diagram...'},
+    {id:"TRX-01",text:"Steel lattice radio tower from below looking up, converging structural members forming geometric pattern, guy wires radiating outward, aviation warning lights, overcast sky, no human figures, broadcast infrastructure aesthetic --ar 9:16"},
+    {id:"TRX-02",text:"Multi-element Yagi-Uda antenna, driven element, reflector, and director elements on boom, feed point balun, mounting bracket, dark sky background, amateur radio antenna aesthetic --ar 16:9"},
+    {id:"TRX-03",text:"Microwave waveguide magic tee junction, rectangular waveguide sections meeting at right angles, flange bolts, E-plane and H-plane ports, dark background, microwave engineering component aesthetic --ar 4:3"},
+    {id:"TRX-04",text:"Shortwave radio receiver dial, band spread tuning, frequency markings across multiple bands, logging scale, S-meter, dial pointer with cord drive mechanism, amber dial illumination, vintage communications receiver aesthetic --ar 4:3"},
+    {id:"TRX-05",text:"Radiation pattern diagram of a directional antenna, polar plot showing main lobe, side lobes, back lobe, half-power beamwidth marked, null positions, gain values in dBi on rings, dark background, antenna engineering aesthetic --ar 1:1"},
+    {id:"TRX-06",text:"Cross-section of coaxial cable showing center conductor, dielectric insulator, braided shield, outer jacket, connector attached at one end, impedance annotation, dark background, RF transmission line aesthetic --ar 16:9"},
+    {id:"TRX-07",text:"Smith chart with impedance plot, normalized resistance and reactance circles, plotted impedance trajectory showing matching network transformation, VSWR circle, dark background with fine grid, RF engineering aesthetic --ar 1:1"},
+    {id:"TRX-08",text:"Radio broadcast mixing console, fader channels, VU meters, cue buttons, talkback microphone, on-air indicator light, program and audition buses, clock display, no human figures, dark studio, broadcast operations aesthetic --ar 16:9"},
+    {id:"TRX-09",text:"Curtain array of stacked dipole antennas on a reflector screen, feed harness visible, phasing network junction boxes, support structure, multiple bays creating high gain, dark sky, shortwave broadcasting infrastructure aesthetic --ar 3:4"},
+    {id:"TRX-10",text:"Cross-section of a klystron amplifier tube, electron beam path through resonant cavities, bunching and catching cavities, collector, cathode and heater, cooling jacket, dark background, high-power microwave tube aesthetic --ar 9:16"}
   ]},
   { set:'v3', id:'MSR', name:'Measurement', count:10, prompts:[
-    {id:'MSR-01',text:'Vernier caliper jaws measuring a precision component, main scale and vernier scale alignment, zero line, imperial and metric graduations...'},
-    {id:'MSR-02',text:'Mercury barometer tube and cistern, meniscus level, Torricellian vacuum above mercury column, temperature correction chart nearby...'},
+    {id:"MSR-01",text:"Precision vernier caliper, main scale and vernier scale aligned, jaw opening measuring a cylindrical object, depth rod extended, lock screw, fine engraved graduations, dark background, metrology instrument aesthetic --ar 16:9"},
+    {id:"MSR-02",text:"Dial test indicator with magnetic base, needle at zero, plunger contacting surface, revolution counter subdial, tolerance markers set on bezel, dark background, dimensional inspection aesthetic --ar 1:1"},
+    {id:"MSR-03",text:"Wrung stack of precision gauge blocks, mirror-finish surfaces adhering by molecular attraction, block sizes etched on sides in monospace, buildup dimensions calculated, dark background, dimensional metrology aesthetic --ar 4:3"},
+    {id:"MSR-04",text:"Granite surface plate with precision flat surface, indicator stand positioned for measurement, parallel bars, angle blocks, layout fluid stain, dark workshop background, quality inspection aesthetic --ar 4:3"},
+    {id:"MSR-05",text:"Thread pitch gauge fan opened showing multiple blades, tooth profiles at different pitches, pivot rivet, blade labels stamped in metal, one blade engaged with threaded fastener, dark background, mechanical fastener inspection aesthetic --ar 4:3"},
+    {id:"MSR-06",text:"Precision spirit level vial, bubble centered between graduation marks, curved glass tube, meniscus visible, mounting base with adjustment screws, dark background, surveying instrument detail aesthetic --ar 16:9"},
+    {id:"MSR-07",text:"Fan of feeler gauge blades of graduated thickness, thinnest blades flexible, thickness values stamped on each blade, inserted into a gap measuring clearance, dark background, mechanical fit assessment aesthetic --ar 4:3"},
+    {id:"MSR-08",text:"Optical comparator screen showing magnified part profile, overlay template alignment, angular measurement lines, radius measurements, tolerance zone boundaries, green screen with shadow profile, measurement laboratory aesthetic --ar 4:3"},
+    {id:"MSR-09",text:"Bourdon tube pressure gauge face, needle indicating on dial, psi and kPa dual scales, red zone marking maximum pressure, black case, dark industrial background, process instrumentation aesthetic --ar 1:1"},
+    {id:"MSR-10",text:"Coordinate measuring machine probe tip approaching a precision part, ruby stylus sphere, articulating probe head, granite table, part fixture, measurement readout implied, dark background, dimensional verification aesthetic --ar 4:3"}
   ]},
   { set:'v3', id:'DEC', name:'Decay', count:10, prompts:[
-    {id:'DEC-01',text:'Oxidized copper surface showing verdigris patina progression, green to blue-green spectrum, crystalline deposit formations, metal substrate beneath...'},
-    {id:'DEC-02',text:'Concrete spalling and rebar corrosion exposed, laminar rust layers, expansion cracking patterns, delamination zones, structural deterioration...'},
+    {id:"DEC-01",text:"Iron surface covered in active rust blooms, layered oxide flaking and lifting, bright orange-brown corrosion products, moisture beads trapped under oxide layers, pitting beneath, dark background, ferrous corrosion study aesthetic --ar 1:1"},
+    {id:"DEC-02",text:"Architectural copper panel with developed verdigris patina, green-blue copper carbonate formation, drip patterns from rain exposure, interface between aged and fresh copper, dark background, atmospheric corrosion aesthetic --ar 4:3"},
+    {id:"DEC-03",text:"Deteriorating reinforced concrete, spalled surface revealing corroded rebar, rust staining streaking downward, aggregate exposed, freeze-thaw damage pattern, delamination layers, structural decay aesthetic --ar 4:3"},
+    {id:"DEC-04",text:"Multiple layers of old paint cracking and peeling, alligator pattern crazing, previous color layers revealed at different depths, substrate visible through gaps, environmental weathering, material archaeology aesthetic --ar 1:1"},
+    {id:"DEC-05",text:"Water erosion channels carved in sedimentary rock, V-shaped cuts following weakness planes, sediment deposits at channel junctions, differential erosion around harder inclusions, dark stone, geomorphological decay aesthetic --ar 3:4"},
+    {id:"DEC-06",text:"Degraded magnetic tape, oxide shedding from binder, sticky-shed syndrome visible as tacky residue, edge damage from poor storage, warped reel, dark background, data loss through material decay aesthetic --ar 4:3"},
+    {id:"DEC-07",text:"Corroded circuit board, green verdigris on copper traces, electrolytic migration between conductors, flux residue attracting moisture, component leads oxidized, dark background, electronic failure forensics aesthetic --ar 4:3"},
+    {id:"DEC-08",text:"Abstract representation of increasing entropy, ordered crystalline structure on one side gradually dissolving into random particle distribution, phase transition boundary, information decay visualization, dark background, thermodynamic aesthetic --ar 16:9"},
+    {id:"DEC-09",text:"Fossil impression in sedimentary rock, organism outline preserved as negative space, surrounding matrix texture, partial dissolution of original structure, geological time scale implied, dark background, paleontological preservation aesthetic --ar 1:1"},
+    {id:"DEC-10",text:"Junction of dissimilar metals showing galvanic corrosion, anodic metal pitted and consumed, cathodic metal protected, electrolyte staining at joint, fastener head corroded, dark background, electrochemical degradation aesthetic --ar 4:3"}
   ]},
   { set:'v3', id:'NOT', name:'Notation', count:10, prompts:[
-    {id:'NOT-01',text:'Musical score in engraved plate style, staff lines, note heads and stems, dynamic markings, tempo indication in italic, rehearsal marks...'},
-    {id:'NOT-02',text:'Chemical structural formula of a complex organic molecule, bond angles, stereochemistry wedge-dash notation, atom labels, ring structures...'},
+    {id:"NOT-01",text:"Hand-engraved musical score on copper plate, note heads and stems as incised marks, staff lines ruled with precision, dynamic markings, articulation, dark patina on plate surface, music engraving craft aesthetic --ar 4:3"},
+    {id:"NOT-02",text:"Blackboard filled with tensor calculus notation, Einstein summation convention, index gymnastics, Christoffel symbols, covariant derivatives, chalk dust visible, erased traces of previous work, theoretical physics aesthetic --ar 16:9"},
+    {id:"NOT-03",text:"Boolean logic gate diagram, AND OR NOT NAND NOR XOR gates in standard symbols, interconnected with signal lines, truth tables adjacent, timing diagram below, dark background, digital logic textbook aesthetic --ar 4:3"},
+    {id:"NOT-04",text:"Hand-drawn electronic circuit schematic, component symbols with values annotated, node voltages, signal flow direction, ground symbols, power rails, grid paper background, analog electronics design aesthetic --ar 4:3"},
+    {id:"NOT-05",text:"Labanotation or Benesh movement notation score, vertical staff with position symbols, direction and level indicators, timing marks, abstract representation of motion without human figures, dance notation system aesthetic --ar 9:16"},
+    {id:"NOT-06",text:"Complex chemical reaction mechanism written on a chalkboard, curved arrows showing electron movement, intermediates in brackets, catalytic cycle, reagents and conditions above arrows, organic chemistry notation aesthetic --ar 16:9"},
+    {id:"NOT-07",text:"Knitting pattern chart on graph paper, standardized symbols for different stitches, cable crossing notation, repeat brackets, row numbers, symbol legend, dark background, fiber arts notation system aesthetic --ar 3:4"},
+    {id:"NOT-08",text:"IPA phonetic transcription of speech, broad and narrow transcription compared, diacritical marks, tone markings, syllable boundaries, stress marks, articulatory diagrams alongside, linguistics notation aesthetic --ar 4:3"},
+    {id:"NOT-09",text:"Reference sheet of astronomical and astrological symbols, planet glyphs, zodiac signs, aspect symbols, degree-minute-second notation, celestial coordinate shorthand, dark background, astronomical notation system aesthetic --ar 1:1"},
+    {id:"NOT-10",text:"Braille music notation embossed on heavy paper, tactile dots forming musical phrases, measure numbers, key and time signature indicators, raised dot patterns under raking sidelight, accessibility music notation aesthetic --ar 4:3"}
   ]},
   { set:'v3', id:'CMP', name:'Computation', count:10, prompts:[
-    {id:'CMP-01',text:'Core memory plane close-up, ferrite toroid rings threaded by sense and drive wires, magnetization states, hand-woven wire matrix...'},
-    {id:'CMP-02',text:'Paper tape reader mechanism, sprocket wheel engaging feed holes, photodiode sensing row, binary data pattern punched in tape...'},
+    {id:"CMP-01",text:"Japanese soroban abacus, bamboo frame with rods, beads in calculation position, heaven and earth bead arrangement showing a specific number, reckoning bar dividing sections, dark background, manual computation aesthetic --ar 16:9"},
+    {id:"CMP-02",text:"Close-up of slide rule logarithmic scales, C and D scales aligned for multiplication, cursor hairline positioned, CI scale for reciprocals, K scale for cubes, fine engine-divided graduations, analog computation aesthetic --ar 16:9"},
+    {id:"CMP-03",text:"Curta mechanical calculator, cylindrical body, setting sliders, crank handle, result counter windows showing digits, cleared zeros, dark background, precision mechanical computation aesthetic --ar 3:4"},
+    {id:"CMP-04",text:"Magnetic core memory plane, tiny ferrite toroids threaded on wire grid, sense and inhibit wires, X and Y drive lines, hand-woven matrix, dark background, early computer memory aesthetic --ar 1:1"},
+    {id:"CMP-05",text:"Single column of a Babbage difference engine, stacked number wheels with digits visible, carry mechanism between wheels, shaft and gear linkages, dark background with brass mechanical elements, Victorian computation aesthetic --ar 9:16"},
+    {id:"CMP-06",text:"Row of Nixie tube numerical displays, wire mesh cathodes forming stacked digit shapes, neon glow around active digit, base pins, amber-orange illumination, dark background, cold cathode display aesthetic --ar 16:9"},
+    {id:"CMP-07",text:"Drum programmer from an industrial controller, rows of adjustable pegs on a rotating cylinder, cam followers reading peg positions, step sequence counter, dark background, electromechanical sequencing aesthetic --ar 4:3"},
+    {id:"CMP-08",text:"Paper tape reader mechanism, sprocket feed holes, data holes in 8-level code, optical sensor array, takeup reel, tape tension arm, partially read tape showing punched pattern, dark background, early I/O device aesthetic --ar 4:3"},
+    {id:"CMP-09",text:"Front panel of early computer with rows of toggle switches, indicator lights, rotary selector switches, panel labels in monospace, address and data register displays, sense switch row, dark equipment room, early mainframe operator interface aesthetic --ar 16:9"},
+    {id:"CMP-10",text:"Multi-scale nomogram for engineering calculation, three or more graduated axes, alignment line solving equation, pivot point, scale labels in monospace, isopleth drawn across scales, dark background, graphical computation aesthetic --ar 3:4"}
   ]},
   { set:'v3', id:'CNT', name:'Containment', count:10, prompts:[
-    {id:'CNT-01',text:'Faraday cage interior, copper mesh walls forming an electromagnetic shield, feedthrough filters, RF gasket on door frame, shielded room aesthetic...'},
-    {id:'CNT-02',text:'Cryogenic dewar vessel cutaway, vacuum jacket layers, superinsulation, liquid nitrogen level indicator, boil-off vent valve...'},
+    {id:"CNT-01",text:"Cylindrical pressure vessel with dished ends, welded seams visible, nozzle penetrations with flanged connections, nameplate with MAWP rating, dark industrial background, ASME code vessel aesthetic --ar 4:3"},
+    {id:"CNT-02",text:"High vacuum chamber with viewport windows, conflat flanges with copper gaskets, feedthrough connections, ion gauge, gate valve, pumping port, interior visible through window, dark laboratory background, ultra-high vacuum aesthetic --ar 1:1"},
+    {id:"CNT-03",text:"Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4"},
+    {id:"CNT-04",text:"Silvered glass Dewar flask cutaway, double-walled construction, evacuated interspace, silvered surfaces for radiation reduction, pour spout, cryogenic liquid nitrogen visible inside, dark background, thermal isolation aesthetic --ar 9:16"},
+    {id:"CNT-05",text:"Interior of a Faraday cage room, copper mesh on walls ceiling and floor, filtered power entry panel, waveguide-below-cutoff ventilation ducts, RF-tight door with finger stock gaskets, dark interior, electromagnetic shielding aesthetic --ar 4:3"},
+    {id:"CNT-06",text:"Nuclear reactor pressure vessel cutaway diagram, core barrel, fuel assemblies, control rod guide tubes, coolant inlet and outlet nozzles, vessel head with penetrations, dark background, nuclear engineering aesthetic --ar 9:16"},
+    {id:"CNT-07",text:"Industrial autoclave with door open, internal chamber with rack supports, door locking ring mechanism, pressure relief valves, temperature sensor ports, gasket sealing surface, dark background, high-pressure processing aesthetic --ar 4:3"},
+    {id:"CNT-08",text:"Inert atmosphere glove box, transparent panels showing interior workspace, port-mounted gloves, antechamber transfer lock, gas purification readout, pressure differential gauge, dark laboratory background, controlled atmosphere aesthetic --ar 16:9"},
+    {id:"CNT-09",text:"Bomb calorimeter device, heavy-walled steel bomb vessel, ignition wire leads, oxygen filling valve, water jacket surrounding, thermometer insertion point, dark background, thermodynamic measurement aesthetic --ar 1:1"},
+    {id:"CNT-10",text:"Cross-section of reactor containment building, thick reinforced concrete shell, steel liner, equipment airlock, personnel airlock, polar crane, steam generators inside, dark background, nuclear safety barrier aesthetic --ar 4:3"}
   ]},
 ];
 
@@ -2041,6 +2311,27 @@ document.querySelectorAll('video[autoplay]').forEach(v => {
   v.addEventListener('canplay', () => { v.play().catch(() => {}); });
   if (v.readyState >= 3) v.play().catch(() => {});
 });
+
+/* --- LIGHTBOX --- */
+const lbOverlay = document.getElementById('lightbox-overlay');
+const lbImg = document.getElementById('lightbox-img');
+document.querySelectorAll('.poster-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const src = card.querySelector('img').src;
+    lbImg.src = src;
+    lbOverlay.classList.add('active');
+  });
+});
+lbOverlay.addEventListener('click', () => { lbOverlay.classList.remove('active'); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') lbOverlay.classList.remove('active');
+});
 </script>
+
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close">[ESC]</button>
+  <img id="lightbox-img" src="" alt="Full size">
+</div>
 </body>
 </html>
