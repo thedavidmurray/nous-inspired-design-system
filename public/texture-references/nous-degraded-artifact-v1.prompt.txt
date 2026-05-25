@@ -1,0 +1,1 @@
+Texture artifact reference. Degraded/dithered noise pattern test output from texture pipeline. Void black background with structural degradation pattern. Potential source material for dither-bw or dither-full pipeline modes. Edgeless Lab texture study. 1024x1024 source resolution.

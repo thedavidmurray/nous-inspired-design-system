@@ -1,0 +1,4 @@
+Type: Manual composite comparison sheet
+Source images: Flux 2 Pro, GPT Image 1, Ideogram 3.0, Recraft V4 Pro, Seedream V4.5
+Date: 2026-05-17
+Notes: Side-by-side grid comparison of 5 image generation models using identical prompt. Used for model capability evaluation and client deck material. Part of Nous Portal managed shootout pipeline.

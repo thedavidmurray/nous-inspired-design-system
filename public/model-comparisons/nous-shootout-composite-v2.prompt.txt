@@ -1,0 +1,4 @@
+Type: Manual composite comparison sheet v2
+Source images: Flux 2 Pro, GPT Image 1, Ideogram 3.0, Recraft V4 Pro, Seedream V4.5
+Date: 2026-05-17
+Notes: Improved scaling and margin layout over v1. Proper thumbnail dimensions with consistent borders. Labeled grid for visual fairness in model evaluation.

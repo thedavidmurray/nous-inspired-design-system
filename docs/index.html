@@ -356,6 +356,40 @@ body::after {
   margin-top: 0.5rem;
 }
 
+/* Corpus grid — dense thumbnail wall for v10/v11 */
+.corpus-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+.corpus-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-e);
+}
+.corpus-item img,
+.corpus-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.corpus-item:hover img,
+.corpus-item:hover video {
+  transform: scale(1.04);
+  filter: contrast(1.1);
+}
+@media (max-width: 900px) {
+  .corpus-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 520px) {
+  .corpus-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* Gallery hero video */
 .gallery-video {
   width: 100%;
@@ -1083,6 +1117,7 @@ body::after {
     <div class="nav-links">
       <a href="#gallery">Gallery</a>
       <a href="#generated">Generated</a>
+      <a href="#character">Character</a>
       <a href="#pipeline-demo">Pipeline</a>
       <a href="#modes">Modifications</a>
       <a href="#prompts">Prompts</a>
@@ -1111,9 +1146,10 @@ body::after {
     <hr class="hero-rule">
     <p class="hero-desc">
       A texture pipeline and visual language built around structural
-      dithering. Designed and engineered by Edgeless Lab, inspired by
-      Nous Research's visual identity.<br>
-      300 prompts. 6 modifications. Take everything.
+      dithering, a locked character reference, and front-loaded
+      <strong>NOUS&middot;HERMES</strong> wordmarks. Designed and engineered
+      by Edgeless Lab, inspired by Nous Research's visual identity.<br>
+      600+ prompts. 6 modifications. One mascot. Take everything.
     </p>
     <div class="hero-actions">
       <a href="#generated" class="btn btn-primary">See the Work</a>
@@ -1377,6 +1413,172 @@ body::after {
 </section>
 
 <!-- ================================================================
+     SEC 03b — CHARACTER + WORDMARK (Nous Girl studies)
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section-wide" id="character">
+  <div class="section-label" data-sec="[SEC_03b]">Character + Wordmark</div>
+  <div class="output-meta">OUTPUT 003b / SEED: 8812043992 / SUBJECT: NOUS_GIRL</div>
+  <h2 class="section-title">The Nous Girl, In Situ</h2>
+  <p class="section-desc">
+    Locked character reference (chin-length bob, white headband, 1980s shojo ink) carried across
+    300 prompts. Each frame front-loads a physical <strong>NOUS</strong> or <strong>NOUS&middot;HERMES</strong>
+    wordmark at a specific scale and surface &mdash; carved, silkscreened, stenciled, vinyl-cut, banner-hung.
+    The character is the figure; the wordmark is the hero of the typography.
+  </p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item wide">
+      <img src="images/nous-girl-silkscreen-poster.jpg" alt="Nous Girl at the press — silkscreened NOUS RESEARCH masthead" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-ruling-pen.jpg" alt="Nous Girl with ruling pen — cyanotype magnifier" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-wood-type.jpg" alt="Nous Girl at wood-type drawer — riso orange + cyan" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-darkroom.jpg" alt="Nous Girl in the darkroom — outlined NOUS wordmark" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-safe-door.jpg" alt="Nous Girl + iron safe — cobalt monochrome" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-storefront.jpg" alt="Nous Girl behind glass — vinyl storefront NOUS" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/nous-girl-banner.jpg" alt="Nous Girl + large NOUS Roman serif banner" loading="lazy">
+    </div>
+    <div class="gallery-item wide">
+      <img src="images/nous-hermes-4-release-poster.jpg" alt="NOUS HERMES 4 — model release poster" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/hermes-marble-bust.jpg" alt="Hermes — classical marble three-quarter profile" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/towards-self-improvement-tarot.jpg" alt="Towards Self-Improvement — tarot XII" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/field-guide-agentic-systems.jpg" alt="Field Guide to Agentic Systems — botanical poster" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="images/distro-live-decentralized.jpg" alt="DisTrO Live — decentralized training announcement" loading="lazy">
+    </div>
+  </div>
+  <div class="gallery-caption">// 12 selections from the v10/v11 character + wordmark series &mdash; full corpus in <code>generated/nous-mj/</code></div>
+</section>
+
+<!-- ================================================================
+     SEC 03c — V10/V11 FULL CORPUS
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section-wide" id="v10v11-corpus">
+  <div class="section-label" data-sec="[SEC_03c]">v10 / v11 Corpus</div>
+  <div class="output-meta">OUTPUT 003c / SEED: 6617293845 / CLASS: CHARACTER_WORDMARK_CORPUS</div>
+  <h2 class="section-title">116 Frames</h2>
+  <p class="section-desc">
+    The complete v10/v11 character + wordmark series. Locked <strong>NOUS</strong> girl reference
+    (~70% consistency via MJ Image Prompts panel) carried across 116 prompts.
+    Every frame front-loads a physical <strong>NOUS</strong> or <strong>NOUS&middot;HERMES</strong>
+    wordmark at a specific scale and surface. These are the raw pulls — unfiltered, uncurated.
+  </p>
+    <div class="corpus-grid">
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/1970s-industrial-photography-magazine-page-slight_ce8f1d_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-169-banner-of-three-small-spheres-lined-up-on-a_5e683e_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-169-banner-stand-of-birch-trees-backlit-by-morni_19c7d5_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-1960s-computer-manual-cover-mock-up-heavy-helvet_1bb2a4_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-brass-key-resting-on-a-leather-bound-ledger-embo_800532_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-brass-theodolite-set-up-on-a-tripod-in-a-paneled_bf8931_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-compute-commons-broadside-poster-styled-like-a-d_d8ee04_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-curled-photograph-of-a-research-building-exterio_38ca1d_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-designers-republic-style-technical-broadside-on_4b4767_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-distro-live-decentralized-training-announcement_508f50_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-field-guide-to-agentic-systems-botanical-poster_e41911_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-forklift-parked-in-a-warehouse-before-dawn-singl_088a41_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-highly-detailed-digital-interface-design-with-a_c05ce1_3.mp4" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-macbeth-colorchecker-card-resting-on-a-worn-leat_d3af28_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-periodic-table-of-elements-as-a-large-format-lin_b3a02a_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-public-bus-stop-information-panel-showing-a-mode_a3e47b_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-rude-star-finder-planisphere-transparent-overlay_a77acd_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-ruling-pen-and-bristol-board-on-a-steel-drafting_07f070_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-ruling-pen-and-bristol-board-on-a-steel-drafting_07f070_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-screenshot-of-an-ancient-graphical-user-interfac_60e794_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-silkscreen-ink-station-with-wet-squeegee-leaning-_624322_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-silkscreen-ink-station-with-wet-squeegee-leaning-_624322_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-silkscreen-ink-station-with-wet-squeegee-leaning-_624322_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-six-legged-robot-walking-on-a-salt-flat-wide-angl_549f15_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-six-legged-robot-walking-on-a-salt-flat-wide-angl_549f15_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-small-satellite-in-orbit-against-a-pure-black-bac_b1b27a_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-smith-chart-with-impedance-plot-normalized-resist_631448_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-soviet-era-public-information-kiosk-repurposed-_e1ccbe_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-steel-engraving-of-a-thermal-reactor-cutaway-on-_2e3d9f_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-steel-engraving-of-a-thermal-reactor-cutaway-on-_2e3d9f_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-tall-transit-station-sign-over-a-doorway-helveti_0a2d6a_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-tall-transit-station-sign-over-a-doorway-helveti_ee67b1_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-tall-transit-station-sign-over-a-doorway-helveti_ee67b1_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-thin-film-interference-experiment-with-soap-bubb_e0d574_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_58fbea_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_d63333_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-vinyl-window-sign-in-a-dimly-lit-gallery-space-_1fcdd5_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-vinyl-window-sign-in-a-dimly-lit-gallery-space-_1fcdd5_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-wooden-drypoint-plate-resting-on-black-velvet-wo_e9b22f_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_88e65a_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_c9f0cf_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-ancient-bronze-tablet-laid-flat-on-a-slate-tabl_b0f0b7_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-etched-ferrotype-portrait-in-oxidized-copper-ton_4fd48f_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-etched-ferrotype-portrait-in-oxidized-copper-ton_4fd48f_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-etched-ferrotype-portrait-in-oxidized-copper-ton_4fd48f_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/curled-daguerreotype-photograph-of-an-urban-interse_1e2c92_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/dark-optical-bench-with-laser-and-mirrors-on-a-heavy_87a42a_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/dark-optical-bench-with-laser-and-mirrors-on-a-heavy_f45a57_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_6f95f3_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_e35d0c_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-a-freshly-silkscreened-poster-ta_5d8bd5_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon-_7cbe2a_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon-_c2e29f_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_f897b1_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square-_38f4c9_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square-_38f4c9_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square-_61128b_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_607f0e_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_607f0e_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-2enpwyqrun-img_867ca5_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-2enpwyqrun-img_867ca5_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-2enpwyqrun-img_867ca5_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-2enpwyqrun-img_867ca5_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-b57cb2qq2ut-img_6a685c_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-b57cb2qq2ut-img_6a685c_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-b57cb2qq2ut-img_6a685c_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-b57cb2qq2ut-img_6a685c_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-z1qxbfpvlag-img_3eeeb6_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-z1qxbfpvlag-img_3eeeb6_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss.mj.run-z1qxbfpvlag-img_3eeeb6_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/soviet-era-public-information-kiosk-repurposed-for_16d6b8_1.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/thermal-receipt-printer-aesthetic-with-paper-feed_6c7764_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/thermal-receipt-printer-with-paper-feed-artifacts_2a3126_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/two-hands-one-is-holding-an-unlit-cigarette-and-th_d0d50c_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/unnamed_189e46_2.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_232d3c_0.jpg" alt="" loading="lazy"></div>
+      <div class="corpus-item"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_356ddd_3.jpg" alt="" loading="lazy"></div>
+    </div>
+  <div class="gallery-caption">// 116 raw pulls from the v10/v11 series — rename slugs: <code>slug_uuid_index.png</code></div>
+</section>
+
+<!-- ================================================================
      SEC 04 — PIPELINE BEFORE/AFTER DEMO
      ================================================================ -->
 <div class="section-divider"></div>
@@ -1459,8 +1661,9 @@ body::after {
   <div class="output-meta">OUTPUT 005 / SEED: 4420198837 / CLASS: COLOR_SYSTEM</div>
   <h2 class="section-title">Palette</h2>
   <p class="section-desc">
-    Eight canonical colors. All modifications map to this palette.
-    Click any swatch to copy the hex value.
+    Two color families. The <strong>Nous cyanotype</strong> stack (midnight &rarr; sky) anchors
+    photographic and character work; the <strong>Edgeless accent</strong> stack (cyan / indigo / violet / green)
+    anchors UI and dithering. Oxide red is reserved for stamps. Click any swatch to copy.
   </p>
   <div class="palette-grid" id="palette-grid"></div>
 </section>
@@ -1697,14 +1900,20 @@ function togglePrompt(btn) {
 
 /* --- PALETTE --- */
 const paletteData = [
-  { name: 'Void Black',  hex: '#0a0a0a', use: 'Primary background' },
-  { name: 'White',       hex: '#e8e8e8', use: 'Primary foreground' },
-  { name: 'Steel Blue',  hex: '#4a7c9b', use: 'Borders, metadata, Nous-ref' },
-  { name: 'Cyan',        hex: '#06b6d4', use: 'Links, labels, active states' },
-  { name: 'Indigo',      hex: '#6366f1', use: 'Primary accent, interactive' },
-  { name: 'Violet',      hex: '#8b5cf6', use: 'Secondary accent, decorative' },
-  { name: 'Green',       hex: '#22c55e', use: 'Success, CLI, sparse accent' },
-  { name: 'Cream',       hex: '#f5f0e8', use: 'Output/Seed annotations, riso' },
+  { name: 'Void Black',     hex: '#0a0a0a', use: 'Primary background' },
+  { name: 'Midnight',       hex: '#031024', use: 'Nous cyanotype shadow' },
+  { name: 'Deep Teal-Navy', hex: '#063653', use: 'Nous cyanotype field' },
+  { name: 'Nous Mid Blue',  hex: '#1d6f8f', use: 'Nous wordmark fill' },
+  { name: 'Steel Blue',     hex: '#4a7c9b', use: 'Borders, metadata, Nous-ref' },
+  { name: 'Nous Powder',    hex: '#a8c5d8', use: 'Nous highlight, paper grain' },
+  { name: 'Nous Sky',       hex: '#bcd9e6', use: 'Cyanotype lift' },
+  { name: 'White',          hex: '#e8e8e8', use: 'Primary foreground' },
+  { name: 'Cyan',           hex: '#06b6d4', use: 'Links, labels, active states' },
+  { name: 'Indigo',         hex: '#6366f1', use: 'Primary accent, interactive' },
+  { name: 'Violet',         hex: '#8b5cf6', use: 'Secondary accent, decorative' },
+  { name: 'Oxide Red',      hex: '#a14e3f', use: 'Stamp accent (Wet Concrete Ledger)' },
+  { name: 'Green',          hex: '#22c55e', use: 'Success, CLI, sparse accent' },
+  { name: 'Cream',          hex: '#f5f0e8', use: 'Output/Seed annotations, riso' },
 ];
 
 const pg = document.getElementById('palette-grid');

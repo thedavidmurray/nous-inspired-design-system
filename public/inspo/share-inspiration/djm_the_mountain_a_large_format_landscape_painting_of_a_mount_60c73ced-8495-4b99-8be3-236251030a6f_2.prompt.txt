@@ -1,0 +1,1 @@
+Midjourney v6.1 generation. Large format landscape painting of mountain terrain. Atmospheric perspective with muted earth tones. Dramatic cloud formation. High contrast between shadow valleys and sunlit peaks. Painterly texture with visible brushwork influence. Edgeless Lab natural world reference. Potential source for texture pipeline processing (dither-bw or riso-cyan modes).

@@ -1,0 +1,5 @@
+Model: Seedream V4.5 (ByteDance)
+Prompt: Edgeless Lab visual identity system specimen. Void black background (#0a0a0a) with structural dithering pattern. Cyan accent (#06b6d4) grid lines forming a modular interface. Indigo accent (#6366f1) data visualization elements. Violet accent (#8b5cf6) secondary structural nodes. White foreground (#ffffff) JetBrains Mono typography labels. Dark high contrast retro-digital aesthetic. Monospace-first information architecture. 1px borders. CRT phosphor glow effect. Scanline texture overlay. Brutalist terminal interface design. No photography, pure generated graphic system.
+Settings: High quality mode
+Date: 2026-05-17
+Notes: Nous model shootout comparison. Seedream V4.5 renders at 2048x2048 with rich color saturation and strong contrast.
