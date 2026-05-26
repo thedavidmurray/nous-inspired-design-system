@@ -368,6 +368,7 @@ body::after {
   overflow: hidden;
   position: relative;
   background: var(--bg-e);
+  cursor: zoom-in;
 }
 .corpus-item img,
 .corpus-item video {
@@ -594,12 +595,15 @@ body::after {
   cursor: zoom-out;
 }
 .lightbox-overlay.active { display: flex; }
-.lightbox-overlay img {
+.lightbox-overlay img,
+.lightbox-overlay video {
   max-width: 92vw;
   max-height: 90vh;
   object-fit: contain;
   border: 1px solid var(--border);
+  cursor: default;
 }
+.lightbox-overlay video { background: #000; }
 .lightbox-close {
   position: absolute;
   top: 1.5rem;
@@ -1499,7 +1503,7 @@ body::after {
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-forklift-parked-in-a-warehouse-before-dawn-singl_088a41_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/a-highly-detailed-digital-interface-design-with-a_c05ce1_3.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/a-highly-detailed-digital-interface-design-with-a_c05ce1_3.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-macbeth-colorchecker-card-resting-on-a-worn-leat_d3af28_3.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_1.jpg?v=3" alt="" loading="lazy"></div>
@@ -1540,7 +1544,7 @@ body::after {
       <div class="corpus-item"><img src="v10-v11-mj-pulls/burette-clamped-on-ring-stand-meniscus-visible-at_ebd84e_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/chain-of-jacquard-loom-punch-cards-holes-controlli_3f44c1_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/classical-greek-marble-bust-of-hermes-three-quarte_d3ef48_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/cross-section-of-reactor-containment-building-thic_e7bc5e_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/ditto-machine-purple-blue-duplicate-faded-square-i_31fa29_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/extreme-close-up-of-drypoint-engraving-burr-on-a-m_dab488_0.jpg?v=3" alt="" loading="lazy"></div>
@@ -1557,15 +1561,15 @@ body::after {
       <div class="corpus-item"><img src="v10-v11-mj-pulls/front-elevation-of-a-small-doric-temple-at-night-a_5b1bef_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_42d48b_3.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_42d48b_3.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_7ae1cc_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_c27ab1_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_fe606f_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4?v=3" muted loop playsinline></video></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/interior-of-a-faraday-cage-room-copper-mesh-on-wal_2cdd9f_3.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/ipa-phonetic-transcription-of-speech-broad-and-nar_ca70b5_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/mimeograph-stencil-with-ink-bleed-margins-square-i_624dc5_3.jpg?v=3" alt="" loading="lazy"></div>
@@ -1581,12 +1585,12 @@ body::after {
       <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runs31xqxbqh-y-httpss_d155ca_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/monochromatic-indigo-toned-portrait-of-a-classical_65642a_3.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/multi-scale-nomogram-for-engineering-calculation-t_e44988_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/public-bus-stop-information-panel-showing-a-model_096230_1.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/rude-star-finder-planisphere-transparent-overlay-r_292e0c_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4?v=3" muted loop playsinline></video></div>
+      <div class="corpus-item"><video src="v10-v11-mj-pulls/screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4?v=3" autoplay muted loop playsinline></video></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/smith-chart-with-impedance-plot-normalized-resista_91e974_0.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/soviet-era-public-information-kiosk-repurposed-for_28bf5a_2.jpg?v=3" alt="" loading="lazy"></div>
       <div class="corpus-item"><img src="v10-v11-mj-pulls/tall-transit-station-sign-over-a-doorway-helvetica_99c546_2.jpg?v=3" alt="" loading="lazy"></div>
@@ -1894,6 +1898,7 @@ border: 1px dashed <span class="kw">var</span>(<span class="st">--steel</span>);
 <div class="lightbox-overlay" id="lightbox-overlay">
   <button class="lightbox-close">[ESC]</button>
   <img id="lightbox-img" src="" alt="Full size">
+  <video id="lightbox-video" src="" muted loop playsinline controls style="display:none"></video>
 </div>
 
 <!-- ================================================================
@@ -2519,16 +2524,47 @@ document.querySelectorAll('video[autoplay]').forEach(v => {
 /* --- LIGHTBOX --- */
 const lbOverlay = document.getElementById('lightbox-overlay');
 const lbImg = document.getElementById('lightbox-img');
-document.querySelectorAll('.poster-card').forEach(card => {
-  card.onclick = () => {
-    const src = card.querySelector('img').src;
+const lbVideo = document.getElementById('lightbox-video');
+
+function openLightbox(src, isVideo) {
+  if (isVideo) {
+    lbImg.style.display = 'none';
+    lbImg.src = '';
+    lbVideo.src = src;
+    lbVideo.style.display = '';
+    lbVideo.play().catch(() => {});
+  } else {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.style.display = 'none';
     lbImg.src = src;
-    lbOverlay.classList.add('active');
+    lbImg.style.display = '';
+  }
+  lbOverlay.classList.add('active');
+}
+function closeLightbox() {
+  lbOverlay.classList.remove('active');
+  lbVideo.pause();
+}
+
+// Existing poster cards (images)
+document.querySelectorAll('.poster-card').forEach(card => {
+  card.onclick = () => openLightbox(card.querySelector('img').src, false);
+});
+
+// Corpus grid — click any tile to preview full size (img or video)
+document.querySelectorAll('.corpus-item').forEach(item => {
+  item.onclick = () => {
+    const media = item.querySelector('img, video');
+    if (!media) return;
+    openLightbox(media.currentSrc || media.src, media.tagName === 'VIDEO');
   };
 });
-lbOverlay.onclick = () => { lbOverlay.classList.remove('active'); };
+
+// Close on background / close button / ESC; clicks on the media itself don't close
+lbOverlay.onclick = e => { if (e.target === lbImg || e.target === lbVideo) return; closeLightbox(); };
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') lbOverlay.classList.remove('active');
+  if (e.key === 'Escape') closeLightbox();
 });
 </script>
 </body>
