@@ -2563,12 +2563,13 @@ const lbPrev = document.getElementById('lightbox-prev');
 const lbNext = document.getElementById('lightbox-next');
 const lbCounter = document.getElementById('lightbox-counter');
 
-let lbList = [];   // [{ src, isVideo }]
+let lbItems = [];   // array of media DOM elements (img / video)
 let lbIndex = 0;
 
 function renderLightbox() {
-  const { src, isVideo } = lbList[lbIndex];
-  if (isVideo) {
+  const el = lbItems[lbIndex];
+  const src = el.currentSrc || el.src || el.getAttribute('src');
+  if (el.tagName === 'VIDEO') {
     lbImg.style.display = 'none';
     lbImg.removeAttribute('src');
     lbVideo.src = src;
@@ -2581,19 +2582,19 @@ function renderLightbox() {
     lbImg.src = src;
     lbImg.style.display = '';
   }
-  const multi = lbList.length > 1;
+  const multi = lbItems.length > 1;
   lbPrev.style.display = lbNext.style.display = multi ? '' : 'none';
-  lbCounter.textContent = multi ? `${lbIndex + 1} / ${lbList.length}` : '';
+  lbCounter.textContent = multi ? `${lbIndex + 1} / ${lbItems.length}` : '';
 }
-function openList(list, index) {
-  lbList = list;
+function openItems(items, index) {
+  lbItems = items;
   lbIndex = index;
   renderLightbox();
   lbOverlay.classList.add('active');
 }
 function lbStep(d) {
-  if (lbList.length < 2) return;
-  lbIndex = (lbIndex + d + lbList.length) % lbList.length;
+  if (lbItems.length < 2) return;
+  lbIndex = (lbIndex + d + lbItems.length) % lbItems.length;
   renderLightbox();
 }
 function closeLightbox() {
@@ -2601,23 +2602,13 @@ function closeLightbox() {
   lbVideo.pause();
 }
 
-// Build a navigable list from a grid's media tiles
-function mediaList(els) {
-  return els.map(el => {
-    const m = el.querySelector('img, video');
-    return m ? { src: m.currentSrc || m.src, isVideo: m.tagName === 'VIDEO' } : null;
-  }).filter(Boolean);
-}
-
-// Corpus grid — click any tile to preview full size and arrow through the set
-const corpusItems = [...document.querySelectorAll('.corpus-item')];
-const corpusList = mediaList(corpusItems);
-corpusItems.forEach((item, i) => { item.onclick = () => openList(corpusList, i); });
-
-// Existing poster cards (images) — navigable within their own set
-const posterCards = [...document.querySelectorAll('.poster-card')];
-const posterList = mediaList(posterCards);
-posterCards.forEach((card, i) => { card.onclick = () => openList(posterList, i); });
+// Every content image/video on the page opens full size, navigable in document order
+const allMedia = [...document.querySelectorAll('img, video')]
+  .filter(el => el !== lbImg && el !== lbVideo);
+allMedia.forEach((el, i) => {
+  el.style.cursor = 'zoom-in';
+  el.addEventListener('click', e => { e.stopPropagation(); openItems(allMedia, i); });
+});
 
 // Controls: arrows step; background / close button / ESC dismiss; media + arrows don't close
 lbPrev.onclick = e => { e.stopPropagation(); lbStep(-1); };
