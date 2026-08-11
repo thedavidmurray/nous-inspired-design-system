@@ -175,3 +175,16 @@ python3.11 scripts/design-alignment-eval.py --all
 ## License
 
 MIT
+
+## Related Projects
+
+Part of the Edgeless product family — see the [central roster](../RELATED_PROJECTS.md) for the full set.
+
+- [edgeless-memory](../edgeless-memory) — Agent-agnostic persistent memory for AI agents
+- [edgeless-stack](../edgeless-stack) — Complete AI agent infrastructure (memory, hooks, skills, cron, agent bus)
+- [edgeless-revenue-workflows](../edgeless-revenue-workflows) — 10 revenue-driving MVP pipelines
+- [edgeless-skills](../edgeless-skills) — Git-backed skills system (GitHub Agent Skills spec)
+- [edgeless-swarm-docker](../edgeless-swarm-docker) — Swarm-in-a-Box Docker containerization
+- [edgeless-knowledge-spine](../edgeless-knowledge-spine) — Knowledge spine / vault tooling
+- [edgeless-demos](../edgeless-demos) — Demo surface for Edgeless
+- [All Edgeless projects](../RELATED_PROJECTS.md)
