@@ -23,6 +23,8 @@ const config: Config = {
         warning: tokens.colors.warning,
         error: tokens.colors.error,
         info: tokens.colors.info,
+        nous: tokens.colors.nous,
+        duotone: tokens.colors.duotone,
       },
       
       // === TYPOGRAPHY ===
@@ -30,6 +32,10 @@ const config: Config = {
         sans: tokens.typography.fontFamily.sans.split(','),
         mono: tokens.typography.fontFamily.mono.split(','),
         display: tokens.typography.fontFamily.display.split(','),
+        intel: tokens.typography.fontFamily.intel.split(','),
+        editorial: tokens.typography.fontFamily.editorial.split(','),
+        'display-serif': tokens.typography.fontFamily['display-serif'].split(','),
+        bitmap: tokens.typography.fontFamily.bitmap.split(','),
       },
       fontSize: {
         xs: tokens.typography.fontSize.xs,

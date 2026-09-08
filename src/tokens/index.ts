@@ -37,6 +37,35 @@ export const colors = {
   error: '#ef4444',        // Red 500
   info: '#3b82f6',         // Blue 500
   
+  // Nous Blue Palette (Brand Booklet 2024)
+  nous: {
+    deepest: '#0b1628',           // Very dark navy/black
+    midnight: '#101a30',          // Midnight navy
+    'deep-ocean': '#0a1f38',     // Deep ocean blue
+    'dark-teal-navy': '#0f2838', // Dark teal-navy
+    'very-dark-teal': '#0a2a38', // Very dark teal
+    'deep-cyan-teal': '#0a3a4a', // Deep cyan-teal
+    'dark-navy-teal': '#0e2f4a', // Dark navy-teal
+    'dusty-steel': '#1e3a5a',    // Dusty steel blue
+    'muted-grayish': '#2a4a5a',  // Muted grayish blue
+    'muted-dusty': '#1a3a5a',    // Muted dusty blue
+    'medium-teal': '#1a5a6a',    // Medium teal-cerulean
+    'medium-cyan': '#1a5a6a',    // Medium cyan-teal
+    'bright-cerulean': '#0a6a8a', // Bright cerulean
+    sky: '#4a9aba',              // Light bright sky blue
+    'very-light-sky': '#6aacca', // Very light sky blue
+    'pale-icy': '#8abada',       // Pale icy blue
+    'pale-blue-gray': '#aacada', // Pale blue-gray
+    'very-pale': '#c8dce8',      // Very pale gray-blue
+    frost: '#e0eef0',            // Lightest frost
+  },
+  
+  // Nous Duotone (Cyanotype Filter)
+  duotone: {
+    shadow: '#0f1f3d',
+    highlight: '#6abfdf',
+  },
+  
   // Border - Subtle depth
   border: {
     subtle: 'rgba(255,255,255,0.08)',
@@ -52,6 +81,10 @@ export const typography = {
     sans: 'Inter, system-ui, -apple-system, sans-serif',
     mono: 'JetBrains Mono, SF Mono, monospace',
     display: 'Cal Sans, Inter, sans-serif', // For headlines
+    intel: 'Courier New, Courier Prime, monospace', // Military/intel briefing
+    editorial: 'Helvetica Now Text, Inter Tight, sans-serif', // Swiss editorial
+    'display-serif': 'Playfair Display, Instrument Serif, Georgia, serif', // Mondwest alt
+    bitmap: 'Chicago, ChicagoFLF, monospace', // Classic Macintosh UI
   },
   
   // Scale - Major Third (1.25) progression

@@ -35,6 +35,31 @@
   --color-accent-tertiary:  #06b6d4; /* Cyan 500   */
   --color-accent-gradient:  linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
 
+  /* ── Colors / Nous Blue Palette (Brand Booklet 2024) ───────────── */
+  --color-nous-deepest:      #0b1628; /* Very dark navy/black            */
+  --color-nous-midnight:     #101a30; /* Midnight navy                   */
+  --color-nous-deep-ocean:   #0a1f38; /* Deep ocean blue                 */
+  --color-nous-dark-teal-navy:   #0f2838; /* Dark teal-navy             */
+  --color-nous-very-dark-teal:   #0a2a38; /* Very dark teal             */
+  --color-nous-deep-cyan-teal:   #0a3a4a; /* Deep cyan-teal             */
+  --color-nous-dark-navy-teal:   #0e2f4a; /* Dark navy-teal             */
+  --color-nous-dusty-steel:      #1e3a5a; /* Dusty steel blue           */
+  --color-nous-muted-grayish:    #2a4a5a; /* Muted grayish blue         */
+  --color-nous-muted-dusty:      #1a3a5a; /* Muted dusty blue           */
+  --color-nous-medium-teal:      #1a5a6a; /* Medium teal-cerulean       */
+  --color-nous-medium-cyan:      #1a5a6a; /* Medium cyan-teal           */
+  --color-nous-bright-cerulean:  #0a6a8a; /* Bright cerulean            */
+  --color-nous-sky:              #4a9aba; /* Light bright sky blue      */
+  --color-nous-very-light-sky:   #6aacca; /* Very light sky blue        */
+  --color-nous-pale-icy:         #8abada; /* Pale icy blue              */
+  --color-nous-pale-blue-gray:   #aacada; /* Pale blue-gray             */
+  --color-nous-very-pale:        #c8dce8; /* Very pale gray-blue        */
+  --color-nous-frost:            #e0eef0; /* Lightest frost             */
+
+  /* ── Colors / Nous Duotone (Cyanotype Filter) ──────────────────── */
+  --color-nous-duotone-shadow:    #0f1f3d; /* Shadow side              */
+  --color-nous-duotone-highlight: #6abfdf; /* Highlight side           */
+
   /* ── Colors / Semantic ───────────────────────────────────────────── */
   --color-success: #22c55e; /* Green 500 */
   --color-warning: #f59e0b; /* Amber 500 */
@@ -50,6 +75,10 @@
   --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:    'JetBrains Mono', 'SF Mono', monospace;
   --font-display: 'Cal Sans', 'Inter', sans-serif;
+  --font-intel:   'Courier New', 'Courier Prime', monospace;
+  --font-editorial: 'Helvetica Now Text', 'Inter Tight', sans-serif;
+  --font-serif:   'Playfair Display', 'Instrument Serif', Georgia, serif;
+  --font-bitmap:  'Chicago', 'ChicagoFLF', monospace;
 
   /* ── Typography / Font Sizes & Line Heights ──────────────────────── */
   --text-xs:       0.75rem;   /* 12 px */

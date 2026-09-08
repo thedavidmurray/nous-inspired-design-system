@@ -31,6 +31,37 @@
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #3b82f6;
+  
+  /* Nous Blue Palette (Brand Booklet 2024) */
+  --nous-deepest: #0b1628;
+  --nous-midnight: #101a30;
+  --nous-deep-ocean: #0a1f38;
+  --nous-dark-teal-navy: #0f2838;
+  --nous-very-dark-teal: #0a2a38;
+  --nous-deep-cyan-teal: #0a3a4a;
+  --nous-dark-navy-teal: #0e2f4a;
+  --nous-dusty-steel: #1e3a5a;
+  --nous-muted-grayish: #2a4a5a;
+  --nous-muted-dusty: #1a3a5a;
+  --nous-medium-teal: #1a5a6a;
+  --nous-medium-cyan: #1a5a6a;
+  --nous-bright-cerulean: #0a6a8a;
+  --nous-sky: #4a9aba;
+  --nous-very-light-sky: #6aacca;
+  --nous-pale-icy: #8abada;
+  --nous-pale-blue-gray: #aacada;
+  --nous-very-pale: #c8dce8;
+  --nous-frost: #e0eef0;
+  
+  /* Nous Duotone (Cyanotype Filter) */
+  --nous-duotone-shadow: #0f1f3d;
+  --nous-duotone-highlight: #6abfdf;
+  
+  /* Font families */
+  --font-intel: 'Courier New', 'Courier Prime', monospace;
+  --font-editorial: 'Helvetica Now Text', 'Inter Tight', sans-serif;
+  --font-serif: 'Playfair Display', 'Instrument Serif', Georgia, serif;
+  --font-bitmap: 'Chicago', 'ChicagoFLF', monospace;
 }
 
 /* === BASE STYLES === */
@@ -231,5 +262,47 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Intel briefing style — Courier New, all-caps, expanded tracking */
+  .font-intel {
+    font-family: var(--font-intel);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+  
+  /* Editorial layout — Helvetica-style, dense */
+  .font-editorial {
+    font-family: var(--font-editorial);
+    letter-spacing: -0.01em;
+  }
+  
+  /* Display serif — Mondwest alternative */
+  .font-display-serif {
+    font-family: var(--font-serif);
+    font-weight: 700;
+  }
+  
+  /* Bitmap/retro font — Chicago for classic Mac UI */
+  .font-bitmap {
+    font-family: var(--font-bitmap);
+  }
+  
+  /* Nous duotone filter — blue/cyan cyanotype treatment */
+  .nous-duotone {
+    position: relative;
+  }
+  .nous-duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--nous-duotone-shadow) 0%,
+      var(--nous-duotone-highlight) 100%
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 }
