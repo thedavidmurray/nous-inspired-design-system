@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method, Nous Inspired Design System</title>
+<meta name="description" content="How this design system is built and how to build your own the same way: tokens, banks, recipes, coverage, rules, keepers.">
+<style>
+:root{--bg:#0b0f14;--ink:#f3efe4;--mute:#9aa3ad;--line:#232b34;--blue:#1e3a8a;--blue-2:#3b82f6;--red:#d62828;--cream:#f3efe4}
+*{box-sizing:border-box}html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 ui-serif,Georgia,"Times New Roman",serif}
+a{color:var(--blue-2)}
+.nav{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:.9rem 1rem;border-bottom:1px solid var(--line);font:13px ui-monospace,Menlo,monospace;letter-spacing:.04em;text-transform:uppercase}
+.nav b{color:var(--ink)}.nav a{text-decoration:none;color:var(--mute)}.nav a[aria-current]{color:var(--ink)}
+.banner{background:var(--blue);color:var(--cream);font:13px ui-monospace,Menlo,monospace;padding:.6rem 1rem}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 4rem}
+h1{font-size:2rem;line-height:1.15;margin:1.5rem 0 .5rem}
+.lede{color:var(--mute);margin:0 0 2rem}
+section{border-top:1px solid var(--line);padding:1.5rem 0}
+h2{font-size:1.3rem;margin:0 0 .5rem}h2 span{color:var(--red);font:14px ui-monospace,Menlo,monospace;margin-right:.6rem}
+p{margin:.5rem 0}
+code,pre{font:13px/1.5 ui-monospace,Menlo,monospace}
+pre{padding:.85rem .9rem;background:#111821;border:1px solid var(--line);border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere}
+.src{font:12px ui-monospace,Menlo,monospace;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem;font:12px ui-monospace,Menlo,monospace;color:var(--mute)}
+@media (max-width:480px){h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<nav class="nav"><b>NOUS INSPIRED</b> <a href="index.html">Archive</a> <a href="rules.html">Rulebook</a> <a href="method.html" aria-current="page">Method</a> <a href="kit/README.md">Kit</a> <a href="https://github.com/thedavidmurray/nous-inspired-design-system">GitHub</a></nav>
+<div class="banner">Unofficial. A fan-made design system inspired by Nous Research, built by Edgeless Lab. Not affiliated with or endorsed by Nous Research.</div>
+<main>
+<h1>Method</h1>
+<p class="lede">I built this system for my own work first, then packaged the same pieces so anyone can run them on their own brand. Six layers, each one a file you can open. Swap the vocabulary, keep the machinery.</p>
+
+<section id="tokens">
+<h2><span>01</span>Tokens are the palette you commit to</h2>
+<p>A design system starts by refusing most colors. Here that is one ink at a time: Prussian blue on cream, phosphor green on black, or black plus one small red. The tokens file is the contract; everything downstream reads from it.</p>
+<p class="src">File: <a href="kit/tokens.json">kit/tokens.json</a> (with provenance in every <code>$description</code>) and <a href="kit/tokens.css">kit/tokens.css</a> (drop-in custom properties). Rule: <a href="rules.html#R1">R1</a>.</p>
+</section>
+
+<section id="banks">
+<h2><span>02</span>Banks are vocabulary</h2>
+<p>Prompts are assembled from banks, not written one at a time: 433 subjects, 131 influences, 22 palettes, 7 print processes, 10 capture modes, 10 artifact formats, 14 textures, and a small weighted lexicon. A bank is a list in a text file. Replacing the lexicon and palette banks with your own words is the whole "bring your own brand" step.</p>
+<p class="src">Live: <a href="https://edgelesslab.com/lab/prompt-engine">edgelesslab.com/lab/prompt-engine</a>, the same engine with a bring-your-own-taste config. The engine's source of truth is <code>blender.py</code> in the Edgeless monorepo; the dashboard is exported from it.</p>
+</section>
+
+<section id="recipes">
+<h2><span>03</span>Recipes cross banks</h2>
+<p>A recipe names which banks to cross and in what sentence shape. Seven are in use: influence, poster, spectral, oldschool, ephemera, collision, photo. <em>Oldschool</em> is subject times print process times wordmark. <em>Spectral</em> is capture mode times subject times HUD label. The recipe is where the aesthetic lives; the banks only supply nouns.</p>
+<pre>oldschool:  {subject}, {process}, wordmark "{lexicon}"
+spectral:   {mode} of {subject}, {mode_look}, monospace HUD label "{lexicon}"
+ephemera:   {format} of {subject}, {palette}, engraved "{lexicon}"</pre>
+<p class="src">Every prompt in the <a href="rules.html">Rulebook</a> came out of one of these shapes; the tag id under each prompt points to its line in <a href="prompts/exploration-log.txt">docs/prompts/exploration-log.txt</a>.</p>
+</section>
+
+<section id="coverage">
+<h2><span>04</span>Coverage and dedupe stop repeats</h2>
+<p>Random sampling from banks repeats the same twenty subjects within a hundred prompts, and that waste is visible at scale. Two guards fix it: a coverage-guaranteed picker that walks a persisted permutation of each bank across rounds, so nothing repeats until the whole bank has been used once; and a dedupe check against every prompt ever submitted (exact and near-duplicate) before a batch is fired.</p>
+<p class="src">Evidence: rounds 26 and 27 in the log are 500 prompts each with 412 and 411 distinct subjects; round 30 is 64 prompts with 64 distinct subjects.</p>
+</section>
+
+<section id="rules">
+<h2><span>05</span>Rules are what survived</h2>
+<p>After thirty rounds, the recipe settles into a handful of sentences that keep being true. Those are the rules, numbered so they can be cited, each with three real prompts as evidence. A rule without a prompt is an opinion.</p>
+<p class="src">File: <a href="rules.json">rules.json</a>, rendered by <a href="https://github.com/thedavidmurray/nous-inspired-design-system">scripts/build_rules.py</a>, which refuses to build if any prompt is not verbatim from the log.</p>
+</section>
+
+<section id="keepers">
+<h2><span>06</span>Keepers are proof</h2>
+<p>Images enter the system one at a time, when a draft is worth promoting. At that moment the prompt is copied off the job page into the keeper record, and the image attaches to a rule as proof. One keeper, one row, one build, one push. The Rulebook is complete at zero keepers and only gets more convincing.</p>
+<p class="src">Schema: <code>keepers.csv</code> carries <code>prompt_tag</code> and <code>prompt</code>; a proof row is rejected unless the prompt is verbatim for its tag. Archive of pre-rulebook frames with recovered prompts: <a href="rules.html#archive">rules.html#archive</a>.</p>
+</section>
+
+<section id="yours">
+<h2><span>07</span>Run it on your brand</h2>
+<p>Copy <a href="kit/tokens.css">tokens.css</a> and replace the values. Write your lexicon (the five to ten words your brand actually uses) and your palette bank (three to five named inks). Keep the recipes and the two guards. Roll a hundred prompts, keep the sentences that stay true, and number them. That is the system. The rest is taste.</p>
+<p class="src">Start: <a href="kit/README.md">kit/README.md</a>.</p>
+</section>
+
+<footer>Hand-written. Numbers above are measured from docs/prompts/exploration-log.txt and the engine's bank files as of 2026-09-07.</footer>
+</main>
+</body>
+</html>

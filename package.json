@@ -93,7 +93,9 @@
     "typescript": "^5.3.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "keywords": [
     "design-system",
@@ -105,10 +107,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edgelesslab/design-system.git"
+    "url": "https://github.com/thedavidmurray/nous-inspired-design-system.git"
   },
-  "homepage": "https://github.com/edgelesslab/design-system#readme",
+  "homepage": "https://thedavidmurray.github.io/nous-inspired-design-system/",
   "sideEffects": [
     "**/*.css"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/thedavidmurray/nous-inspired-design-system/issues"
+  }
 }

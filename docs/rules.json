@@ -1,0 +1,237 @@
+{
+ "title": "Rulebook",
+ "lede": "Nine rules that survived thirty rounds and about two thousand prompts. Each rule is one sentence and three copyable prompts, cited by tag id into docs/prompts/exploration-log.txt. Proof images attach one keeper at a time, with the prompt captured at harvest.",
+ "rules": [
+  {
+   "id": "R1",
+   "title": "One ink, then restraint",
+   "statement": "Pick one ink and commit: Prussian blue cyanotype on cream, phosphor green on near-black, or black on foxed cream with a single small red mark. Never navy plus gold, never rainbow by default. Color is the minority lane, not the house style.",
+   "prompt_tags": [
+    "r30#17",
+    "r30#14",
+    "r30#11"
+   ],
+   "flags": "--s 150 --draft (chaos from the UI slider)",
+   "proof": []
+  },
+  {
+   "id": "R2",
+   "title": "Texture is the medium",
+   "statement": "Every image goes through a print or early-digital process: risograph misregistration, halftone rosette, Bayer dither, thermal-receipt grain, xerox degradation, CRT scanlines. Clean renders read as stock. When it looks too smooth, add one texture clause.",
+   "prompt_tags": [
+    "r30#60",
+    "r30#59",
+    "r30#57"
+   ],
+   "flags": "--s 150 --draft",
+   "proof": []
+  },
+  {
+   "id": "R3",
+   "title": "Statuary in, living faces out",
+   "statement": "No photographic or living human faces. Classical marble statuary, busts, reliefs, and caryatids are approved as art objects: gods in the machine, glitched into dither. Machine habitat, not portraiture.",
+   "prompt_tags": [
+    "r29#23",
+    "r29#13",
+    "r28#230"
+   ],
+   "flags": "--s 150 --draft",
+   "proof": []
+  },
+  {
+   "id": "R4",
+   "title": "Only the real lexicon",
+   "statement": "Text stays anchored to words Nous actually uses: NOUS RESEARCH and HERMES first, project names rarely. Latin letters only, no invented slogans, no Greek script. Match the word to the subject: a bazaar can say open source, a cathedral cannot.",
+   "prompt_tags": [
+    "r30#58",
+    "r30#51",
+    "r30#50"
+   ],
+   "flags": "--s 150 --draft",
+   "proof": []
+  },
+  {
+   "id": "R5",
+   "title": "Neoclassical meets machine habitat",
+   "statement": "Subjects fuse the classical and the computational: colonnades dissolving into server racks, brutalist compute-cathedrals, cartouches, orreries, blueprint schematics. Scenes beat diagrams; keep labeled-diagram prompts under a third of any batch.",
+   "prompt_tags": [
+    "r29#32",
+    "r29#21",
+    "r29#20"
+   ],
+   "flags": "--s 150 --draft",
+   "proof": []
+  },
+  {
+   "id": "R6",
+   "title": "The spectral break",
+   "statement": "The deliberate break from print texture is false-color sensor imagery: FLIR thermal, Aerochrome infrared, UV fluorescence, X-ray, night vision, schlieren, lidar. Wordmarks become HUD labels and scale bars. Moodboard grain reads as sensor noise here, so keep it on.",
+   "prompt_tags": [
+    "r30#42",
+    "r30#41",
+    "r30#40"
+   ],
+   "flags": "--s 150 --draft, moodboard hermes on",
+   "proof": []
+  },
+  {
+   "id": "R7",
+   "title": "Setup on Midjourney 8.2",
+   "statement": "Personalize on with Personalization profile #1 and the hermes moodboard both checked; confirm both tags on the job card. Draft mode on. Chaos and weird from the UI, never in the prompt. No --sref on the classical lane, and --sw is dead while any moodboard is attached: stack references to dilute instead.",
+   "prompt_tags": [
+    "r28#29",
+    "r28#28",
+    "r28#27"
+   ],
+   "flags": "--ar <ratio> --s 150 --draft",
+   "proof": []
+  },
+  {
+   "id": "R8",
+   "title": "Discovered styles: technique transfers, atmosphere swallows",
+   "statement": "Roll --sref random to discover styles, then read the seed off the job card. Seeds that encode rendering technique (linework, palette, print process) transfer to any subject and keep the wordmark. Seeds that encode atmosphere erase subject and wordmark; use them only on the off-brief lane.",
+   "prompt_tags": [
+    "r27#499",
+    "r27#498",
+    "r27#497"
+   ],
+   "flags": "--s 150 --draft --sref random",
+   "proof": []
+  },
+  {
+   "id": "R9",
+   "title": "The Nous Girl rides as an image prompt",
+   "statement": "On 8.2 her reference goes first in the prompt as a bare image URL with --iw 1.5. Identity holds, palette survives, the scene survives only if the subject is not itself a figure: pair her with architecture, instruments, and machines, never statuary. --oref and --cref are refused; --iw 3 collapses to monochrome portraits.",
+   "prompt_tags": [
+    "r30#64",
+    "r30#63",
+    "r30#62"
+   ],
+   "flags": "<image URL first> --iw 1.5 --s 150 --draft",
+   "proof": []
+  }
+ ],
+ "archive_note": "Twenty-four frames from the May 2026 corpus that have an exact prompt on disk. They were made before this rulebook existed, with Midjourney v6-era flags, and no entry claims a rule. Each shows its verbatim prompt and the prompts-file line it came from. The other 173 files on the archive page have no recoverable prompt and get nothing invented.",
+ "archive": [
+  {
+   "file": "bavarian-limestone-lithography-stone-drawn-image-v_321367_0.jpg",
+   "source": "prompts/all-prompts-v3.txt:151",
+   "prompt": "Bavarian limestone lithography stone, drawn image visible on polished surface, grease crayon marks, tusche washes showing tonal range, registration marks in corners, stone grain texture, printmaking material aesthetic --ar 4:3"
+  },
+  {
+   "file": "boolean-logic-gate-diagram-and-or-not-nand-nor-xor_d2373d_3.jpg",
+   "source": "prompts/all-prompts-v3.txt:475",
+   "prompt": "Boolean logic gate diagram, AND OR NOT NAND NOR XOR gates in standard symbols, interconnected with signal lines, truth tables adjacent, timing diagram below, dark background, digital logic textbook aesthetic --ar 4:3"
+  },
+  {
+   "file": "burette-clamped-on-ring-stand-meniscus-visible-at_ebd84e_2.jpg",
+   "source": "prompts/all-prompts-v3.txt:295",
+   "prompt": "Burette clamped on ring stand, meniscus visible at eye level, stopcock valve, graduated markings, titration flask below with color indicator change, dark laboratory background, analytical chemistry aesthetic --ar 9:16"
+  },
+  {
+   "file": "chain-of-jacquard-loom-punch-cards-holes-controlli_3f44c1_1.jpg",
+   "source": "prompts/all-prompts-v3.txt:256",
+   "prompt": "Chain of Jacquard loom punch cards, holes controlling individual warp threads, card linkage mechanism visible, sequential pattern cards in a long chain, dark background, programmable textile technology aesthetic --ar 9:16"
+  },
+  {
+   "file": "complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4",
+   "source": "prompts/all-prompts-v3.txt:484",
+   "prompt": "Complex chemical reaction mechanism written on a chalkboard, curved arrows showing electron movement, intermediates in brackets, catalytic cycle, reagents and conditions above arrows, organic chemistry notation aesthetic --ar 16:9"
+  },
+  {
+   "file": "cross-section-of-reactor-containment-building-thic_e7bc5e_2.jpg",
+   "source": "prompts/all-prompts-v3.txt:568",
+   "prompt": "Cross-section of reactor containment building, thick reinforced concrete shell, steel liner, equipment airlock, personnel airlock, polar crane, steam generators inside, dark background, nuclear safety barrier aesthetic --ar 4:3"
+  },
+  {
+   "file": "extreme-close-up-of-drypoint-engraving-burr-on-a-m_dab488_0.jpg",
+   "source": "prompts/all-prompts-v3.txt:172",
+   "prompt": "Extreme close-up of drypoint engraving burr on a metal plate, raised metal curl alongside incised line, characteristic soft fuzzy line quality, plate surface scratches, raking light revealing depth, intaglio printmaking detail aesthetic --ar 4:3"
+  },
+  {
+   "file": "full-screen-alert-notification-large-warning-icon_1a9af7_0.jpg",
+   "source": "prompts/all-prompts-v2.txt:314",
+   "prompt": "Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"
+  },
+  {
+   "file": "full-screen-alert-notification-large-warning-icon_1a9af7_3.jpg",
+   "source": "prompts/all-prompts-v2.txt:314",
+   "prompt": "Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"
+  },
+  {
+   "file": "full-screen-alert-notification-large-warning-icon_42d48b_3.mp4",
+   "source": "prompts/all-prompts-v2.txt:314",
+   "prompt": "Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1"
+  },
+  {
+   "file": "geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg",
+   "source": "prompts/all-prompts-v3.txt:121",
+   "prompt": "Geotechnical boring log diagram, columnar section showing soil layers, SPT blow counts, sample types, water table symbol, depth scale in feet, soil descriptions in monospace, classification symbols, foundation engineering aesthetic --ar 9:16"
+  },
+  {
+   "file": "glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_0.jpg",
+   "source": "prompts/all-prompts-v3.txt:547",
+   "prompt": "Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4"
+  },
+  {
+   "file": "glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg",
+   "source": "prompts/all-prompts-v3.txt:547",
+   "prompt": "Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4"
+  },
+  {
+   "file": "infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4",
+   "source": "prompts/all-prompts-v2.txt:47",
+   "prompt": "Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1"
+  },
+  {
+   "file": "infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4",
+   "source": "prompts/all-prompts-v2.txt:47",
+   "prompt": "Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1"
+  },
+  {
+   "file": "interior-of-a-faraday-cage-room-copper-mesh-on-wal_2cdd9f_3.jpg",
+   "source": "prompts/all-prompts-v3.txt:553",
+   "prompt": "Interior of a Faraday cage room, copper mesh on walls ceiling and floor, filtered power entry panel, waveguide-below-cutoff ventilation ducts, RF-tight door with finger stock gaskets, dark interior, electromagnetic shielding aesthetic --ar 4:3"
+  },
+  {
+   "file": "ipa-phonetic-transcription-of-speech-broad-and-nar_ca70b5_1.jpg",
+   "source": "prompts/all-prompts-v3.txt:490",
+   "prompt": "IPA phonetic transcription of speech, broad and narrow transcription compared, diacritical marks, tone markings, syllable boundaries, stress marks, articulatory diagrams alongside, linguistics notation aesthetic --ar 4:3"
+  },
+  {
+   "file": "multi-scale-nomogram-for-engineering-calculation-t_e44988_3.jpg",
+   "source": "prompts/all-prompts-v3.txt:532",
+   "prompt": "Multi-scale nomogram for engineering calculation, three or more graduated axes, alignment line solving equation, pivot point, scale labels in monospace, isopleth drawn across scales, dark background, graphical computation aesthetic --ar 3:4"
+  },
+  {
+   "file": "oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4",
+   "source": "prompts/all-prompts-v3.txt:46",
+   "prompt": "Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1"
+  },
+  {
+   "file": "oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg",
+   "source": "prompts/all-prompts-v3.txt:46",
+   "prompt": "Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1"
+  },
+  {
+   "file": "oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4",
+   "source": "prompts/all-prompts-v3.txt:46",
+   "prompt": "Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1"
+  },
+  {
+   "file": "rude-star-finder-planisphere-transparent-overlay-r_292e0c_2.jpg",
+   "source": "prompts/all-prompts-v3.txt:334",
+   "prompt": "Rude star finder planisphere, transparent overlay rotating over star field base, altitude and azimuth curves, constellation labels in monospace, observation latitude setting, dark background, practical celestial navigation aesthetic --ar 1:1"
+  },
+  {
+   "file": "screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4",
+   "source": "prompts/all-prompts-v2.txt:284",
+   "prompt": "Screenshot of an ancient graphical user interface, bitmap icons at low resolution, menu bar with unfamiliar options, dialog box with monospace text, window border decorations from early computing, 8-bit color palette, software archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1"
+  },
+  {
+   "file": "smith-chart-with-impedance-plot-normalized-resista_91e974_0.jpg",
+   "source": "prompts/all-prompts-v3.txt:379",
+   "prompt": "Smith chart with impedance plot, normalized resistance and reactance circles, plotted impedance trajectory showing matching network transformation, VSWR circle, dark background with fine grid, RF engineering aesthetic --ar 1:1"
+  }
+ ]
+}

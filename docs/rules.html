@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rulebook, Nous Inspired Design System</title>
+<meta name="description" content="Numbered rules for the Nous inspired aesthetic, each with three copyable Midjourney prompts and proof images as they are made.">
+<style>:root{--bg:#0b0f14;--ink:#f3efe4;--mute:#9aa3ad;--line:#232b34;--blue:#1e3a8a;--blue-2:#3b82f6;--red:#d62828;--cream:#f3efe4}
+*{box-sizing:border-box}html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 ui-serif,Georgia,"Times New Roman",serif}
+a{color:var(--blue-2)}
+.nav{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:.9rem 1rem;border-bottom:1px solid var(--line);font:13px ui-monospace,Menlo,monospace;letter-spacing:.04em;text-transform:uppercase}
+.nav b{color:var(--ink)}.nav a{text-decoration:none;color:var(--mute)}.nav a[aria-current]{color:var(--ink)}
+.banner{background:var(--blue);color:var(--cream);font:13px ui-monospace,Menlo,monospace;padding:.6rem 1rem}
+main{max-width:52rem;margin:0 auto;padding:1.5rem 1rem 4rem}
+h1{font-size:2rem;line-height:1.15;margin:1.5rem 0 .5rem}
+.lede{color:var(--mute);margin:0 0 2rem}
+.rule{border-top:1px solid var(--line);padding:1.75rem 0}
+.rule h2{font-size:1.35rem;margin:0 0 .35rem}.rule h2 a{color:inherit;text-decoration:none}.rule h2 span{color:var(--red);font:14px ui-monospace,Menlo,monospace;margin-right:.6rem}
+.statement{font-size:1.1rem;margin:.25rem 0 1rem}
+.flags{font:13px ui-monospace,Menlo,monospace;color:var(--mute);margin:0 0 1rem}
+.prompt{position:relative;margin:0 0 .75rem}
+pre{margin:0;padding:.85rem 5.5rem .85rem .9rem;background:#111821;border:1px solid var(--line);border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 ui-monospace,Menlo,monospace;color:var(--ink)}
+.copy{position:absolute;top:.5rem;right:.5rem;font:12px ui-monospace,Menlo,monospace;background:var(--cream);color:#0b0f14;border:0;border-radius:4px;padding:.3rem .55rem;cursor:pointer}
+.tag{font:11px ui-monospace,Menlo,monospace;color:var(--mute);margin:.15rem 0 0}
+.proof{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:1rem}
+.proof figure{margin:0}.proof img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.proof figcaption{font:11px ui-monospace,Menlo,monospace;color:var(--mute);margin-top:.3rem}
+.archive-head{border-top:1px solid var(--line);padding-top:1.75rem;margin-top:1rem}
+.archive-head p{color:var(--mute)}
+.arch{display:grid;grid-template-columns:1fr;gap:1.25rem}
+.arch figure{margin:0;display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:.75rem;align-items:start}
+.arch img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.arch pre{padding-right:.9rem}
+.src{font:11px ui-monospace,Menlo,monospace;color:var(--mute);margin:.3rem 0 0}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem;font:12px ui-monospace,Menlo,monospace;color:var(--mute)}
+@media (max-width:480px){h1{font-size:1.6rem}.arch figure{grid-template-columns:1fr}pre{padding-right:.9rem;padding-bottom:2.4rem}.copy{top:auto;bottom:.5rem}}</style>
+</head>
+<body>
+<nav class="nav"><b>NOUS INSPIRED</b> <a href="index.html">Archive</a> <a href="rules.html" aria-current="page">Rulebook</a> <a href="method.html">Method</a> <a href="kit/README.md">Kit</a> <a href="https://github.com/thedavidmurray/nous-inspired-design-system">GitHub</a></nav>
+<div class="banner">Unofficial. A fan-made design system inspired by Nous Research, built by Edgeless Lab. Not affiliated with or endorsed by Nous Research.</div>
+<main>
+<h1>Rulebook</h1>
+<p class="lede">Nine rules that survived thirty rounds and about two thousand prompts. Each rule is one sentence and three copyable prompts, cited by tag id into docs/prompts/exploration-log.txt. Proof images attach one keeper at a time, with the prompt captured at harvest.</p>
+<section class="rule" id="R1">
+<h2><a href="#R1"><span>R1</span>One ink, then restraint</a></h2>
+<p class="statement">Pick one ink and commit: Prussian blue cyanotype on cream, phosphor green on near-black, or black on foxed cream with a single small red mark. Never navy plus gold, never rainbow by default. Color is the minority lane, not the house style.</p>
+<p class="flags">flags: --s 150 --draft (chaos from the UI slider)</p>
+<div class="prompt"><pre>a vinyl record center label of a stained glass window&#x27;s leaded seams catching sun, stark black-and-white with one tiny red, engraved &quot;HERMES&quot;, thermal-receipt paper grain, faded emulsion --ar 1:1 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#17</p></div>
+<div class="prompt"><pre>a red fox pouncing through fresh snow, fine 18th-century intaglio line engraving, black on cream, one tiny red mark, wordmark &quot;HERMES&quot;, dot-matrix printer banding on tractor-feed paper --ar 3:4 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#14</p></div>
+<div class="prompt"><pre>a mimic octopus rippling chromatophore patterns across a coral shelf, phosphor-green dot-matrix dithering with CRT scanlines on near-black, wordmark &quot;NOUS RESEARCH&quot;, datamatrix micro-scan grid, hairline registration --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#11</p></div>
+</section>
+<section class="rule" id="R2">
+<h2><a href="#R2"><span>R2</span>Texture is the medium</a></h2>
+<p class="statement">Every image goes through a print or early-digital process: risograph misregistration, halftone rosette, Bayer dither, thermal-receipt grain, xerox degradation, CRT scanlines. Clean renders read as stock. When it looks too smooth, add one texture clause.</p>
+<p class="flags">flags: --s 150 --draft</p>
+<div class="prompt"><pre>a desert varnish patina darkening a sandstone wall, chalk-and-charcoal sketch, in the style of Gustav Klimt — gold-leaf ornamentation, mosaic-like pattern fields, sensuous decorative line, wordmark &quot;HERMES&quot;, thermal-receipt paper grain, faded emulsion --ar 3:2 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#60</p></div>
+<div class="prompt"><pre>a telegraph key mid-tap, sending a coded message, shallow depth of field with dreamy bokeh, in the style of Paul Klee — childlike geometric whimsy, textured color field, symbolic line, wordmark &quot;NOUS RESEARCH&quot;, xerox photocopy degradation, toner speckle, high-contrast blowout --ar 3:2 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#59</p></div>
+<div class="prompt"><pre>a mountain goat balanced on a sheer cliff face, moonlit nocturne, in the style of Francisco Goya — dark satirical etching, grotesque social critique, stark chiaroscuro, wordmark &quot;NOUS RESEARCH&quot;, ordered Bayer dithering, low-bit indexed color --ar 1:1 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#57</p></div>
+</section>
+<section class="rule" id="R3">
+<h2><a href="#R3"><span>R3</span>Statuary in, living faces out</a></h2>
+<p class="statement">No photographic or living human faces. Classical marble statuary, busts, reliefs, and caryatids are approved as art objects: gods in the machine, glitched into dither. Machine habitat, not portraiture.</p>
+<p class="flags">flags: --s 150 --draft</p>
+<div class="prompt"><pre>a shattered marble bust of Apollo, phosphor-green dot-matrix dithering with CRT scanlines on near-black, wordmark &quot;HERMES&quot; --ar 3:4 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r29#23</p></div>
+<div class="prompt"><pre>an ultraviolet fluorescence capture of a winged Nike victory statue, electric green and violet fluorescence on near-black, monospace HUD label &quot;NOUS RESEARCH&quot; --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r29#13</p></div>
+<div class="prompt"><pre>Mannerist etching of battle and hunt scenes, dense energetic composition rendering of an ultraviolet fluorescence capture of a winged Nike victory statue, electric green and violet fluorescence on near-black, &quot;NOUS RESEARCH&quot; --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r28#230</p></div>
+</section>
+<section class="rule" id="R4">
+<h2><a href="#R4"><span>R4</span>Only the real lexicon</a></h2>
+<p class="statement">Text stays anchored to words Nous actually uses: NOUS RESEARCH and HERMES first, project names rarely. Latin letters only, no invented slogans, no Greek script. Match the word to the subject: a bazaar can say open source, a cathedral cannot.</p>
+<p class="flags">flags: --s 150 --draft</p>
+<div class="prompt"><pre>a sun pillar rising above a frozen horizon, baroque maximalist density, in the style of Emma Kunz — pendulum grid-field drawings on graph paper, radial symmetry, wordmark &quot;NOUS RESEARCH&quot;, VHS tracking artifacts, chromatic aberration, analog noise --ar 3:2 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#58</p></div>
+<div class="prompt"><pre>in the style of Romeyn de Hooghe — Dutch Baroque etching, propagandistic dense allegorical satire — depicting a pulsar&#x27;s lighthouse beam sweeping through space, terracotta and sand, sun-baked, wordmark &quot;HERMES&quot;, ordered Bayer dithering, low-bit indexed color --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#51</p></div>
+<div class="prompt"><pre>in the style of Yohji Yamamoto — ink-black asymmetry, calligraphic void, matte cloth — depicting a swarm of drones forming &quot;NOUS&quot; over a sleeping city, olive and ochre with black, wordmark &quot;HERMES&quot;, datamatrix micro-scan grid, hairline registration --ar 5:4 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#50</p></div>
+</section>
+<section class="rule" id="R5">
+<h2><a href="#R5"><span>R5</span>Neoclassical meets machine habitat</a></h2>
+<p class="statement">Subjects fuse the classical and the computational: colonnades dissolving into server racks, brutalist compute-cathedrals, cartouches, orreries, blueprint schematics. Scenes beat diagrams; keep labeled-diagram prompts under a third of any batch.</p>
+<p class="flags">flags: --s 150 --draft</p>
+<div class="prompt"><pre>a Corinthian capital fused with circuit traces, thermal-receipt grain, warm-grey duotone halftone, wordmark &quot;NOUS RESEARCH&quot; --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r29#32</p></div>
+<div class="prompt"><pre>a Doric colonnade dissolving into server racks, thermal-receipt grain, warm-grey duotone halftone, wordmark &quot;HERMES&quot; --ar 3:2 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r29#21</p></div>
+<div class="prompt"><pre>a laurel wreath and acanthus cartouche, black-ink letterpress on foxed cream, ornament rules, wordmark &quot;LANGUAGE MODELS&quot; --ar 2:3 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r29#20</p></div>
+</section>
+<section class="rule" id="R6">
+<h2><a href="#R6"><span>R6</span>The spectral break</a></h2>
+<p class="statement">The deliberate break from print texture is false-color sensor imagery: FLIR thermal, Aerochrome infrared, UV fluorescence, X-ray, night vision, schlieren, lidar. Wordmarks become HUD labels and scale bars. Moodboard grain reads as sensor noise here, so keep it on.</p>
+<p class="flags">flags: --s 150 --draft, moodboard hermes on</p>
+<div class="prompt"><pre>Spanish Luminism, sun-dazzled beach scenes, dazzling light on water rendering of a color-schlieren capture of an ice cave&#x27;s blue interior lit by a single shaft, rainbow refractive-index gradients on black, &quot;HERMES&quot;, screenprint halftone with slight ink bleed and paper tooth --ar 3:2 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#42</p></div>
+<div class="prompt"><pre>Vignelli/Unimark rationalism, Helvetica, tight modular grid, red-black rendering of a lidar point-cloud scan of a total solar eclipse with the corona blazing, glowing false-color depth-gradient points in a black void, &quot;NOUS RESEARCH&quot;, risograph misregistration, ink texture, off-register color --ar 16:9 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#41</p></div>
+<div class="prompt"><pre>color-chart grid, or grey squeegee blur rendering of a gen-3 night-vision capture of a whale shark gliding through a curtain of plankton, phosphor-green intensified image, circular vignette, IR bloom, &quot;HERMES&quot;, screenprint halftone with slight ink bleed and paper tooth --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r30#40</p></div>
+</section>
+<section class="rule" id="R7">
+<h2><a href="#R7"><span>R7</span>Setup on Midjourney 8.2</a></h2>
+<p class="statement">Personalize on with Personalization profile #1 and the hermes moodboard both checked; confirm both tags on the job card. Draft mode on. Chaos and weird from the UI, never in the prompt. No --sref on the classical lane, and --sw is dead while any moodboard is attached: stack references to dilute instead.</p>
+<p class="flags">flags: --ar &lt;ratio&gt; --s 150 --draft</p>
+<div class="prompt"><pre>in the style of Henri Matisse cut-outs — bold organic paper-cutout shapes, flat jewel and pastel color, white ground — depicting a loom weaving a vast tapestry of thread, oxblood and gold on cream, no text, purely visual --ar 4:5 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r28#29</p></div>
+<div class="prompt"><pre>in the style of Stefan Sagmeister — hand-made object-typography, provocation, tactile lettering — depicting a row of caryatid columns, rust and forest-green, warm earth, no text, purely visual --ar 1:1 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r28#28</p></div>
+<div class="prompt"><pre>in the style of Johannes Vermeer — soft window light, quiet domestic interior, luminous glazed color — depicting a modernist glass pavilion in a birch forest, warm greys and a single vermilion, no text, purely visual --ar 16:9 --s 150 --draft</pre><button class="copy" type="button">Copy</button><p class="tag">r28#27</p></div>
+</section>
+<section class="rule" id="R8">
+<h2><a href="#R8"><span>R8</span>Discovered styles: technique transfers, atmosphere swallows</a></h2>
+<p class="statement">Roll --sref random to discover styles, then read the seed off the job card. Seeds that encode rendering technique (linework, palette, print process) transfer to any subject and keep the wordmark. Seeds that encode atmosphere erase subject and wordmark; use them only on the off-brief lane.</p>
+<p class="flags">flags: --s 150 --draft --sref random</p>
+<div class="prompt"><pre>a leafy sea dragon drifting among kelp, camouflaged as fronds, extreme macro close-up, in the style of Antonio Tempesta — Mannerist etching of battle and hunt scenes, dense energetic composition --ar 4:5 --s 150 --draft --sref random</pre><button class="copy" type="button">Copy</button><p class="tag">r27#499</p></div>
+<div class="prompt"><pre>a desert varnish patina darkening a sandstone wall, cutaway cross-section, in the style of Walker Evans — deadpan documentary photography, plain-style frontal vernacular Americana --ar 5:4 --s 150 --draft --sref random random</pre><button class="copy" type="button">Copy</button><p class="tag">r27#498</p></div>
+<div class="prompt"><pre>an abandoned greenhouse reclaimed by vines, cyanotype blueprint, in the style of Honoré Daumier x Carleton Watkins — lithographic caricature, loose expressive line, biting social satire; 19th-century frontier photography, monumental wilderness plate composition --ar 3:4 --s 150 --draft --sref random random random</pre><button class="copy" type="button">Copy</button><p class="tag">r27#497</p></div>
+</section>
+<section class="rule" id="R9">
+<h2><a href="#R9"><span>R9</span>The Nous Girl rides as an image prompt</a></h2>
+<p class="statement">On 8.2 her reference goes first in the prompt as a bare image URL with --iw 1.5. Identity holds, palette survives, the scene survives only if the subject is not itself a figure: pair her with architecture, instruments, and machines, never statuary. --oref and --cref are refused; --iw 3 collapses to monochrome portraits.</p>
+<p class="flags">flags: &lt;image URL first&gt; --iw 1.5 --s 150 --draft</p>
+<div class="prompt"><pre>https://raw.githubusercontent.com/thedavidmurray/nous-inspired-design-system/main/public/nous-girl-refs/nous-girl-ref-E-source-mascot.png in the style of Stefan Sagmeister — hand-made object-typography, provocation, tactile lettering — depicting an observatory dome cracking open at dusk, primary red blue yellow, Bauhaus, wordmark &quot;NOUS RESEARCH&quot;, coarse halftone dot screen, visible CMYK rosette --ar 4:5 --iw 1.5 --s 150 --draft [GIRL/iw 1.5]</pre><button class="copy" type="button">Copy</button><p class="tag">r30#64</p></div>
+<div class="prompt"><pre>https://raw.githubusercontent.com/thedavidmurray/nous-inspired-design-system/main/public/nous-girl-refs/nous-girl-ref-E-source-mascot.png in the style of El Lissitzky — Proun constructivist axonometric abstraction, red-black-grey — depicting a wasp&#x27;s papery nest under an eave, aubergine and rose, plum duotone, wordmark &quot;NOUS RESEARCH&quot;, coarse halftone dot screen, visible CMYK rosette --ar 4:5 --iw 1.5 --s 150 --draft [GIRL/iw 1.5]</pre><button class="copy" type="button">Copy</button><p class="tag">r30#63</p></div>
+<div class="prompt"><pre>https://raw.githubusercontent.com/thedavidmurray/nous-inspired-design-system/main/public/nous-girl-refs/nous-girl-ref-E-source-mascot.png in the style of Henri Matisse cut-outs — bold organic paper-cutout shapes, flat jewel and pastel color, white ground — depicting a pomegranate split open, seeds catching the light, rust and forest-green, warm earth, wordmark &quot;NOUS RESEARCH&quot;, dot-matrix printer banding on tractor-feed paper --ar 4:5 --iw 1.5 --s 150 --draft [GIRL/iw 1.5]</pre><button class="copy" type="button">Copy</button><p class="tag">r30#62</p></div>
+</section>
+<section class="archive-head" id="archive">
+<h2>Archive: v10/v11-era output, not the validated recipe</h2>
+<p>Twenty-four frames from the May 2026 corpus that have an exact prompt on disk. They were made before this rulebook existed, with Midjourney v6-era flags, and no entry claims a rule. Each shows its verbatim prompt and the prompts-file line it came from. The other 173 files on the archive page have no recoverable prompt and get nothing invented.</p>
+</section>
+<div class="arch">
+<figure><img src="v10-v11-mj-pulls/bavarian-limestone-lithography-stone-drawn-image-v_321367_0.jpg" alt="" loading="lazy"><div><pre>Bavarian limestone lithography stone, drawn image visible on polished surface, grease crayon marks, tusche washes showing tonal range, registration marks in corners, stone grain texture, printmaking material aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:151</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/boolean-logic-gate-diagram-and-or-not-nand-nor-xor_d2373d_3.jpg" alt="" loading="lazy"><div><pre>Boolean logic gate diagram, AND OR NOT NAND NOR XOR gates in standard symbols, interconnected with signal lines, truth tables adjacent, timing diagram below, dark background, digital logic textbook aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:475</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/burette-clamped-on-ring-stand-meniscus-visible-at_ebd84e_2.jpg" alt="" loading="lazy"><div><pre>Burette clamped on ring stand, meniscus visible at eye level, stopcock valve, graduated markings, titration flask below with color indicator change, dark laboratory background, analytical chemistry aesthetic --ar 9:16</pre><p class="src">prompts/all-prompts-v3.txt:295</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/chain-of-jacquard-loom-punch-cards-holes-controlli_3f44c1_1.jpg" alt="" loading="lazy"><div><pre>Chain of Jacquard loom punch cards, holes controlling individual warp threads, card linkage mechanism visible, sequential pattern cards in a long chain, dark background, programmable textile technology aesthetic --ar 9:16</pre><p class="src">prompts/all-prompts-v3.txt:256</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4" alt="" loading="lazy"><div><pre>Complex chemical reaction mechanism written on a chalkboard, curved arrows showing electron movement, intermediates in brackets, catalytic cycle, reagents and conditions above arrows, organic chemistry notation aesthetic --ar 16:9</pre><p class="src">prompts/all-prompts-v3.txt:484</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/cross-section-of-reactor-containment-building-thic_e7bc5e_2.jpg" alt="" loading="lazy"><div><pre>Cross-section of reactor containment building, thick reinforced concrete shell, steel liner, equipment airlock, personnel airlock, polar crane, steam generators inside, dark background, nuclear safety barrier aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:568</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/extreme-close-up-of-drypoint-engraving-burr-on-a-m_dab488_0.jpg" alt="" loading="lazy"><div><pre>Extreme close-up of drypoint engraving burr on a metal plate, raised metal curl alongside incised line, characteristic soft fuzzy line quality, plate surface scratches, raking light revealing depth, intaglio printmaking detail aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:172</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_0.jpg" alt="" loading="lazy"><div><pre>Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:314</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_3.jpg" alt="" loading="lazy"><div><pre>Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:314</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_42d48b_3.mp4" alt="" loading="lazy"><div><pre>Full-screen alert notification, large warning icon, incident description in monospace, severity level indicator, affected services list, escalation contacts, timestamp, dark background with red accent border, incident response aesthetic --ar 1:1 --style raw --stylize 150 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:314</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg" alt="" loading="lazy"><div><pre>Geotechnical boring log diagram, columnar section showing soil layers, SPT blow counts, sample types, water table symbol, depth scale in feet, soil descriptions in monospace, classification symbols, foundation engineering aesthetic --ar 9:16</pre><p class="src">prompts/all-prompts-v3.txt:121</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_0.jpg" alt="" loading="lazy"><div><pre>Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4</pre><p class="src">prompts/all-prompts-v3.txt:547</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg" alt="" loading="lazy"><div><pre>Glass bell jar on vacuum plate, interior evacuated, residual gas discharge glow, stopcock valve, vacuum hose connection, brass base plate, dark background, physics demonstration apparatus aesthetic --ar 3:4</pre><p class="src">prompts/all-prompts-v3.txt:547</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4" alt="" loading="lazy"><div><pre>Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:47</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4" alt="" loading="lazy"><div><pre>Infinite corridor between server racks, blue and violet LED status indicators in darkness, cold air curtain visible as mist, cable bundles overhead, floor tiles with ventilation grilles, vanishing point perspective, no human figures, hyperscale infrastructure, dark industrial photography --ar 16:9 --style raw --stylize 250 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:47</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/interior-of-a-faraday-cage-room-copper-mesh-on-wal_2cdd9f_3.jpg" alt="" loading="lazy"><div><pre>Interior of a Faraday cage room, copper mesh on walls ceiling and floor, filtered power entry panel, waveguide-below-cutoff ventilation ducts, RF-tight door with finger stock gaskets, dark interior, electromagnetic shielding aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:553</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/ipa-phonetic-transcription-of-speech-broad-and-nar_ca70b5_1.jpg" alt="" loading="lazy"><div><pre>IPA phonetic transcription of speech, broad and narrow transcription compared, diacritical marks, tone markings, syllable boundaries, stress marks, articulatory diagrams alongside, linguistics notation aesthetic --ar 4:3</pre><p class="src">prompts/all-prompts-v3.txt:490</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/multi-scale-nomogram-for-engineering-calculation-t_e44988_3.jpg" alt="" loading="lazy"><div><pre>Multi-scale nomogram for engineering calculation, three or more graduated axes, alignment line solving equation, pivot point, scale labels in monospace, isopleth drawn across scales, dark background, graphical computation aesthetic --ar 3:4</pre><p class="src">prompts/all-prompts-v3.txt:532</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4" alt="" loading="lazy"><div><pre>Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1</pre><p class="src">prompts/all-prompts-v3.txt:46</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg" alt="" loading="lazy"><div><pre>Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1</pre><p class="src">prompts/all-prompts-v3.txt:46</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4" alt="" loading="lazy"><div><pre>Oscilloscope in XY mode displaying a complex harmonic pattern, interlocking loops forming a geometric rosette, bright spots at turnaround points, fading trails showing beam persistence, void black background, analog signal visualization aesthetic --ar 1:1</pre><p class="src">prompts/all-prompts-v3.txt:46</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/rude-star-finder-planisphere-transparent-overlay-r_292e0c_2.jpg" alt="" loading="lazy"><div><pre>Rude star finder planisphere, transparent overlay rotating over star field base, altitude and azimuth curves, constellation labels in monospace, observation latitude setting, dark background, practical celestial navigation aesthetic --ar 1:1</pre><p class="src">prompts/all-prompts-v3.txt:334</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4" alt="" loading="lazy"><div><pre>Screenshot of an ancient graphical user interface, bitmap icons at low resolution, menu bar with unfamiliar options, dialog box with monospace text, window border decorations from early computing, 8-bit color palette, software archaeology aesthetic --ar 4:3 --style raw --stylize 200 --v 6.1</pre><p class="src">prompts/all-prompts-v2.txt:284</p></div></figure>
+<figure><img src="v10-v11-mj-pulls/smith-chart-with-impedance-plot-normalized-resista_91e974_0.jpg" alt="" loading="lazy"><div><pre>Smith chart with impedance plot, normalized resistance and reactance circles, plotted impedance trajectory showing matching network transformation, VSWR circle, dark background with fine grid, RF engineering aesthetic --ar 1:1</pre><p class="src">prompts/all-prompts-v3.txt:379</p></div></figure>
+</div>
+<footer>Built from docs/rules.json and docs/prompts/exploration-log.txt by scripts/build_rules.py.</footer>
+</main>
+<script>document.addEventListener('click',function(e){var b=e.target.closest('.copy');if(!b)return;
+var t=b.parentNode.querySelector('pre').textContent;
+navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)});});</script>
+</body>
+</html>
