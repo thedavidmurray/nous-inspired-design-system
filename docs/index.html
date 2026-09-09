@@ -316,22 +316,26 @@ body::after {
 /* ================================================================
    GALLERY — masonry-ish reference grid
    ================================================================ */
+/* Justified rows: each item carries --r (width/height); flex-grow = --r keeps every row level
+   while every image renders at its own aspect ratio. */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2px;
   margin-bottom: 1rem;
 }
+.gallery-grid::after { content: ""; flex-grow: 1e5; }
 .gallery-item {
-  aspect-ratio: 1;
+  flex-grow: var(--r, 1);
+  flex-basis: calc(var(--r, 1) * 240px);
+  min-width: 0;
   overflow: hidden;
   position: relative;
   background: var(--bg-e);
 }
 .gallery-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   filter: contrast(1.05);
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -340,14 +344,17 @@ body::after {
   transform: scale(1.04);
   filter: contrast(1.1);
 }
-.gallery-item.wide {
-  grid-column: span 2;
-  aspect-ratio: 2/1;
-}
-.gallery-item.tall {
-  grid-row: span 2;
-  aspect-ratio: auto;
-}
+/* .wide / .tall are legacy hooks; every image now renders at its own aspect ratio */
+/* AUGUST 2026 UPSCALES — natural aspect ratio masonry with captions */
+.aug-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.aug-grid::after { content: ""; flex-grow: 1e5; }
+.aug-grid figure { flex-grow: var(--r, 1); flex-basis: calc(var(--r, 1) * 320px); min-width: 0; margin: 0; background: var(--bg-e); }
+.aug-grid img { width: 100%; height: auto; display: block; }
+.aug-grid figcaption { font-size: 0.6rem; line-height: 1.5; letter-spacing: 0.04em; color: var(--fg-q); padding: 0.35rem 0.4rem 0.5rem; font-family: ui-monospace, Menlo, monospace; }
+.aug-grid figcaption a { color: inherit; text-decoration: underline dotted; }
+@media (max-width: 900px) { .aug-grid figure { flex-basis: calc(var(--r, 1) * 240px); } }
+@media (max-width: 520px) { .aug-grid figure { flex-basis: 100%; } }
+
 .gallery-caption {
   font-size: 0.55rem;
   color: var(--fg-q);
@@ -358,13 +365,16 @@ body::after {
 
 /* Corpus grid — dense thumbnail wall for v10/v11 */
 .corpus-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2px;
   margin-bottom: 1rem;
 }
+.corpus-grid::after { content: ""; flex-grow: 1e5; }
 .corpus-item {
-  aspect-ratio: 1;
+  flex-grow: var(--r, 1);
+  flex-basis: calc(var(--r, 1) * 170px);
+  min-width: 0;
   overflow: hidden;
   position: relative;
   background: var(--bg-e);
@@ -373,8 +383,7 @@ body::after {
 .corpus-item img,
 .corpus-item video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   filter: contrast(1.05);
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -385,10 +394,10 @@ body::after {
   filter: contrast(1.1);
 }
 @media (max-width: 900px) {
-  .corpus-grid { grid-template-columns: repeat(4, 1fr); }
+  .corpus-item { flex-basis: calc(var(--r, 1) * 140px); }
 }
 @media (max-width: 520px) {
-  .corpus-grid { grid-template-columns: repeat(3, 1fr); }
+  .corpus-item { flex-basis: calc(var(--r, 1) * 110px); }
 }
 
 /* Gallery hero video */
@@ -463,15 +472,13 @@ body::after {
   flex-direction: column;
 }
 .gen-card-img {
-  aspect-ratio: 1;
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
 }
 .gen-card-img img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   filter: contrast(1.05);
   transition: transform 0.3s ease;
@@ -546,12 +553,10 @@ body::after {
   background: var(--bg-s);
   border: 1px solid var(--border-s);
   cursor: pointer;
-  aspect-ratio: 4 / 5;
 }
 .poster-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -665,8 +670,7 @@ body::after {
 }
 .pipeline-showcase-item img {
   width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -774,7 +778,6 @@ body::after {
   overflow: hidden;
 }
 .mode-preview {
-  height: 100px;
   position: relative;
   overflow: hidden;
 }
@@ -808,8 +811,7 @@ body::after {
 /* Mode preview — now uses actual images */
 .mode-preview img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -1130,8 +1132,7 @@ body::after {
   .pipeline-showcase { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; }
+  .gallery-item { flex-basis: calc(var(--r, 1) * 150px); }
   .mode-grid { grid-template-columns: 1fr; }
   .palette-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
   .pipeline-showcase { grid-template-columns: 1fr; }
@@ -1151,6 +1152,7 @@ body::after {
     <div class="nav-logo">NOUS <span>DESIGN</span></div>
     <div class="nav-links">
       <a href="#gallery">Gallery</a>
+      <a href="#august">August</a>
       <a href="#generated">Generated</a>
       <a href="#character">Character</a>
       <a href="#pipeline-demo">Pipeline</a>
@@ -1218,35 +1220,66 @@ body::after {
   </div>
 
   <div class="gallery-grid">
-    <div class="gallery-item wide">
+    <div class="gallery-item wide" style="--r:0.75">
       <img src="images/hermes-texture-moodboard.png" alt="Hermes — cyanotype glitch statue with distressed typography" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.0">
       <img src="images/IMG_8154.jpg" alt="B&W scanline cross glitch circle" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.09">
       <img src="images/IMG_8161.jpg" alt="Cyanotype knight in ornate armor — face obscured" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.0">
       <img src="images/bluedither.jpeg" alt="Deep blue dithered figure in doorway" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.9956">
       <img src="images/IMG_8159.jpg" alt="Blue connected network figures diagram" loading="lazy">
     </div>
-    <div class="gallery-item wide">
+    <div class="gallery-item wide" style="--r:0.9838">
       <img src="images/IMG_8163.jpg" alt="Hermes 3 Dataset — flagship aesthetic reference" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.3511">
       <img src="images/liminalspace.jpg" alt="B&W grainy liminal corridor space" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.7092">
       <img src="images/cosmos_535277155.jpeg" alt="Pixel art — practical guide to walking through walls" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.0132">
       <img src="images/hermes-signal-dawn.png" alt="Hermes signal dawn — dark horizon with text" loading="lazy">
     </div>
   </div>
   <div class="gallery-caption">// 9 reference images — originals, inspiration, and early generated outputs</div>
+</section>
+
+<!-- ================================================================
+     SEC 02b — AUGUST 2026 UPSCALES
+     ================================================================ -->
+<div class="section-divider"></div>
+<section class="section-wide" id="august">
+  <div class="section-label" data-sec="[SEC_02b]">August 2026 Upscales</div>
+  <div class="output-meta">OUTPUT 002b / SEED: 2026090800 / CLASS: RULEBOOK_ERA_KEEPERS</div>
+  <h2 class="section-title">Twelve Keepers, August 2026</h2>
+  <p class="section-desc">
+    Subtle upscales pulled from the r19 and r28 rounds that produced the <a href="rules.html">Rulebook</a>.
+    Four carry a verbatim log tag and sit as proof under R1, R5, and R6; the rest were made in the same sessions but their prompts
+    were only recoverable from Midjourney's display text, so they claim no rule. Every frame renders at its own aspect ratio.
+    Hover a frame for the prompt as Midjourney displayed it.
+  </p>
+  <div class="aug-grid">
+    <figure style="--r:1.4995"><img src="images/aug-2026/r28-177-b007792d.jpg" alt="Church datacenter hall, FORGE" title="in the style of Frederic Edwin Church, Hudson River School sublime, depicting a datacenter server hall, wordmark FORGE" loading="lazy"><figcaption>Church datacenter hall, FORGE<br>r28#177 · proof for <a href="rules.html#R5">R5</a></figcaption></figure>
+    <figure style="--r:0.7531"><img src="images/aug-2026/aug-21a043c1.jpg" alt="FISK switchboard, HERMES (i)" title="FISK-style poster, oversized grotesque type on a strict grid, a switchboard of a thousand tangled patch cables, saturated rainbow risograph, wordmark HERMES" loading="lazy"><figcaption>FISK switchboard, HERMES (i)<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:0.8"><img src="images/aug-2026/aug-523dab4b.jpg" alt="NOUS RESEARCH, garden terminal" title="the hero text says NOUS RESEARCH in huge type" loading="lazy"><figcaption>NOUS RESEARCH, garden terminal<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:1.25"><img src="images/aug-2026/r19-19-52af6459.jpg" alt="Ikeda fungi, cobalt riso" title="in the style of Ryoji Ikeda, datamatrix barcode sublime, a tangle of luminous fungi on a fallen log, cobalt-and-cream two-color riso" loading="lazy"><figcaption>Ikeda fungi, cobalt riso<br>r19#19 · proof for <a href="rules.html#R1">R1</a></figcaption></figure>
+    <figure style="--r:0.8"><img src="images/aug-2026/aug-f0245b3f.jpg" alt="Fern micrograph, low-bit dither" title="abstract musical geometry, a polarized-light micrograph of a fern frond, birefringent rainbow interference, tiny corner label NOUS RESEARCH, early-90s pixelation" loading="lazy"><figcaption>Fern micrograph, low-bit dither<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:1.25"><img src="images/aug-2026/r28-7-1b0e1441.jpg" alt="Corita Kent murmuration, DisTrO" title="in the style of Sister Corita Kent, pop serigraphy, a murmuration rendered as a swarm point-cloud, terracotta and sand, DisTrO set very small in the margin" loading="lazy"><figcaption>Corita Kent murmuration, DisTrO<br>r28#7 · proof for <a href="rules.html#R5">R5</a></figcaption></figure>
+    <figure style="--r:0.8"><img src="images/aug-2026/aug-7376f049.jpg" alt="NOUS RESEARCH, datamatrix outline" title="hero text NOUS RESEARCH over a daguerreotype camera lens, Toulouse-Lautrec x Manfred Mohr, cube-projection algorithmic line art" loading="lazy"><figcaption>NOUS RESEARCH, datamatrix outline<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:1.0"><img src="images/aug-2026/r19-20-48594570.jpg" alt="Chandra snowflake, wildstyle" title="wildstyle softie bubble letters, a Chandra X-ray false-color capture of a snowflake crystal, blue and purple plasma shockwaves on black" loading="lazy"><figcaption>Chandra snowflake, wildstyle<br>r19#20 · proof for <a href="rules.html#R6">R6</a></figcaption></figure>
+    <figure style="--r:0.7531"><img src="images/aug-2026/aug-6652cc2b.jpg" alt="FISK switchboard, HERMES (ii)" title="FISK-style poster, a switchboard of a thousand tangled patch cables, spectrum gradient, wordmark HERMES, riso misregistration" loading="lazy"><figcaption>FISK switchboard, HERMES (ii)<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:1.25"><img src="images/aug-2026/aug-dfb2b1b6.jpg" alt="Ikeda fungi, second pull" title="in the style of Ryoji Ikeda, a tangle of luminous fungi on a fallen log, cobalt-and-cream two-color riso" loading="lazy"><figcaption>Ikeda fungi, second pull<br>r19#19 · sibling of the R1 proof</figcaption></figure>
+    <figure style="--r:1.0"><img src="images/aug-2026/aug-4bf4f1d3.jpg" alt="Riso note emblem" title="flat geometric risograph emblem, a single horizontal staff line with one bold note mark, ink black on warm cream, the note in rose magenta" loading="lazy"><figcaption>Riso note emblem<br>Aug upscale · no rule claimed</figcaption></figure>
+    <figure style="--r:0.7531"><img src="images/aug-2026/aug-94c5a88b.jpg" alt="FISK switchboard, HERMES (iii)" title="FISK-style poster, a switchboard of a thousand tangled patch cables, saturated rainbow risograph, wordmark HERMES" loading="lazy"><figcaption>FISK switchboard, HERMES (iii)<br>Aug upscale · no rule claimed</figcaption></figure>
+  </div>
+  <div class="gallery-caption">// 12 upscales — 4 rulebook proofs + 8 same-session pulls. Model: Midjourney 8.2, --s 150 --draft</div>
 </section>
 
 <!-- ================================================================
@@ -1466,40 +1499,40 @@ body::after {
   </p>
 
   <div class="gallery-grid">
-    <div class="gallery-item wide">
+    <div class="gallery-item wide" style="--r:0.8">
       <img src="images/nous-girl-silkscreen-poster.jpg" alt="Nous Girl at the press — silkscreened NOUS RESEARCH masthead" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.7532">
       <img src="images/nous-girl-ruling-pen.jpg" alt="Nous Girl with ruling pen — cyanotype magnifier" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.8">
       <img src="images/nous-girl-wood-type.jpg" alt="Nous Girl at wood-type drawer — riso orange + cyan" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.0">
       <img src="images/nous-girl-darkroom.jpg" alt="Nous Girl in the darkroom — outlined NOUS wordmark" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.3274">
       <img src="images/nous-girl-safe-door.jpg" alt="Nous Girl + iron safe — cobalt monochrome" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.8">
       <img src="images/nous-girl-storefront.jpg" alt="Nous Girl behind glass — vinyl storefront NOUS" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.7532">
       <img src="images/nous-girl-banner.jpg" alt="Nous Girl + large NOUS Roman serif banner" loading="lazy">
     </div>
-    <div class="gallery-item wide">
+    <div class="gallery-item wide" style="--r:0.6667">
       <img src="images/nous-hermes-4-release-poster.jpg" alt="NOUS HERMES 4 — model release poster" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:1.0">
       <img src="images/hermes-marble-bust.jpg" alt="Hermes — classical marble three-quarter profile" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.6667">
       <img src="images/towards-self-improvement-tarot.jpg" alt="Towards Self-Improvement — tarot XII" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.6667">
       <img src="images/field-guide-agentic-systems.jpg" alt="Field Guide to Agentic Systems — botanical poster" loading="lazy">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="--r:0.6667">
       <img src="images/distro-live-decentralized.jpg" alt="DisTrO Live — decentralized training announcement" loading="lazy">
     </div>
   </div>
@@ -1522,119 +1555,119 @@ body::after {
     wordmark at a specific scale and surface. These are the raw pulls — unfiltered, uncurated.
   </p>
     <div class="corpus-grid">
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/1970s-industrial-photography-magazine-page-slight_ce8f1d_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-169-banner-of-three-small-spheres-lined-up-on-a_5e683e_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-169-banner-stand-of-birch-trees-backlit-by-morni_19c7d5_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-1960s-computer-manual-cover-mock-up-heavy-helvet_1bb2a4_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-brass-key-resting-on-a-leather-bound-ledger-embo_800532_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-brass-theodolite-set-up-on-a-tripod-in-a-paneled_bf8931_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-compute-commons-broadside-poster-styled-like-a-d_d8ee04_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-curled-photograph-of-a-research-building-exterio_38ca1d_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-designers-republic-style-technical-broadside-on_4b4767_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-distro-live-decentralized-training-announcement_508f50_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-field-guide-to-agentic-systems-botanical-poster_e41911_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-forklift-parked-in-a-warehouse-before-dawn-singl_088a41_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/a-highly-detailed-digital-interface-design-with-a_c05ce1_3.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-macbeth-colorchecker-card-resting-on-a-worn-leat_d3af28_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-subway-map-fragment-all-r_9ca554_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-minimalist-mission-patch-design-on-a-clean-black_9f1c47_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-modern-interpretation-of-the-kerykeion-a-chrome_babff9_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-nous-hermes-4-model-release-poster-with-album-co_0900c8_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-planetarium-projector-at-pre-dawn-single-tungste_b13925_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-polaroid-type-55-print-and-its-negative-laid-sid_d307af_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-public-library-card-catalog-drawer-pulled-out-re_d7f389_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-row-of-hplc-sample-vials-in-an-autosampler-tray_6bce3c_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-saul-bass-influenced-film-title-poster-mock-up-h_7283e9_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-schlieren-image-of-heated-air-rising-off-a-solde_b1a196_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-sheet-of-paper-showing-concentric-color-fringes_c7d08a_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-single-bold-wim-crouwel-style-typographic-poster_6a15d5_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-single-oversized-broadside-poster-pinned-to-a-wa_79dee1_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-single-waterdrop-hanging-from-a-leaf-tip-refract_4386ea_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-small-numbered-key-on-a-brass-keyfob-hanging-bes_485135_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-swiss-railway-station-timetable-poster-on-cream_8cdac9_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-taste-as-protocol-philosophy-zine-cover-single-r_da39be_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-thermometer-mounted-on-a-brick-wall-lit-by-a-sin_ac3e00_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-thin-film-interference-experiment-with-soap-bubb_9302ab_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-thin-film-interference-experiment-with-soap-bubb_e09566_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_58fbea_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_58fbea_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-tuning-fork-held-vertical-with-a-stroboscope-fla_efe00e_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-vintage-nasa-style-technical-diagram-on-cream-pa_6280b6_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-wide-banner-showing-a-long-exposure-dawn-lake-wi_3499ef_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/a-wide-banner-styled-like-a-vintage-military-opera_2ef03d_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_03fbb5_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_f36922_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-ancient-bronze-tablet-laid-flat-on-a-slate-tabl_b0f0b7_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-enlarger-easel-in-safelight-blank-photo-paper-h_f7469c_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-optical-bench-demonstration-of-chromatic-aberra_38fa8c_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/an-oracles-smoking-brazier-on-a-stone-plinth-in-a_4de08c_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/bavarian-limestone-lithography-stone-drawn-image-v_321367_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/boolean-logic-gate-diagram-and-or-not-nand-nor-xor_d2373d_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/burette-clamped-on-ring-stand-meniscus-visible-at_ebd84e_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/chain-of-jacquard-loom-punch-cards-holes-controlli_3f44c1_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/classical-greek-marble-bust-of-hermes-three-quarte_d3ef48_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/cross-section-of-reactor-containment-building-thic_e7bc5e_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/ditto-machine-purple-blue-duplicate-faded-square-i_31fa29_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/extreme-close-up-of-drypoint-engraving-burr-on-a-m_dab488_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_7376f0_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_bcb412_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-a-single-huge-banner-hanging-across-a-c_da2695_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-a-single-large-banner-hanging-across-a_792c7c_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-a-freshly-silkscreened-poster-ta_5d8bd5_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-a-wood-type-drawer-pulled-out-be_e98948_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-an-enlargers-easel-holding-a-wet_d3a11c_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-heavy-iron-safe-door-in-a-lab-no_1ef2f3_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-anchor-single-ruling-pen-and-bristol-sh_4580c0_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/foreground-glass-storefront-with-vinyl-lettering-r_bcba9b_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/front-elevation-of-a-small-doric-temple-at-night-a_5b1bef_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_42d48b_3.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_7ae1cc_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_c27ab1_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_fe606f_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/interior-of-a-faraday-cage-room-copper-mesh-on-wal_2cdd9f_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/ipa-phonetic-transcription-of-speech-broad-and-nar_ca70b5_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mimeograph-stencil-with-ink-bleed-margins-square-i_624dc5_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_21bcc9_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_5607d2_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_823704_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_887a6f_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_8f8bba_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_a423dd_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/mj-runs31xqxbqh-y-httpss_d155ca_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/monochromatic-indigo-toned-portrait-of-a-classical_65642a_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/multi-scale-nomogram-for-engineering-calculation-t_e44988_3.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/public-bus-stop-information-panel-showing-a-model_096230_1.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/rude-star-finder-planisphere-transparent-overlay-r_292e0c_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><video src="v10-v11-mj-pulls/screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4?v=3" autoplay muted loop playsinline></video></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/smith-chart-with-impedance-plot-normalized-resista_91e974_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/soviet-era-public-information-kiosk-repurposed-for_28bf5a_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/tall-transit-station-sign-over-a-doorway-helvetica_99c546_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/tall-transit-station-sign-over-a-doorway-helvetica_d08e67_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/thermal-receipt-printer-aesthetic-with-paper-feed_6c7764_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/thermal-receipt-printer-with-paper-feed-artifacts_2a3126_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/unnamed_189e46_2.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_232d3c_0.jpg?v=3" alt="" loading="lazy"></div>
-      <div class="corpus-item"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_356ddd_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/1970s-industrial-photography-magazine-page-slight_ce8f1d_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-169-banner-of-three-small-spheres-lined-up-on-a_5e683e_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-169-banner-stand-of-birch-trees-backlit-by-morni_19c7d5_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-1960s-computer-manual-cover-mock-up-heavy-helvet_1bb2a4_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-brass-key-resting-on-a-leather-bound-ledger-embo_800532_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-brass-theodolite-set-up-on-a-tripod-in-a-paneled_bf8931_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-classical-greek-theater-mask-of-polished-obsidia_8c4290_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-compute-commons-broadside-poster-styled-like-a-d_d8ee04_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/a-curled-photograph-of-a-research-building-exterio_38ca1d_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-designers-republic-style-technical-broadside-on_4b4767_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-distro-live-decentralized-training-announcement_508f50_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-field-guide-to-agentic-systems-botanical-poster_e41911_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/a-forklift-parked-in-a-warehouse-before-dawn-singl_088a41_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-fragmented-marble-torso-of-hermes-on-a-chrome-st_b31f81_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7931"><video src="v10-v11-mj-pulls/a-highly-detailed-digital-interface-design-with-a_c05ce1_3.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-macbeth-colorchecker-card-resting-on-a-worn-leat_d3af28_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-chair-back-tag-stitched-i_4ec60e_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-massimo-vignelli-style-subway-map-fragment-all-r_9ca554_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-minimalist-mission-patch-design-on-a-clean-black_9f1c47_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-modern-interpretation-of-the-kerykeion-a-chrome_babff9_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-nous-hermes-4-model-release-poster-with-album-co_0900c8_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-planetarium-projector-at-pre-dawn-single-tungste_b13925_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-polaroid-type-55-print-and-its-negative-laid-sid_d307af_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-public-library-card-catalog-drawer-pulled-out-re_d7f389_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-row-of-hplc-sample-vials-in-an-autosampler-tray_6bce3c_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-saul-bass-influenced-film-title-poster-mock-up-h_7283e9_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-schlieren-image-of-heated-air-rising-off-a-solde_b1a196_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-sheet-of-paper-showing-concentric-color-fringes_c7d08a_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-single-bold-wim-crouwel-style-typographic-poster_6a15d5_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-single-oversized-broadside-poster-pinned-to-a-wa_79dee1_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-single-waterdrop-hanging-from-a-leaf-tip-refract_4386ea_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-small-numbered-key-on-a-brass-keyfob-hanging-bes_485135_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-swiss-railway-station-timetable-poster-on-cream_8cdac9_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-taste-as-protocol-philosophy-zine-cover-single-r_da39be_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/a-thermometer-mounted-on-a-brick-wall-lit-by-a-sin_ac3e00_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-thin-film-interference-experiment-with-soap-bubb_9302ab_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-thin-film-interference-experiment-with-soap-bubb_e09566_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_58fbea_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-towards-self-improvement-tarot-card-styled-poste_58fbea_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/a-tuning-fork-held-vertical-with-a-stroboscope-fla_efe00e_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/a-vintage-nasa-style-technical-diagram-on-cream-pa_6280b6_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-wide-banner-showing-a-long-exposure-dawn-lake-wi_3499ef_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7843"><img src="v10-v11-mj-pulls/a-wide-banner-styled-like-a-vintage-military-opera_2ef03d_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_03fbb5_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/an-airy-disk-diffraction-pattern-photographed-on-a_f36922_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/an-ancient-bronze-tablet-laid-flat-on-a-slate-tabl_b0f0b7_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/an-enlarger-easel-in-safelight-blank-photo-paper-h_f7469c_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/an-optical-bench-demonstration-of-chromatic-aberra_38fa8c_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/an-oracles-smoking-brazier-on-a-stone-plinth-in-a_4de08c_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/bavarian-limestone-lithography-stone-drawn-image-v_321367_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/boolean-logic-gate-diagram-and-or-not-nand-nor-xor_d2373d_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.5604"><img src="v10-v11-mj-pulls/burette-clamped-on-ring-stand-meniscus-visible-at_ebd84e_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.5604"><img src="v10-v11-mj-pulls/chain-of-jacquard-loom-punch-cards-holes-controlli_3f44c1_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/classical-greek-marble-bust-of-hermes-three-quarte_d3ef48_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7931"><video src="v10-v11-mj-pulls/complex-chemical-reaction-mechanism-written-on-a-c_fc922c_1.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/cross-section-of-reactor-containment-building-thic_e7bc5e_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/ditto-machine-purple-blue-duplicate-faded-square-i_31fa29_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/extreme-close-up-of-drypoint-engraving-burr-on-a-m_dab488_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_7376f0_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/fax-machine-output-misregistered-thermal-print-squ_bcb412_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/foreground-a-single-huge-banner-hanging-across-a-c_da2695_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/foreground-a-single-large-banner-hanging-across-a_792c7c_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/foreground-anchor-a-freshly-silkscreened-poster-ta_5d8bd5_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/foreground-anchor-a-wood-type-drawer-pulled-out-be_e98948_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/foreground-anchor-an-enlargers-easel-holding-a-wet_d3a11c_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/foreground-anchor-heavy-iron-safe-door-in-a-lab-no_1ef2f3_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/foreground-anchor-single-ruling-pen-and-bristol-sh_4580c0_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/foreground-glass-storefront-with-vinyl-lettering-r_bcba9b_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/front-elevation-of-a-small-doric-temple-at-night-a_5b1bef_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_1a9af7_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><video src="v10-v11-mj-pulls/full-screen-alert-notification-large-warning-icon_42d48b_3.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:0.5604"><img src="v10-v11-mj-pulls/geotechnical-boring-log-diagram-columnar-section-s_0f5ce9_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/glass-bell-jar-on-vacuum-plate-interior-evacuated_e65536_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_7ae1cc_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_c27ab1_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/halftone-newsprint-scan-slightly-off-center-square_fe606f_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.7931"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_0.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.7931"><video src="v10-v11-mj-pulls/infinite-corridor-between-server-racks-blue-and-vi_2e9fd7_1.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/interior-of-a-faraday-cage-room-copper-mesh-on-wal_2cdd9f_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/ipa-phonetic-transcription-of-speech-broad-and-nar_ca70b5_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/mimeograph-stencil-with-ink-bleed-margins-square-i_624dc5_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_21bcc9_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_248f8a_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_5607d2_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_823704_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_887a6f_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_8f8bba_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runjlhdfxwj7g8-httpss_a423dd_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3276"><img src="v10-v11-mj-pulls/mj-runs31xqxbqh-y-httpss_d155ca_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7922"><img src="v10-v11-mj-pulls/monochromatic-indigo-toned-portrait-of-a-classical_65642a_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/multi-scale-nomogram-for-engineering-calculation-t_e44988_3.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_6179ca_0.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_886d20_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><video src="v10-v11-mj-pulls/oscilloscope-in-xy-mode-displaying-a-complex-harmo_d86384_3.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/public-bus-stop-information-panel-showing-a-model_096230_1.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/rude-star-finder-planisphere-transparent-overlay-r_292e0c_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.3235"><video src="v10-v11-mj-pulls/screenshot-of-an-ancient-graphical-user-interface_60e794_3.mp4?v=3" autoplay muted loop playsinline></video></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/smith-chart-with-impedance-plot-normalized-resista_91e974_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.8"><img src="v10-v11-mj-pulls/soviet-era-public-information-kiosk-repurposed-for_28bf5a_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/tall-transit-station-sign-over-a-doorway-helvetica_99c546_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.7532"><img src="v10-v11-mj-pulls/tall-transit-station-sign-over-a-doorway-helvetica_d08e67_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/thermal-receipt-printer-aesthetic-with-paper-feed_6c7764_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/thermal-receipt-printer-with-paper-feed-artifacts_2a3126_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:0.6667"><img src="v10-v11-mj-pulls/unnamed_189e46_2.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_232d3c_0.jpg?v=3" alt="" loading="lazy"></div>
+      <div class="corpus-item" style="--r:1.0"><img src="v10-v11-mj-pulls/xerox-art-10th-generation-degraded-photocopy-therm_356ddd_3.jpg?v=3" alt="" loading="lazy"></div>
     </div>
   <div class="gallery-caption">// 113 raw pulls from the v10/v11 series — unfiltered, uncurated</div>
 </section>
