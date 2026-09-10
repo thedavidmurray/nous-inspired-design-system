@@ -10,7 +10,8 @@ Open `public/spec-sheet.html` locally for a visual preview of the full system.
 ### For Developers (React / Tailwind)
 
 ```bash
-pnpm add @edgelesslab/design-system
+# not published to npm — install from the GitHub tarball
+pnpm add https://github.com/thedavidmurray/nous-inspired-design-system/tarball/main
 ```
 
 ```tsx

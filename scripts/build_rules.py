@@ -138,7 +138,7 @@ navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeo
 
 NAV = (
     '<nav class="nav"><b>NOUS INSPIRED</b> '
-    '<a href="index.html">Archive</a> '
+    '<a href="index.html">Overview</a> '
     '<a href="rules.html" aria-current="page">Rulebook</a> '
     '<a href="method.html">Method</a> '
     '<a href="kit/README.md">Kit</a> '
