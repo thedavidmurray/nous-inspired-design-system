@@ -47,6 +47,10 @@ Typography: **JetBrains Mono** for display, headings, code, and labels. **Inter*
 
 Processed assets live in `public/processed/{category}/`. See `docs/asset-curation-guide.md` for the full curation workflow.
 
+### Midjourney Style Refs
+
+30 Nous/Hermes-inspired Midjourney style references (sref codes, moodboards, palettes, sample images): **[browse](https://thedavidmurray.github.io/nous-inspired-design-system/style-refs/)** · [JSON](docs/style-refs/djm-style-pack.json). Built for tools like Continuo's style browser.
+
 ### For Content Creators (Prompt Library + Pipeline)
 
 300 prompts across 30 categories, split into two complementary sets:

@@ -1,0 +1,1119 @@
+{
+ "pack": "djm-style-pack",
+ "version": "1.0.0",
+ "owner": "djm (thedavidmurray)",
+ "status": "Public. Nous/Hermes-inspired Midjourney style references by djm (Edgeless Lab). Free to use.",
+ "profiles": [],
+ "moodboards": [
+  {
+   "name": "hermes",
+   "code": "2lzg9go"
+  },
+  {
+   "name": "nsblueprint",
+   "code": "m7507638807873060838"
+  }
+ ],
+ "styles": [
+  {
+   "id": "djm-pool",
+   "name": "Pool",
+   "category": "seed-set/atmosphere",
+   "tags": [
+    "interior",
+    "perspective",
+    "pale"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, pale tile, painted lane markings, dead-on one-point perspective",
+   "negative": null,
+   "mj_params": "--sref 128610232 3035578412 2783751482 --v 8.2",
+   "sref": "128610232 3035578412 2783751482",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier A (atmosphere): seed set behaves like a near-complete image; subject becomes decorative and wordmarks rarely survive. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-venus",
+   "name": "Venus",
+   "category": "seed-set/atmosphere",
+   "tags": [
+    "gallery",
+    "amber",
+    "indigo"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, gallery wall hung with dozens of framed discs, amber to indigo",
+   "negative": null,
+   "mj_params": "--sref 1649694076 3731117963 1032521734 --v 8.2",
+   "sref": "1649694076 3731117963 1032521734",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier A (atmosphere): seed set behaves like a near-complete image; subject becomes decorative and wordmarks rarely survive. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-ropewalk",
+   "name": "Ropewalk",
+   "category": "seed-set/atmosphere",
+   "tags": [
+    "interior",
+    "red-ochre",
+    "monumental"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, monumental red-ochre interior, deep one-point perspective",
+   "negative": null,
+   "mj_params": "--sref 1231610480 597033662 564824093 --v 8.2",
+   "sref": "1231610480 597033662 564824093",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier A (atmosphere): seed set behaves like a near-complete image; subject becomes decorative and wordmarks rarely survive. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-tartan",
+   "name": "Tartan",
+   "category": "seed-set/technique",
+   "tags": [
+    "textile",
+    "pastel",
+    "woven"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, soft woven plaid smears, pastel weaving",
+   "negative": null,
+   "mj_params": "--sref 1991110510 2959847791 729924006 --v 8.2",
+   "sref": "1991110510 2959847791 729924006",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier T (technique): measured to transfer across subjects; safe to lock for a series. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-loom",
+   "name": "Loom",
+   "category": "seed-set/technique",
+   "tags": [
+    "technical",
+    "exploded-view",
+    "blue-red"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, blue and red technical explosion on gridded paper",
+   "negative": null,
+   "mj_params": "--sref 3662885606 2330289619 --v 8.2",
+   "sref": "3662885606 2330289619",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier T (technique): measured to transfer across subjects; safe to lock for a series. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-tidemill",
+   "name": "Tidemill",
+   "category": "seed-set/technique",
+   "tags": [
+    "flat",
+    "folk",
+    "ochre"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, flat painted gabled buildings on ochre ground",
+   "negative": null,
+   "mj_params": "--sref 4046559015 2833167635 --v 8.2",
+   "sref": "4046559015 2833167635",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier T (technique): measured to transfer across subjects; safe to lock for a series. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-landfill",
+   "name": "Landfill",
+   "category": "seed-set/atmosphere",
+   "tags": [
+    "blueprint",
+    "cyan",
+    "linework"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, white-line blueprint on cyan",
+   "negative": null,
+   "mj_params": "--sref 2990839814 830957711 --v 8.2",
+   "sref": "2990839814 830957711",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier A (atmosphere): seed set behaves like a near-complete image; subject becomes decorative and wordmarks rarely survive. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-bubble",
+   "name": "Bubble",
+   "category": "seed-set/technique",
+   "tags": [
+    "deco",
+    "scientific-plate",
+    "silver"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>, silver bead-chain arcs on white, Deco scientific plate",
+   "negative": null,
+   "mj_params": "--sref 2141854496 --v 8.2",
+   "sref": "2141854496",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Tier T (technique): measured to transfer across subjects; safe to lock for a series. 3-seed stacks bias toward symmetrical one-point perspective. Harvested from --sref random winners, 2026-07-27/28 runs. Description is djm's run note, not a measurement; palette unmeasured (sample images on an offline drive)."
+  },
+  {
+   "id": "djm-cyanotype-oracle",
+   "name": "Cyanotype + Oracle Orange",
+   "category": "seed-set/house",
+   "tags": [
+    "cyanotype",
+    "orange",
+    "duotone",
+    "hermes"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>",
+   "negative": null,
+   "mj_params": "--sref 2139432444 3729836101",
+   "sref": "2139432444 3729836101",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Run note: 'mechanical brain cyanotype' + 'oracle orange' -> blue/orange duotone. Was the even-cycle default for 505/1005 prompts in one run, which is why the Hermes feed reads blue/orange. Palette unmeasured."
+  },
+  {
+   "id": "djm-exploded-schematic",
+   "name": "Exploded Schematic (pink/blue)",
+   "category": "seed-set/house",
+   "tags": [
+    "schematic",
+    "pink",
+    "blue"
+   ],
+   "aspect": null,
+   "palette": [],
+   "prompt": "<subject>",
+   "negative": null,
+   "mj_params": "--sref 1193072009 2657426683",
+   "sref": "1193072009 2657426683",
+   "profile_id": null,
+   "sample_image": null,
+   "notes": "Harvested pair from the same bank; run note says 'exploded schematic pink/blue'. Which code is which is not recorded; never used in a logged prompt (0 uses), so untested."
+  },
+  {
+   "id": "djm-found-1806980163",
+   "name": "Found 1806980163",
+   "category": "seed-set/discovered",
+   "tags": [
+    "framed photography",
+    "dark tones",
+    "blue highlights",
+    "moody"
+   ],
+   "aspect": "16:9",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.376
+    },
+    {
+     "hex": "#121712",
+     "share": 0.141
+    },
+    {
+     "hex": "#435c6a",
+     "share": 0.125
+    },
+    {
+     "hex": "#847f7c",
+     "share": 0.122
+    },
+    {
+     "hex": "#392d26",
+     "share": 0.119
+    },
+    {
+     "hex": "#cfd2d8",
+     "share": 0.117
+    }
+   ],
+   "prompt": "Paris Scene with Bridge, run three times over: once as an ultraviolet fluorescence capture glowing violet in the dark, once as a smudged purple spirit-duplicator mimeograph, and once pasted into an anarchist zine spread with ransom-note cutouts and crooked staples.",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 16:9 --s 250 --profile allrc6u 2lzg9go --v 8.2 --sref 1806980163",
+   "sref": "1806980163",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1806980163.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-723139161",
+   "name": "Found 723139161",
+   "category": "seed-set/discovered",
+   "tags": [
+    "travel poster design",
+    "blue and orange",
+    "framed scenes",
+    "retro"
+   ],
+   "aspect": "2:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.551
+    },
+    {
+     "hex": "#836b6b",
+     "share": 0.139
+    },
+    {
+     "hex": "#25679d",
+     "share": 0.131
+    },
+    {
+     "hex": "#66a5ce",
+     "share": 0.08
+    },
+    {
+     "hex": "#73879d",
+     "share": 0.055
+    },
+    {
+     "hex": "#b7cadc",
+     "share": 0.043
+    }
+   ],
+   "prompt": "Bought for a dollar in a ship's galley, this dinner menu shows the Wreck of the Reliance as a weathered wheat-paste poster peeling off brick, printed in a coarse dot screen, with torn poster letters spelling \"NOUS RESEARCH\" across the top.",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 2:3 --s 600 --profile allrc6u 2lzg9go --v 8.2 --sref 723139161",
+   "sref": "723139161",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-723139161.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-2228913787",
+   "name": "Found 2228913787",
+   "category": "seed-set/discovered",
+   "tags": [
+    "poster illustration",
+    "red borders",
+    "muted blue",
+    "retro"
+   ],
+   "aspect": "5:7",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.523
+    },
+    {
+     "hex": "#85585f",
+     "share": 0.187
+    },
+    {
+     "hex": "#bb9a8a",
+     "share": 0.181
+    },
+    {
+     "hex": "#e6d4c7",
+     "share": 0.064
+    },
+    {
+     "hex": "#fdfffe",
+     "share": 0.038
+    },
+    {
+     "hex": "#fffffe",
+     "share": 0.006
+    }
+   ],
+   "prompt": "Wild Camel and Rider blocks the desert path on a 16-bit RPG battle screen, the sprites dithered in mint, salmon and charcoal, a health bar blinking overhead while a pixel dialog box along the bottom announces \"HERMES APPEARS!\"",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 5:7 --sref 2228913787 1974745296 --profile allrc6u 2lzg9go --v 8.2",
+   "sref": "2228913787 1974745296",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-2228913787.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-920466881",
+   "name": "Found 920466881",
+   "category": "seed-set/discovered",
+   "tags": [
+    "vintage cover design",
+    "black and gold",
+    "ornate texture",
+    "somber"
+   ],
+   "aspect": "3:4",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.483
+    },
+    {
+     "hex": "#494034",
+     "share": 0.331
+    },
+    {
+     "hex": "#a89985",
+     "share": 0.106
+    },
+    {
+     "hex": "#fdf8ed",
+     "share": 0.074
+    },
+    {
+     "hex": "#fffffd",
+     "share": 0.004
+    },
+    {
+     "hex": "#feffff",
+     "share": 0.001
+    }
+   ],
+   "prompt": "Hand-set and pulled on dampened paper, a collaged lotus opens over still water on a letterpress wood-type broadside, tiny in a vast empty field of cream stock, inked only in olive, ochre and black.",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 3:4 --s 50 --sref 920466881 3906771829 --profile allrc6u 2lzg9go --v 8.2",
+   "sref": "920466881 3906771829",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-920466881.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-4200885497",
+   "name": "Found 4200885497",
+   "category": "seed-set/discovered",
+   "tags": [
+    "poster design",
+    "black and white",
+    "bold lettering",
+    "gritty"
+   ],
+   "aspect": "3:4",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.482
+    },
+    {
+     "hex": "#161615",
+     "share": 0.135
+    },
+    {
+     "hex": "#787778",
+     "share": 0.12
+    },
+    {
+     "hex": "#433a3a",
+     "share": 0.113
+    },
+    {
+     "hex": "#c6c6c8",
+     "share": 0.09
+    },
+    {
+     "hex": "#f0f1f5",
+     "share": 0.061
+    }
+   ],
+   "prompt": "Unsold, lot 184: a bookmatch strip bearing an agitprop screenprint of a brutalist concrete cathedral wrapped in fog, overprinted by a second, slightly misregistered pass, with a condensed sans slogan printed across the striker reading \"HERMES\".",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 3:4 --s 250 --sref 4200885497 3919238390 --profile allrc6u 2lzg9go --v 8.2",
+   "sref": "4200885497 3919238390",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-4200885497.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1304785094",
+   "name": "Found 1304785094",
+   "category": "seed-set/discovered",
+   "tags": [
+    "editorial collage",
+    "blue and red",
+    "printed texture",
+    "nostalgic"
+   ],
+   "aspect": "3:2",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.34
+    },
+    {
+     "hex": "#e5e4e1",
+     "share": 0.157
+    },
+    {
+     "hex": "#cecdcc",
+     "share": 0.143
+    },
+    {
+     "hex": "#acaab0",
+     "share": 0.126
+    },
+    {
+     "hex": "#62748e",
+     "share": 0.126
+    },
+    {
+     "hex": "#213052",
+     "share": 0.107
+    }
+   ],
+   "prompt": "Worked in needlepoint after Class K, Richard Cooper II and George Catlin, this banknote shows a vintage biplane looping through cumulus cloud inside a stitched guilloche border, with an enamel badge in one corner lettered \"NOUS RESEARCH\".",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 3:2 --s 400 --sref 1304785094 4107352295 --profile allrc6u 2lzg9go --v 8.2",
+   "sref": "1304785094 4107352295",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1304785094.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-4161553467",
+   "name": "Found 4161553467",
+   "category": "seed-set/discovered",
+   "tags": [
+    "collage",
+    "pink and blue",
+    "layered detail",
+    "playful"
+   ],
+   "aspect": "7:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.345
+    },
+    {
+     "hex": "#a7aace",
+     "share": 0.296
+    },
+    {
+     "hex": "#636393",
+     "share": 0.205
+    },
+    {
+     "hex": "#dfe0ec",
+     "share": 0.1
+    },
+    {
+     "hex": "#fefffe",
+     "share": 0.043
+    },
+    {
+     "hex": "#fffffd",
+     "share": 0.01
+    }
+   ],
+   "prompt": "in the style of Edward Gorey x Saul Steinberg x Hokusai, a very long dachshund-shaped train winding through snowy mountains, whimsical pen line in blue ink, stipple snow",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 7:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 4161553467",
+   "sref": "4161553467",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-4161553467.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-2244442099",
+   "name": "Found 2244442099",
+   "category": "seed-set/discovered",
+   "tags": [
+    "minimal illustration",
+    "pale blue",
+    "white background",
+    "airy"
+   ],
+   "aspect": "2:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.606
+    },
+    {
+     "hex": "#fefefe",
+     "share": 0.148
+    },
+    {
+     "hex": "#d5dae6",
+     "share": 0.13
+    },
+    {
+     "hex": "#f8fafb",
+     "share": 0.099
+    },
+    {
+     "hex": "#fffffe",
+     "share": 0.013
+    },
+    {
+     "hex": "#fefffe",
+     "share": 0.004
+    }
+   ],
+   "prompt": "risograph poster, two passes of the same blue drum slightly misaligned, a flock of starlings forming a human hand in the sky, mostly empty paper",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 2:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 2244442099",
+   "sref": "2244442099",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-2244442099.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-78773288",
+   "name": "Found 78773288",
+   "category": "seed-set/discovered",
+   "tags": [
+    "abstract pattern",
+    "blue and white",
+    "fluid lines",
+    "calm"
+   ],
+   "aspect": "2:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.535
+    },
+    {
+     "hex": "#3d5880",
+     "share": 0.199
+    },
+    {
+     "hex": "#8297b0",
+     "share": 0.161
+    },
+    {
+     "hex": "#b7c3d2",
+     "share": 0.091
+    },
+    {
+     "hex": "#fefffe",
+     "share": 0.012
+    },
+    {
+     "hex": "#fffffe",
+     "share": 0.001
+    }
+   ],
+   "prompt": "blue screenprint, a diver standing at the bottom of a swimming pool looking up at sunlight caustics, flat shapes, halftone ripples",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 2:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 78773288",
+   "sref": "78773288",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-78773288.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1242037513",
+   "name": "Found 1242037513",
+   "category": "seed-set/discovered",
+   "tags": [
+    "stage photography",
+    "neon purple",
+    "high contrast",
+    "energetic"
+   ],
+   "aspect": "16:9",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.331
+    },
+    {
+     "hex": "#0d121d",
+     "share": 0.242
+    },
+    {
+     "hex": "#a1a8c2",
+     "share": 0.145
+    },
+    {
+     "hex": "#7268a5",
+     "share": 0.138
+    },
+    {
+     "hex": "#64396a",
+     "share": 0.12
+    },
+    {
+     "hex": "#fbfffe",
+     "share": 0.024
+    }
+   ],
+   "prompt": "riso print of a night market, lanterns and noodle steam and silhouettes, one federal blue ink, the steam left as bare paper",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 16:9 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 1242037513",
+   "sref": "1242037513",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1242037513.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1919270609",
+   "name": "Found 1919270609",
+   "category": "seed-set/discovered",
+   "tags": [
+    "magazine cover design",
+    "teal and grayscale",
+    "textured",
+    "vintage"
+   ],
+   "aspect": "2:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.567
+    },
+    {
+     "hex": "#9fb2b7",
+     "share": 0.168
+    },
+    {
+     "hex": "#666d72",
+     "share": 0.16
+    },
+    {
+     "hex": "#e9ebee",
+     "share": 0.057
+    },
+    {
+     "hex": "#feffff",
+     "share": 0.045
+    },
+    {
+     "hex": "#fffffe",
+     "share": 0.003
+    }
+   ],
+   "prompt": "Lot 88: a Victorian playbill printed in a single blue ink, woodtype stacked headlines, \"HERMES\" in huge letters, a small cut of an automaton magician",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 2:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 1919270609",
+   "sref": "1919270609",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1919270609.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1873124578",
+   "name": "Found 1873124578",
+   "category": "seed-set/discovered",
+   "tags": [
+    "aerial photography",
+    "gray and teal",
+    "repeating panels",
+    "quiet"
+   ],
+   "aspect": "16:9",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.353
+    },
+    {
+     "hex": "#606d78",
+     "share": 0.154
+    },
+    {
+     "hex": "#798391",
+     "share": 0.137
+    },
+    {
+     "hex": "#5b575c",
+     "share": 0.122
+    },
+    {
+     "hex": "#b1b9be",
+     "share": 0.121
+    },
+    {
+     "hex": "#34403d",
+     "share": 0.112
+    }
+   ],
+   "prompt": "ukiyo-e woodblock rendered only in Prussian blue (aizuri-e), a train of paper lanterns crossing a mountain pass at night, gradient bokashi sky",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 16:9 --sref 1873124578 1682311858 --profile allrc6u 2lzg9go --stylize 700 --v 8.2",
+   "sref": "1873124578 1682311858",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1873124578.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-2847375512",
+   "name": "Found 2847375512",
+   "category": "seed-set/discovered",
+   "tags": [
+    "blueprint-style graphics",
+    "cyan and white",
+    "dense detail",
+    "technical"
+   ],
+   "aspect": "4:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.343
+    },
+    {
+     "hex": "#97c4dc",
+     "share": 0.15
+    },
+    {
+     "hex": "#bcdae8",
+     "share": 0.143
+    },
+    {
+     "hex": "#64a7ca",
+     "share": 0.134
+    },
+    {
+     "hex": "#7cb5d3",
+     "share": 0.125
+    },
+    {
+     "hex": "#4d8eb5",
+     "share": 0.105
+    }
+   ],
+   "prompt": "patent drawing, blueprint diazo print, white lines on cyan-blue, \"Apparatus for the Distillation of Dreams\", exploded valves, pipes, a glass alembic, numbered callouts without words",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 4:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 2847375512",
+   "sref": "2847375512",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-2847375512.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-2581813621",
+   "name": "Found 2581813621",
+   "category": "seed-set/discovered",
+   "tags": [
+    "panoramic collage",
+    "monochrome blue",
+    "grainy",
+    "atmospheric"
+   ],
+   "aspect": "16:9",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.351
+    },
+    {
+     "hex": "#666cb5",
+     "share": 0.18
+    },
+    {
+     "hex": "#0c2a8a",
+     "share": 0.144
+    },
+    {
+     "hex": "#504f9d",
+     "share": 0.113
+    },
+    {
+     "hex": "#9b9bce",
+     "share": 0.107
+    },
+    {
+     "hex": "#213a97",
+     "share": 0.104
+    }
+   ],
+   "prompt": "blueprint of a flying city, white technical line on Prussian blue, isometric cutaway, propellers under every district",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 16:9 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 2581813621",
+   "sref": "2581813621",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-2581813621.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-923980132",
+   "name": "Found 923980132",
+   "category": "seed-set/discovered",
+   "tags": [
+    "spiral illustration",
+    "purple and teal",
+    "radial pattern",
+    "hypnotic"
+   ],
+   "aspect": "1:1",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.338
+    },
+    {
+     "hex": "#a79ac0",
+     "share": 0.177
+    },
+    {
+     "hex": "#beb7cd",
+     "share": 0.133
+    },
+    {
+     "hex": "#3f5e7b",
+     "share": 0.128
+    },
+    {
+     "hex": "#8a8db4",
+     "share": 0.128
+    },
+    {
+     "hex": "#6277a2",
+     "share": 0.095
+    }
+   ],
+   "prompt": "cyanotype of a spiral seashell cut in half, chambers glowing white, marbled blue emulsion",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 1:1 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 923980132",
+   "sref": "923980132",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-923980132.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1187448633",
+   "name": "Found 1187448633",
+   "category": "seed-set/discovered",
+   "tags": [
+    "digital illustration",
+    "electric blue",
+    "black background",
+    "dreamlike"
+   ],
+   "aspect": "1:1",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.339
+    },
+    {
+     "hex": "#1d2030",
+     "share": 0.174
+    },
+    {
+     "hex": "#07120f",
+     "share": 0.14
+    },
+    {
+     "hex": "#0c1a1f",
+     "share": 0.133
+    },
+    {
+     "hex": "#040c05",
+     "share": 0.115
+    },
+    {
+     "hex": "#485972",
+     "share": 0.099
+    }
+   ],
+   "prompt": "an astronomer's star chart, engraved in one cobalt ink, constellations redrawn as tools, a hammer, a key, a compass, a harp, dotted lines linking stars",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 1:1 --sref 1187448633 2570875828 --profile allrc6u 2lzg9go --stylize 700 --v 8.2",
+   "sref": "1187448633 2570875828",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1187448633.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-1509935263",
+   "name": "Found 1509935263",
+   "category": "seed-set/discovered",
+   "tags": [
+    "diagrammatic illustration",
+    "pale blue",
+    "white background",
+    "clinical"
+   ],
+   "aspect": "2:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.537
+    },
+    {
+     "hex": "#eae9e5",
+     "share": 0.166
+    },
+    {
+     "hex": "#c8d2d9",
+     "share": 0.105
+    },
+    {
+     "hex": "#8a9fb9",
+     "share": 0.101
+    },
+    {
+     "hex": "#f4f2ef",
+     "share": 0.074
+    },
+    {
+     "hex": "#feffff",
+     "share": 0.018
+    }
+   ],
+   "prompt": "a single riso-printed page in federal blue ink on cream stock: a lighthouse lens exploded into its concentric Fresnel rings, each ring floating apart like a diagram, coarse grain and slight misregistration, the base plate stamped with raised letters spelling \"NOUS RESEARCH\"",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 2:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 1509935263",
+   "sref": "1509935263",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-1509935263.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-2626947688",
+   "name": "Found 2626947688",
+   "category": "seed-set/discovered",
+   "tags": [
+    "digital artwork",
+    "deep blue",
+    "luminous circles",
+    "serene"
+   ],
+   "aspect": "7:3",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.351
+    },
+    {
+     "hex": "#b3b2dd",
+     "share": 0.156
+    },
+    {
+     "hex": "#685ebc",
+     "share": 0.131
+    },
+    {
+     "hex": "#d7d5ed",
+     "share": 0.128
+    },
+    {
+     "hex": "#8b8dd2",
+     "share": 0.122
+    },
+    {
+     "hex": "#2838a4",
+     "share": 0.112
+    }
+   ],
+   "prompt": "in the style of Moebius x Herg\u00e9 x Hiroshi Nagai, a lone hover-bike on a salt flat under a gigantic moon, ligne claire linework in one ultramarine ink, halftone shading",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 7:3 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 2626947688",
+   "sref": "2626947688",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-2626947688.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-3621756407",
+   "name": "Found 3621756407",
+   "category": "seed-set/discovered",
+   "tags": [
+    "digital illustration",
+    "deep blue",
+    "glowing light",
+    "mysterious"
+   ],
+   "aspect": "16:9",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.34
+    },
+    {
+     "hex": "#020208",
+     "share": 0.203
+    },
+    {
+     "hex": "#707da9",
+     "share": 0.158
+    },
+    {
+     "hex": "#252458",
+     "share": 0.14
+    },
+    {
+     "hex": "#0d1750",
+     "share": 0.103
+    },
+    {
+     "hex": "#081550",
+     "share": 0.056
+    }
+   ],
+   "prompt": "03:14, observatory dome split open, the telescope aimed at a comet; riso print in medium blue on off-white, heavy stipple sky, grain everywhere, no other colours",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 16:9 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 3621756407",
+   "sref": "3621756407",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-3621756407.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  },
+  {
+   "id": "djm-found-4236490660",
+   "name": "Found 4236490660",
+   "category": "seed-set/discovered",
+   "tags": [
+    "pattern design",
+    "blue and white",
+    "repeating circles",
+    "orderly"
+   ],
+   "aspect": "4:5",
+   "palette": [
+    {
+     "hex": "#ffffff",
+     "share": 0.443
+    },
+    {
+     "hex": "#5197e1",
+     "share": 0.231
+    },
+    {
+     "hex": "#7ab5eb",
+     "share": 0.141
+    },
+    {
+     "hex": "#a7caed",
+     "share": 0.134
+    },
+    {
+     "hex": "#d8eaf6",
+     "share": 0.035
+    },
+    {
+     "hex": "#fffffe",
+     "share": 0.016
+    }
+   ],
+   "prompt": "in the style of Ernst Haeckel x Otl Aicher x Agnes Martin, radiolarian skeletons arranged as a quiet pictogram grid, pale cobalt riso, lots of breathing room",
+   "negative": null,
+   "mj_params": "--chaos 70 --ar 4:5 --profile allrc6u 2lzg9go --stylize 700 --v 8.2 --sref 4236490660",
+   "sref": "4236490660",
+   "profile_id": null,
+   "sample_image": "samples/djm-found-4236490660.jpg",
+   "notes": "Code Midjourney resolved from --sref random; used once, transfer across subjects not tested. Palette measured from the sample. Tags are rough, auto-generated from a thumbnail."
+  }
+ ],
+ "gaps": [
+  "Moodboard IDs and which of allrc6u/2lzg9go is the moodboard need the logged-in Personalize page.",
+  "Liked/favourite styles from Explore were not exported.",
+  "Curated seed sets have no sample image or measured palette: their images live on /Volumes/MacOffload, which hung at build time."
+ ],
+ "caveats": [
+  "Discovered codes skew blue: most come from one blue-riso round (r47). That is a sampling artifact of what is on local disk, not the whole account.",
+  "Tier T/A and the seed-set descriptions are djm's run notes from 2026-07-28, recorded in code comments."
+ ]
+}
